@@ -1,7 +1,7 @@
 ﻿using Code.Core.Interfaces;
 using UnityEngine;
 
-namespace Code.Managers
+namespace Code.Core.Managers
 {
     public class RoundTracker : ITurnable
     {

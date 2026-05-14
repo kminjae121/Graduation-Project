@@ -3,7 +3,7 @@ using Code.UI;
 using Code.UnitManaging;
 using UnityEngine;
 
-namespace Code.Managers
+namespace Code.Core.Managers
 {
     public class PartyUIManager : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using Code.Core.Events.Bus;
-using Code.Managers;
+using Code.Core.Managers;
 using Code.UnitSystem;
 using Code.SkillSystem;
 using Code.SkillSystem.Skill.Knight;

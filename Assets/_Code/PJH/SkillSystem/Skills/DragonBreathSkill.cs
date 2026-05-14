@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Code.Combat.StatusEffect;
 using Code.Core.Debugs;
 using Code.Core.Events.Bus;
-using Code.Managers;
+using Code.Core.Managers;
 using Code.Map;
 using Code.UnitSystem;
 using Code.UnitSystem.Enemies;

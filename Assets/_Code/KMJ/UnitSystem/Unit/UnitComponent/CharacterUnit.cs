@@ -3,7 +3,6 @@ using _Code.Passive;
 using Code.Core.Managers;
 using Code.Core.Events.Bus;
 using Code.Core.Interfaces;
-using Code.Managers;
 using Code.Map;
 using Code.SkillSystem;
 using Code.UI;

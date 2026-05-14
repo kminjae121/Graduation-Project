@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace _00.Core._02.Scripts._01.Manager
+namespace Code.Core.Managers
 {
     public class HitStopManager : MonoBehaviour
     {

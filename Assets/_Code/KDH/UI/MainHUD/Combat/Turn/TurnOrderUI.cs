@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Code.Core.Events.Bus;
 using Code.Core.Interfaces;
-using Code.Managers;
+using Code.Core.Managers;
 using GondrLib.ObjectPool.Runtime;
 using UnityEngine;
 using DG.Tweening;

@@ -2,7 +2,7 @@
 using Code.Core;
 using Code.Items;
 
-namespace Code.Managers
+namespace Code.Core.Managers
 {
     public class PlayerManager : MonoSingleton<PlayerManager>
     {

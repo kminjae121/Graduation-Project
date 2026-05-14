@@ -9,7 +9,7 @@ using Code.UnitSystem.Enemies.AI;
 using GondrLib.Dependencies;
 using UnityEngine;
 
-namespace Code.Managers
+namespace Code.Core.Managers
 {
     [Provide]
     public class EnemyManager : MonoBehaviour, IDependencyProvider

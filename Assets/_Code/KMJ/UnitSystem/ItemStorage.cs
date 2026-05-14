@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using _Code.KMJ.UnitSystem;
-using _Code.Passive;
-using _Code.UnitSystem;
+using Code.UnitSystem;
 using Code.Core;
 using Code.Items;
-using UnityEngine;
 
-namespace _Code.Item
+namespace Code.Item
 {
     public class ItemStorage : MonoSingleton<ItemStorage>
     {

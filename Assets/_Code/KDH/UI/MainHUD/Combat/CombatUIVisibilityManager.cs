@@ -2,7 +2,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace Code.Managers
+namespace Code.Core.Managers
 {
     public class CombatUIVisibilityManager : MonoBehaviour
     {

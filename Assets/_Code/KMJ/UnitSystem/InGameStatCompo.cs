@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
 using Code.Core;
-using Code.UnitSystem;
-using UnityEngine;
 
-
-namespace _Code.UnitSystem
+namespace Code.UnitSystem
 {
     public struct InGameStat
     {

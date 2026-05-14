@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace _00.Core._02.Scripts._06.SO
+namespace Code.Stage
 {
     [CreateAssetMenu(fileName = "SO/StageSO", menuName = "SO/Map/StageSO", order = 0)]
     public class StageSO : ScriptableObject

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using _Code.KMJ.UnitSystem;
-using Code.Managers;
+using Code.Core.Managers;
 using Code.SkillSystem;
 using Code.UnitSystem;
 using GondrLib.Dependencies;
