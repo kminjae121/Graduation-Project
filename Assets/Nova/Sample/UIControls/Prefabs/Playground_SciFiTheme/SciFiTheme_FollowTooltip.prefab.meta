@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1d085a994c79113489f419b19c4639cd
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Sample/UIControls/Prefabs/Playground_SciFiTheme/SciFiTheme_FollowTooltip.prefab
+  uploadId: 631464

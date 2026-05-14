@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c0aa08fd8574fa49baef4296bacd94d, type: 3}
+  m_Name: Knight
+  m_EditorClassIdentifier: 
+  UnitName: Knight
+  UnitPrefab: {fileID: 2333293328105742335, guid: 1406171d7a35d9047b82a5be044fd582, type: 3}
+  poolingItem: {fileID: 11400000, guid: d6313f629b079114c8398a471d519c0f, type: 2}
+  UnitSO: {fileID: 11400000, guid: 13c742cd81754804786cc1e1241a0a8f, type: 2}

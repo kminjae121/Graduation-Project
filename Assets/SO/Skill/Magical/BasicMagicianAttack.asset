@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30d98c8b387f46ffb69465c140c8415f, type: 3}
+  m_Name: BasicMagicianAttack
+  m_EditorClassIdentifier: 
+  unitType: 4
+  skillName: "\uAE30\uBCF8 \uACF5\uACA9"
+  skillAnimationKey: 
+  SkillDescription: "\uB9C8\uBC95\uC73C\uB85C \uC0C1\uB300\uB97C \uACF5\uACA9\uD569\uB2C8\uB2E4."
+  SkillValue: 5
+  SkillCost: 0
+  skillUIImage: {fileID: 21300000, guid: b65316ed346908f429d795ed240afcf4, type: 3}
+  className: LongAttack
+  skillPrice: 0
+  SkillDamage: 150
+  SkillRange: 5
+  IsOwnSkill: 0
+  SkillType: 0

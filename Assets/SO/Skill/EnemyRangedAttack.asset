@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30d98c8b387f46ffb69465c140c8415f, type: 3}
+  m_Name: EnemyRangedAttack
+  m_EditorClassIdentifier: Assembly-CSharp::Code.SkillSystem.SkillSO
+  unitType: 0
+  skillName: "\uC801 \uC6D0\uAC70\uB9AC \uACF5\uACA9"
+  skillAnimationKey: ATTACK
+  SkillDescription: "\uD14C\uC2A4\uD2B8\uC6A9 \uC801 \uC6D0\uAC70\uB9AC \uACF5\uACA9\uC785\uB2C8\uB2E4.
+    \uD0C0\uAC9F\uC5D0\uAC8C \uB370\uBBF8\uC9C0\uB9CC \uC801\uC6A9\uD569\uB2C8\uB2E4."
+  SkillValue: 0
+  SkillCost: 0
+  skillUIImage: {fileID: 0}
+  className: Code.SkillSystem.EnemyRangedAttack
+  skillPrice: 0
+  SkillDamage: 100
+  SkillRange: 5
+  MinRange: 2
+  IsOwnSkill: 0
+  SkillType: 0

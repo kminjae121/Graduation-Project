@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f6cbf0b4eb447de8a1ee839894a717e, type: 3}
+  m_Name: RecruitNecklace
+  m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.ArtifactSystem.ArtifactSO
+  itemName: "\uD6C8\uB828\uBCD1\uC758 \uBAA9\uAC78\uC774"
+  itemIcon: {fileID: 21300000, guid: 90e9b0bb6c24b2e4db5921b6a62aa06a, type: 3}
+  itemDesc: "\uD6C8\uB828\uBCD1\uC774 \uC544\uB07C\uB358 \uBAA9\uAC78\uC774\uB2E4."
+  rarity: 0
+  Stats:
+  - StatInfo: 1
+    StatValue: 3
+  PassiveSO: {fileID: 0}

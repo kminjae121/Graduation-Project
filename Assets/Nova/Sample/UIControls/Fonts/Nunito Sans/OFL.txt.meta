@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 58063c9951610d147899e667a7a610e6
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Sample/UIControls/Fonts/Nunito Sans/OFL.txt
+  uploadId: 631464

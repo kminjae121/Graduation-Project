@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 25e301d03faca0644b8994404f1b1b5a
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Sample/UIControls/Prefabs/Style_SciFi/DropdownItem_SciFi.prefab
+  uploadId: 631464

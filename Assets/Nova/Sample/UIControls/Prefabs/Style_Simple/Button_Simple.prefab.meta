@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 79897eec998755242b9000eb8b1ecabe
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Sample/UIControls/Prefabs/Style_Simple/Button_Simple.prefab
+  uploadId: 631464

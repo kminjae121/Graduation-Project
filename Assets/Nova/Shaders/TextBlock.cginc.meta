@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: b89b8ccf532956943ad72f272206b861
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Shaders/TextBlock.cginc
+  uploadId: 631464

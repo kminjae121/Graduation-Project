@@ -1,0 +1,7 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/GondrLib/ObjectPool/Editor/PoolItemUI.uss?fileID=7433441132597879392&amp;guid=5eddd9009f9ec4c43ac4fc49c566f660&amp;type=3#PoolItemUI" />
+    <ui:VisualElement name="PoolItem" class="pool_item">
+        <ui:Label text="Labelasdasdadasddsssssssssssssssssssssssssssssssssssssssssssssssssssssssss" name="ItemName" class="item_name" />
+        <ui:Button text="X" name="DeleteBtn" class="del_btn" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f6cbf0b4eb447de8a1ee839894a717e, type: 3}
+  m_Name: OathOfKnight
+  m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.ArtifactSystem.ArtifactSO
+  itemName: "\uAE30\uC0AC\uC758 \uB9F9\uC138 "
+  itemIcon: {fileID: 21300000, guid: ae1e3ce429b151a46a0385b30242e30b, type: 3}
+  itemDesc: "\uAE30\uC0AC\uC758 \uBC29\uD328\uC774\uB2E4."
+  rarity: 2
+  Stats:
+  - StatInfo: 3
+    StatValue: 15
+  - StatInfo: 2
+    StatValue: 50
+  PassiveSO: {fileID: 0}

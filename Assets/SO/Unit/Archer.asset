@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ac6c49583ad8fa498a963cb4786ab53, type: 3}
+  m_Name: Archer
+  m_EditorClassIdentifier: 
+  UnitName: Archer
+  UnitClass: "\uD3ED\uD48D\uC758 \uAD81\uC218"
+  UnitImage: {fileID: 21300000, guid: 0363b742c988dbf4e95ef7f233d041e1, type: 3}
+  UnitSpawn: {fileID: 11400000, guid: 79d879a8bcf09e84c9975c11290a2b59, type: 2}
+  SkillStorage: {fileID: 11400000, guid: 1fcb7024abc920d4ca5613ef9316d5a1, type: 2}
+  OwnSkillStorage: {fileID: 11400000, guid: 26e6e64596bf0f64b902005e7728cdeb, type: 2}
+  OwnArtifactStorage: {fileID: 11400000, guid: 6a961ca45a8809d49abf9662fa38722a, type: 2}
+  EquippedArtifacts: {fileID: 11400000, guid: c711337dc8eb99d45814ac40584332e5, type: 2}
+  LoadOutCost: 25
+  isLongRange: 1
+  Speed: 3
+  isPlayerUnit: 1
+  MoveRange: 5
+  Maxhealth: 240
+  AttackDamage: 5
+  DefensivePower: 0
+  ShieldValue: 0
+  AvoidProbability: 0
+  CriticalProbability: 0
+  CriticalDamageIncrease: 0
+  MaxManaCost: 10
+  RecoveryManaCost: 1
+  unitInGame: {fileID: 11400000, guid: 3a3f63fa5508c724bb16be6895886bbf, type: 2}
+  EntityType: 0
+  UnitType: 1

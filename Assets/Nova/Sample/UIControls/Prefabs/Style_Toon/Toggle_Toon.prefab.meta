@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 7e7ee15a8ef7efc4eacb3a1cd16c4a9e
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Sample/UIControls/Prefabs/Style_Toon/Toggle_Toon.prefab
+  uploadId: 631464

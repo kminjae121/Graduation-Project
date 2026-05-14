@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 667ad4c2d4be4ccc92c61215b0d746ac, type: 3}
+  m_Name: ArcherOwnSkillStorage
+  m_EditorClassIdentifier: 
+  uniType: 1
+  skills:
+  - {fileID: 11400000, guid: cc8abb61a159ed94e925dbbe9ed92bbe, type: 2}
+  - {fileID: 11400000, guid: 9b2ffd0514d0f6b4f8a31cce69681977, type: 2}
+  - {fileID: 11400000, guid: 9e6d2bb982fdce24195828fbf5725261, type: 2}

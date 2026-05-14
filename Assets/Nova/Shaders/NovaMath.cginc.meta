@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 3fcb340fc8629db4e8f995c8221c787f
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Shaders/NovaMath.cginc
+  uploadId: 631464

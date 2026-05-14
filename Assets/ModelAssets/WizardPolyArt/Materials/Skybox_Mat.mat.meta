@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 51d97084124e11241aaa730bdbdf0407
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 127652
+  packageName: Battle Wizard PBR
+  packageVersion: 1.2
+  assetPath: Assets/ModelAssets/WizardPolyArt/Materials/Skybox_Mat.mat
+  uploadId: 459288

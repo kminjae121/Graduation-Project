@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c0aa08fd8574fa49baef4296bacd94d, type: 3}
+  m_Name: Archer
+  m_EditorClassIdentifier: 
+  UnitName: Archer
+  UnitPrefab: {fileID: 2074397246875815997, guid: 416b73babdb2ca544a00dae23be24b5b, type: 3}
+  poolingItem: {fileID: 11400000, guid: 33e7a84c7cf508c4186ce57a62be966c, type: 2}
+  UnitSO: {fileID: 11400000, guid: a410916a75384cb49974c8aafd0d7bb7, type: 2}

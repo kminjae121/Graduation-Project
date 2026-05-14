@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b8384d24f7d6ebe4e99f421809ac6024
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Sample/UIControls/Prefabs/Style_SciFi/Toggle_SciFi.prefab
+  uploadId: 631464

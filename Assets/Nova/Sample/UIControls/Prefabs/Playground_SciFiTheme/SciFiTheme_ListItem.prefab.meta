@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b430d616dcd4db74e98c6516fa789092
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Sample/UIControls/Prefabs/Playground_SciFiTheme/SciFiTheme_ListItem.prefab
+  uploadId: 631464

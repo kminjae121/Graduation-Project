@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2d7833b86e2a6c0458938524cd6f7bc2
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Sample/UIControls/Prefabs/Style_Modern/TextField_Modern/TextHighlight_Modern.prefab
+  uploadId: 631464

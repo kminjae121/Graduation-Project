@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: db2faff79ba10e548bfcb494aed8ea16
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Sample/UIControls/Prefabs/Playground_DarkTheme/DarkTheme_ScrollView.prefab
+  uploadId: 631464

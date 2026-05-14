@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 40139ea3249dda74b81e401b43966bca
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Sample/UIControls/Prefabs/Style_Simple/Slider_Simple.prefab
+  uploadId: 631464

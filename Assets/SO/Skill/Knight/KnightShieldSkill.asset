@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30d98c8b387f46ffb69465c140c8415f, type: 3}
+  m_Name: KnightShieldSkill
+  m_EditorClassIdentifier: 
+  unitType: 3
+  skillName: "\uC274\uB4DC"
+  skillAnimationKey: 
+  SkillDescription: "\uBC29\uD328\uB85C \uC790\uC2E0\uC744 \uBCF4\uD638\uD55C\uB2E4."
+  SkillValue: 5
+  SkillCost: 3
+  skillUIImage: {fileID: 21300000, guid: f465ce0484827fd439c96c47afb54066, type: 3}
+  className: ShieldSkill
+  skillPrice: 0
+  SkillDamage: 120
+  SkillRange: 5
+  IsOwnSkill: 1
+  SkillType: 1

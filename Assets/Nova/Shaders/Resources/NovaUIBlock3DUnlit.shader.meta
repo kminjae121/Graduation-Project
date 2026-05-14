@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: d7b8da1d379906440aba25ba48ed466f
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Shaders/Resources/NovaUIBlock3DUnlit.shader
+  uploadId: 631464

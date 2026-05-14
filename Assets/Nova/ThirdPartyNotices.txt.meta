@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d8026a55f685aee44ba73d28511f135c
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/ThirdPartyNotices.txt
+  uploadId: 631464

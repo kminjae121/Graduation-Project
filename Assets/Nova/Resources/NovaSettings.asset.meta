@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3257563d54e12d04a83bc5955e544f66
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Resources/NovaSettings.asset
+  uploadId: 631464

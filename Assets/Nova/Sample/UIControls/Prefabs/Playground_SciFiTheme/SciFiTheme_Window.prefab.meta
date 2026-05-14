@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 6bf9fc87b0e794f4e80052eef2cfb79e
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Sample/UIControls/Prefabs/Playground_SciFiTheme/SciFiTheme_Window.prefab
+  uploadId: 631464

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4c2645a2b7587494d8518a33ac38a7f8
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 340684
+  packageName: Low-Poly Medieval Fantasy - Biped Creatures Pack
+  packageVersion: 1.0.2
+  assetPath: Assets/PolysplitGames/LowPolyMedievalFantasyBipedCreatures/DemoScene/DemoAnimatorControllers/SkeletonAllInOne.controller
+  uploadId: 837822

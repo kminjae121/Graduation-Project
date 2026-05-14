@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 85a35c002e6fd9945a68b30b19efec74
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Sample/UIControls/Prefabs/Style_Simple/TextField_Simple/SingleLineTextField_Simple.prefab
+  uploadId: 631464

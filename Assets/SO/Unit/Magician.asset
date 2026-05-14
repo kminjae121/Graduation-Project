@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ac6c49583ad8fa498a963cb4786ab53, type: 3}
+  m_Name: Magician
+  m_EditorClassIdentifier: 
+  UnitName: Magician
+  UnitClass: "\uC120\uD0DD\uBC1B\uC740 \uB9C8\uBC95\uC0AC"
+  UnitImage: {fileID: 21300000, guid: e79d72950faa73e48998b5d06a529e39, type: 3}
+  UnitSpawn: {fileID: 11400000, guid: 4c0c769de3e5ca04887a3b6215f9e839, type: 2}
+  SkillStorage: {fileID: 11400000, guid: d624d89f40569d541a7e874ce4a243bf, type: 2}
+  OwnSkillStorage: {fileID: 11400000, guid: 8cfd9ac921219404188c75c7ed6f7925, type: 2}
+  OwnArtifactStorage: {fileID: 11400000, guid: 6a961ca45a8809d49abf9662fa38722a, type: 2}
+  EquippedArtifacts: {fileID: 11400000, guid: b71e50581cca954449963fb8f29fff8e, type: 2}
+  LoadOutCost: 25
+  isLongRange: 1
+  Speed: 3
+  isPlayerUnit: 1
+  MoveRange: 5
+  Maxhealth: 250
+  AttackDamage: 5
+  DefensivePower: 0
+  ShieldValue: 0
+  AvoidProbability: 0
+  CriticalProbability: 0
+  CriticalDamageIncrease: 0
+  MaxManaCost: 10
+  RecoveryManaCost: 1
+  unitInGame: {fileID: 11400000, guid: 6237c3bd878ac884885dae4eae27b535, type: 2}
+  EntityType: 0
+  UnitType: 4

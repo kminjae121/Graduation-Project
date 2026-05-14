@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: fccec5d853384a54a9e6879c2e29f782
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Sample/UIControls/Shaders/Resources/BlurSinglePassShader.shader
+  uploadId: 631464

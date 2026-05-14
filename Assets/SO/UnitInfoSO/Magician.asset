@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c0aa08fd8574fa49baef4296bacd94d, type: 3}
+  m_Name: Magician
+  m_EditorClassIdentifier: 
+  UnitName: Magician
+  UnitPrefab: {fileID: 6243688159485738314, guid: 459a93114195ac34a82a928371449caa, type: 3}
+  poolingItem: {fileID: 11400000, guid: 9761f70edc239f34895d21ea60664aa2, type: 2}
+  UnitSO: {fileID: 11400000, guid: 47445cd309f5fa24694ac38048322df8, type: 2}

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ce30efaf10a885744981d3edb9921a2c
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Sample/UIControls/Scripts/Editor/Nova.UIControls.Editor.asmdef
+  uploadId: 631464

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 0a6537b01319bc7449eaf9eae9cd2f27
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Scripts/Internal/Compat/InternalScript_17.cs
+  uploadId: 631464

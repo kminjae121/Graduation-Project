@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 5b2a531bfddefda4e85a827979d250a0
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {fileID: 2800000, guid: e23c6baf65aaa4551a266405b185ff6e, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Scripts/Public/Components/SortGroup.cs
+  uploadId: 631464

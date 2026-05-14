@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c5c8f64d9b4f082419112a5b96caad9e
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Sample/UIControls/Prefabs/Playground_RetroTheme/RetroTheme_ScrollView.prefab
+  uploadId: 631464

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 441238961a3d0b241919a3e525b092b9
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Sample/UIControls/Prefabs/Style_Toon/TextField_Toon/ScrollableTextField_Toon.prefab
+  uploadId: 631464

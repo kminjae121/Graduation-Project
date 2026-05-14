@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: aaa61018569827549b296b60e8e9aec9
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Shaders/UIBlock3D.cginc
+  uploadId: 631464

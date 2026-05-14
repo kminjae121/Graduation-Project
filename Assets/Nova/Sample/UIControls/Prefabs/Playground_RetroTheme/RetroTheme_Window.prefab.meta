@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 985bb6dbe4f076740bb114249fc1d25a
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Sample/UIControls/Prefabs/Playground_RetroTheme/RetroTheme_Window.prefab
+  uploadId: 631464

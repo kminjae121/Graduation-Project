@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e59242cc299e7c54587f1d388b42cf13
+ComputeShaderImporter:
+  externalObjects: {}
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Sample/UIControls/Shaders/Resources/BlurSinglePassCompute.compute
+  uploadId: 631464

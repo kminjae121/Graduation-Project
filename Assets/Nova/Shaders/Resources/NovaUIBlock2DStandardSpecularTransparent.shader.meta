@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 7294a74444a16564d8ade8f4b76626f8
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Shaders/Resources/NovaUIBlock2DStandardSpecularTransparent.shader
+  uploadId: 631464

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 46640eb424e726547b5f2426e3180e95
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Sample/UIControls/Prefabs/UIRoot.prefab
+  uploadId: 631464

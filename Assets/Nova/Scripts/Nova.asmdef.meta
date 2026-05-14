@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 552447fb6cdb3d34b969d73c1b33b7d8
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Scripts/Nova.asmdef
+  uploadId: 631464

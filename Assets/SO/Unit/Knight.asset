@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ac6c49583ad8fa498a963cb4786ab53, type: 3}
+  m_Name: Knight
+  m_EditorClassIdentifier: 
+  UnitName: Knight
+  UnitClass: "\uD48B\uB0B4\uAE30 \uAE30\uC0AC"
+  UnitImage: {fileID: 21300000, guid: c02142af1a67b4049a8cac87c531d141, type: 3}
+  UnitSpawn: {fileID: 11400000, guid: 9f799c1228a11c24e9a98a9e4d907a49, type: 2}
+  SkillStorage: {fileID: 11400000, guid: 07500c7574825104b8dcfe1ae8f8de0a, type: 2}
+  OwnSkillStorage: {fileID: 11400000, guid: fb1a51d7027a2be44aa645f8f9f8aaa5, type: 2}
+  OwnArtifactStorage: {fileID: 11400000, guid: 6a961ca45a8809d49abf9662fa38722a, type: 2}
+  EquippedArtifacts: {fileID: 11400000, guid: 52416181a2c094746bd82789de498f49, type: 2}
+  LoadOutCost: 25
+  isLongRange: 0
+  Speed: 3
+  isPlayerUnit: 1
+  MoveRange: 5
+  Maxhealth: 300
+  AttackDamage: 5
+  DefensivePower: 0
+  ShieldValue: 0
+  AvoidProbability: 0
+  CriticalProbability: 50
+  CriticalDamageIncrease: 1
+  MaxManaCost: 10
+  RecoveryManaCost: 1
+  unitInGame: {fileID: 11400000, guid: fa580cd00a165534992a646ec44e3879, type: 2}
+  EntityType: 1
+  UnitType: 3

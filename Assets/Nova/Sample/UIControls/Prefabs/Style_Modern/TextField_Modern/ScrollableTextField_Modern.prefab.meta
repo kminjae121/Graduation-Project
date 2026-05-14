@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 908b13299ea70a04a819a56b776cbd8a
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Sample/UIControls/Prefabs/Style_Modern/TextField_Modern/ScrollableTextField_Modern.prefab
+  uploadId: 631464

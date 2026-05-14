@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 37a5b85ce693bb5479f06e465ffda449
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Scripts/Public/Animations/IAnimationExtensions.cs
+  uploadId: 631464

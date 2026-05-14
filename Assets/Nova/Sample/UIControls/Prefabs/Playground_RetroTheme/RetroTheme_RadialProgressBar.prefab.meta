@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 434d8235893230e4f96bbd81021b74a9
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Sample/UIControls/Prefabs/Playground_RetroTheme/RetroTheme_RadialProgressBar.prefab
+  uploadId: 631464

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: bbc54bb28767c15419d2ebf43836d261
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Sample/UIControls/Prefabs/Style_SciFi/Slider_SciFi.prefab
+  uploadId: 631464

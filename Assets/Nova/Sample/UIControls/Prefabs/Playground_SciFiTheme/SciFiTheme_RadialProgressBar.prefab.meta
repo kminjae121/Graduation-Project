@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 61ea21b681bdfed49ad748f14a83dfa4
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Sample/UIControls/Prefabs/Playground_SciFiTheme/SciFiTheme_RadialProgressBar.prefab
+  uploadId: 631464

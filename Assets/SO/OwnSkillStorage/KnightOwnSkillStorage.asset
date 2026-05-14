@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 667ad4c2d4be4ccc92c61215b0d746ac, type: 3}
+  m_Name: KnightOwnSkillStorage
+  m_EditorClassIdentifier: 
+  uniType: 3
+  skills:
+  - {fileID: 11400000, guid: 85ce8256606c74740915e79bfc5b124a, type: 2}
+  - {fileID: 11400000, guid: 360758d6c5706a14fb57766e08f97bca, type: 2}
+  - {fileID: 11400000, guid: b8572723cb14fa04580c634e6a40dc30, type: 2}

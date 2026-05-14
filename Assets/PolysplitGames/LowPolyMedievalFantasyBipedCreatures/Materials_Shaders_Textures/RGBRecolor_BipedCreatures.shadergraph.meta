@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 6913b453ff4b77a43bc8a54a6d3de676
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 625f186215c104763be7675aa2d941aa, type: 3}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 340684
+  packageName: Low-Poly Medieval Fantasy - Biped Creatures Pack
+  packageVersion: 1.0.2
+  assetPath: Assets/PolysplitGames/LowPolyMedievalFantasyBipedCreatures/Materials_Shaders_Textures/RGBRecolor_BipedCreatures.shadergraph
+  uploadId: 837822

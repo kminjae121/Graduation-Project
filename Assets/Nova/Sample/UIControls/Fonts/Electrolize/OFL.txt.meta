@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0f99a8b0c900d3243ae59b42c912e318
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Sample/UIControls/Fonts/Electrolize/OFL.txt
+  uploadId: 631464

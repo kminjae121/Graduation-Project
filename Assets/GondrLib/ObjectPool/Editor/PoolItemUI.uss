@@ -1,0 +1,59 @@
+.pool_item {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-basis: 45px;
+    border-left-color: rgb(161, 161, 161);
+    border-right-color: rgb(161, 161, 161);
+    border-top-color: rgb(161, 161, 161);
+    border-bottom-color: rgb(161, 161, 161);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    transition-duration: 0.4s;
+    margin-bottom: 5px;
+}
+
+.pool_item.active {
+    background-color: rgba(142, 142, 142, 0.88);
+}
+
+.pool_item:hover {
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    background-color: rgb(103, 103, 103);
+}
+
+.del_btn {
+    background-color: rgb(188, 0, 0);
+    border-left-color: rgb(166, 0, 0);
+    border-right-color: rgb(166, 0, 0);
+    border-top-color: rgb(166, 0, 0);
+    border-bottom-color: rgb(101, 0, 0);
+    transition-duration: 0.4s;
+}
+
+.del_btn:hover {
+    background-color: rgb(217, 5, 5);
+    border-left-color: rgb(226, 226, 226);
+    border-right-color: rgb(226, 226, 226);
+    border-top-color: rgb(226, 226, 226);
+    border-bottom-color: rgb(178, 178, 178);
+}
+
+.item_name {
+    overflow: hidden;
+    flex-basis: 70px;
+    flex-grow: 1;
+    margin-right: 10px;
+    text-overflow: ellipsis;
+}

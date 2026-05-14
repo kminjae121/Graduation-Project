@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ac6c49583ad8fa498a963cb4786ab53, type: 3}
+  m_Name: TestEnemy
+  m_EditorClassIdentifier: 
+  UnitName: Enemy
+  UnitClass: 
+  UnitImage: {fileID: 21300000, guid: 9477cb249f8e7864686e99dd0d6d1567, type: 3}
+  UnitSpawn: {fileID: 11400000, guid: 0d183319405354943a860fa83c0bffa1, type: 2}
+  SkillStorage: {fileID: 0}
+  OwnSkillStorage: {fileID: 0}
+  OwnArtifactStorage: {fileID: 0}
+  EquippedArtifacts: {fileID: 0}
+  LoadOutCost: 0
+  isLongRange: 0
+  Speed: 3
+  isPlayerUnit: 0
+  MoveRange: 3
+  Maxhealth: 60
+  AttackDamage: 2
+  DefensivePower: 0
+  ShieldValue: 0
+  AvoidProbability: 0
+  CriticalProbability: 0
+  CriticalDamageIncrease: 0
+  MaxManaCost: 0
+  RecoveryManaCost: 0
+  unitInGame: {fileID: 11400000, guid: 4daaab8c83a861347adb201bb35e5864, type: 2}
+  EntityType: 1
+  UnitType: 0

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f6cbf0b4eb447de8a1ee839894a717e, type: 3}
+  m_Name: SwordOfDoom
+  m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.ArtifactSystem.ArtifactSO
+  itemName: "\uD30C\uBA78\uC758 \uAC80\uC9D1"
+  itemIcon: {fileID: 21300000, guid: 75a5a1229889d5b4c9a8a268cc2ec723, type: 3}
+  itemDesc: "\uC801\uC758 \uBC29\uC5B4\uB825\uC744 \uBB34\uC2DC\uD558\uB294 \uACF5\uACA9\uC744
+    \uAC00\uD55C\uB2E4."
+  rarity: 4
+  Stats:
+  - StatInfo: 1
+    StatValue: 60
+  - StatInfo: 6
+    StatValue: 1.5
+  - StatInfo: 2
+    StatValue: -50
+  PassiveSO: {fileID: 11400000, guid: e9ecb7f50e0817c48b90300bbbec4cfe, type: 2}

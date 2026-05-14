@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 13878cbd0c36137428cd62ef76ae16f0
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Scripts/Internal/Compat/Nova.Compat.asmdef
+  uploadId: 631464

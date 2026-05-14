@@ -1,0 +1,905 @@
+fileFormatVersion: 2
+guid: 8637238347ea8cf4b9c4bea5df5eaa24
+AssetOrigin:
+  serializedVersion: 1
+  productId: 220759
+  packageName: Potions Icon Package | 3 sizes | 8 different colours | with or without
+    stroke
+  packageVersion: 1.0
+  assetPath: Assets/TsukyKheeta/Potions/AllPotions.png
+  uploadId: 496772
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8374273571681555424
+    second: LargePotionEmpty
+  - first:
+      213: 4807391366979517107
+    second: LargePotionRed
+  - first:
+      213: -8560823132976068178
+    second: LargePotionPink
+  - first:
+      213: -3059289802606976281
+    second: LargePotionPurple
+  - first:
+      213: -696596734718418763
+    second: LargePotionBlue
+  - first:
+      213: 4808936353234082676
+    second: LargePotionTurquoise
+  - first:
+      213: -9151104901211771997
+    second: LargePotionGreen
+  - first:
+      213: -3414284911456962837
+    second: LargePotionOrange
+  - first:
+      213: -3240539360453832161
+    second: LargePotionYellow
+  - first:
+      213: -7912955730541523125
+    second: MediumPotionEmpty
+  - first:
+      213: -3592965484049967728
+    second: MediumPotionRed
+  - first:
+      213: 747183962854966196
+    second: MediumPotionPink
+  - first:
+      213: -6055903744766312807
+    second: MediumPotionPurple
+  - first:
+      213: 7435504344852214818
+    second: MediumPotionBlue
+  - first:
+      213: 1994578941546313508
+    second: MediumPotionTurquoise
+  - first:
+      213: -8702173501659278061
+    second: MediumPotionGreen
+  - first:
+      213: 3267548914346403401
+    second: MediumPotionOrange
+  - first:
+      213: 3062347860672339047
+    second: MediumPotionYellow
+  - first:
+      213: -139024008931973214
+    second: AllPotions_18
+  - first:
+      213: 739515308166487479
+    second: SmallPotionEmpty
+  - first:
+      213: -6605767407225506359
+    second: SmallPotionRed
+  - first:
+      213: 8996191932746541752
+    second: SmallPotionPink
+  - first:
+      213: -816245033730763210
+    second: SmallPotionPurple
+  - first:
+      213: -2379736925418992280
+    second: SmallPotionBlue
+  - first:
+      213: 7762790956611399280
+    second: SmallPotionTurquoise
+  - first:
+      213: -4061474297847368727
+    second: SmallPotionGreen
+  - first:
+      213: 1094540698769869226
+    second: SmallPotionOrange
+  - first:
+      213: -216037336277928734
+    second: SmallPotionYellow
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: LargePotionEmpty
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 526
+        width: 166
+        height: 242
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e35504d175673470800000000000000
+      internalID: 8374273571681555424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LargePotionRed
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 526
+        width: 166
+        height: 242
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3baf7154af847b240800000000000000
+      internalID: 4807391366979517107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LargePotionPink
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 526
+        width: 166
+        height: 242
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea9c30eb7b8d13980800000000000000
+      internalID: -8560823132976068178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LargePotionPurple
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 526
+        width: 166
+        height: 242
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e2e2a222283b85d0800000000000000
+      internalID: -3059289802606976281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LargePotionBlue
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 526
+        width: 166
+        height: 242
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b06963e5f03556f0800000000000000
+      internalID: -696596734718418763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LargePotionTurquoise
+      rect:
+        serializedVersion: 2
+        x: 914
+        y: 526
+        width: 166
+        height: 242
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47bdaf96226ccb240800000000000000
+      internalID: 4808936353234082676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LargePotionGreen
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 526
+        width: 166
+        height: 242
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3abafe4b39eb00180800000000000000
+      internalID: -9151104901211771997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LargePotionOrange
+      rect:
+        serializedVersion: 2
+        x: 1279
+        y: 526
+        width: 166
+        height: 242
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be6b1a276f50e90d0800000000000000
+      internalID: -3414284911456962837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LargePotionYellow
+      rect:
+        serializedVersion: 2
+        x: 1462
+        y: 526
+        width: 166
+        height: 242
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f125a7bee9a4703d0800000000000000
+      internalID: -3240539360453832161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MediumPotionEmpty
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 263
+        width: 126
+        height: 242
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4f4ead00b88f2290800000000000000
+      internalID: -7912955730541523125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MediumPotionRed
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 263
+        width: 124
+        height: 242
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09556f8bde8332ec0800000000000000
+      internalID: -3592965484049967728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MediumPotionPink
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 263
+        width: 125
+        height: 242
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b3c6dffad78e5a00800000000000000
+      internalID: 747183962854966196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MediumPotionPurple
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 263
+        width: 124
+        height: 242
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99efe3331ab15fba0800000000000000
+      internalID: -6055903744766312807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MediumPotionBlue
+      rect:
+        serializedVersion: 2
+        x: 753
+        y: 263
+        width: 124
+        height: 242
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2243ac08ec7303760800000000000000
+      internalID: 7435504344852214818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MediumPotionTurquoise
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 263
+        width: 125
+        height: 242
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 427b757cafa2eab10800000000000000
+      internalID: 1994578941546313508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MediumPotionGreen
+      rect:
+        serializedVersion: 2
+        x: 1124
+        y: 263
+        width: 124
+        height: 242
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31518cb6e4bab3780800000000000000
+      internalID: -8702173501659278061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MediumPotionOrange
+      rect:
+        serializedVersion: 2
+        x: 1300
+        y: 263
+        width: 124
+        height: 242
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 946a4d5ec6aa85d20800000000000000
+      internalID: 3267548914346403401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MediumPotionYellow
+      rect:
+        serializedVersion: 2
+        x: 1483
+        y: 263
+        width: 125
+        height: 242
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76c5d0e7725af7a20800000000000000
+      internalID: 3062347860672339047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllPotions_18
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 12
+        width: 8
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a7eb548666121ef0800000000000000
+      internalID: -139024008931973214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SmallPotionEmpty
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 8
+        width: 72
+        height: 243
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bd1a313149434a00800000000000000
+      internalID: 739515308166487479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SmallPotionRed
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 9
+        width: 64
+        height: 242
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c5787fba899354a0800000000000000
+      internalID: -6605767407225506359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SmallPotionPink
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 9
+        width: 64
+        height: 242
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8baa79226e4e8dc70800000000000000
+      internalID: 8996191932746541752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SmallPotionPurple
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 8
+        width: 64
+        height: 243
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6361dca677d1ca4f0800000000000000
+      internalID: -816245033730763210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SmallPotionBlue
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 9
+        width: 64
+        height: 242
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86d458defd979fed0800000000000000
+      internalID: -2379736925418992280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SmallPotionTurquoise
+      rect:
+        serializedVersion: 2
+        x: 965
+        y: 9
+        width: 64
+        height: 242
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07eef6afe39fabb60800000000000000
+      internalID: 7762790956611399280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SmallPotionGreen
+      rect:
+        serializedVersion: 2
+        x: 1154
+        y: 8
+        width: 64
+        height: 244
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e3bd6c05aeb2a7c0800000000000000
+      internalID: -4061474297847368727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SmallPotionOrange
+      rect:
+        serializedVersion: 2
+        x: 1330
+        y: 8
+        width: 64
+        height: 244
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa9c26667f6903f00800000000000000
+      internalID: 1094540698769869226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SmallPotionYellow
+      rect:
+        serializedVersion: 2
+        x: 1513
+        y: 9
+        width: 64
+        height: 242
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e4bee0ff2b700df0800000000000000
+      internalID: -216037336277928734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      AllPotions_18: -139024008931973214
+      LargePotionBlue: -696596734718418763
+      LargePotionEmpty: 8374273571681555424
+      LargePotionGreen: -9151104901211771997
+      LargePotionOrange: -3414284911456962837
+      LargePotionPink: -8560823132976068178
+      LargePotionPurple: -3059289802606976281
+      LargePotionRed: 4807391366979517107
+      LargePotionTurquoise: 4808936353234082676
+      LargePotionYellow: -3240539360453832161
+      MediumPotionBlue: 7435504344852214818
+      MediumPotionEmpty: -7912955730541523125
+      MediumPotionGreen: -8702173501659278061
+      MediumPotionOrange: 3267548914346403401
+      MediumPotionPink: 747183962854966196
+      MediumPotionPurple: -6055903744766312807
+      MediumPotionRed: -3592965484049967728
+      MediumPotionTurquoise: 1994578941546313508
+      MediumPotionYellow: 3062347860672339047
+      SmallPotionBlue: -2379736925418992280
+      SmallPotionEmpty: 739515308166487479
+      SmallPotionGreen: -4061474297847368727
+      SmallPotionOrange: 1094540698769869226
+      SmallPotionPink: 8996191932746541752
+      SmallPotionPurple: -816245033730763210
+      SmallPotionRed: -6605767407225506359
+      SmallPotionTurquoise: 7762790956611399280
+      SmallPotionYellow: -216037336277928734
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

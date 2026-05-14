@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 4181b1381455bac48b57e9452d617957
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Shaders/Resources/NovaDropShadowStandardSpecularTransparent.shader
+  uploadId: 631464

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 76477b905ee3a4e4fa004b7a34722912
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Sample/UIControls/Prefabs/Playground_RetroTheme/RetroTheme_FollowTooltip.prefab
+  uploadId: 631464

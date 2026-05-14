@@ -1,0 +1,3792 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c0448a5dac4af9ac1082fc96c67917, type: 3}
+  m_Name: Baked Data 2
+  m_EditorClassIdentifier: Assembly-CSharp::Code.Navigation.BakedDataSO
+  points:
+  - worldPos: {x: -11.58, y: 0.63, z: -16.69}
+    cellPos: {x: 0, y: 0, z: 0}
+    neighbors:
+    - startPos: {x: -11.58, y: 0.63, z: -16.69}
+      endPos: {x: -11.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 0, y: 0, z: 0}
+      endCellPos: {x: 0, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -11.58, y: 0.63, z: -16.69}
+      endPos: {x: -10.58, y: 0.63, z: -16.69}
+      startCellPos: {x: 0, y: 0, z: 0}
+      endCellPos: {x: 1, y: 0, z: 0}
+      cost: 1
+    - startPos: {x: -11.58, y: 0.63, z: -16.69}
+      endPos: {x: -10.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 0, y: 0, z: 0}
+      endCellPos: {x: 1, y: 1, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -11.58, y: 0.63, z: -15.690001}
+    cellPos: {x: 0, y: 1, z: 0}
+    neighbors:
+    - startPos: {x: -11.58, y: 0.63, z: -15.690001}
+      endPos: {x: -11.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 0, y: 1, z: 0}
+      endCellPos: {x: 0, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -11.58, y: 0.63, z: -15.690001}
+      endPos: {x: -11.58, y: 0.63, z: -16.69}
+      startCellPos: {x: 0, y: 1, z: 0}
+      endCellPos: {x: 0, y: 0, z: 0}
+      cost: 1
+    - startPos: {x: -11.58, y: 0.63, z: -15.690001}
+      endPos: {x: -10.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 0, y: 1, z: 0}
+      endCellPos: {x: 1, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -11.58, y: 0.63, z: -15.690001}
+      endPos: {x: -10.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 0, y: 1, z: 0}
+      endCellPos: {x: 1, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -11.58, y: 0.63, z: -15.690001}
+      endPos: {x: -10.58, y: 0.63, z: -16.69}
+      startCellPos: {x: 0, y: 1, z: 0}
+      endCellPos: {x: 1, y: 0, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -11.58, y: 0.63, z: -14.690001}
+    cellPos: {x: 0, y: 2, z: 0}
+    neighbors:
+    - startPos: {x: -11.58, y: 0.63, z: -14.690001}
+      endPos: {x: -11.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 0, y: 2, z: 0}
+      endCellPos: {x: 0, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -11.58, y: 0.63, z: -14.690001}
+      endPos: {x: -11.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 0, y: 2, z: 0}
+      endCellPos: {x: 0, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -11.58, y: 0.63, z: -14.690001}
+      endPos: {x: -10.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 0, y: 2, z: 0}
+      endCellPos: {x: 1, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -11.58, y: 0.63, z: -14.690001}
+      endPos: {x: -10.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 0, y: 2, z: 0}
+      endCellPos: {x: 1, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -11.58, y: 0.63, z: -14.690001}
+      endPos: {x: -10.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 0, y: 2, z: 0}
+      endCellPos: {x: 1, y: 1, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -11.58, y: 0.63, z: -13.690001}
+    cellPos: {x: 0, y: 3, z: 0}
+    neighbors:
+    - startPos: {x: -11.58, y: 0.63, z: -13.690001}
+      endPos: {x: -11.58, y: 0.63, z: -12.690001}
+      startCellPos: {x: 0, y: 3, z: 0}
+      endCellPos: {x: 0, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: -11.58, y: 0.63, z: -13.690001}
+      endPos: {x: -11.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 0, y: 3, z: 0}
+      endCellPos: {x: 0, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -11.58, y: 0.63, z: -13.690001}
+      endPos: {x: -10.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 0, y: 3, z: 0}
+      endCellPos: {x: 1, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -11.58, y: 0.63, z: -13.690001}
+      endPos: {x: -10.58, y: 0.63, z: -12.690001}
+      startCellPos: {x: 0, y: 3, z: 0}
+      endCellPos: {x: 1, y: 4, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -11.58, y: 0.63, z: -13.690001}
+      endPos: {x: -10.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 0, y: 3, z: 0}
+      endCellPos: {x: 1, y: 2, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -11.58, y: 0.63, z: -12.690001}
+    cellPos: {x: 0, y: 4, z: 0}
+    neighbors:
+    - startPos: {x: -11.58, y: 0.63, z: -12.690001}
+      endPos: {x: -11.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 0, y: 4, z: 0}
+      endCellPos: {x: 0, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -11.58, y: 0.63, z: -12.690001}
+      endPos: {x: -10.58, y: 0.63, z: -12.690001}
+      startCellPos: {x: 0, y: 4, z: 0}
+      endCellPos: {x: 1, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: -11.58, y: 0.63, z: -12.690001}
+      endPos: {x: -10.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 0, y: 4, z: 0}
+      endCellPos: {x: 1, y: 3, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -10.58, y: 0.63, z: -16.69}
+    cellPos: {x: 1, y: 0, z: 0}
+    neighbors:
+    - startPos: {x: -10.58, y: 0.63, z: -16.69}
+      endPos: {x: -10.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 1, y: 0, z: 0}
+      endCellPos: {x: 1, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -10.58, y: 0.63, z: -16.69}
+      endPos: {x: -11.58, y: 0.63, z: -16.69}
+      startCellPos: {x: 1, y: 0, z: 0}
+      endCellPos: {x: 0, y: 0, z: 0}
+      cost: 1
+    - startPos: {x: -10.58, y: 0.63, z: -16.69}
+      endPos: {x: -11.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 1, y: 0, z: 0}
+      endCellPos: {x: 0, y: 1, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -10.58, y: 0.63, z: -15.690001}
+    cellPos: {x: 1, y: 1, z: 0}
+    neighbors:
+    - startPos: {x: -10.58, y: 0.63, z: -15.690001}
+      endPos: {x: -10.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 1, y: 1, z: 0}
+      endCellPos: {x: 1, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -10.58, y: 0.63, z: -15.690001}
+      endPos: {x: -10.58, y: 0.63, z: -16.69}
+      startCellPos: {x: 1, y: 1, z: 0}
+      endCellPos: {x: 1, y: 0, z: 0}
+      cost: 1
+    - startPos: {x: -10.58, y: 0.63, z: -15.690001}
+      endPos: {x: -11.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 1, y: 1, z: 0}
+      endCellPos: {x: 0, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -10.58, y: 0.63, z: -15.690001}
+      endPos: {x: -9.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 1, y: 1, z: 0}
+      endCellPos: {x: 2, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -10.58, y: 0.63, z: -15.690001}
+      endPos: {x: -9.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 1, y: 1, z: 0}
+      endCellPos: {x: 2, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -10.58, y: 0.63, z: -15.690001}
+      endPos: {x: -11.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 1, y: 1, z: 0}
+      endCellPos: {x: 0, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -10.58, y: 0.63, z: -15.690001}
+      endPos: {x: -11.58, y: 0.63, z: -16.69}
+      startCellPos: {x: 1, y: 1, z: 0}
+      endCellPos: {x: 0, y: 0, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -10.58, y: 0.63, z: -14.690001}
+    cellPos: {x: 1, y: 2, z: 0}
+    neighbors:
+    - startPos: {x: -10.58, y: 0.63, z: -14.690001}
+      endPos: {x: -10.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 1, y: 2, z: 0}
+      endCellPos: {x: 1, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -10.58, y: 0.63, z: -14.690001}
+      endPos: {x: -10.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 1, y: 2, z: 0}
+      endCellPos: {x: 1, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -10.58, y: 0.63, z: -14.690001}
+      endPos: {x: -11.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 1, y: 2, z: 0}
+      endCellPos: {x: 0, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -10.58, y: 0.63, z: -14.690001}
+      endPos: {x: -9.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 1, y: 2, z: 0}
+      endCellPos: {x: 2, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -10.58, y: 0.63, z: -14.690001}
+      endPos: {x: -9.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 1, y: 2, z: 0}
+      endCellPos: {x: 2, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -10.58, y: 0.63, z: -14.690001}
+      endPos: {x: -9.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 1, y: 2, z: 0}
+      endCellPos: {x: 2, y: 1, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -10.58, y: 0.63, z: -14.690001}
+      endPos: {x: -11.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 1, y: 2, z: 0}
+      endCellPos: {x: 0, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -10.58, y: 0.63, z: -14.690001}
+      endPos: {x: -11.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 1, y: 2, z: 0}
+      endCellPos: {x: 0, y: 1, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -10.58, y: 0.63, z: -13.690001}
+    cellPos: {x: 1, y: 3, z: 0}
+    neighbors:
+    - startPos: {x: -10.58, y: 0.63, z: -13.690001}
+      endPos: {x: -10.58, y: 0.63, z: -12.690001}
+      startCellPos: {x: 1, y: 3, z: 0}
+      endCellPos: {x: 1, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: -10.58, y: 0.63, z: -13.690001}
+      endPos: {x: -10.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 1, y: 3, z: 0}
+      endCellPos: {x: 1, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -10.58, y: 0.63, z: -13.690001}
+      endPos: {x: -11.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 1, y: 3, z: 0}
+      endCellPos: {x: 0, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -10.58, y: 0.63, z: -13.690001}
+      endPos: {x: -9.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 1, y: 3, z: 0}
+      endCellPos: {x: 2, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -10.58, y: 0.63, z: -13.690001}
+      endPos: {x: -9.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 1, y: 3, z: 0}
+      endCellPos: {x: 2, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -10.58, y: 0.63, z: -13.690001}
+      endPos: {x: -11.58, y: 0.63, z: -12.690001}
+      startCellPos: {x: 1, y: 3, z: 0}
+      endCellPos: {x: 0, y: 4, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -10.58, y: 0.63, z: -13.690001}
+      endPos: {x: -11.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 1, y: 3, z: 0}
+      endCellPos: {x: 0, y: 2, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -10.58, y: 0.63, z: -12.690001}
+    cellPos: {x: 1, y: 4, z: 0}
+    neighbors:
+    - startPos: {x: -10.58, y: 0.63, z: -12.690001}
+      endPos: {x: -10.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 1, y: 4, z: 0}
+      endCellPos: {x: 1, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -10.58, y: 0.63, z: -12.690001}
+      endPos: {x: -11.58, y: 0.63, z: -12.690001}
+      startCellPos: {x: 1, y: 4, z: 0}
+      endCellPos: {x: 0, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: -10.58, y: 0.63, z: -12.690001}
+      endPos: {x: -11.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 1, y: 4, z: 0}
+      endCellPos: {x: 0, y: 3, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -9.58, y: 0.63, z: -15.690001}
+    cellPos: {x: 2, y: 1, z: 0}
+    neighbors:
+    - startPos: {x: -9.58, y: 0.63, z: -15.690001}
+      endPos: {x: -9.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 2, y: 1, z: 0}
+      endCellPos: {x: 2, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -9.58, y: 0.63, z: -15.690001}
+      endPos: {x: -10.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 2, y: 1, z: 0}
+      endCellPos: {x: 1, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -9.58, y: 0.63, z: -15.690001}
+      endPos: {x: -8.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 2, y: 1, z: 0}
+      endCellPos: {x: 3, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -9.58, y: 0.63, z: -15.690001}
+      endPos: {x: -8.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 2, y: 1, z: 0}
+      endCellPos: {x: 3, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -9.58, y: 0.63, z: -15.690001}
+      endPos: {x: -10.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 2, y: 1, z: 0}
+      endCellPos: {x: 1, y: 2, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -9.58, y: 0.63, z: -14.690001}
+    cellPos: {x: 2, y: 2, z: 0}
+    neighbors:
+    - startPos: {x: -9.58, y: 0.63, z: -14.690001}
+      endPos: {x: -9.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 2, y: 2, z: 0}
+      endCellPos: {x: 2, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -9.58, y: 0.63, z: -14.690001}
+      endPos: {x: -9.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 2, y: 2, z: 0}
+      endCellPos: {x: 2, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -9.58, y: 0.63, z: -14.690001}
+      endPos: {x: -10.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 2, y: 2, z: 0}
+      endCellPos: {x: 1, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -9.58, y: 0.63, z: -14.690001}
+      endPos: {x: -8.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 2, y: 2, z: 0}
+      endCellPos: {x: 3, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -9.58, y: 0.63, z: -14.690001}
+      endPos: {x: -8.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 2, y: 2, z: 0}
+      endCellPos: {x: 3, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -9.58, y: 0.63, z: -14.690001}
+      endPos: {x: -8.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 2, y: 2, z: 0}
+      endCellPos: {x: 3, y: 1, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -9.58, y: 0.63, z: -14.690001}
+      endPos: {x: -10.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 2, y: 2, z: 0}
+      endCellPos: {x: 1, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -9.58, y: 0.63, z: -14.690001}
+      endPos: {x: -10.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 2, y: 2, z: 0}
+      endCellPos: {x: 1, y: 1, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -9.58, y: 0.63, z: -13.690001}
+    cellPos: {x: 2, y: 3, z: 0}
+    neighbors:
+    - startPos: {x: -9.58, y: 0.63, z: -13.690001}
+      endPos: {x: -9.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 2, y: 3, z: 0}
+      endCellPos: {x: 2, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -9.58, y: 0.63, z: -13.690001}
+      endPos: {x: -10.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 2, y: 3, z: 0}
+      endCellPos: {x: 1, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -9.58, y: 0.63, z: -13.690001}
+      endPos: {x: -8.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 2, y: 3, z: 0}
+      endCellPos: {x: 3, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -9.58, y: 0.63, z: -13.690001}
+      endPos: {x: -8.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 2, y: 3, z: 0}
+      endCellPos: {x: 3, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -9.58, y: 0.63, z: -13.690001}
+      endPos: {x: -10.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 2, y: 3, z: 0}
+      endCellPos: {x: 1, y: 2, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -8.58, y: 0.63, z: -15.690001}
+    cellPos: {x: 3, y: 1, z: 0}
+    neighbors:
+    - startPos: {x: -8.58, y: 0.63, z: -15.690001}
+      endPos: {x: -8.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 3, y: 1, z: 0}
+      endCellPos: {x: 3, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -8.58, y: 0.63, z: -15.690001}
+      endPos: {x: -9.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 3, y: 1, z: 0}
+      endCellPos: {x: 2, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -8.58, y: 0.63, z: -15.690001}
+      endPos: {x: -7.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 3, y: 1, z: 0}
+      endCellPos: {x: 4, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -8.58, y: 0.63, z: -15.690001}
+      endPos: {x: -7.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 3, y: 1, z: 0}
+      endCellPos: {x: 4, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -8.58, y: 0.63, z: -15.690001}
+      endPos: {x: -9.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 3, y: 1, z: 0}
+      endCellPos: {x: 2, y: 2, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -8.58, y: 0.63, z: -14.690001}
+    cellPos: {x: 3, y: 2, z: 0}
+    neighbors:
+    - startPos: {x: -8.58, y: 0.63, z: -14.690001}
+      endPos: {x: -8.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 3, y: 2, z: 0}
+      endCellPos: {x: 3, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -8.58, y: 0.63, z: -14.690001}
+      endPos: {x: -8.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 3, y: 2, z: 0}
+      endCellPos: {x: 3, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -8.58, y: 0.63, z: -14.690001}
+      endPos: {x: -9.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 3, y: 2, z: 0}
+      endCellPos: {x: 2, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -8.58, y: 0.63, z: -14.690001}
+      endPos: {x: -7.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 3, y: 2, z: 0}
+      endCellPos: {x: 4, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -8.58, y: 0.63, z: -14.690001}
+      endPos: {x: -7.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 3, y: 2, z: 0}
+      endCellPos: {x: 4, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -8.58, y: 0.63, z: -14.690001}
+      endPos: {x: -7.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 3, y: 2, z: 0}
+      endCellPos: {x: 4, y: 1, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -8.58, y: 0.63, z: -14.690001}
+      endPos: {x: -9.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 3, y: 2, z: 0}
+      endCellPos: {x: 2, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -8.58, y: 0.63, z: -14.690001}
+      endPos: {x: -9.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 3, y: 2, z: 0}
+      endCellPos: {x: 2, y: 1, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -8.58, y: 0.63, z: -13.690001}
+    cellPos: {x: 3, y: 3, z: 0}
+    neighbors:
+    - startPos: {x: -8.58, y: 0.63, z: -13.690001}
+      endPos: {x: -8.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 3, y: 3, z: 0}
+      endCellPos: {x: 3, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -8.58, y: 0.63, z: -13.690001}
+      endPos: {x: -9.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 3, y: 3, z: 0}
+      endCellPos: {x: 2, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -8.58, y: 0.63, z: -13.690001}
+      endPos: {x: -7.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 3, y: 3, z: 0}
+      endCellPos: {x: 4, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -8.58, y: 0.63, z: -13.690001}
+      endPos: {x: -7.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 3, y: 3, z: 0}
+      endCellPos: {x: 4, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -8.58, y: 0.63, z: -13.690001}
+      endPos: {x: -9.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 3, y: 3, z: 0}
+      endCellPos: {x: 2, y: 2, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -7.58, y: 0.63, z: -15.690001}
+    cellPos: {x: 4, y: 1, z: 0}
+    neighbors:
+    - startPos: {x: -7.58, y: 0.63, z: -15.690001}
+      endPos: {x: -7.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 4, y: 1, z: 0}
+      endCellPos: {x: 4, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -7.58, y: 0.63, z: -15.690001}
+      endPos: {x: -8.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 4, y: 1, z: 0}
+      endCellPos: {x: 3, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -7.58, y: 0.63, z: -15.690001}
+      endPos: {x: -6.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 4, y: 1, z: 0}
+      endCellPos: {x: 5, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -7.58, y: 0.63, z: -15.690001}
+      endPos: {x: -6.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 4, y: 1, z: 0}
+      endCellPos: {x: 5, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -7.58, y: 0.63, z: -15.690001}
+      endPos: {x: -8.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 4, y: 1, z: 0}
+      endCellPos: {x: 3, y: 2, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -7.58, y: 0.63, z: -14.690001}
+    cellPos: {x: 4, y: 2, z: 0}
+    neighbors:
+    - startPos: {x: -7.58, y: 0.63, z: -14.690001}
+      endPos: {x: -7.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 4, y: 2, z: 0}
+      endCellPos: {x: 4, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -7.58, y: 0.63, z: -14.690001}
+      endPos: {x: -7.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 4, y: 2, z: 0}
+      endCellPos: {x: 4, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -7.58, y: 0.63, z: -14.690001}
+      endPos: {x: -8.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 4, y: 2, z: 0}
+      endCellPos: {x: 3, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -7.58, y: 0.63, z: -14.690001}
+      endPos: {x: -6.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 4, y: 2, z: 0}
+      endCellPos: {x: 5, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -7.58, y: 0.63, z: -14.690001}
+      endPos: {x: -6.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 4, y: 2, z: 0}
+      endCellPos: {x: 5, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -7.58, y: 0.63, z: -14.690001}
+      endPos: {x: -6.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 4, y: 2, z: 0}
+      endCellPos: {x: 5, y: 1, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -7.58, y: 0.63, z: -14.690001}
+      endPos: {x: -8.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 4, y: 2, z: 0}
+      endCellPos: {x: 3, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -7.58, y: 0.63, z: -14.690001}
+      endPos: {x: -8.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 4, y: 2, z: 0}
+      endCellPos: {x: 3, y: 1, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -7.58, y: 0.63, z: -13.690001}
+    cellPos: {x: 4, y: 3, z: 0}
+    neighbors:
+    - startPos: {x: -7.58, y: 0.63, z: -13.690001}
+      endPos: {x: -7.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 4, y: 3, z: 0}
+      endCellPos: {x: 4, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -7.58, y: 0.63, z: -13.690001}
+      endPos: {x: -8.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 4, y: 3, z: 0}
+      endCellPos: {x: 3, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -7.58, y: 0.63, z: -13.690001}
+      endPos: {x: -6.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 4, y: 3, z: 0}
+      endCellPos: {x: 5, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -7.58, y: 0.63, z: -13.690001}
+      endPos: {x: -6.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 4, y: 3, z: 0}
+      endCellPos: {x: 5, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -7.58, y: 0.63, z: -13.690001}
+      endPos: {x: -8.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 4, y: 3, z: 0}
+      endCellPos: {x: 3, y: 2, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -6.58, y: 0.63, z: -15.690001}
+    cellPos: {x: 5, y: 1, z: 0}
+    neighbors:
+    - startPos: {x: -6.58, y: 0.63, z: -15.690001}
+      endPos: {x: -6.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 5, y: 1, z: 0}
+      endCellPos: {x: 5, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -6.58, y: 0.63, z: -15.690001}
+      endPos: {x: -7.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 5, y: 1, z: 0}
+      endCellPos: {x: 4, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -6.58, y: 0.63, z: -15.690001}
+      endPos: {x: -5.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 5, y: 1, z: 0}
+      endCellPos: {x: 6, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -6.58, y: 0.63, z: -15.690001}
+      endPos: {x: -5.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 5, y: 1, z: 0}
+      endCellPos: {x: 6, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -6.58, y: 0.63, z: -15.690001}
+      endPos: {x: -7.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 5, y: 1, z: 0}
+      endCellPos: {x: 4, y: 2, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -6.58, y: 0.63, z: -14.690001}
+    cellPos: {x: 5, y: 2, z: 0}
+    neighbors:
+    - startPos: {x: -6.58, y: 0.63, z: -14.690001}
+      endPos: {x: -6.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 5, y: 2, z: 0}
+      endCellPos: {x: 5, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -6.58, y: 0.63, z: -14.690001}
+      endPos: {x: -6.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 5, y: 2, z: 0}
+      endCellPos: {x: 5, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -6.58, y: 0.63, z: -14.690001}
+      endPos: {x: -7.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 5, y: 2, z: 0}
+      endCellPos: {x: 4, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -6.58, y: 0.63, z: -14.690001}
+      endPos: {x: -5.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 5, y: 2, z: 0}
+      endCellPos: {x: 6, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -6.58, y: 0.63, z: -14.690001}
+      endPos: {x: -5.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 5, y: 2, z: 0}
+      endCellPos: {x: 6, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -6.58, y: 0.63, z: -14.690001}
+      endPos: {x: -5.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 5, y: 2, z: 0}
+      endCellPos: {x: 6, y: 1, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -6.58, y: 0.63, z: -14.690001}
+      endPos: {x: -7.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 5, y: 2, z: 0}
+      endCellPos: {x: 4, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -6.58, y: 0.63, z: -14.690001}
+      endPos: {x: -7.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 5, y: 2, z: 0}
+      endCellPos: {x: 4, y: 1, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -6.58, y: 0.63, z: -13.690001}
+    cellPos: {x: 5, y: 3, z: 0}
+    neighbors:
+    - startPos: {x: -6.58, y: 0.63, z: -13.690001}
+      endPos: {x: -6.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 5, y: 3, z: 0}
+      endCellPos: {x: 5, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -6.58, y: 0.63, z: -13.690001}
+      endPos: {x: -7.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 5, y: 3, z: 0}
+      endCellPos: {x: 4, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -6.58, y: 0.63, z: -13.690001}
+      endPos: {x: -5.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 5, y: 3, z: 0}
+      endCellPos: {x: 6, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -6.58, y: 0.63, z: -13.690001}
+      endPos: {x: -5.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 5, y: 3, z: 0}
+      endCellPos: {x: 6, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -6.58, y: 0.63, z: -13.690001}
+      endPos: {x: -7.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 5, y: 3, z: 0}
+      endCellPos: {x: 4, y: 2, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -5.58, y: 0.63, z: -15.690001}
+    cellPos: {x: 6, y: 1, z: 0}
+    neighbors:
+    - startPos: {x: -5.58, y: 0.63, z: -15.690001}
+      endPos: {x: -5.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 6, y: 1, z: 0}
+      endCellPos: {x: 6, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -5.58, y: 0.63, z: -15.690001}
+      endPos: {x: -6.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 6, y: 1, z: 0}
+      endCellPos: {x: 5, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -5.58, y: 0.63, z: -15.690001}
+      endPos: {x: -4.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 6, y: 1, z: 0}
+      endCellPos: {x: 7, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -5.58, y: 0.63, z: -15.690001}
+      endPos: {x: -4.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 6, y: 1, z: 0}
+      endCellPos: {x: 7, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -5.58, y: 0.63, z: -15.690001}
+      endPos: {x: -6.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 6, y: 1, z: 0}
+      endCellPos: {x: 5, y: 2, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -5.58, y: 0.63, z: -14.690001}
+    cellPos: {x: 6, y: 2, z: 0}
+    neighbors:
+    - startPos: {x: -5.58, y: 0.63, z: -14.690001}
+      endPos: {x: -5.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 6, y: 2, z: 0}
+      endCellPos: {x: 6, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -5.58, y: 0.63, z: -14.690001}
+      endPos: {x: -5.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 6, y: 2, z: 0}
+      endCellPos: {x: 6, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -5.58, y: 0.63, z: -14.690001}
+      endPos: {x: -6.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 6, y: 2, z: 0}
+      endCellPos: {x: 5, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -5.58, y: 0.63, z: -14.690001}
+      endPos: {x: -4.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 6, y: 2, z: 0}
+      endCellPos: {x: 7, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -5.58, y: 0.63, z: -14.690001}
+      endPos: {x: -4.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 6, y: 2, z: 0}
+      endCellPos: {x: 7, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -5.58, y: 0.63, z: -14.690001}
+      endPos: {x: -4.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 6, y: 2, z: 0}
+      endCellPos: {x: 7, y: 1, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -5.58, y: 0.63, z: -14.690001}
+      endPos: {x: -6.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 6, y: 2, z: 0}
+      endCellPos: {x: 5, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -5.58, y: 0.63, z: -14.690001}
+      endPos: {x: -6.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 6, y: 2, z: 0}
+      endCellPos: {x: 5, y: 1, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -5.58, y: 0.63, z: -13.690001}
+    cellPos: {x: 6, y: 3, z: 0}
+    neighbors:
+    - startPos: {x: -5.58, y: 0.63, z: -13.690001}
+      endPos: {x: -5.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 6, y: 3, z: 0}
+      endCellPos: {x: 6, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -5.58, y: 0.63, z: -13.690001}
+      endPos: {x: -6.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 6, y: 3, z: 0}
+      endCellPos: {x: 5, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -5.58, y: 0.63, z: -13.690001}
+      endPos: {x: -4.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 6, y: 3, z: 0}
+      endCellPos: {x: 7, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -5.58, y: 0.63, z: -13.690001}
+      endPos: {x: -4.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 6, y: 3, z: 0}
+      endCellPos: {x: 7, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -5.58, y: 0.63, z: -13.690001}
+      endPos: {x: -6.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 6, y: 3, z: 0}
+      endCellPos: {x: 5, y: 2, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -4.58, y: 0.63, z: -15.690001}
+    cellPos: {x: 7, y: 1, z: 0}
+    neighbors:
+    - startPos: {x: -4.58, y: 0.63, z: -15.690001}
+      endPos: {x: -4.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 7, y: 1, z: 0}
+      endCellPos: {x: 7, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -4.58, y: 0.63, z: -15.690001}
+      endPos: {x: -5.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 7, y: 1, z: 0}
+      endCellPos: {x: 6, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -4.58, y: 0.63, z: -15.690001}
+      endPos: {x: -3.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 7, y: 1, z: 0}
+      endCellPos: {x: 8, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -4.58, y: 0.63, z: -15.690001}
+      endPos: {x: -3.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 7, y: 1, z: 0}
+      endCellPos: {x: 8, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -4.58, y: 0.63, z: -15.690001}
+      endPos: {x: -5.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 7, y: 1, z: 0}
+      endCellPos: {x: 6, y: 2, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -4.58, y: 0.63, z: -14.690001}
+    cellPos: {x: 7, y: 2, z: 0}
+    neighbors:
+    - startPos: {x: -4.58, y: 0.63, z: -14.690001}
+      endPos: {x: -4.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 7, y: 2, z: 0}
+      endCellPos: {x: 7, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -4.58, y: 0.63, z: -14.690001}
+      endPos: {x: -4.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 7, y: 2, z: 0}
+      endCellPos: {x: 7, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -4.58, y: 0.63, z: -14.690001}
+      endPos: {x: -5.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 7, y: 2, z: 0}
+      endCellPos: {x: 6, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -4.58, y: 0.63, z: -14.690001}
+      endPos: {x: -3.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 7, y: 2, z: 0}
+      endCellPos: {x: 8, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -4.58, y: 0.63, z: -14.690001}
+      endPos: {x: -3.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 7, y: 2, z: 0}
+      endCellPos: {x: 8, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -4.58, y: 0.63, z: -14.690001}
+      endPos: {x: -3.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 7, y: 2, z: 0}
+      endCellPos: {x: 8, y: 1, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -4.58, y: 0.63, z: -14.690001}
+      endPos: {x: -5.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 7, y: 2, z: 0}
+      endCellPos: {x: 6, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -4.58, y: 0.63, z: -14.690001}
+      endPos: {x: -5.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 7, y: 2, z: 0}
+      endCellPos: {x: 6, y: 1, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -4.58, y: 0.63, z: -13.690001}
+    cellPos: {x: 7, y: 3, z: 0}
+    neighbors:
+    - startPos: {x: -4.58, y: 0.63, z: -13.690001}
+      endPos: {x: -4.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 7, y: 3, z: 0}
+      endCellPos: {x: 7, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -4.58, y: 0.63, z: -13.690001}
+      endPos: {x: -5.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 7, y: 3, z: 0}
+      endCellPos: {x: 6, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -4.58, y: 0.63, z: -13.690001}
+      endPos: {x: -3.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 7, y: 3, z: 0}
+      endCellPos: {x: 8, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -4.58, y: 0.63, z: -13.690001}
+      endPos: {x: -3.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 7, y: 3, z: 0}
+      endCellPos: {x: 8, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -4.58, y: 0.63, z: -13.690001}
+      endPos: {x: -5.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 7, y: 3, z: 0}
+      endCellPos: {x: 6, y: 2, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -4.58, y: 0.63, z: -9.690001}
+    cellPos: {x: 7, y: 7, z: 0}
+    neighbors:
+    - startPos: {x: -4.58, y: 0.63, z: -9.690001}
+      endPos: {x: -4.58, y: 0.63, z: -8.690001}
+      startCellPos: {x: 7, y: 7, z: 0}
+      endCellPos: {x: 7, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: -4.58, y: 0.63, z: -9.690001}
+      endPos: {x: -3.58, y: 0.63, z: -9.690001}
+      startCellPos: {x: 7, y: 7, z: 0}
+      endCellPos: {x: 8, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: -4.58, y: 0.63, z: -9.690001}
+      endPos: {x: -3.58, y: 0.63, z: -8.690001}
+      startCellPos: {x: 7, y: 7, z: 0}
+      endCellPos: {x: 8, y: 8, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -4.58, y: 0.63, z: -8.690001}
+    cellPos: {x: 7, y: 8, z: 0}
+    neighbors:
+    - startPos: {x: -4.58, y: 0.63, z: -8.690001}
+      endPos: {x: -4.58, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 7, y: 8, z: 0}
+      endCellPos: {x: 7, y: 9, z: 0}
+      cost: 1
+    - startPos: {x: -4.58, y: 0.63, z: -8.690001}
+      endPos: {x: -4.58, y: 0.63, z: -9.690001}
+      startCellPos: {x: 7, y: 8, z: 0}
+      endCellPos: {x: 7, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: -4.58, y: 0.63, z: -8.690001}
+      endPos: {x: -3.58, y: 0.63, z: -8.690001}
+      startCellPos: {x: 7, y: 8, z: 0}
+      endCellPos: {x: 8, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: -4.58, y: 0.63, z: -8.690001}
+      endPos: {x: -3.58, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 7, y: 8, z: 0}
+      endCellPos: {x: 8, y: 9, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -4.58, y: 0.63, z: -8.690001}
+      endPos: {x: -3.58, y: 0.63, z: -9.690001}
+      startCellPos: {x: 7, y: 8, z: 0}
+      endCellPos: {x: 8, y: 7, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -4.58, y: 0.63, z: -7.6900005}
+    cellPos: {x: 7, y: 9, z: 0}
+    neighbors:
+    - startPos: {x: -4.58, y: 0.63, z: -7.6900005}
+      endPos: {x: -4.58, y: 0.63, z: -8.690001}
+      startCellPos: {x: 7, y: 9, z: 0}
+      endCellPos: {x: 7, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: -4.58, y: 0.63, z: -7.6900005}
+      endPos: {x: -3.58, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 7, y: 9, z: 0}
+      endCellPos: {x: 8, y: 9, z: 0}
+      cost: 1
+    - startPos: {x: -4.58, y: 0.63, z: -7.6900005}
+      endPos: {x: -3.58, y: 0.63, z: -8.690001}
+      startCellPos: {x: 7, y: 9, z: 0}
+      endCellPos: {x: 8, y: 8, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -3.58, y: 0.63, z: -16.69}
+    cellPos: {x: 8, y: 0, z: 0}
+    neighbors:
+    - startPos: {x: -3.58, y: 0.63, z: -16.69}
+      endPos: {x: -3.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 8, y: 0, z: 0}
+      endCellPos: {x: 8, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -3.58, y: 0.63, z: -16.69}
+      endPos: {x: -2.58, y: 0.63, z: -16.69}
+      startCellPos: {x: 8, y: 0, z: 0}
+      endCellPos: {x: 9, y: 0, z: 0}
+      cost: 1
+    - startPos: {x: -3.58, y: 0.63, z: -16.69}
+      endPos: {x: -2.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 8, y: 0, z: 0}
+      endCellPos: {x: 9, y: 1, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -3.58, y: 0.63, z: -15.690001}
+    cellPos: {x: 8, y: 1, z: 0}
+    neighbors:
+    - startPos: {x: -3.58, y: 0.63, z: -15.690001}
+      endPos: {x: -3.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 8, y: 1, z: 0}
+      endCellPos: {x: 8, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -3.58, y: 0.63, z: -15.690001}
+      endPos: {x: -3.58, y: 0.63, z: -16.69}
+      startCellPos: {x: 8, y: 1, z: 0}
+      endCellPos: {x: 8, y: 0, z: 0}
+      cost: 1
+    - startPos: {x: -3.58, y: 0.63, z: -15.690001}
+      endPos: {x: -4.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 8, y: 1, z: 0}
+      endCellPos: {x: 7, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -3.58, y: 0.63, z: -15.690001}
+      endPos: {x: -2.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 8, y: 1, z: 0}
+      endCellPos: {x: 9, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -3.58, y: 0.63, z: -15.690001}
+      endPos: {x: -2.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 8, y: 1, z: 0}
+      endCellPos: {x: 9, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -3.58, y: 0.63, z: -15.690001}
+      endPos: {x: -2.58, y: 0.63, z: -16.69}
+      startCellPos: {x: 8, y: 1, z: 0}
+      endCellPos: {x: 9, y: 0, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -3.58, y: 0.63, z: -15.690001}
+      endPos: {x: -4.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 8, y: 1, z: 0}
+      endCellPos: {x: 7, y: 2, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -3.58, y: 0.63, z: -14.690001}
+    cellPos: {x: 8, y: 2, z: 0}
+    neighbors:
+    - startPos: {x: -3.58, y: 0.63, z: -14.690001}
+      endPos: {x: -3.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 8, y: 2, z: 0}
+      endCellPos: {x: 8, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -3.58, y: 0.63, z: -14.690001}
+      endPos: {x: -3.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 8, y: 2, z: 0}
+      endCellPos: {x: 8, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -3.58, y: 0.63, z: -14.690001}
+      endPos: {x: -4.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 8, y: 2, z: 0}
+      endCellPos: {x: 7, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -3.58, y: 0.63, z: -14.690001}
+      endPos: {x: -2.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 8, y: 2, z: 0}
+      endCellPos: {x: 9, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -3.58, y: 0.63, z: -14.690001}
+      endPos: {x: -2.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 8, y: 2, z: 0}
+      endCellPos: {x: 9, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -3.58, y: 0.63, z: -14.690001}
+      endPos: {x: -2.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 8, y: 2, z: 0}
+      endCellPos: {x: 9, y: 1, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -3.58, y: 0.63, z: -14.690001}
+      endPos: {x: -4.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 8, y: 2, z: 0}
+      endCellPos: {x: 7, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -3.58, y: 0.63, z: -14.690001}
+      endPos: {x: -4.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 8, y: 2, z: 0}
+      endCellPos: {x: 7, y: 1, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -3.58, y: 0.63, z: -13.690001}
+    cellPos: {x: 8, y: 3, z: 0}
+    neighbors:
+    - startPos: {x: -3.58, y: 0.63, z: -13.690001}
+      endPos: {x: -3.58, y: 0.63, z: -12.690001}
+      startCellPos: {x: 8, y: 3, z: 0}
+      endCellPos: {x: 8, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: -3.58, y: 0.63, z: -13.690001}
+      endPos: {x: -3.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 8, y: 3, z: 0}
+      endCellPos: {x: 8, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -3.58, y: 0.63, z: -13.690001}
+      endPos: {x: -4.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 8, y: 3, z: 0}
+      endCellPos: {x: 7, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -3.58, y: 0.63, z: -13.690001}
+      endPos: {x: -2.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 8, y: 3, z: 0}
+      endCellPos: {x: 9, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -3.58, y: 0.63, z: -13.690001}
+      endPos: {x: -2.58, y: 0.63, z: -12.690001}
+      startCellPos: {x: 8, y: 3, z: 0}
+      endCellPos: {x: 9, y: 4, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -3.58, y: 0.63, z: -13.690001}
+      endPos: {x: -2.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 8, y: 3, z: 0}
+      endCellPos: {x: 9, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -3.58, y: 0.63, z: -13.690001}
+      endPos: {x: -4.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 8, y: 3, z: 0}
+      endCellPos: {x: 7, y: 2, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -3.58, y: 0.63, z: -12.690001}
+    cellPos: {x: 8, y: 4, z: 0}
+    neighbors:
+    - startPos: {x: -3.58, y: 0.63, z: -12.690001}
+      endPos: {x: -3.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 8, y: 4, z: 0}
+      endCellPos: {x: 8, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -3.58, y: 0.63, z: -12.690001}
+      endPos: {x: -2.58, y: 0.63, z: -12.690001}
+      startCellPos: {x: 8, y: 4, z: 0}
+      endCellPos: {x: 9, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: -3.58, y: 0.63, z: -12.690001}
+      endPos: {x: -2.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 8, y: 4, z: 0}
+      endCellPos: {x: 9, y: 3, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -3.58, y: 0.63, z: -9.690001}
+    cellPos: {x: 8, y: 7, z: 0}
+    neighbors:
+    - startPos: {x: -3.58, y: 0.63, z: -9.690001}
+      endPos: {x: -3.58, y: 0.63, z: -8.690001}
+      startCellPos: {x: 8, y: 7, z: 0}
+      endCellPos: {x: 8, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: -3.58, y: 0.63, z: -9.690001}
+      endPos: {x: -4.58, y: 0.63, z: -9.690001}
+      startCellPos: {x: 8, y: 7, z: 0}
+      endCellPos: {x: 7, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: -3.58, y: 0.63, z: -9.690001}
+      endPos: {x: -2.58, y: 0.63, z: -9.690001}
+      startCellPos: {x: 8, y: 7, z: 0}
+      endCellPos: {x: 9, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: -3.58, y: 0.63, z: -9.690001}
+      endPos: {x: -2.58, y: 0.63, z: -8.690001}
+      startCellPos: {x: 8, y: 7, z: 0}
+      endCellPos: {x: 9, y: 8, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -3.58, y: 0.63, z: -9.690001}
+      endPos: {x: -4.58, y: 0.63, z: -8.690001}
+      startCellPos: {x: 8, y: 7, z: 0}
+      endCellPos: {x: 7, y: 8, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -3.58, y: 0.63, z: -8.690001}
+    cellPos: {x: 8, y: 8, z: 0}
+    neighbors:
+    - startPos: {x: -3.58, y: 0.63, z: -8.690001}
+      endPos: {x: -3.58, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 8, y: 8, z: 0}
+      endCellPos: {x: 8, y: 9, z: 0}
+      cost: 1
+    - startPos: {x: -3.58, y: 0.63, z: -8.690001}
+      endPos: {x: -3.58, y: 0.63, z: -9.690001}
+      startCellPos: {x: 8, y: 8, z: 0}
+      endCellPos: {x: 8, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: -3.58, y: 0.63, z: -8.690001}
+      endPos: {x: -4.58, y: 0.63, z: -8.690001}
+      startCellPos: {x: 8, y: 8, z: 0}
+      endCellPos: {x: 7, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: -3.58, y: 0.63, z: -8.690001}
+      endPos: {x: -2.58, y: 0.63, z: -8.690001}
+      startCellPos: {x: 8, y: 8, z: 0}
+      endCellPos: {x: 9, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: -3.58, y: 0.63, z: -8.690001}
+      endPos: {x: -2.58, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 8, y: 8, z: 0}
+      endCellPos: {x: 9, y: 9, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -3.58, y: 0.63, z: -8.690001}
+      endPos: {x: -2.58, y: 0.63, z: -9.690001}
+      startCellPos: {x: 8, y: 8, z: 0}
+      endCellPos: {x: 9, y: 7, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -3.58, y: 0.63, z: -8.690001}
+      endPos: {x: -4.58, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 8, y: 8, z: 0}
+      endCellPos: {x: 7, y: 9, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -3.58, y: 0.63, z: -8.690001}
+      endPos: {x: -4.58, y: 0.63, z: -9.690001}
+      startCellPos: {x: 8, y: 8, z: 0}
+      endCellPos: {x: 7, y: 7, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -3.58, y: 0.63, z: -7.6900005}
+    cellPos: {x: 8, y: 9, z: 0}
+    neighbors:
+    - startPos: {x: -3.58, y: 0.63, z: -7.6900005}
+      endPos: {x: -3.58, y: 0.63, z: -8.690001}
+      startCellPos: {x: 8, y: 9, z: 0}
+      endCellPos: {x: 8, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: -3.58, y: 0.63, z: -7.6900005}
+      endPos: {x: -4.58, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 8, y: 9, z: 0}
+      endCellPos: {x: 7, y: 9, z: 0}
+      cost: 1
+    - startPos: {x: -3.58, y: 0.63, z: -7.6900005}
+      endPos: {x: -2.58, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 8, y: 9, z: 0}
+      endCellPos: {x: 9, y: 9, z: 0}
+      cost: 1
+    - startPos: {x: -3.58, y: 0.63, z: -7.6900005}
+      endPos: {x: -2.58, y: 0.63, z: -8.690001}
+      startCellPos: {x: 8, y: 9, z: 0}
+      endCellPos: {x: 9, y: 8, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -3.58, y: 0.63, z: -7.6900005}
+      endPos: {x: -4.58, y: 0.63, z: -8.690001}
+      startCellPos: {x: 8, y: 9, z: 0}
+      endCellPos: {x: 7, y: 8, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -2.58, y: 0.63, z: -16.69}
+    cellPos: {x: 9, y: 0, z: 0}
+    neighbors:
+    - startPos: {x: -2.58, y: 0.63, z: -16.69}
+      endPos: {x: -2.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 9, y: 0, z: 0}
+      endCellPos: {x: 9, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -16.69}
+      endPos: {x: -3.58, y: 0.63, z: -16.69}
+      startCellPos: {x: 9, y: 0, z: 0}
+      endCellPos: {x: 8, y: 0, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -16.69}
+      endPos: {x: -1.5799999, y: 0.63, z: -16.69}
+      startCellPos: {x: 9, y: 0, z: 0}
+      endCellPos: {x: 10, y: 0, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -16.69}
+      endPos: {x: -1.5799999, y: 0.63, z: -15.690001}
+      startCellPos: {x: 9, y: 0, z: 0}
+      endCellPos: {x: 10, y: 1, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -2.58, y: 0.63, z: -16.69}
+      endPos: {x: -3.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 9, y: 0, z: 0}
+      endCellPos: {x: 8, y: 1, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -2.58, y: 0.63, z: -15.690001}
+    cellPos: {x: 9, y: 1, z: 0}
+    neighbors:
+    - startPos: {x: -2.58, y: 0.63, z: -15.690001}
+      endPos: {x: -2.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 9, y: 1, z: 0}
+      endCellPos: {x: 9, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -15.690001}
+      endPos: {x: -2.58, y: 0.63, z: -16.69}
+      startCellPos: {x: 9, y: 1, z: 0}
+      endCellPos: {x: 9, y: 0, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -15.690001}
+      endPos: {x: -3.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 9, y: 1, z: 0}
+      endCellPos: {x: 8, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -15.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -15.690001}
+      startCellPos: {x: 9, y: 1, z: 0}
+      endCellPos: {x: 10, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -15.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -14.690001}
+      startCellPos: {x: 9, y: 1, z: 0}
+      endCellPos: {x: 10, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -2.58, y: 0.63, z: -15.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -16.69}
+      startCellPos: {x: 9, y: 1, z: 0}
+      endCellPos: {x: 10, y: 0, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -2.58, y: 0.63, z: -15.690001}
+      endPos: {x: -3.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 9, y: 1, z: 0}
+      endCellPos: {x: 8, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -2.58, y: 0.63, z: -15.690001}
+      endPos: {x: -3.58, y: 0.63, z: -16.69}
+      startCellPos: {x: 9, y: 1, z: 0}
+      endCellPos: {x: 8, y: 0, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -2.58, y: 0.63, z: -14.690001}
+    cellPos: {x: 9, y: 2, z: 0}
+    neighbors:
+    - startPos: {x: -2.58, y: 0.63, z: -14.690001}
+      endPos: {x: -2.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 9, y: 2, z: 0}
+      endCellPos: {x: 9, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -14.690001}
+      endPos: {x: -2.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 9, y: 2, z: 0}
+      endCellPos: {x: 9, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -14.690001}
+      endPos: {x: -3.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 9, y: 2, z: 0}
+      endCellPos: {x: 8, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -14.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -14.690001}
+      startCellPos: {x: 9, y: 2, z: 0}
+      endCellPos: {x: 10, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -14.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -13.690001}
+      startCellPos: {x: 9, y: 2, z: 0}
+      endCellPos: {x: 10, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -2.58, y: 0.63, z: -14.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -15.690001}
+      startCellPos: {x: 9, y: 2, z: 0}
+      endCellPos: {x: 10, y: 1, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -2.58, y: 0.63, z: -14.690001}
+      endPos: {x: -3.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 9, y: 2, z: 0}
+      endCellPos: {x: 8, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -2.58, y: 0.63, z: -14.690001}
+      endPos: {x: -3.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 9, y: 2, z: 0}
+      endCellPos: {x: 8, y: 1, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -2.58, y: 0.63, z: -13.690001}
+    cellPos: {x: 9, y: 3, z: 0}
+    neighbors:
+    - startPos: {x: -2.58, y: 0.63, z: -13.690001}
+      endPos: {x: -2.58, y: 0.63, z: -12.690001}
+      startCellPos: {x: 9, y: 3, z: 0}
+      endCellPos: {x: 9, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -13.690001}
+      endPos: {x: -2.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 9, y: 3, z: 0}
+      endCellPos: {x: 9, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -13.690001}
+      endPos: {x: -3.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 9, y: 3, z: 0}
+      endCellPos: {x: 8, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -13.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -13.690001}
+      startCellPos: {x: 9, y: 3, z: 0}
+      endCellPos: {x: 10, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -13.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -12.690001}
+      startCellPos: {x: 9, y: 3, z: 0}
+      endCellPos: {x: 10, y: 4, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -2.58, y: 0.63, z: -13.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -14.690001}
+      startCellPos: {x: 9, y: 3, z: 0}
+      endCellPos: {x: 10, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -2.58, y: 0.63, z: -13.690001}
+      endPos: {x: -3.58, y: 0.63, z: -12.690001}
+      startCellPos: {x: 9, y: 3, z: 0}
+      endCellPos: {x: 8, y: 4, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -2.58, y: 0.63, z: -13.690001}
+      endPos: {x: -3.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 9, y: 3, z: 0}
+      endCellPos: {x: 8, y: 2, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -2.58, y: 0.63, z: -12.690001}
+    cellPos: {x: 9, y: 4, z: 0}
+    neighbors:
+    - startPos: {x: -2.58, y: 0.63, z: -12.690001}
+      endPos: {x: -2.58, y: 0.63, z: -11.690001}
+      startCellPos: {x: 9, y: 4, z: 0}
+      endCellPos: {x: 9, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -12.690001}
+      endPos: {x: -2.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 9, y: 4, z: 0}
+      endCellPos: {x: 9, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -12.690001}
+      endPos: {x: -3.58, y: 0.63, z: -12.690001}
+      startCellPos: {x: 9, y: 4, z: 0}
+      endCellPos: {x: 8, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -12.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -12.690001}
+      startCellPos: {x: 9, y: 4, z: 0}
+      endCellPos: {x: 10, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -12.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -11.690001}
+      startCellPos: {x: 9, y: 4, z: 0}
+      endCellPos: {x: 10, y: 5, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -2.58, y: 0.63, z: -12.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -13.690001}
+      startCellPos: {x: 9, y: 4, z: 0}
+      endCellPos: {x: 10, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -2.58, y: 0.63, z: -12.690001}
+      endPos: {x: -3.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 9, y: 4, z: 0}
+      endCellPos: {x: 8, y: 3, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -2.58, y: 0.63, z: -11.690001}
+    cellPos: {x: 9, y: 5, z: 0}
+    neighbors:
+    - startPos: {x: -2.58, y: 0.63, z: -11.690001}
+      endPos: {x: -2.58, y: 0.63, z: -10.690001}
+      startCellPos: {x: 9, y: 5, z: 0}
+      endCellPos: {x: 9, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -11.690001}
+      endPos: {x: -2.58, y: 0.63, z: -12.690001}
+      startCellPos: {x: 9, y: 5, z: 0}
+      endCellPos: {x: 9, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -11.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -11.690001}
+      startCellPos: {x: 9, y: 5, z: 0}
+      endCellPos: {x: 10, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -11.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -10.690001}
+      startCellPos: {x: 9, y: 5, z: 0}
+      endCellPos: {x: 10, y: 6, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -2.58, y: 0.63, z: -11.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -12.690001}
+      startCellPos: {x: 9, y: 5, z: 0}
+      endCellPos: {x: 10, y: 4, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -2.58, y: 0.63, z: -10.690001}
+    cellPos: {x: 9, y: 6, z: 0}
+    neighbors:
+    - startPos: {x: -2.58, y: 0.63, z: -10.690001}
+      endPos: {x: -2.58, y: 0.63, z: -9.690001}
+      startCellPos: {x: 9, y: 6, z: 0}
+      endCellPos: {x: 9, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -10.690001}
+      endPos: {x: -2.58, y: 0.63, z: -11.690001}
+      startCellPos: {x: 9, y: 6, z: 0}
+      endCellPos: {x: 9, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -10.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -10.690001}
+      startCellPos: {x: 9, y: 6, z: 0}
+      endCellPos: {x: 10, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -10.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -9.690001}
+      startCellPos: {x: 9, y: 6, z: 0}
+      endCellPos: {x: 10, y: 7, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -2.58, y: 0.63, z: -10.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -11.690001}
+      startCellPos: {x: 9, y: 6, z: 0}
+      endCellPos: {x: 10, y: 5, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -2.58, y: 0.63, z: -9.690001}
+    cellPos: {x: 9, y: 7, z: 0}
+    neighbors:
+    - startPos: {x: -2.58, y: 0.63, z: -9.690001}
+      endPos: {x: -2.58, y: 0.63, z: -8.690001}
+      startCellPos: {x: 9, y: 7, z: 0}
+      endCellPos: {x: 9, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -9.690001}
+      endPos: {x: -2.58, y: 0.63, z: -10.690001}
+      startCellPos: {x: 9, y: 7, z: 0}
+      endCellPos: {x: 9, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -9.690001}
+      endPos: {x: -3.58, y: 0.63, z: -9.690001}
+      startCellPos: {x: 9, y: 7, z: 0}
+      endCellPos: {x: 8, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -9.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -9.690001}
+      startCellPos: {x: 9, y: 7, z: 0}
+      endCellPos: {x: 10, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -9.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -8.690001}
+      startCellPos: {x: 9, y: 7, z: 0}
+      endCellPos: {x: 10, y: 8, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -2.58, y: 0.63, z: -9.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -10.690001}
+      startCellPos: {x: 9, y: 7, z: 0}
+      endCellPos: {x: 10, y: 6, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -2.58, y: 0.63, z: -9.690001}
+      endPos: {x: -3.58, y: 0.63, z: -8.690001}
+      startCellPos: {x: 9, y: 7, z: 0}
+      endCellPos: {x: 8, y: 8, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -2.58, y: 0.63, z: -8.690001}
+    cellPos: {x: 9, y: 8, z: 0}
+    neighbors:
+    - startPos: {x: -2.58, y: 0.63, z: -8.690001}
+      endPos: {x: -2.58, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 9, y: 8, z: 0}
+      endCellPos: {x: 9, y: 9, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -8.690001}
+      endPos: {x: -2.58, y: 0.63, z: -9.690001}
+      startCellPos: {x: 9, y: 8, z: 0}
+      endCellPos: {x: 9, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -8.690001}
+      endPos: {x: -3.58, y: 0.63, z: -8.690001}
+      startCellPos: {x: 9, y: 8, z: 0}
+      endCellPos: {x: 8, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -8.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -8.690001}
+      startCellPos: {x: 9, y: 8, z: 0}
+      endCellPos: {x: 10, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -8.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 9, y: 8, z: 0}
+      endCellPos: {x: 10, y: 9, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -2.58, y: 0.63, z: -8.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -9.690001}
+      startCellPos: {x: 9, y: 8, z: 0}
+      endCellPos: {x: 10, y: 7, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -2.58, y: 0.63, z: -8.690001}
+      endPos: {x: -3.58, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 9, y: 8, z: 0}
+      endCellPos: {x: 8, y: 9, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -2.58, y: 0.63, z: -8.690001}
+      endPos: {x: -3.58, y: 0.63, z: -9.690001}
+      startCellPos: {x: 9, y: 8, z: 0}
+      endCellPos: {x: 8, y: 7, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -2.58, y: 0.63, z: -7.6900005}
+    cellPos: {x: 9, y: 9, z: 0}
+    neighbors:
+    - startPos: {x: -2.58, y: 0.63, z: -7.6900005}
+      endPos: {x: -2.58, y: 0.63, z: -8.690001}
+      startCellPos: {x: 9, y: 9, z: 0}
+      endCellPos: {x: 9, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -7.6900005}
+      endPos: {x: -3.58, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 9, y: 9, z: 0}
+      endCellPos: {x: 8, y: 9, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -7.6900005}
+      endPos: {x: -1.5799999, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 9, y: 9, z: 0}
+      endCellPos: {x: 10, y: 9, z: 0}
+      cost: 1
+    - startPos: {x: -2.58, y: 0.63, z: -7.6900005}
+      endPos: {x: -1.5799999, y: 0.63, z: -8.690001}
+      startCellPos: {x: 9, y: 9, z: 0}
+      endCellPos: {x: 10, y: 8, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -2.58, y: 0.63, z: -7.6900005}
+      endPos: {x: -3.58, y: 0.63, z: -8.690001}
+      startCellPos: {x: 9, y: 9, z: 0}
+      endCellPos: {x: 8, y: 8, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -1.5799999, y: 0.63, z: -16.69}
+    cellPos: {x: 10, y: 0, z: 0}
+    neighbors:
+    - startPos: {x: -1.5799999, y: 0.63, z: -16.69}
+      endPos: {x: -1.5799999, y: 0.63, z: -15.690001}
+      startCellPos: {x: 10, y: 0, z: 0}
+      endCellPos: {x: 10, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -16.69}
+      endPos: {x: -2.58, y: 0.63, z: -16.69}
+      startCellPos: {x: 10, y: 0, z: 0}
+      endCellPos: {x: 9, y: 0, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -16.69}
+      endPos: {x: -0.5799999, y: 0.63, z: -16.69}
+      startCellPos: {x: 10, y: 0, z: 0}
+      endCellPos: {x: 11, y: 0, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -16.69}
+      endPos: {x: -0.5799999, y: 0.63, z: -15.690001}
+      startCellPos: {x: 10, y: 0, z: 0}
+      endCellPos: {x: 11, y: 1, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -1.5799999, y: 0.63, z: -16.69}
+      endPos: {x: -2.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 10, y: 0, z: 0}
+      endCellPos: {x: 9, y: 1, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -1.5799999, y: 0.63, z: -15.690001}
+    cellPos: {x: 10, y: 1, z: 0}
+    neighbors:
+    - startPos: {x: -1.5799999, y: 0.63, z: -15.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -14.690001}
+      startCellPos: {x: 10, y: 1, z: 0}
+      endCellPos: {x: 10, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -15.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -16.69}
+      startCellPos: {x: 10, y: 1, z: 0}
+      endCellPos: {x: 10, y: 0, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -15.690001}
+      endPos: {x: -2.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 10, y: 1, z: 0}
+      endCellPos: {x: 9, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -15.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -15.690001}
+      startCellPos: {x: 10, y: 1, z: 0}
+      endCellPos: {x: 11, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -15.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -14.690001}
+      startCellPos: {x: 10, y: 1, z: 0}
+      endCellPos: {x: 11, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -1.5799999, y: 0.63, z: -15.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -16.69}
+      startCellPos: {x: 10, y: 1, z: 0}
+      endCellPos: {x: 11, y: 0, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -1.5799999, y: 0.63, z: -15.690001}
+      endPos: {x: -2.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 10, y: 1, z: 0}
+      endCellPos: {x: 9, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -1.5799999, y: 0.63, z: -15.690001}
+      endPos: {x: -2.58, y: 0.63, z: -16.69}
+      startCellPos: {x: 10, y: 1, z: 0}
+      endCellPos: {x: 9, y: 0, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -1.5799999, y: 0.63, z: -14.690001}
+    cellPos: {x: 10, y: 2, z: 0}
+    neighbors:
+    - startPos: {x: -1.5799999, y: 0.63, z: -14.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -13.690001}
+      startCellPos: {x: 10, y: 2, z: 0}
+      endCellPos: {x: 10, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -14.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -15.690001}
+      startCellPos: {x: 10, y: 2, z: 0}
+      endCellPos: {x: 10, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -14.690001}
+      endPos: {x: -2.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 10, y: 2, z: 0}
+      endCellPos: {x: 9, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -14.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -14.690001}
+      startCellPos: {x: 10, y: 2, z: 0}
+      endCellPos: {x: 11, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -14.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -13.690001}
+      startCellPos: {x: 10, y: 2, z: 0}
+      endCellPos: {x: 11, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -1.5799999, y: 0.63, z: -14.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -15.690001}
+      startCellPos: {x: 10, y: 2, z: 0}
+      endCellPos: {x: 11, y: 1, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -1.5799999, y: 0.63, z: -14.690001}
+      endPos: {x: -2.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 10, y: 2, z: 0}
+      endCellPos: {x: 9, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -1.5799999, y: 0.63, z: -14.690001}
+      endPos: {x: -2.58, y: 0.63, z: -15.690001}
+      startCellPos: {x: 10, y: 2, z: 0}
+      endCellPos: {x: 9, y: 1, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -1.5799999, y: 0.63, z: -13.690001}
+    cellPos: {x: 10, y: 3, z: 0}
+    neighbors:
+    - startPos: {x: -1.5799999, y: 0.63, z: -13.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -12.690001}
+      startCellPos: {x: 10, y: 3, z: 0}
+      endCellPos: {x: 10, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -13.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -14.690001}
+      startCellPos: {x: 10, y: 3, z: 0}
+      endCellPos: {x: 10, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -13.690001}
+      endPos: {x: -2.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 10, y: 3, z: 0}
+      endCellPos: {x: 9, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -13.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -13.690001}
+      startCellPos: {x: 10, y: 3, z: 0}
+      endCellPos: {x: 11, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -13.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -12.690001}
+      startCellPos: {x: 10, y: 3, z: 0}
+      endCellPos: {x: 11, y: 4, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -1.5799999, y: 0.63, z: -13.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -14.690001}
+      startCellPos: {x: 10, y: 3, z: 0}
+      endCellPos: {x: 11, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -1.5799999, y: 0.63, z: -13.690001}
+      endPos: {x: -2.58, y: 0.63, z: -12.690001}
+      startCellPos: {x: 10, y: 3, z: 0}
+      endCellPos: {x: 9, y: 4, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -1.5799999, y: 0.63, z: -13.690001}
+      endPos: {x: -2.58, y: 0.63, z: -14.690001}
+      startCellPos: {x: 10, y: 3, z: 0}
+      endCellPos: {x: 9, y: 2, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -1.5799999, y: 0.63, z: -12.690001}
+    cellPos: {x: 10, y: 4, z: 0}
+    neighbors:
+    - startPos: {x: -1.5799999, y: 0.63, z: -12.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -11.690001}
+      startCellPos: {x: 10, y: 4, z: 0}
+      endCellPos: {x: 10, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -12.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -13.690001}
+      startCellPos: {x: 10, y: 4, z: 0}
+      endCellPos: {x: 10, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -12.690001}
+      endPos: {x: -2.58, y: 0.63, z: -12.690001}
+      startCellPos: {x: 10, y: 4, z: 0}
+      endCellPos: {x: 9, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -12.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -12.690001}
+      startCellPos: {x: 10, y: 4, z: 0}
+      endCellPos: {x: 11, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -12.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -11.690001}
+      startCellPos: {x: 10, y: 4, z: 0}
+      endCellPos: {x: 11, y: 5, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -1.5799999, y: 0.63, z: -12.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -13.690001}
+      startCellPos: {x: 10, y: 4, z: 0}
+      endCellPos: {x: 11, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -1.5799999, y: 0.63, z: -12.690001}
+      endPos: {x: -2.58, y: 0.63, z: -11.690001}
+      startCellPos: {x: 10, y: 4, z: 0}
+      endCellPos: {x: 9, y: 5, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -1.5799999, y: 0.63, z: -12.690001}
+      endPos: {x: -2.58, y: 0.63, z: -13.690001}
+      startCellPos: {x: 10, y: 4, z: 0}
+      endCellPos: {x: 9, y: 3, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -1.5799999, y: 0.63, z: -11.690001}
+    cellPos: {x: 10, y: 5, z: 0}
+    neighbors:
+    - startPos: {x: -1.5799999, y: 0.63, z: -11.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -10.690001}
+      startCellPos: {x: 10, y: 5, z: 0}
+      endCellPos: {x: 10, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -11.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -12.690001}
+      startCellPos: {x: 10, y: 5, z: 0}
+      endCellPos: {x: 10, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -11.690001}
+      endPos: {x: -2.58, y: 0.63, z: -11.690001}
+      startCellPos: {x: 10, y: 5, z: 0}
+      endCellPos: {x: 9, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -11.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -11.690001}
+      startCellPos: {x: 10, y: 5, z: 0}
+      endCellPos: {x: 11, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -11.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -10.690001}
+      startCellPos: {x: 10, y: 5, z: 0}
+      endCellPos: {x: 11, y: 6, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -1.5799999, y: 0.63, z: -11.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -12.690001}
+      startCellPos: {x: 10, y: 5, z: 0}
+      endCellPos: {x: 11, y: 4, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -1.5799999, y: 0.63, z: -11.690001}
+      endPos: {x: -2.58, y: 0.63, z: -10.690001}
+      startCellPos: {x: 10, y: 5, z: 0}
+      endCellPos: {x: 9, y: 6, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -1.5799999, y: 0.63, z: -11.690001}
+      endPos: {x: -2.58, y: 0.63, z: -12.690001}
+      startCellPos: {x: 10, y: 5, z: 0}
+      endCellPos: {x: 9, y: 4, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -1.5799999, y: 0.63, z: -10.690001}
+    cellPos: {x: 10, y: 6, z: 0}
+    neighbors:
+    - startPos: {x: -1.5799999, y: 0.63, z: -10.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -9.690001}
+      startCellPos: {x: 10, y: 6, z: 0}
+      endCellPos: {x: 10, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -10.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -11.690001}
+      startCellPos: {x: 10, y: 6, z: 0}
+      endCellPos: {x: 10, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -10.690001}
+      endPos: {x: -2.58, y: 0.63, z: -10.690001}
+      startCellPos: {x: 10, y: 6, z: 0}
+      endCellPos: {x: 9, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -10.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -10.690001}
+      startCellPos: {x: 10, y: 6, z: 0}
+      endCellPos: {x: 11, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -10.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -9.690001}
+      startCellPos: {x: 10, y: 6, z: 0}
+      endCellPos: {x: 11, y: 7, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -1.5799999, y: 0.63, z: -10.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -11.690001}
+      startCellPos: {x: 10, y: 6, z: 0}
+      endCellPos: {x: 11, y: 5, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -1.5799999, y: 0.63, z: -10.690001}
+      endPos: {x: -2.58, y: 0.63, z: -9.690001}
+      startCellPos: {x: 10, y: 6, z: 0}
+      endCellPos: {x: 9, y: 7, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -1.5799999, y: 0.63, z: -10.690001}
+      endPos: {x: -2.58, y: 0.63, z: -11.690001}
+      startCellPos: {x: 10, y: 6, z: 0}
+      endCellPos: {x: 9, y: 5, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -1.5799999, y: 0.63, z: -9.690001}
+    cellPos: {x: 10, y: 7, z: 0}
+    neighbors:
+    - startPos: {x: -1.5799999, y: 0.63, z: -9.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -8.690001}
+      startCellPos: {x: 10, y: 7, z: 0}
+      endCellPos: {x: 10, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -9.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -10.690001}
+      startCellPos: {x: 10, y: 7, z: 0}
+      endCellPos: {x: 10, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -9.690001}
+      endPos: {x: -2.58, y: 0.63, z: -9.690001}
+      startCellPos: {x: 10, y: 7, z: 0}
+      endCellPos: {x: 9, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -9.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -9.690001}
+      startCellPos: {x: 10, y: 7, z: 0}
+      endCellPos: {x: 11, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -9.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -8.690001}
+      startCellPos: {x: 10, y: 7, z: 0}
+      endCellPos: {x: 11, y: 8, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -1.5799999, y: 0.63, z: -9.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -10.690001}
+      startCellPos: {x: 10, y: 7, z: 0}
+      endCellPos: {x: 11, y: 6, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -1.5799999, y: 0.63, z: -9.690001}
+      endPos: {x: -2.58, y: 0.63, z: -8.690001}
+      startCellPos: {x: 10, y: 7, z: 0}
+      endCellPos: {x: 9, y: 8, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -1.5799999, y: 0.63, z: -9.690001}
+      endPos: {x: -2.58, y: 0.63, z: -10.690001}
+      startCellPos: {x: 10, y: 7, z: 0}
+      endCellPos: {x: 9, y: 6, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -1.5799999, y: 0.63, z: -8.690001}
+    cellPos: {x: 10, y: 8, z: 0}
+    neighbors:
+    - startPos: {x: -1.5799999, y: 0.63, z: -8.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 10, y: 8, z: 0}
+      endCellPos: {x: 10, y: 9, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -8.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -9.690001}
+      startCellPos: {x: 10, y: 8, z: 0}
+      endCellPos: {x: 10, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -8.690001}
+      endPos: {x: -2.58, y: 0.63, z: -8.690001}
+      startCellPos: {x: 10, y: 8, z: 0}
+      endCellPos: {x: 9, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -8.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -8.690001}
+      startCellPos: {x: 10, y: 8, z: 0}
+      endCellPos: {x: 11, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -8.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 10, y: 8, z: 0}
+      endCellPos: {x: 11, y: 9, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -1.5799999, y: 0.63, z: -8.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -9.690001}
+      startCellPos: {x: 10, y: 8, z: 0}
+      endCellPos: {x: 11, y: 7, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -1.5799999, y: 0.63, z: -8.690001}
+      endPos: {x: -2.58, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 10, y: 8, z: 0}
+      endCellPos: {x: 9, y: 9, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -1.5799999, y: 0.63, z: -8.690001}
+      endPos: {x: -2.58, y: 0.63, z: -9.690001}
+      startCellPos: {x: 10, y: 8, z: 0}
+      endCellPos: {x: 9, y: 7, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -1.5799999, y: 0.63, z: -7.6900005}
+    cellPos: {x: 10, y: 9, z: 0}
+    neighbors:
+    - startPos: {x: -1.5799999, y: 0.63, z: -7.6900005}
+      endPos: {x: -1.5799999, y: 0.63, z: -8.690001}
+      startCellPos: {x: 10, y: 9, z: 0}
+      endCellPos: {x: 10, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -7.6900005}
+      endPos: {x: -2.58, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 10, y: 9, z: 0}
+      endCellPos: {x: 9, y: 9, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -7.6900005}
+      endPos: {x: -0.5799999, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 10, y: 9, z: 0}
+      endCellPos: {x: 11, y: 9, z: 0}
+      cost: 1
+    - startPos: {x: -1.5799999, y: 0.63, z: -7.6900005}
+      endPos: {x: -0.5799999, y: 0.63, z: -8.690001}
+      startCellPos: {x: 10, y: 9, z: 0}
+      endCellPos: {x: 11, y: 8, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -1.5799999, y: 0.63, z: -7.6900005}
+      endPos: {x: -2.58, y: 0.63, z: -8.690001}
+      startCellPos: {x: 10, y: 9, z: 0}
+      endCellPos: {x: 9, y: 8, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -0.5799999, y: 0.63, z: -16.69}
+    cellPos: {x: 11, y: 0, z: 0}
+    neighbors:
+    - startPos: {x: -0.5799999, y: 0.63, z: -16.69}
+      endPos: {x: -0.5799999, y: 0.63, z: -15.690001}
+      startCellPos: {x: 11, y: 0, z: 0}
+      endCellPos: {x: 11, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -16.69}
+      endPos: {x: -1.5799999, y: 0.63, z: -16.69}
+      startCellPos: {x: 11, y: 0, z: 0}
+      endCellPos: {x: 10, y: 0, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -16.69}
+      endPos: {x: 0.42000008, y: 0.63, z: -16.69}
+      startCellPos: {x: 11, y: 0, z: 0}
+      endCellPos: {x: 12, y: 0, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -16.69}
+      endPos: {x: 0.42000008, y: 0.63, z: -15.690001}
+      startCellPos: {x: 11, y: 0, z: 0}
+      endCellPos: {x: 12, y: 1, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -0.5799999, y: 0.63, z: -16.69}
+      endPos: {x: -1.5799999, y: 0.63, z: -15.690001}
+      startCellPos: {x: 11, y: 0, z: 0}
+      endCellPos: {x: 10, y: 1, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -0.5799999, y: 0.63, z: -15.690001}
+    cellPos: {x: 11, y: 1, z: 0}
+    neighbors:
+    - startPos: {x: -0.5799999, y: 0.63, z: -15.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -14.690001}
+      startCellPos: {x: 11, y: 1, z: 0}
+      endCellPos: {x: 11, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -15.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -16.69}
+      startCellPos: {x: 11, y: 1, z: 0}
+      endCellPos: {x: 11, y: 0, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -15.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -15.690001}
+      startCellPos: {x: 11, y: 1, z: 0}
+      endCellPos: {x: 10, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -15.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -15.690001}
+      startCellPos: {x: 11, y: 1, z: 0}
+      endCellPos: {x: 12, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -15.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -14.690001}
+      startCellPos: {x: 11, y: 1, z: 0}
+      endCellPos: {x: 12, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -0.5799999, y: 0.63, z: -15.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -16.69}
+      startCellPos: {x: 11, y: 1, z: 0}
+      endCellPos: {x: 12, y: 0, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -0.5799999, y: 0.63, z: -15.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -14.690001}
+      startCellPos: {x: 11, y: 1, z: 0}
+      endCellPos: {x: 10, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -0.5799999, y: 0.63, z: -15.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -16.69}
+      startCellPos: {x: 11, y: 1, z: 0}
+      endCellPos: {x: 10, y: 0, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -0.5799999, y: 0.63, z: -14.690001}
+    cellPos: {x: 11, y: 2, z: 0}
+    neighbors:
+    - startPos: {x: -0.5799999, y: 0.63, z: -14.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -13.690001}
+      startCellPos: {x: 11, y: 2, z: 0}
+      endCellPos: {x: 11, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -14.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -15.690001}
+      startCellPos: {x: 11, y: 2, z: 0}
+      endCellPos: {x: 11, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -14.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -14.690001}
+      startCellPos: {x: 11, y: 2, z: 0}
+      endCellPos: {x: 10, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -14.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -14.690001}
+      startCellPos: {x: 11, y: 2, z: 0}
+      endCellPos: {x: 12, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -14.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -13.690001}
+      startCellPos: {x: 11, y: 2, z: 0}
+      endCellPos: {x: 12, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -0.5799999, y: 0.63, z: -14.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -15.690001}
+      startCellPos: {x: 11, y: 2, z: 0}
+      endCellPos: {x: 12, y: 1, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -0.5799999, y: 0.63, z: -14.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -13.690001}
+      startCellPos: {x: 11, y: 2, z: 0}
+      endCellPos: {x: 10, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -0.5799999, y: 0.63, z: -14.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -15.690001}
+      startCellPos: {x: 11, y: 2, z: 0}
+      endCellPos: {x: 10, y: 1, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -0.5799999, y: 0.63, z: -13.690001}
+    cellPos: {x: 11, y: 3, z: 0}
+    neighbors:
+    - startPos: {x: -0.5799999, y: 0.63, z: -13.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -12.690001}
+      startCellPos: {x: 11, y: 3, z: 0}
+      endCellPos: {x: 11, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -13.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -14.690001}
+      startCellPos: {x: 11, y: 3, z: 0}
+      endCellPos: {x: 11, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -13.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -13.690001}
+      startCellPos: {x: 11, y: 3, z: 0}
+      endCellPos: {x: 10, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -13.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -13.690001}
+      startCellPos: {x: 11, y: 3, z: 0}
+      endCellPos: {x: 12, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -13.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -12.690001}
+      startCellPos: {x: 11, y: 3, z: 0}
+      endCellPos: {x: 12, y: 4, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -0.5799999, y: 0.63, z: -13.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -14.690001}
+      startCellPos: {x: 11, y: 3, z: 0}
+      endCellPos: {x: 12, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -0.5799999, y: 0.63, z: -13.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -12.690001}
+      startCellPos: {x: 11, y: 3, z: 0}
+      endCellPos: {x: 10, y: 4, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -0.5799999, y: 0.63, z: -13.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -14.690001}
+      startCellPos: {x: 11, y: 3, z: 0}
+      endCellPos: {x: 10, y: 2, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -0.5799999, y: 0.63, z: -12.690001}
+    cellPos: {x: 11, y: 4, z: 0}
+    neighbors:
+    - startPos: {x: -0.5799999, y: 0.63, z: -12.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -11.690001}
+      startCellPos: {x: 11, y: 4, z: 0}
+      endCellPos: {x: 11, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -12.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -13.690001}
+      startCellPos: {x: 11, y: 4, z: 0}
+      endCellPos: {x: 11, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -12.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -12.690001}
+      startCellPos: {x: 11, y: 4, z: 0}
+      endCellPos: {x: 10, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -12.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -12.690001}
+      startCellPos: {x: 11, y: 4, z: 0}
+      endCellPos: {x: 12, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -12.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -11.690001}
+      startCellPos: {x: 11, y: 4, z: 0}
+      endCellPos: {x: 12, y: 5, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -0.5799999, y: 0.63, z: -12.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -13.690001}
+      startCellPos: {x: 11, y: 4, z: 0}
+      endCellPos: {x: 12, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -0.5799999, y: 0.63, z: -12.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -11.690001}
+      startCellPos: {x: 11, y: 4, z: 0}
+      endCellPos: {x: 10, y: 5, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -0.5799999, y: 0.63, z: -12.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -13.690001}
+      startCellPos: {x: 11, y: 4, z: 0}
+      endCellPos: {x: 10, y: 3, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -0.5799999, y: 0.63, z: -11.690001}
+    cellPos: {x: 11, y: 5, z: 0}
+    neighbors:
+    - startPos: {x: -0.5799999, y: 0.63, z: -11.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -10.690001}
+      startCellPos: {x: 11, y: 5, z: 0}
+      endCellPos: {x: 11, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -11.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -12.690001}
+      startCellPos: {x: 11, y: 5, z: 0}
+      endCellPos: {x: 11, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -11.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -11.690001}
+      startCellPos: {x: 11, y: 5, z: 0}
+      endCellPos: {x: 10, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -11.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -11.690001}
+      startCellPos: {x: 11, y: 5, z: 0}
+      endCellPos: {x: 12, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -11.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -10.690001}
+      startCellPos: {x: 11, y: 5, z: 0}
+      endCellPos: {x: 12, y: 6, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -0.5799999, y: 0.63, z: -11.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -12.690001}
+      startCellPos: {x: 11, y: 5, z: 0}
+      endCellPos: {x: 12, y: 4, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -0.5799999, y: 0.63, z: -11.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -10.690001}
+      startCellPos: {x: 11, y: 5, z: 0}
+      endCellPos: {x: 10, y: 6, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -0.5799999, y: 0.63, z: -11.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -12.690001}
+      startCellPos: {x: 11, y: 5, z: 0}
+      endCellPos: {x: 10, y: 4, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -0.5799999, y: 0.63, z: -10.690001}
+    cellPos: {x: 11, y: 6, z: 0}
+    neighbors:
+    - startPos: {x: -0.5799999, y: 0.63, z: -10.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -9.690001}
+      startCellPos: {x: 11, y: 6, z: 0}
+      endCellPos: {x: 11, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -10.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -11.690001}
+      startCellPos: {x: 11, y: 6, z: 0}
+      endCellPos: {x: 11, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -10.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -10.690001}
+      startCellPos: {x: 11, y: 6, z: 0}
+      endCellPos: {x: 10, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -10.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -10.690001}
+      startCellPos: {x: 11, y: 6, z: 0}
+      endCellPos: {x: 12, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -10.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -9.690001}
+      startCellPos: {x: 11, y: 6, z: 0}
+      endCellPos: {x: 12, y: 7, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -0.5799999, y: 0.63, z: -10.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -11.690001}
+      startCellPos: {x: 11, y: 6, z: 0}
+      endCellPos: {x: 12, y: 5, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -0.5799999, y: 0.63, z: -10.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -9.690001}
+      startCellPos: {x: 11, y: 6, z: 0}
+      endCellPos: {x: 10, y: 7, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -0.5799999, y: 0.63, z: -10.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -11.690001}
+      startCellPos: {x: 11, y: 6, z: 0}
+      endCellPos: {x: 10, y: 5, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -0.5799999, y: 0.63, z: -9.690001}
+    cellPos: {x: 11, y: 7, z: 0}
+    neighbors:
+    - startPos: {x: -0.5799999, y: 0.63, z: -9.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -8.690001}
+      startCellPos: {x: 11, y: 7, z: 0}
+      endCellPos: {x: 11, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -9.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -10.690001}
+      startCellPos: {x: 11, y: 7, z: 0}
+      endCellPos: {x: 11, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -9.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -9.690001}
+      startCellPos: {x: 11, y: 7, z: 0}
+      endCellPos: {x: 10, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -9.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -9.690001}
+      startCellPos: {x: 11, y: 7, z: 0}
+      endCellPos: {x: 12, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -9.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -8.690001}
+      startCellPos: {x: 11, y: 7, z: 0}
+      endCellPos: {x: 12, y: 8, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -0.5799999, y: 0.63, z: -9.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -10.690001}
+      startCellPos: {x: 11, y: 7, z: 0}
+      endCellPos: {x: 12, y: 6, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -0.5799999, y: 0.63, z: -9.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -8.690001}
+      startCellPos: {x: 11, y: 7, z: 0}
+      endCellPos: {x: 10, y: 8, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -0.5799999, y: 0.63, z: -9.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -10.690001}
+      startCellPos: {x: 11, y: 7, z: 0}
+      endCellPos: {x: 10, y: 6, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -0.5799999, y: 0.63, z: -8.690001}
+    cellPos: {x: 11, y: 8, z: 0}
+    neighbors:
+    - startPos: {x: -0.5799999, y: 0.63, z: -8.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 11, y: 8, z: 0}
+      endCellPos: {x: 11, y: 9, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -8.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -9.690001}
+      startCellPos: {x: 11, y: 8, z: 0}
+      endCellPos: {x: 11, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -8.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -8.690001}
+      startCellPos: {x: 11, y: 8, z: 0}
+      endCellPos: {x: 10, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -8.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -8.690001}
+      startCellPos: {x: 11, y: 8, z: 0}
+      endCellPos: {x: 12, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -8.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 11, y: 8, z: 0}
+      endCellPos: {x: 12, y: 9, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -0.5799999, y: 0.63, z: -8.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -9.690001}
+      startCellPos: {x: 11, y: 8, z: 0}
+      endCellPos: {x: 12, y: 7, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -0.5799999, y: 0.63, z: -8.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 11, y: 8, z: 0}
+      endCellPos: {x: 10, y: 9, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -0.5799999, y: 0.63, z: -8.690001}
+      endPos: {x: -1.5799999, y: 0.63, z: -9.690001}
+      startCellPos: {x: 11, y: 8, z: 0}
+      endCellPos: {x: 10, y: 7, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: -0.5799999, y: 0.63, z: -7.6900005}
+    cellPos: {x: 11, y: 9, z: 0}
+    neighbors:
+    - startPos: {x: -0.5799999, y: 0.63, z: -7.6900005}
+      endPos: {x: -0.5799999, y: 0.63, z: -8.690001}
+      startCellPos: {x: 11, y: 9, z: 0}
+      endCellPos: {x: 11, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -7.6900005}
+      endPos: {x: -1.5799999, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 11, y: 9, z: 0}
+      endCellPos: {x: 10, y: 9, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -7.6900005}
+      endPos: {x: 0.42000008, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 11, y: 9, z: 0}
+      endCellPos: {x: 12, y: 9, z: 0}
+      cost: 1
+    - startPos: {x: -0.5799999, y: 0.63, z: -7.6900005}
+      endPos: {x: 0.42000008, y: 0.63, z: -8.690001}
+      startCellPos: {x: 11, y: 9, z: 0}
+      endCellPos: {x: 12, y: 8, z: 0}
+      cost: 1.4142135
+    - startPos: {x: -0.5799999, y: 0.63, z: -7.6900005}
+      endPos: {x: -1.5799999, y: 0.63, z: -8.690001}
+      startCellPos: {x: 11, y: 9, z: 0}
+      endCellPos: {x: 10, y: 8, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 0.42000008, y: 0.63, z: -16.69}
+    cellPos: {x: 12, y: 0, z: 0}
+    neighbors:
+    - startPos: {x: 0.42000008, y: 0.63, z: -16.69}
+      endPos: {x: 0.42000008, y: 0.63, z: -15.690001}
+      startCellPos: {x: 12, y: 0, z: 0}
+      endCellPos: {x: 12, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -16.69}
+      endPos: {x: -0.5799999, y: 0.63, z: -16.69}
+      startCellPos: {x: 12, y: 0, z: 0}
+      endCellPos: {x: 11, y: 0, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -16.69}
+      endPos: {x: 1.4200001, y: 0.63, z: -16.69}
+      startCellPos: {x: 12, y: 0, z: 0}
+      endCellPos: {x: 13, y: 0, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -16.69}
+      endPos: {x: 1.4200001, y: 0.63, z: -15.690001}
+      startCellPos: {x: 12, y: 0, z: 0}
+      endCellPos: {x: 13, y: 1, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 0.42000008, y: 0.63, z: -16.69}
+      endPos: {x: -0.5799999, y: 0.63, z: -15.690001}
+      startCellPos: {x: 12, y: 0, z: 0}
+      endCellPos: {x: 11, y: 1, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 0.42000008, y: 0.63, z: -15.690001}
+    cellPos: {x: 12, y: 1, z: 0}
+    neighbors:
+    - startPos: {x: 0.42000008, y: 0.63, z: -15.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -14.690001}
+      startCellPos: {x: 12, y: 1, z: 0}
+      endCellPos: {x: 12, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -15.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -16.69}
+      startCellPos: {x: 12, y: 1, z: 0}
+      endCellPos: {x: 12, y: 0, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -15.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -15.690001}
+      startCellPos: {x: 12, y: 1, z: 0}
+      endCellPos: {x: 11, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -15.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -15.690001}
+      startCellPos: {x: 12, y: 1, z: 0}
+      endCellPos: {x: 13, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -15.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -14.690001}
+      startCellPos: {x: 12, y: 1, z: 0}
+      endCellPos: {x: 13, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 0.42000008, y: 0.63, z: -15.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -16.69}
+      startCellPos: {x: 12, y: 1, z: 0}
+      endCellPos: {x: 13, y: 0, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 0.42000008, y: 0.63, z: -15.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -14.690001}
+      startCellPos: {x: 12, y: 1, z: 0}
+      endCellPos: {x: 11, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 0.42000008, y: 0.63, z: -15.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -16.69}
+      startCellPos: {x: 12, y: 1, z: 0}
+      endCellPos: {x: 11, y: 0, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 0.42000008, y: 0.63, z: -14.690001}
+    cellPos: {x: 12, y: 2, z: 0}
+    neighbors:
+    - startPos: {x: 0.42000008, y: 0.63, z: -14.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -13.690001}
+      startCellPos: {x: 12, y: 2, z: 0}
+      endCellPos: {x: 12, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -14.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -15.690001}
+      startCellPos: {x: 12, y: 2, z: 0}
+      endCellPos: {x: 12, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -14.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -14.690001}
+      startCellPos: {x: 12, y: 2, z: 0}
+      endCellPos: {x: 11, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -14.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -14.690001}
+      startCellPos: {x: 12, y: 2, z: 0}
+      endCellPos: {x: 13, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -14.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -13.690001}
+      startCellPos: {x: 12, y: 2, z: 0}
+      endCellPos: {x: 13, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 0.42000008, y: 0.63, z: -14.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -15.690001}
+      startCellPos: {x: 12, y: 2, z: 0}
+      endCellPos: {x: 13, y: 1, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 0.42000008, y: 0.63, z: -14.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -13.690001}
+      startCellPos: {x: 12, y: 2, z: 0}
+      endCellPos: {x: 11, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 0.42000008, y: 0.63, z: -14.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -15.690001}
+      startCellPos: {x: 12, y: 2, z: 0}
+      endCellPos: {x: 11, y: 1, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 0.42000008, y: 0.63, z: -13.690001}
+    cellPos: {x: 12, y: 3, z: 0}
+    neighbors:
+    - startPos: {x: 0.42000008, y: 0.63, z: -13.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -12.690001}
+      startCellPos: {x: 12, y: 3, z: 0}
+      endCellPos: {x: 12, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -13.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -14.690001}
+      startCellPos: {x: 12, y: 3, z: 0}
+      endCellPos: {x: 12, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -13.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -13.690001}
+      startCellPos: {x: 12, y: 3, z: 0}
+      endCellPos: {x: 11, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -13.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -13.690001}
+      startCellPos: {x: 12, y: 3, z: 0}
+      endCellPos: {x: 13, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -13.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -12.690001}
+      startCellPos: {x: 12, y: 3, z: 0}
+      endCellPos: {x: 13, y: 4, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 0.42000008, y: 0.63, z: -13.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -14.690001}
+      startCellPos: {x: 12, y: 3, z: 0}
+      endCellPos: {x: 13, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 0.42000008, y: 0.63, z: -13.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -12.690001}
+      startCellPos: {x: 12, y: 3, z: 0}
+      endCellPos: {x: 11, y: 4, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 0.42000008, y: 0.63, z: -13.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -14.690001}
+      startCellPos: {x: 12, y: 3, z: 0}
+      endCellPos: {x: 11, y: 2, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 0.42000008, y: 0.63, z: -12.690001}
+    cellPos: {x: 12, y: 4, z: 0}
+    neighbors:
+    - startPos: {x: 0.42000008, y: 0.63, z: -12.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -11.690001}
+      startCellPos: {x: 12, y: 4, z: 0}
+      endCellPos: {x: 12, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -12.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -13.690001}
+      startCellPos: {x: 12, y: 4, z: 0}
+      endCellPos: {x: 12, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -12.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -12.690001}
+      startCellPos: {x: 12, y: 4, z: 0}
+      endCellPos: {x: 11, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -12.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -12.690001}
+      startCellPos: {x: 12, y: 4, z: 0}
+      endCellPos: {x: 13, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -12.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -11.690001}
+      startCellPos: {x: 12, y: 4, z: 0}
+      endCellPos: {x: 13, y: 5, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 0.42000008, y: 0.63, z: -12.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -13.690001}
+      startCellPos: {x: 12, y: 4, z: 0}
+      endCellPos: {x: 13, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 0.42000008, y: 0.63, z: -12.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -11.690001}
+      startCellPos: {x: 12, y: 4, z: 0}
+      endCellPos: {x: 11, y: 5, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 0.42000008, y: 0.63, z: -12.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -13.690001}
+      startCellPos: {x: 12, y: 4, z: 0}
+      endCellPos: {x: 11, y: 3, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 0.42000008, y: 0.63, z: -11.690001}
+    cellPos: {x: 12, y: 5, z: 0}
+    neighbors:
+    - startPos: {x: 0.42000008, y: 0.63, z: -11.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -10.690001}
+      startCellPos: {x: 12, y: 5, z: 0}
+      endCellPos: {x: 12, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -11.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -12.690001}
+      startCellPos: {x: 12, y: 5, z: 0}
+      endCellPos: {x: 12, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -11.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -11.690001}
+      startCellPos: {x: 12, y: 5, z: 0}
+      endCellPos: {x: 11, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -11.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -11.690001}
+      startCellPos: {x: 12, y: 5, z: 0}
+      endCellPos: {x: 13, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -11.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -10.690001}
+      startCellPos: {x: 12, y: 5, z: 0}
+      endCellPos: {x: 13, y: 6, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 0.42000008, y: 0.63, z: -11.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -12.690001}
+      startCellPos: {x: 12, y: 5, z: 0}
+      endCellPos: {x: 13, y: 4, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 0.42000008, y: 0.63, z: -11.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -10.690001}
+      startCellPos: {x: 12, y: 5, z: 0}
+      endCellPos: {x: 11, y: 6, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 0.42000008, y: 0.63, z: -11.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -12.690001}
+      startCellPos: {x: 12, y: 5, z: 0}
+      endCellPos: {x: 11, y: 4, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 0.42000008, y: 0.63, z: -10.690001}
+    cellPos: {x: 12, y: 6, z: 0}
+    neighbors:
+    - startPos: {x: 0.42000008, y: 0.63, z: -10.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -9.690001}
+      startCellPos: {x: 12, y: 6, z: 0}
+      endCellPos: {x: 12, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -10.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -11.690001}
+      startCellPos: {x: 12, y: 6, z: 0}
+      endCellPos: {x: 12, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -10.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -10.690001}
+      startCellPos: {x: 12, y: 6, z: 0}
+      endCellPos: {x: 11, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -10.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -10.690001}
+      startCellPos: {x: 12, y: 6, z: 0}
+      endCellPos: {x: 13, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -10.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -9.690001}
+      startCellPos: {x: 12, y: 6, z: 0}
+      endCellPos: {x: 13, y: 7, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 0.42000008, y: 0.63, z: -10.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -11.690001}
+      startCellPos: {x: 12, y: 6, z: 0}
+      endCellPos: {x: 13, y: 5, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 0.42000008, y: 0.63, z: -10.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -9.690001}
+      startCellPos: {x: 12, y: 6, z: 0}
+      endCellPos: {x: 11, y: 7, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 0.42000008, y: 0.63, z: -10.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -11.690001}
+      startCellPos: {x: 12, y: 6, z: 0}
+      endCellPos: {x: 11, y: 5, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 0.42000008, y: 0.63, z: -9.690001}
+    cellPos: {x: 12, y: 7, z: 0}
+    neighbors:
+    - startPos: {x: 0.42000008, y: 0.63, z: -9.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -8.690001}
+      startCellPos: {x: 12, y: 7, z: 0}
+      endCellPos: {x: 12, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -9.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -10.690001}
+      startCellPos: {x: 12, y: 7, z: 0}
+      endCellPos: {x: 12, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -9.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -9.690001}
+      startCellPos: {x: 12, y: 7, z: 0}
+      endCellPos: {x: 11, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -9.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -9.690001}
+      startCellPos: {x: 12, y: 7, z: 0}
+      endCellPos: {x: 13, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -9.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -8.690001}
+      startCellPos: {x: 12, y: 7, z: 0}
+      endCellPos: {x: 13, y: 8, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 0.42000008, y: 0.63, z: -9.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -10.690001}
+      startCellPos: {x: 12, y: 7, z: 0}
+      endCellPos: {x: 13, y: 6, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 0.42000008, y: 0.63, z: -9.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -8.690001}
+      startCellPos: {x: 12, y: 7, z: 0}
+      endCellPos: {x: 11, y: 8, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 0.42000008, y: 0.63, z: -9.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -10.690001}
+      startCellPos: {x: 12, y: 7, z: 0}
+      endCellPos: {x: 11, y: 6, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 0.42000008, y: 0.63, z: -8.690001}
+    cellPos: {x: 12, y: 8, z: 0}
+    neighbors:
+    - startPos: {x: 0.42000008, y: 0.63, z: -8.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 12, y: 8, z: 0}
+      endCellPos: {x: 12, y: 9, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -8.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -9.690001}
+      startCellPos: {x: 12, y: 8, z: 0}
+      endCellPos: {x: 12, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -8.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -8.690001}
+      startCellPos: {x: 12, y: 8, z: 0}
+      endCellPos: {x: 11, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -8.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -8.690001}
+      startCellPos: {x: 12, y: 8, z: 0}
+      endCellPos: {x: 13, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -8.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 12, y: 8, z: 0}
+      endCellPos: {x: 13, y: 9, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 0.42000008, y: 0.63, z: -8.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -9.690001}
+      startCellPos: {x: 12, y: 8, z: 0}
+      endCellPos: {x: 13, y: 7, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 0.42000008, y: 0.63, z: -8.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 12, y: 8, z: 0}
+      endCellPos: {x: 11, y: 9, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 0.42000008, y: 0.63, z: -8.690001}
+      endPos: {x: -0.5799999, y: 0.63, z: -9.690001}
+      startCellPos: {x: 12, y: 8, z: 0}
+      endCellPos: {x: 11, y: 7, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 0.42000008, y: 0.63, z: -7.6900005}
+    cellPos: {x: 12, y: 9, z: 0}
+    neighbors:
+    - startPos: {x: 0.42000008, y: 0.63, z: -7.6900005}
+      endPos: {x: 0.42000008, y: 0.63, z: -8.690001}
+      startCellPos: {x: 12, y: 9, z: 0}
+      endCellPos: {x: 12, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -7.6900005}
+      endPos: {x: -0.5799999, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 12, y: 9, z: 0}
+      endCellPos: {x: 11, y: 9, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -7.6900005}
+      endPos: {x: 1.4200001, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 12, y: 9, z: 0}
+      endCellPos: {x: 13, y: 9, z: 0}
+      cost: 1
+    - startPos: {x: 0.42000008, y: 0.63, z: -7.6900005}
+      endPos: {x: 1.4200001, y: 0.63, z: -8.690001}
+      startCellPos: {x: 12, y: 9, z: 0}
+      endCellPos: {x: 13, y: 8, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 0.42000008, y: 0.63, z: -7.6900005}
+      endPos: {x: -0.5799999, y: 0.63, z: -8.690001}
+      startCellPos: {x: 12, y: 9, z: 0}
+      endCellPos: {x: 11, y: 8, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 1.4200001, y: 0.63, z: -16.69}
+    cellPos: {x: 13, y: 0, z: 0}
+    neighbors:
+    - startPos: {x: 1.4200001, y: 0.63, z: -16.69}
+      endPos: {x: 1.4200001, y: 0.63, z: -15.690001}
+      startCellPos: {x: 13, y: 0, z: 0}
+      endCellPos: {x: 13, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -16.69}
+      endPos: {x: 0.42000008, y: 0.63, z: -16.69}
+      startCellPos: {x: 13, y: 0, z: 0}
+      endCellPos: {x: 12, y: 0, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -16.69}
+      endPos: {x: 2.42, y: 0.63, z: -16.69}
+      startCellPos: {x: 13, y: 0, z: 0}
+      endCellPos: {x: 14, y: 0, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -16.69}
+      endPos: {x: 2.42, y: 0.63, z: -15.690001}
+      startCellPos: {x: 13, y: 0, z: 0}
+      endCellPos: {x: 14, y: 1, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 1.4200001, y: 0.63, z: -16.69}
+      endPos: {x: 0.42000008, y: 0.63, z: -15.690001}
+      startCellPos: {x: 13, y: 0, z: 0}
+      endCellPos: {x: 12, y: 1, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 1.4200001, y: 0.63, z: -15.690001}
+    cellPos: {x: 13, y: 1, z: 0}
+    neighbors:
+    - startPos: {x: 1.4200001, y: 0.63, z: -15.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -14.690001}
+      startCellPos: {x: 13, y: 1, z: 0}
+      endCellPos: {x: 13, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -15.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -16.69}
+      startCellPos: {x: 13, y: 1, z: 0}
+      endCellPos: {x: 13, y: 0, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -15.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -15.690001}
+      startCellPos: {x: 13, y: 1, z: 0}
+      endCellPos: {x: 12, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -15.690001}
+      endPos: {x: 2.42, y: 0.63, z: -15.690001}
+      startCellPos: {x: 13, y: 1, z: 0}
+      endCellPos: {x: 14, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -15.690001}
+      endPos: {x: 2.42, y: 0.63, z: -14.690001}
+      startCellPos: {x: 13, y: 1, z: 0}
+      endCellPos: {x: 14, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 1.4200001, y: 0.63, z: -15.690001}
+      endPos: {x: 2.42, y: 0.63, z: -16.69}
+      startCellPos: {x: 13, y: 1, z: 0}
+      endCellPos: {x: 14, y: 0, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 1.4200001, y: 0.63, z: -15.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -14.690001}
+      startCellPos: {x: 13, y: 1, z: 0}
+      endCellPos: {x: 12, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 1.4200001, y: 0.63, z: -15.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -16.69}
+      startCellPos: {x: 13, y: 1, z: 0}
+      endCellPos: {x: 12, y: 0, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 1.4200001, y: 0.63, z: -14.690001}
+    cellPos: {x: 13, y: 2, z: 0}
+    neighbors:
+    - startPos: {x: 1.4200001, y: 0.63, z: -14.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -13.690001}
+      startCellPos: {x: 13, y: 2, z: 0}
+      endCellPos: {x: 13, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -14.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -15.690001}
+      startCellPos: {x: 13, y: 2, z: 0}
+      endCellPos: {x: 13, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -14.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -14.690001}
+      startCellPos: {x: 13, y: 2, z: 0}
+      endCellPos: {x: 12, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -14.690001}
+      endPos: {x: 2.42, y: 0.63, z: -14.690001}
+      startCellPos: {x: 13, y: 2, z: 0}
+      endCellPos: {x: 14, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -14.690001}
+      endPos: {x: 2.42, y: 0.63, z: -13.690001}
+      startCellPos: {x: 13, y: 2, z: 0}
+      endCellPos: {x: 14, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 1.4200001, y: 0.63, z: -14.690001}
+      endPos: {x: 2.42, y: 0.63, z: -15.690001}
+      startCellPos: {x: 13, y: 2, z: 0}
+      endCellPos: {x: 14, y: 1, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 1.4200001, y: 0.63, z: -14.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -13.690001}
+      startCellPos: {x: 13, y: 2, z: 0}
+      endCellPos: {x: 12, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 1.4200001, y: 0.63, z: -14.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -15.690001}
+      startCellPos: {x: 13, y: 2, z: 0}
+      endCellPos: {x: 12, y: 1, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 1.4200001, y: 0.63, z: -13.690001}
+    cellPos: {x: 13, y: 3, z: 0}
+    neighbors:
+    - startPos: {x: 1.4200001, y: 0.63, z: -13.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -12.690001}
+      startCellPos: {x: 13, y: 3, z: 0}
+      endCellPos: {x: 13, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -13.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -14.690001}
+      startCellPos: {x: 13, y: 3, z: 0}
+      endCellPos: {x: 13, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -13.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -13.690001}
+      startCellPos: {x: 13, y: 3, z: 0}
+      endCellPos: {x: 12, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -13.690001}
+      endPos: {x: 2.42, y: 0.63, z: -13.690001}
+      startCellPos: {x: 13, y: 3, z: 0}
+      endCellPos: {x: 14, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -13.690001}
+      endPos: {x: 2.42, y: 0.63, z: -12.690001}
+      startCellPos: {x: 13, y: 3, z: 0}
+      endCellPos: {x: 14, y: 4, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 1.4200001, y: 0.63, z: -13.690001}
+      endPos: {x: 2.42, y: 0.63, z: -14.690001}
+      startCellPos: {x: 13, y: 3, z: 0}
+      endCellPos: {x: 14, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 1.4200001, y: 0.63, z: -13.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -12.690001}
+      startCellPos: {x: 13, y: 3, z: 0}
+      endCellPos: {x: 12, y: 4, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 1.4200001, y: 0.63, z: -13.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -14.690001}
+      startCellPos: {x: 13, y: 3, z: 0}
+      endCellPos: {x: 12, y: 2, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 1.4200001, y: 0.63, z: -12.690001}
+    cellPos: {x: 13, y: 4, z: 0}
+    neighbors:
+    - startPos: {x: 1.4200001, y: 0.63, z: -12.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -11.690001}
+      startCellPos: {x: 13, y: 4, z: 0}
+      endCellPos: {x: 13, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -12.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -13.690001}
+      startCellPos: {x: 13, y: 4, z: 0}
+      endCellPos: {x: 13, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -12.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -12.690001}
+      startCellPos: {x: 13, y: 4, z: 0}
+      endCellPos: {x: 12, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -12.690001}
+      endPos: {x: 2.42, y: 0.63, z: -12.690001}
+      startCellPos: {x: 13, y: 4, z: 0}
+      endCellPos: {x: 14, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -12.690001}
+      endPos: {x: 2.42, y: 0.63, z: -11.690001}
+      startCellPos: {x: 13, y: 4, z: 0}
+      endCellPos: {x: 14, y: 5, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 1.4200001, y: 0.63, z: -12.690001}
+      endPos: {x: 2.42, y: 0.63, z: -13.690001}
+      startCellPos: {x: 13, y: 4, z: 0}
+      endCellPos: {x: 14, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 1.4200001, y: 0.63, z: -12.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -11.690001}
+      startCellPos: {x: 13, y: 4, z: 0}
+      endCellPos: {x: 12, y: 5, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 1.4200001, y: 0.63, z: -12.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -13.690001}
+      startCellPos: {x: 13, y: 4, z: 0}
+      endCellPos: {x: 12, y: 3, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 1.4200001, y: 0.63, z: -11.690001}
+    cellPos: {x: 13, y: 5, z: 0}
+    neighbors:
+    - startPos: {x: 1.4200001, y: 0.63, z: -11.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -10.690001}
+      startCellPos: {x: 13, y: 5, z: 0}
+      endCellPos: {x: 13, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -11.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -12.690001}
+      startCellPos: {x: 13, y: 5, z: 0}
+      endCellPos: {x: 13, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -11.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -11.690001}
+      startCellPos: {x: 13, y: 5, z: 0}
+      endCellPos: {x: 12, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -11.690001}
+      endPos: {x: 2.42, y: 0.63, z: -11.690001}
+      startCellPos: {x: 13, y: 5, z: 0}
+      endCellPos: {x: 14, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -11.690001}
+      endPos: {x: 2.42, y: 0.63, z: -10.690001}
+      startCellPos: {x: 13, y: 5, z: 0}
+      endCellPos: {x: 14, y: 6, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 1.4200001, y: 0.63, z: -11.690001}
+      endPos: {x: 2.42, y: 0.63, z: -12.690001}
+      startCellPos: {x: 13, y: 5, z: 0}
+      endCellPos: {x: 14, y: 4, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 1.4200001, y: 0.63, z: -11.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -10.690001}
+      startCellPos: {x: 13, y: 5, z: 0}
+      endCellPos: {x: 12, y: 6, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 1.4200001, y: 0.63, z: -11.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -12.690001}
+      startCellPos: {x: 13, y: 5, z: 0}
+      endCellPos: {x: 12, y: 4, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 1.4200001, y: 0.63, z: -10.690001}
+    cellPos: {x: 13, y: 6, z: 0}
+    neighbors:
+    - startPos: {x: 1.4200001, y: 0.63, z: -10.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -9.690001}
+      startCellPos: {x: 13, y: 6, z: 0}
+      endCellPos: {x: 13, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -10.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -11.690001}
+      startCellPos: {x: 13, y: 6, z: 0}
+      endCellPos: {x: 13, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -10.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -10.690001}
+      startCellPos: {x: 13, y: 6, z: 0}
+      endCellPos: {x: 12, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -10.690001}
+      endPos: {x: 2.42, y: 0.63, z: -10.690001}
+      startCellPos: {x: 13, y: 6, z: 0}
+      endCellPos: {x: 14, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -10.690001}
+      endPos: {x: 2.42, y: 0.63, z: -9.690001}
+      startCellPos: {x: 13, y: 6, z: 0}
+      endCellPos: {x: 14, y: 7, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 1.4200001, y: 0.63, z: -10.690001}
+      endPos: {x: 2.42, y: 0.63, z: -11.690001}
+      startCellPos: {x: 13, y: 6, z: 0}
+      endCellPos: {x: 14, y: 5, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 1.4200001, y: 0.63, z: -10.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -9.690001}
+      startCellPos: {x: 13, y: 6, z: 0}
+      endCellPos: {x: 12, y: 7, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 1.4200001, y: 0.63, z: -10.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -11.690001}
+      startCellPos: {x: 13, y: 6, z: 0}
+      endCellPos: {x: 12, y: 5, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 1.4200001, y: 0.63, z: -9.690001}
+    cellPos: {x: 13, y: 7, z: 0}
+    neighbors:
+    - startPos: {x: 1.4200001, y: 0.63, z: -9.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -8.690001}
+      startCellPos: {x: 13, y: 7, z: 0}
+      endCellPos: {x: 13, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -9.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -10.690001}
+      startCellPos: {x: 13, y: 7, z: 0}
+      endCellPos: {x: 13, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -9.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -9.690001}
+      startCellPos: {x: 13, y: 7, z: 0}
+      endCellPos: {x: 12, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -9.690001}
+      endPos: {x: 2.42, y: 0.63, z: -9.690001}
+      startCellPos: {x: 13, y: 7, z: 0}
+      endCellPos: {x: 14, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -9.690001}
+      endPos: {x: 2.42, y: 0.63, z: -8.690001}
+      startCellPos: {x: 13, y: 7, z: 0}
+      endCellPos: {x: 14, y: 8, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 1.4200001, y: 0.63, z: -9.690001}
+      endPos: {x: 2.42, y: 0.63, z: -10.690001}
+      startCellPos: {x: 13, y: 7, z: 0}
+      endCellPos: {x: 14, y: 6, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 1.4200001, y: 0.63, z: -9.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -8.690001}
+      startCellPos: {x: 13, y: 7, z: 0}
+      endCellPos: {x: 12, y: 8, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 1.4200001, y: 0.63, z: -9.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -10.690001}
+      startCellPos: {x: 13, y: 7, z: 0}
+      endCellPos: {x: 12, y: 6, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 1.4200001, y: 0.63, z: -8.690001}
+    cellPos: {x: 13, y: 8, z: 0}
+    neighbors:
+    - startPos: {x: 1.4200001, y: 0.63, z: -8.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 13, y: 8, z: 0}
+      endCellPos: {x: 13, y: 9, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -8.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -9.690001}
+      startCellPos: {x: 13, y: 8, z: 0}
+      endCellPos: {x: 13, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -8.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -8.690001}
+      startCellPos: {x: 13, y: 8, z: 0}
+      endCellPos: {x: 12, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -8.690001}
+      endPos: {x: 2.42, y: 0.63, z: -8.690001}
+      startCellPos: {x: 13, y: 8, z: 0}
+      endCellPos: {x: 14, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -8.690001}
+      endPos: {x: 2.42, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 13, y: 8, z: 0}
+      endCellPos: {x: 14, y: 9, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 1.4200001, y: 0.63, z: -8.690001}
+      endPos: {x: 2.42, y: 0.63, z: -9.690001}
+      startCellPos: {x: 13, y: 8, z: 0}
+      endCellPos: {x: 14, y: 7, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 1.4200001, y: 0.63, z: -8.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 13, y: 8, z: 0}
+      endCellPos: {x: 12, y: 9, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 1.4200001, y: 0.63, z: -8.690001}
+      endPos: {x: 0.42000008, y: 0.63, z: -9.690001}
+      startCellPos: {x: 13, y: 8, z: 0}
+      endCellPos: {x: 12, y: 7, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 1.4200001, y: 0.63, z: -7.6900005}
+    cellPos: {x: 13, y: 9, z: 0}
+    neighbors:
+    - startPos: {x: 1.4200001, y: 0.63, z: -7.6900005}
+      endPos: {x: 1.4200001, y: 0.63, z: -8.690001}
+      startCellPos: {x: 13, y: 9, z: 0}
+      endCellPos: {x: 13, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -7.6900005}
+      endPos: {x: 0.42000008, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 13, y: 9, z: 0}
+      endCellPos: {x: 12, y: 9, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -7.6900005}
+      endPos: {x: 2.42, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 13, y: 9, z: 0}
+      endCellPos: {x: 14, y: 9, z: 0}
+      cost: 1
+    - startPos: {x: 1.4200001, y: 0.63, z: -7.6900005}
+      endPos: {x: 2.42, y: 0.63, z: -8.690001}
+      startCellPos: {x: 13, y: 9, z: 0}
+      endCellPos: {x: 14, y: 8, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 1.4200001, y: 0.63, z: -7.6900005}
+      endPos: {x: 0.42000008, y: 0.63, z: -8.690001}
+      startCellPos: {x: 13, y: 9, z: 0}
+      endCellPos: {x: 12, y: 8, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 2.42, y: 0.63, z: -16.69}
+    cellPos: {x: 14, y: 0, z: 0}
+    neighbors:
+    - startPos: {x: 2.42, y: 0.63, z: -16.69}
+      endPos: {x: 2.42, y: 0.63, z: -15.690001}
+      startCellPos: {x: 14, y: 0, z: 0}
+      endCellPos: {x: 14, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -16.69}
+      endPos: {x: 1.4200001, y: 0.63, z: -16.69}
+      startCellPos: {x: 14, y: 0, z: 0}
+      endCellPos: {x: 13, y: 0, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -16.69}
+      endPos: {x: 1.4200001, y: 0.63, z: -15.690001}
+      startCellPos: {x: 14, y: 0, z: 0}
+      endCellPos: {x: 13, y: 1, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 2.42, y: 0.63, z: -15.690001}
+    cellPos: {x: 14, y: 1, z: 0}
+    neighbors:
+    - startPos: {x: 2.42, y: 0.63, z: -15.690001}
+      endPos: {x: 2.42, y: 0.63, z: -14.690001}
+      startCellPos: {x: 14, y: 1, z: 0}
+      endCellPos: {x: 14, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -15.690001}
+      endPos: {x: 2.42, y: 0.63, z: -16.69}
+      startCellPos: {x: 14, y: 1, z: 0}
+      endCellPos: {x: 14, y: 0, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -15.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -15.690001}
+      startCellPos: {x: 14, y: 1, z: 0}
+      endCellPos: {x: 13, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -15.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -14.690001}
+      startCellPos: {x: 14, y: 1, z: 0}
+      endCellPos: {x: 13, y: 2, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 2.42, y: 0.63, z: -15.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -16.69}
+      startCellPos: {x: 14, y: 1, z: 0}
+      endCellPos: {x: 13, y: 0, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 2.42, y: 0.63, z: -14.690001}
+    cellPos: {x: 14, y: 2, z: 0}
+    neighbors:
+    - startPos: {x: 2.42, y: 0.63, z: -14.690001}
+      endPos: {x: 2.42, y: 0.63, z: -13.690001}
+      startCellPos: {x: 14, y: 2, z: 0}
+      endCellPos: {x: 14, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -14.690001}
+      endPos: {x: 2.42, y: 0.63, z: -15.690001}
+      startCellPos: {x: 14, y: 2, z: 0}
+      endCellPos: {x: 14, y: 1, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -14.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -14.690001}
+      startCellPos: {x: 14, y: 2, z: 0}
+      endCellPos: {x: 13, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -14.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -13.690001}
+      startCellPos: {x: 14, y: 2, z: 0}
+      endCellPos: {x: 13, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 2.42, y: 0.63, z: -14.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -15.690001}
+      startCellPos: {x: 14, y: 2, z: 0}
+      endCellPos: {x: 13, y: 1, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 2.42, y: 0.63, z: -13.690001}
+    cellPos: {x: 14, y: 3, z: 0}
+    neighbors:
+    - startPos: {x: 2.42, y: 0.63, z: -13.690001}
+      endPos: {x: 2.42, y: 0.63, z: -12.690001}
+      startCellPos: {x: 14, y: 3, z: 0}
+      endCellPos: {x: 14, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -13.690001}
+      endPos: {x: 2.42, y: 0.63, z: -14.690001}
+      startCellPos: {x: 14, y: 3, z: 0}
+      endCellPos: {x: 14, y: 2, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -13.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -13.690001}
+      startCellPos: {x: 14, y: 3, z: 0}
+      endCellPos: {x: 13, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -13.690001}
+      endPos: {x: 3.42, y: 0.63, z: -13.690001}
+      startCellPos: {x: 14, y: 3, z: 0}
+      endCellPos: {x: 15, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -13.690001}
+      endPos: {x: 3.42, y: 0.63, z: -12.690001}
+      startCellPos: {x: 14, y: 3, z: 0}
+      endCellPos: {x: 15, y: 4, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 2.42, y: 0.63, z: -13.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -12.690001}
+      startCellPos: {x: 14, y: 3, z: 0}
+      endCellPos: {x: 13, y: 4, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 2.42, y: 0.63, z: -13.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -14.690001}
+      startCellPos: {x: 14, y: 3, z: 0}
+      endCellPos: {x: 13, y: 2, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 2.42, y: 0.63, z: -12.690001}
+    cellPos: {x: 14, y: 4, z: 0}
+    neighbors:
+    - startPos: {x: 2.42, y: 0.63, z: -12.690001}
+      endPos: {x: 2.42, y: 0.63, z: -11.690001}
+      startCellPos: {x: 14, y: 4, z: 0}
+      endCellPos: {x: 14, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -12.690001}
+      endPos: {x: 2.42, y: 0.63, z: -13.690001}
+      startCellPos: {x: 14, y: 4, z: 0}
+      endCellPos: {x: 14, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -12.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -12.690001}
+      startCellPos: {x: 14, y: 4, z: 0}
+      endCellPos: {x: 13, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -12.690001}
+      endPos: {x: 3.42, y: 0.63, z: -12.690001}
+      startCellPos: {x: 14, y: 4, z: 0}
+      endCellPos: {x: 15, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -12.690001}
+      endPos: {x: 3.42, y: 0.63, z: -11.690001}
+      startCellPos: {x: 14, y: 4, z: 0}
+      endCellPos: {x: 15, y: 5, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 2.42, y: 0.63, z: -12.690001}
+      endPos: {x: 3.42, y: 0.63, z: -13.690001}
+      startCellPos: {x: 14, y: 4, z: 0}
+      endCellPos: {x: 15, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 2.42, y: 0.63, z: -12.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -11.690001}
+      startCellPos: {x: 14, y: 4, z: 0}
+      endCellPos: {x: 13, y: 5, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 2.42, y: 0.63, z: -12.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -13.690001}
+      startCellPos: {x: 14, y: 4, z: 0}
+      endCellPos: {x: 13, y: 3, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 2.42, y: 0.63, z: -11.690001}
+    cellPos: {x: 14, y: 5, z: 0}
+    neighbors:
+    - startPos: {x: 2.42, y: 0.63, z: -11.690001}
+      endPos: {x: 2.42, y: 0.63, z: -10.690001}
+      startCellPos: {x: 14, y: 5, z: 0}
+      endCellPos: {x: 14, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -11.690001}
+      endPos: {x: 2.42, y: 0.63, z: -12.690001}
+      startCellPos: {x: 14, y: 5, z: 0}
+      endCellPos: {x: 14, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -11.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -11.690001}
+      startCellPos: {x: 14, y: 5, z: 0}
+      endCellPos: {x: 13, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -11.690001}
+      endPos: {x: 3.42, y: 0.63, z: -11.690001}
+      startCellPos: {x: 14, y: 5, z: 0}
+      endCellPos: {x: 15, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -11.690001}
+      endPos: {x: 3.42, y: 0.63, z: -10.690001}
+      startCellPos: {x: 14, y: 5, z: 0}
+      endCellPos: {x: 15, y: 6, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 2.42, y: 0.63, z: -11.690001}
+      endPos: {x: 3.42, y: 0.63, z: -12.690001}
+      startCellPos: {x: 14, y: 5, z: 0}
+      endCellPos: {x: 15, y: 4, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 2.42, y: 0.63, z: -11.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -10.690001}
+      startCellPos: {x: 14, y: 5, z: 0}
+      endCellPos: {x: 13, y: 6, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 2.42, y: 0.63, z: -11.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -12.690001}
+      startCellPos: {x: 14, y: 5, z: 0}
+      endCellPos: {x: 13, y: 4, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 2.42, y: 0.63, z: -10.690001}
+    cellPos: {x: 14, y: 6, z: 0}
+    neighbors:
+    - startPos: {x: 2.42, y: 0.63, z: -10.690001}
+      endPos: {x: 2.42, y: 0.63, z: -9.690001}
+      startCellPos: {x: 14, y: 6, z: 0}
+      endCellPos: {x: 14, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -10.690001}
+      endPos: {x: 2.42, y: 0.63, z: -11.690001}
+      startCellPos: {x: 14, y: 6, z: 0}
+      endCellPos: {x: 14, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -10.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -10.690001}
+      startCellPos: {x: 14, y: 6, z: 0}
+      endCellPos: {x: 13, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -10.690001}
+      endPos: {x: 3.42, y: 0.63, z: -10.690001}
+      startCellPos: {x: 14, y: 6, z: 0}
+      endCellPos: {x: 15, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -10.690001}
+      endPos: {x: 3.42, y: 0.63, z: -9.690001}
+      startCellPos: {x: 14, y: 6, z: 0}
+      endCellPos: {x: 15, y: 7, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 2.42, y: 0.63, z: -10.690001}
+      endPos: {x: 3.42, y: 0.63, z: -11.690001}
+      startCellPos: {x: 14, y: 6, z: 0}
+      endCellPos: {x: 15, y: 5, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 2.42, y: 0.63, z: -10.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -9.690001}
+      startCellPos: {x: 14, y: 6, z: 0}
+      endCellPos: {x: 13, y: 7, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 2.42, y: 0.63, z: -10.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -11.690001}
+      startCellPos: {x: 14, y: 6, z: 0}
+      endCellPos: {x: 13, y: 5, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 2.42, y: 0.63, z: -9.690001}
+    cellPos: {x: 14, y: 7, z: 0}
+    neighbors:
+    - startPos: {x: 2.42, y: 0.63, z: -9.690001}
+      endPos: {x: 2.42, y: 0.63, z: -8.690001}
+      startCellPos: {x: 14, y: 7, z: 0}
+      endCellPos: {x: 14, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -9.690001}
+      endPos: {x: 2.42, y: 0.63, z: -10.690001}
+      startCellPos: {x: 14, y: 7, z: 0}
+      endCellPos: {x: 14, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -9.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -9.690001}
+      startCellPos: {x: 14, y: 7, z: 0}
+      endCellPos: {x: 13, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -9.690001}
+      endPos: {x: 3.42, y: 0.63, z: -9.690001}
+      startCellPos: {x: 14, y: 7, z: 0}
+      endCellPos: {x: 15, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -9.690001}
+      endPos: {x: 3.42, y: 0.63, z: -10.690001}
+      startCellPos: {x: 14, y: 7, z: 0}
+      endCellPos: {x: 15, y: 6, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 2.42, y: 0.63, z: -9.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -8.690001}
+      startCellPos: {x: 14, y: 7, z: 0}
+      endCellPos: {x: 13, y: 8, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 2.42, y: 0.63, z: -9.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -10.690001}
+      startCellPos: {x: 14, y: 7, z: 0}
+      endCellPos: {x: 13, y: 6, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 2.42, y: 0.63, z: -8.690001}
+    cellPos: {x: 14, y: 8, z: 0}
+    neighbors:
+    - startPos: {x: 2.42, y: 0.63, z: -8.690001}
+      endPos: {x: 2.42, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 14, y: 8, z: 0}
+      endCellPos: {x: 14, y: 9, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -8.690001}
+      endPos: {x: 2.42, y: 0.63, z: -9.690001}
+      startCellPos: {x: 14, y: 8, z: 0}
+      endCellPos: {x: 14, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -8.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -8.690001}
+      startCellPos: {x: 14, y: 8, z: 0}
+      endCellPos: {x: 13, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -8.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 14, y: 8, z: 0}
+      endCellPos: {x: 13, y: 9, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 2.42, y: 0.63, z: -8.690001}
+      endPos: {x: 1.4200001, y: 0.63, z: -9.690001}
+      startCellPos: {x: 14, y: 8, z: 0}
+      endCellPos: {x: 13, y: 7, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 2.42, y: 0.63, z: -7.6900005}
+    cellPos: {x: 14, y: 9, z: 0}
+    neighbors:
+    - startPos: {x: 2.42, y: 0.63, z: -7.6900005}
+      endPos: {x: 2.42, y: 0.63, z: -8.690001}
+      startCellPos: {x: 14, y: 9, z: 0}
+      endCellPos: {x: 14, y: 8, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -7.6900005}
+      endPos: {x: 1.4200001, y: 0.63, z: -7.6900005}
+      startCellPos: {x: 14, y: 9, z: 0}
+      endCellPos: {x: 13, y: 9, z: 0}
+      cost: 1
+    - startPos: {x: 2.42, y: 0.63, z: -7.6900005}
+      endPos: {x: 1.4200001, y: 0.63, z: -8.690001}
+      startCellPos: {x: 14, y: 9, z: 0}
+      endCellPos: {x: 13, y: 8, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 3.42, y: 0.63, z: -13.690001}
+    cellPos: {x: 15, y: 3, z: 0}
+    neighbors:
+    - startPos: {x: 3.42, y: 0.63, z: -13.690001}
+      endPos: {x: 3.42, y: 0.63, z: -12.690001}
+      startCellPos: {x: 15, y: 3, z: 0}
+      endCellPos: {x: 15, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: 3.42, y: 0.63, z: -13.690001}
+      endPos: {x: 2.42, y: 0.63, z: -13.690001}
+      startCellPos: {x: 15, y: 3, z: 0}
+      endCellPos: {x: 14, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: 3.42, y: 0.63, z: -13.690001}
+      endPos: {x: 4.42, y: 0.63, z: -13.690001}
+      startCellPos: {x: 15, y: 3, z: 0}
+      endCellPos: {x: 16, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: 3.42, y: 0.63, z: -13.690001}
+      endPos: {x: 4.42, y: 0.63, z: -12.690001}
+      startCellPos: {x: 15, y: 3, z: 0}
+      endCellPos: {x: 16, y: 4, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 3.42, y: 0.63, z: -13.690001}
+      endPos: {x: 2.42, y: 0.63, z: -12.690001}
+      startCellPos: {x: 15, y: 3, z: 0}
+      endCellPos: {x: 14, y: 4, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 3.42, y: 0.63, z: -12.690001}
+    cellPos: {x: 15, y: 4, z: 0}
+    neighbors:
+    - startPos: {x: 3.42, y: 0.63, z: -12.690001}
+      endPos: {x: 3.42, y: 0.63, z: -11.690001}
+      startCellPos: {x: 15, y: 4, z: 0}
+      endCellPos: {x: 15, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: 3.42, y: 0.63, z: -12.690001}
+      endPos: {x: 3.42, y: 0.63, z: -13.690001}
+      startCellPos: {x: 15, y: 4, z: 0}
+      endCellPos: {x: 15, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: 3.42, y: 0.63, z: -12.690001}
+      endPos: {x: 2.42, y: 0.63, z: -12.690001}
+      startCellPos: {x: 15, y: 4, z: 0}
+      endCellPos: {x: 14, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: 3.42, y: 0.63, z: -12.690001}
+      endPos: {x: 4.42, y: 0.63, z: -12.690001}
+      startCellPos: {x: 15, y: 4, z: 0}
+      endCellPos: {x: 16, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: 3.42, y: 0.63, z: -12.690001}
+      endPos: {x: 4.42, y: 0.63, z: -11.690001}
+      startCellPos: {x: 15, y: 4, z: 0}
+      endCellPos: {x: 16, y: 5, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 3.42, y: 0.63, z: -12.690001}
+      endPos: {x: 4.42, y: 0.63, z: -13.690001}
+      startCellPos: {x: 15, y: 4, z: 0}
+      endCellPos: {x: 16, y: 3, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 3.42, y: 0.63, z: -12.690001}
+      endPos: {x: 2.42, y: 0.63, z: -11.690001}
+      startCellPos: {x: 15, y: 4, z: 0}
+      endCellPos: {x: 14, y: 5, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 3.42, y: 0.63, z: -12.690001}
+      endPos: {x: 2.42, y: 0.63, z: -13.690001}
+      startCellPos: {x: 15, y: 4, z: 0}
+      endCellPos: {x: 14, y: 3, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 3.42, y: 0.63, z: -11.690001}
+    cellPos: {x: 15, y: 5, z: 0}
+    neighbors:
+    - startPos: {x: 3.42, y: 0.63, z: -11.690001}
+      endPos: {x: 3.42, y: 0.63, z: -10.690001}
+      startCellPos: {x: 15, y: 5, z: 0}
+      endCellPos: {x: 15, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: 3.42, y: 0.63, z: -11.690001}
+      endPos: {x: 3.42, y: 0.63, z: -12.690001}
+      startCellPos: {x: 15, y: 5, z: 0}
+      endCellPos: {x: 15, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: 3.42, y: 0.63, z: -11.690001}
+      endPos: {x: 2.42, y: 0.63, z: -11.690001}
+      startCellPos: {x: 15, y: 5, z: 0}
+      endCellPos: {x: 14, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: 3.42, y: 0.63, z: -11.690001}
+      endPos: {x: 4.42, y: 0.63, z: -11.690001}
+      startCellPos: {x: 15, y: 5, z: 0}
+      endCellPos: {x: 16, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: 3.42, y: 0.63, z: -11.690001}
+      endPos: {x: 4.42, y: 0.63, z: -10.690001}
+      startCellPos: {x: 15, y: 5, z: 0}
+      endCellPos: {x: 16, y: 6, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 3.42, y: 0.63, z: -11.690001}
+      endPos: {x: 4.42, y: 0.63, z: -12.690001}
+      startCellPos: {x: 15, y: 5, z: 0}
+      endCellPos: {x: 16, y: 4, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 3.42, y: 0.63, z: -11.690001}
+      endPos: {x: 2.42, y: 0.63, z: -10.690001}
+      startCellPos: {x: 15, y: 5, z: 0}
+      endCellPos: {x: 14, y: 6, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 3.42, y: 0.63, z: -11.690001}
+      endPos: {x: 2.42, y: 0.63, z: -12.690001}
+      startCellPos: {x: 15, y: 5, z: 0}
+      endCellPos: {x: 14, y: 4, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 3.42, y: 0.63, z: -10.690001}
+    cellPos: {x: 15, y: 6, z: 0}
+    neighbors:
+    - startPos: {x: 3.42, y: 0.63, z: -10.690001}
+      endPos: {x: 3.42, y: 0.63, z: -9.690001}
+      startCellPos: {x: 15, y: 6, z: 0}
+      endCellPos: {x: 15, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: 3.42, y: 0.63, z: -10.690001}
+      endPos: {x: 3.42, y: 0.63, z: -11.690001}
+      startCellPos: {x: 15, y: 6, z: 0}
+      endCellPos: {x: 15, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: 3.42, y: 0.63, z: -10.690001}
+      endPos: {x: 2.42, y: 0.63, z: -10.690001}
+      startCellPos: {x: 15, y: 6, z: 0}
+      endCellPos: {x: 14, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: 3.42, y: 0.63, z: -10.690001}
+      endPos: {x: 4.42, y: 0.63, z: -10.690001}
+      startCellPos: {x: 15, y: 6, z: 0}
+      endCellPos: {x: 16, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: 3.42, y: 0.63, z: -10.690001}
+      endPos: {x: 4.42, y: 0.63, z: -9.690001}
+      startCellPos: {x: 15, y: 6, z: 0}
+      endCellPos: {x: 16, y: 7, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 3.42, y: 0.63, z: -10.690001}
+      endPos: {x: 4.42, y: 0.63, z: -11.690001}
+      startCellPos: {x: 15, y: 6, z: 0}
+      endCellPos: {x: 16, y: 5, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 3.42, y: 0.63, z: -10.690001}
+      endPos: {x: 2.42, y: 0.63, z: -9.690001}
+      startCellPos: {x: 15, y: 6, z: 0}
+      endCellPos: {x: 14, y: 7, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 3.42, y: 0.63, z: -10.690001}
+      endPos: {x: 2.42, y: 0.63, z: -11.690001}
+      startCellPos: {x: 15, y: 6, z: 0}
+      endCellPos: {x: 14, y: 5, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 3.42, y: 0.63, z: -9.690001}
+    cellPos: {x: 15, y: 7, z: 0}
+    neighbors:
+    - startPos: {x: 3.42, y: 0.63, z: -9.690001}
+      endPos: {x: 3.42, y: 0.63, z: -10.690001}
+      startCellPos: {x: 15, y: 7, z: 0}
+      endCellPos: {x: 15, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: 3.42, y: 0.63, z: -9.690001}
+      endPos: {x: 2.42, y: 0.63, z: -9.690001}
+      startCellPos: {x: 15, y: 7, z: 0}
+      endCellPos: {x: 14, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: 3.42, y: 0.63, z: -9.690001}
+      endPos: {x: 4.42, y: 0.63, z: -9.690001}
+      startCellPos: {x: 15, y: 7, z: 0}
+      endCellPos: {x: 16, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: 3.42, y: 0.63, z: -9.690001}
+      endPos: {x: 4.42, y: 0.63, z: -10.690001}
+      startCellPos: {x: 15, y: 7, z: 0}
+      endCellPos: {x: 16, y: 6, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 3.42, y: 0.63, z: -9.690001}
+      endPos: {x: 2.42, y: 0.63, z: -10.690001}
+      startCellPos: {x: 15, y: 7, z: 0}
+      endCellPos: {x: 14, y: 6, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 4.42, y: 0.63, z: -13.690001}
+    cellPos: {x: 16, y: 3, z: 0}
+    neighbors:
+    - startPos: {x: 4.42, y: 0.63, z: -13.690001}
+      endPos: {x: 4.42, y: 0.63, z: -12.690001}
+      startCellPos: {x: 16, y: 3, z: 0}
+      endCellPos: {x: 16, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: 4.42, y: 0.63, z: -13.690001}
+      endPos: {x: 3.42, y: 0.63, z: -13.690001}
+      startCellPos: {x: 16, y: 3, z: 0}
+      endCellPos: {x: 15, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: 4.42, y: 0.63, z: -13.690001}
+      endPos: {x: 3.42, y: 0.63, z: -12.690001}
+      startCellPos: {x: 16, y: 3, z: 0}
+      endCellPos: {x: 15, y: 4, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 4.42, y: 0.63, z: -12.690001}
+    cellPos: {x: 16, y: 4, z: 0}
+    neighbors:
+    - startPos: {x: 4.42, y: 0.63, z: -12.690001}
+      endPos: {x: 4.42, y: 0.63, z: -11.690001}
+      startCellPos: {x: 16, y: 4, z: 0}
+      endCellPos: {x: 16, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: 4.42, y: 0.63, z: -12.690001}
+      endPos: {x: 4.42, y: 0.63, z: -13.690001}
+      startCellPos: {x: 16, y: 4, z: 0}
+      endCellPos: {x: 16, y: 3, z: 0}
+      cost: 1
+    - startPos: {x: 4.42, y: 0.63, z: -12.690001}
+      endPos: {x: 3.42, y: 0.63, z: -12.690001}
+      startCellPos: {x: 16, y: 4, z: 0}
+      endCellPos: {x: 15, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: 4.42, y: 0.63, z: -12.690001}
+      endPos: {x: 3.42, y: 0.63, z: -11.690001}
+      startCellPos: {x: 16, y: 4, z: 0}
+      endCellPos: {x: 15, y: 5, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 4.42, y: 0.63, z: -12.690001}
+      endPos: {x: 3.42, y: 0.63, z: -13.690001}
+      startCellPos: {x: 16, y: 4, z: 0}
+      endCellPos: {x: 15, y: 3, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 4.42, y: 0.63, z: -11.690001}
+    cellPos: {x: 16, y: 5, z: 0}
+    neighbors:
+    - startPos: {x: 4.42, y: 0.63, z: -11.690001}
+      endPos: {x: 4.42, y: 0.63, z: -10.690001}
+      startCellPos: {x: 16, y: 5, z: 0}
+      endCellPos: {x: 16, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: 4.42, y: 0.63, z: -11.690001}
+      endPos: {x: 4.42, y: 0.63, z: -12.690001}
+      startCellPos: {x: 16, y: 5, z: 0}
+      endCellPos: {x: 16, y: 4, z: 0}
+      cost: 1
+    - startPos: {x: 4.42, y: 0.63, z: -11.690001}
+      endPos: {x: 3.42, y: 0.63, z: -11.690001}
+      startCellPos: {x: 16, y: 5, z: 0}
+      endCellPos: {x: 15, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: 4.42, y: 0.63, z: -11.690001}
+      endPos: {x: 3.42, y: 0.63, z: -10.690001}
+      startCellPos: {x: 16, y: 5, z: 0}
+      endCellPos: {x: 15, y: 6, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 4.42, y: 0.63, z: -11.690001}
+      endPos: {x: 3.42, y: 0.63, z: -12.690001}
+      startCellPos: {x: 16, y: 5, z: 0}
+      endCellPos: {x: 15, y: 4, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 4.42, y: 0.63, z: -10.690001}
+    cellPos: {x: 16, y: 6, z: 0}
+    neighbors:
+    - startPos: {x: 4.42, y: 0.63, z: -10.690001}
+      endPos: {x: 4.42, y: 0.63, z: -9.690001}
+      startCellPos: {x: 16, y: 6, z: 0}
+      endCellPos: {x: 16, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: 4.42, y: 0.63, z: -10.690001}
+      endPos: {x: 4.42, y: 0.63, z: -11.690001}
+      startCellPos: {x: 16, y: 6, z: 0}
+      endCellPos: {x: 16, y: 5, z: 0}
+      cost: 1
+    - startPos: {x: 4.42, y: 0.63, z: -10.690001}
+      endPos: {x: 3.42, y: 0.63, z: -10.690001}
+      startCellPos: {x: 16, y: 6, z: 0}
+      endCellPos: {x: 15, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: 4.42, y: 0.63, z: -10.690001}
+      endPos: {x: 3.42, y: 0.63, z: -9.690001}
+      startCellPos: {x: 16, y: 6, z: 0}
+      endCellPos: {x: 15, y: 7, z: 0}
+      cost: 1.4142135
+    - startPos: {x: 4.42, y: 0.63, z: -10.690001}
+      endPos: {x: 3.42, y: 0.63, z: -11.690001}
+      startCellPos: {x: 16, y: 6, z: 0}
+      endCellPos: {x: 15, y: 5, z: 0}
+      cost: 1.4142135
+  - worldPos: {x: 4.42, y: 0.63, z: -9.690001}
+    cellPos: {x: 16, y: 7, z: 0}
+    neighbors:
+    - startPos: {x: 4.42, y: 0.63, z: -9.690001}
+      endPos: {x: 4.42, y: 0.63, z: -10.690001}
+      startCellPos: {x: 16, y: 7, z: 0}
+      endCellPos: {x: 16, y: 6, z: 0}
+      cost: 1
+    - startPos: {x: 4.42, y: 0.63, z: -9.690001}
+      endPos: {x: 3.42, y: 0.63, z: -9.690001}
+      startCellPos: {x: 16, y: 7, z: 0}
+      endCellPos: {x: 15, y: 7, z: 0}
+      cost: 1
+    - startPos: {x: 4.42, y: 0.63, z: -9.690001}
+      endPos: {x: 3.42, y: 0.63, z: -10.690001}
+      startCellPos: {x: 16, y: 7, z: 0}
+      endCellPos: {x: 15, y: 6, z: 0}
+      cost: 1.4142135

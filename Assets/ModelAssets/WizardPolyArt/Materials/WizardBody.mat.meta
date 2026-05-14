@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5cf49edcef431b94cb0717b0d39fa9db
+timeCreated: 1534818077
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 127652
+  packageName: Battle Wizard PBR
+  packageVersion: 1.2
+  assetPath: Assets/ModelAssets/WizardPolyArt/Materials/WizardBody.mat
+  uploadId: 459288

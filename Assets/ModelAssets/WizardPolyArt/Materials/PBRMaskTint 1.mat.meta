@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b5e96c6ca19c5cd4b971419551ec9107
+timeCreated: 1535764949
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 127652
+  packageName: Battle Wizard PBR
+  packageVersion: 1.2
+  assetPath: Assets/ModelAssets/WizardPolyArt/Materials/PBRMaskTint 1.mat
+  uploadId: 459288

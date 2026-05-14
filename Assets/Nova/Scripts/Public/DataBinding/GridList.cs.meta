@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 4f07cacefc2c9494eae3629cf307e62d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Scripts/Public/DataBinding/GridList.cs
+  uploadId: 631464

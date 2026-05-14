@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 420437914e55602478cd2967205d3f22
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 231156
+  packageName: Nova - Free Trial
+  packageVersion: 2.1.3
+  assetPath: Assets/Nova/Sample/UIControls/Prefabs/Style_SciFi/Button_SciFi.prefab
+  uploadId: 631464
