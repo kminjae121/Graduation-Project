@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace _Code.Combat
+namespace Code.Combat
 {
     public class UnitShieldCompo : MonoBehaviour, IUnitComponent
     {

@@ -3,7 +3,7 @@ using Code.Core.Managers;
 using GondrLib.Dependencies;
 using UnityEngine;
 
-namespace _Code.Passive
+namespace Code.Passive
 {
     public class AlwaysTurnPassive : BasePassive
     {

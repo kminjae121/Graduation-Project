@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace _Code.Passive
+namespace Code.Passive
 {
     public class MyTurnPassive : BasePassive
     {

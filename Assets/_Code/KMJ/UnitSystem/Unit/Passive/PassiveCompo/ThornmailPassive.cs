@@ -1,7 +1,7 @@
 ﻿using Code.UnitSystem;
 using Code.UnitSystem.Combat;
 
-namespace _Code.Passive
+namespace Code.Passive
 {
     public class ThornmailPassive : AlwaysTurnPassive
     {

@@ -2,7 +2,7 @@
 using Code.SkillSystem;
 using UnityEngine;
 
-namespace _Code.KMJ.UnitSystem.involveUnitSO
+namespace Code.KMJ.UnitSystem.involveUnitSO
 {
     [CreateAssetMenu(fileName = "UnitSO", menuName = "SO/UnitSO/Skill/SkillOwnStorage")]
     public class UnitOwnSkillStorageSO : ScriptableObject

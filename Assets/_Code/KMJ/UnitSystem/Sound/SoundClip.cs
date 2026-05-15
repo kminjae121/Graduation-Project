@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace _Code.KMJ.UnitSystem.Sound
+namespace Code.KMJ.UnitSystem.Sound
 {
     public class SoundClip : MonoBehaviour
     {

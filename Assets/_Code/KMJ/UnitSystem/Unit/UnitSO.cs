@@ -1,4 +1,4 @@
-using _Code.KMJ.UnitSystem.involveUnitSO;
+using Code.KMJ.UnitSystem.involveUnitSO;
 using Code.UnitSystem;
 using Code.UnitSystem.ArtifactSystem;
 using UnityEngine;
