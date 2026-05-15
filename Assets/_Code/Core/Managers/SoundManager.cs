@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using _Code.KMJ.UnitSystem.Sound;
+using Code.KMJ.UnitSystem.Sound;
 using UnityEngine;
 using UnityEngine.Analytics;
 

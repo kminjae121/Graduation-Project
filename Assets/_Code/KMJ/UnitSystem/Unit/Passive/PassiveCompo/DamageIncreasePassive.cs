@@ -3,7 +3,7 @@ using Code.UnitSystem;
 using Code.UnitSystem.Combat;
 using UnityEngine;
 
-namespace _Code.Passive
+namespace Code.Passive
 {
     public class DamageIncreasePassive : MyTurnPassive
     {

@@ -5,7 +5,7 @@ using TMPro;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
-namespace _Code.Passive
+namespace Code.Passive
 {
     public class LifeDrainPassive : MyTurnPassive
     {

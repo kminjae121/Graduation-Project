@@ -4,7 +4,7 @@ using Code.Core.Debugs;
 using Code.UnitSystem;
 using UnityEngine;
 
-namespace _Code.UnitSystem
+namespace Code.UnitSystem
 {
     enum EffectType
     {

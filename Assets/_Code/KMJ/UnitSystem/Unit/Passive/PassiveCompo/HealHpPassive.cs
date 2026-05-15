@@ -2,7 +2,7 @@
 using Code.UnitSystem;
 using UnityEngine;
 
-namespace _Code.Passive
+namespace Code.Passive
 {
     public class HealHpPassive : AlwaysTurnPassive
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace _Code.UnitSystem
+namespace Code.UnitSystem
 {
     public class UnitEffect : MonoBehaviour
     {

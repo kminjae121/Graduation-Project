@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using _Code.KMJ.UnitSystem;
+using Code.KMJ.UnitSystem;
 using Code.Managers;
 using Code.SkillSystem;
 using Code.UnitSystem;
@@ -10,7 +10,7 @@ using NUnit.Framework;
 using UnityEngine;
 
 
-namespace _Code.Passive
+namespace Code.Passive
 {
     public class PassiveComponent : MonoBehaviour, IUnitComponent
     {
