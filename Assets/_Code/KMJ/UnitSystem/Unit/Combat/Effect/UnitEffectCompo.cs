@@ -6,10 +6,6 @@ using UnityEngine;
 
 namespace Code.UnitSystem
 {
-    enum EffectType
-    {
-        
-    }
     public class UnitEffectCompo : MonoBehaviour, IUnitComponent
     {
         private Dictionary<string, UnitEffect> _effectDict = new Dictionary<string, UnitEffect>();

@@ -1,6 +1,6 @@
 ﻿using System;
 using Code.UnitSystem;
-using Code.Managers;
+using Code.Core.Managers;
 using Code.UnitSystem.Combat;
 using GondrLib.Dependencies;
 using UnityEngine;

@@ -8,7 +8,7 @@ using Code.UnitSystem;
 using GondrLib.Dependencies;
 using UnityEngine;
 
-namespace Code.Managers
+namespace Code.Core.Managers
 {
     [Provide]
     public class TurnManager : MonoBehaviour, IDependencyProvider

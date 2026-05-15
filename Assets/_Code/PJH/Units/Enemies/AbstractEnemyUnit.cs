@@ -1,7 +1,7 @@
 using System.Linq;
 using Code.Core.Debugs;
 using Code.Core.Events.Bus;
-using Code.Managers;
+using Code.Core.Managers;
 using Code.Map;
 using Code.SkillSystem;
 using Code.UnitSystem.Enemies.AI;

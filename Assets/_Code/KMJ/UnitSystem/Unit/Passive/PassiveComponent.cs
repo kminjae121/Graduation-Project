@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Code.KMJ.UnitSystem;
-using Code.Managers;
+using _Code.KMJ.UnitSystem;
+using Code.Core.Managers;
 using Code.SkillSystem;
 using Code.UnitSystem;
 using GondrLib.Dependencies;
@@ -10,7 +10,7 @@ using NUnit.Framework;
 using UnityEngine;
 
 
-namespace Code.Passive
+namespace _Code.Passive
 {
     public class PassiveComponent : MonoBehaviour, IUnitComponent
     {

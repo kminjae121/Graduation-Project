@@ -4,7 +4,7 @@ using Code.Items;
 using Code.UI;
 using UnityEngine;
 
-namespace Code.Managers
+namespace Code.Core.Managers
 {
     public class RewardManager : MonoBehaviour
     {

@@ -1,8 +1,5 @@
 ﻿using System.Collections.Generic;
 using Code.Core;
-using Code.UnitSystem;
-using UnityEngine;
-
 
 namespace Code.UnitSystem
 {

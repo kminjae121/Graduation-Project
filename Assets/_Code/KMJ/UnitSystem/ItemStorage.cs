@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
-using Code.Passive;
+using _Code.KMJ.UnitSystem;
+using Code.UnitSystem;
 using Code.Core;
 using Code.Items;
-using Code.KMJ.UnitSystem;
-using Code.UnitSystem;
-using UnityEngine;
 
 namespace Code.Item
 {

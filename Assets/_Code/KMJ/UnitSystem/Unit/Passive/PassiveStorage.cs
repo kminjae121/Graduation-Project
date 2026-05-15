@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
+using _Code.Passive;
 using Code.UnitSystem;
 using Code.Core;
 using Code.Items;
-using Code.Passive;
 using UnityEngine;
 
-namespace Code.KMJ.UnitSystem
+namespace _Code.KMJ.UnitSystem
 {
     public class PassiveStorage : MonoSingleton<PassiveStorage>
     {
