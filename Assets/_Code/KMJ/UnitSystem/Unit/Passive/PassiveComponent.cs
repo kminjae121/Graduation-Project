@@ -10,7 +10,7 @@ using NUnit.Framework;
 using UnityEngine;
 
 
-namespace _Code.Passive
+namespace Code.Passive
 {
     public class PassiveComponent : MonoBehaviour, IUnitComponent
     {
