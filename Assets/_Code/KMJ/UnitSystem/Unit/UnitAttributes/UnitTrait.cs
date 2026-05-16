@@ -11,7 +11,7 @@ namespace Code.UnitSystem.UnitAttributes
     {
         private Unit _unit;
         private IUnitPerform _perform;
-        private List<IUnitCondition> _conditions;
+        private IUnitCondition _condition;
 
         private bool _isPerformed = false;
         
@@ -21,22 +21,19 @@ namespace Code.UnitSystem.UnitAttributes
         {
             _unit = owner;
 
-            _conditions = GetComponentsInChildren<IUnitCondition>().ToList();
+            _condition = GetComponentInChildren<IUnitCondition>();
             _perform = GetComponentInChildren<IUnitPerform>();
 
             if (_unit != null)
             {
-                if (_conditions.Count <= 0)
+                if (_condition != null)
                 {
                     Debug.LogWarning("컨디션 컴포넌트가 존재하지 않습니다.");
                     return;
                 }
                 else
                 {
-                    foreach (var condition in _conditions)
-                    {
-                        condition.Initialize(_unit);
-                    }
+                    _condition.Initialize(_unit);
                 }
 
                 if (_perform == null)
@@ -65,13 +62,10 @@ namespace Code.UnitSystem.UnitAttributes
             if (evt.unitType != _unitType)
                 return;
             
-            foreach (var condition in _conditions)
+            if (_condition.CheckCondition(evt.target))
             {
-                if (condition.CheckCondition(evt.target))
-                {
-                    _isPerformed = true;
-                    break;
-                }
+                _isPerformed = true;
+                return;
             }
         }
 
