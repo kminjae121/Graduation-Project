@@ -14,6 +14,7 @@ namespace Code.UnitSystem.UnitAttributes
         private IUnitCondition _condition;
 
         private bool _isPerformed = false;
+        public bool IsHasEnemy = false;
         
         private UnitType _unitType = UnitType.None;
         
@@ -71,8 +72,20 @@ namespace Code.UnitSystem.UnitAttributes
 
         public void Perform(GameObject target)
         {
-            _perform.Perform(target);
-            _isPerformed = false;
+            if (_isPerformed)
+            {
+                _perform.Perform(target);
+                _isPerformed = false;
+            }
+        }
+
+        public void Perform()
+        {
+            if (_isPerformed && IsHasEnemy)
+            {
+                _perform.Perform(null);
+                _isPerformed = false;
+            }
         }
     }
 }
