@@ -1,10 +1,12 @@
-﻿using Code.UnitSystem.Combat;
+﻿using Code.Core.Events.Bus;
+using Code.UnitSystem.Combat;
 using UnityEngine;
 
-namespace Code.UnitSystem.UnitAttributes
+namespace Code.UnitSystem.TraitSystem
 {
     public class KnightPerform : MonoBehaviour , IUnitPerform
     {
+        [SerializeField] private KnightCondition condition;
         [SerializeField] private ParticleSystem circleParticle;
         [SerializeField] private KnightDefenseRange defenseCompo;
         private Unit _unit;
@@ -18,6 +20,8 @@ namespace Code.UnitSystem.UnitAttributes
 
         public void Perform(GameObject target)
         {
+            condition.ResetStack();
+            Bus<KnightGimicBarEvent>.Raise(new KnightGimicBarEvent(0));
             foreach (var unit in defenseCompo.Targets)
             {
                 unit.GetUnitCompo<InvincibilityCompo>().SetUnitInvincibility(2);

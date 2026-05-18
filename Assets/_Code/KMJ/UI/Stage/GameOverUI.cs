@@ -26,7 +26,7 @@ namespace Code.UI
         public void ReturnHome()
         {
             string lobbySceneName = TowerRunSession.LobbySceneName;
-            TowerRunSession.EndRun();
+            TowerRunSession.FailRun();
             TowerSceneLoader.LoadScene(lobbySceneName);
             InGameStatCompo.Instance.ReStartGame();
         }

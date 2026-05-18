@@ -5,11 +5,15 @@ using Code.UnitSystem.Combat;
 using Code.UnitSystem.Enemies;
 using UnityEngine;
 
-namespace Code.UnitSystem.UnitAttributes
+namespace Code.UnitSystem.TraitSystem
 {
     public class RoguePerform : MonoBehaviour, IUnitPerform
     {
+        [SerializeField] private UnitRotator rotatorCompo;
+        [SerializeField] private UnitAnimation animCompo;
+        [SerializeField] private UnitEffectCompo effectCompo;
         [SerializeField] private RogueShadowSpawn shadowCompo;
+        
         private UnitEffectCompo _effectCompo;
         private Unit _unit;
 
@@ -29,6 +33,7 @@ namespace Code.UnitSystem.UnitAttributes
 
         private IEnumerator PerformTarget(GameObject target)
         {
+            effectCompo.StopTargetEffect("DarkHeal");
             int addDamage = 0;
             Vector3 pos = _unit.transform.position;
             
@@ -38,8 +43,12 @@ namespace Code.UnitSystem.UnitAttributes
                 
                 AbstractEnemyUnit enemy = shadow.GetNearEnemy();
                 
+                
                 if (enemy != null)
                 {
+                    rotatorCompo.SetDir(enemy.transform.position);
+                    animCompo.RestartFromEntry();
+                    animCompo.PlaySelectAnimation("ATTACK");
                     UnitHealth health = enemy.GetUnitCompo<UnitHealth>();
                     if (health != null)
                     {
@@ -51,8 +60,8 @@ namespace Code.UnitSystem.UnitAttributes
                         Bus<DamageEvent>.Raise(new DamageEvent(_damageData, enemy.gameObject, 0, _unit, false, false, 0.3f));
                     }    
                 }
-                
-                yield return new WaitForSeconds(0.2f);
+                shadow.gameObject.SetActive(false);
+                yield return new WaitForSeconds(0.7f);
             }
 
             _unit.transform.position = pos;
@@ -60,6 +69,7 @@ namespace Code.UnitSystem.UnitAttributes
             
             Bus<DamageEvent>.Raise(new DamageEvent(_damageData,target.gameObject,0, _unit,false,false,0.3f));
             shadowCompo.ResetAllShadow();
+            animCompo.ReturnIdleAnimation();
         }
     }
 }

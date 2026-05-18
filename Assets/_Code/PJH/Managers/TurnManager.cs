@@ -32,6 +32,7 @@ namespace Code.Core.Managers
 
         private void Awake()
         {
+            Bus<RequestTurnEndEvent>.Subscribe(OnTurnEndRequested);
             Bus<UnitTurnEndEvent>.Subscribe(OnUnitTurnEnd);
         }
 
@@ -46,6 +47,7 @@ namespace Code.Core.Managers
 
         private void OnDestroy()
         {
+            Bus<RequestTurnEndEvent>.Unsubscribe(OnTurnEndRequested);
             Bus<UnitTurnEndEvent>.Unsubscribe(OnUnitTurnEnd);
         }
 
@@ -79,15 +81,18 @@ namespace Code.Core.Managers
             return baseTurnGauge / Mathf.Max(1f, unit.TurnSpeed);
         }
 
-        private void OnUnitTurnEnd(UnitTurnEndEvent evt)
+        private void OnTurnEndRequested(RequestTurnEndEvent evt)
         {
             if (_currentTurnUnit == null)
                 return;
 
-            if (_currentTurnUnit.UnitObj.TryGetComponent(out CharacterUnit unit))
-            {
-                unit.OnTurnEnd();
-            }
+            _currentTurnUnit.OnTurnEnd();
+        }
+
+        private void OnUnitTurnEnd(UnitTurnEndEvent evt)
+        {
+            if (_currentTurnUnit == null)
+                return;
 
             if (!ReferenceEquals(evt.Unit, _currentTurnUnit))
             {

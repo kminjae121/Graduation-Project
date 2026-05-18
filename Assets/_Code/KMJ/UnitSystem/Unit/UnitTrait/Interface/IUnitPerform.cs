@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Code.UnitSystem.UnitAttributes
+namespace Code.UnitSystem.TraitSystem
 {
     public interface IUnitPerform
     {

@@ -2,6 +2,10 @@ using Code.Core;
 using Code.Tower;
 using Code.Tower.UI;
 using UnityEngine;
+using UnityEngine.EventSystems;
+#if ENABLE_INPUT_SYSTEM
+using UnityEngine.InputSystem.UI;
+#endif
 using UnityEngine.UI;
 
 namespace Code.Expedition.Managers
@@ -28,7 +32,10 @@ namespace Code.Expedition.Managers
         private void Start()
         {
             if (!TowerRunSession.IsActive)
+            {
+                Debug.LogWarning("[ExpeditionManager] Tower run is not active.");
                 return;
+            }
 
             EnsureRuntimeUI();
             WireUIEvents();
@@ -43,33 +50,20 @@ namespace Code.Expedition.Managers
 
         public void RequestMoveToRoom(int roomId)
         {
-            TowerFloorMap map = TowerRunSession.CurrentMap;
-
-            if (map == null)
-                return;
-
-            TowerRoomNode currentRoom = map.GetCurrentRoom();
-
-            if (currentRoom is { IsCleared: false })
+            if (!TowerRunSession.TryMoveToRoom(roomId, out TowerRoomNode movedRoom))
             {
-                Debug.LogWarning("현재 방을 클리어해야 다음 방으로 이동할 수 있습니다.");
+                Debug.LogWarning($"Cannot move to room {roomId}. Current room must be cleared and connected.");
                 return;
             }
 
-            if (!map.MoveTo(roomId))
-            {
-                Debug.LogWarning($"현재 방에서 {roomId}번 방으로 이동할 수 없습니다.");
-                return;
-            }
-
-            ResolveCurrentRoomOnMapEnter();
+            ResolveCurrentRoomOnMapEnter(movedRoom);
             RefreshUI();
         }
 
-        private void ResolveCurrentRoomOnMapEnter()
+        private void ResolveCurrentRoomOnMapEnter(TowerRoomNode roomOverride = null)
         {
             TowerFloorMap map = TowerRunSession.CurrentMap;
-            TowerRoomNode room = map?.GetCurrentRoom();
+            TowerRoomNode room = roomOverride ?? map?.GetCurrentRoom();
 
             if (room == null)
                 return;
@@ -108,14 +102,8 @@ namespace Code.Expedition.Managers
 
             nodeMapView?.Render(map);
 
-            TowerRoomNode currentRoom = map.GetCurrentRoom();
-            bool canUsePortal = currentRoom != null &&
-                                currentRoom.IsCleared &&
-                                (currentRoom.RoomType == TowerRoomType.Portal ||
-                                 currentRoom.RoomType == TowerRoomType.Boss);
-
-            if (canUsePortal)
-                portalChoicePanel?.Show(map.FloorKey, currentRoom.RoomType == TowerRoomType.Boss);
+            if (TowerRunSession.CanUseCurrentPortal)
+                portalChoicePanel?.Show(map.FloorKey, TowerRunSession.CurrentRoomType == TowerRoomType.Boss);
             else
                 portalChoicePanel?.Hide();
         }
@@ -138,7 +126,7 @@ namespace Code.Expedition.Managers
         {
             if (string.IsNullOrWhiteSpace(sceneName))
             {
-                Debug.LogWarning("전투 씬 이름이 비어 있습니다.");
+                Debug.LogWarning("Battle scene name is empty.");
                 return;
             }
 
@@ -155,6 +143,8 @@ namespace Code.Expedition.Managers
 
             if (canvas == null)
                 canvas = CreateRuntimeCanvas();
+
+            EnsureEventSystem();
 
             RectTransform canvasRect = canvas.transform as RectTransform;
 
@@ -185,6 +175,20 @@ namespace Code.Expedition.Managers
 
             canvasObject.AddComponent<GraphicRaycaster>();
             return newCanvas;
+        }
+
+        private static void EnsureEventSystem()
+        {
+            if (FindAnyObjectByType<EventSystem>() != null)
+                return;
+
+            GameObject eventSystemObject = new("EventSystem");
+            eventSystemObject.AddComponent<EventSystem>();
+#if ENABLE_INPUT_SYSTEM
+            eventSystemObject.AddComponent<InputSystemUIInputModule>();
+#else
+            eventSystemObject.AddComponent<StandaloneInputModule>();
+#endif
         }
 
         private void WireUIEvents()

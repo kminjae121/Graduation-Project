@@ -83,7 +83,7 @@ namespace Code.UI
         private void OnTurnEndButtonClicked()
         {
             turnEndButton.transform.DOScale(_originalButtonScale, 0.1f);
-            Bus<UnitTurnEndEvent>.Raise(new UnitTurnEndEvent());
+            Bus<RequestTurnEndEvent>.Raise(new RequestTurnEndEvent());
         }
 
         private void EvaluateVisibility()

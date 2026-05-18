@@ -33286,7 +33286,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21876926968d4e09a8873423ba4e849e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.UnitAttributes.UnitTrait
-  IsHasEnemy: 0
+  <IsNeedTarget>k__BackingField: 1
+  _inputReader: {fileID: 11400000, guid: a0d5dad133beb4c44a762d5d8e9a9457, type: 2}
 --- !u!1 &2544580028942621615
 GameObject:
   m_ObjectHideFlags: 0
@@ -76869,6 +76870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitSystem.UnitTargeting
   inputSO: {fileID: 11400000, guid: a0d5dad133beb4c44a762d5d8e9a9457, type: 2}
+  traitCompo: {fileID: 0}
   moveCompo: {fileID: 346073034446612595}
   skillManager: {fileID: 7899156878848632344}
   unit: {fileID: 2521779230925086241}
@@ -76921,6 +76923,7 @@ MonoBehaviour:
   animationCompo: {fileID: 8611320529293299779}
   rotatorCompo: {fileID: 5137460681628610011}
   triggerCompo: {fileID: 1017355007122269373}
+  rogueCompo: {fileID: 0}
   <VisualPrefabs>k__BackingField: {fileID: 8070246502503376610}
 --- !u!114 &402232499226607937
 MonoBehaviour:

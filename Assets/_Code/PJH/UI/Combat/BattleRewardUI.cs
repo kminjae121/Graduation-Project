@@ -23,19 +23,27 @@ namespace Code.UI
 
         private void Awake()
         {
-            nextButton.onClick.AddListener(HandleNextButton);
-            rewardUI.SetActive(false);
+            if (nextButton != null)
+                nextButton.onClick.AddListener(HandleNextButton);
+
+            if (rewardUI != null)
+                rewardUI.SetActive(false);
         }
 
         private void OnDestroy()
         {
-            nextButton.onClick.RemoveListener(HandleNextButton);
+            if (nextButton != null)
+                nextButton.onClick.RemoveListener(HandleNextButton);
         }
 
         public void Open(List<ItemSO> rewards)
         {
-            input._controls.Player.Disable();
-            rewardUI.SetActive(true);
+            input?.SetActive(false);
+            if (rewardUI != null)
+                rewardUI.SetActive(true);
+
+            if (rewards == null)
+                return;
 
             foreach (var item in rewards)
             {
@@ -47,7 +55,7 @@ namespace Code.UI
         
         private void HandleNextButton()
         {
-            input._controls.Player.Enable();
+            input?.SetActive(true);
             TowerRunSession.CompleteCurrentRoom();
             TowerSceneLoader.LoadScene(TowerRunSession.TowerSceneName);
         }

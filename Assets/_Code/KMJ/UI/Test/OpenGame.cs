@@ -7,7 +7,7 @@ namespace Code.UI.Test
     {
         public void Open()
         {
-            SceneManager.LoadScene("Lobby");
+            SceneManager.LoadScene("LobbyScene");
         }
 
         public void Exit()
