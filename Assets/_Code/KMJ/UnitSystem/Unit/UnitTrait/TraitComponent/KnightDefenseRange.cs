@@ -10,7 +10,7 @@ using Code.UnitSystem.Enemies;
 using GondrLib.Dependencies;
 using UnityEngine;
 
-namespace Code.UnitSystem.UnitAttributes
+namespace Code.UnitSystem.TraitSystem
 {
     public class KnightDefenseRange : MonoBehaviour, IUnitComponent
     {
@@ -39,6 +39,8 @@ namespace Code.UnitSystem.UnitAttributes
                 UnityLogger.LogWarning("UnitHealth 컴포넌트가 없습니다");
                 return;
             }
+
+            _unitHealthCompo.OnDefenseEvent += ReduceThisDamage;
             
             Injector.InjectInto(this);
             
@@ -50,6 +52,7 @@ namespace Code.UnitSystem.UnitAttributes
 
         private void OnDestroy()
         {
+            _unitHealthCompo.OnDefenseEvent -= ReduceThisDamage;
             foreach (var target in Targets)
             {
                 if (target != null && target.HealthCompo != null)
@@ -140,6 +143,12 @@ namespace Code.UnitSystem.UnitAttributes
 
             _unitHealthCompo.SetMaxHp(_unitHealthCompo.MaxHealth - 1);
             
+            Bus<UseGimicEvent>.Raise(new UseGimicEvent(UnitType.Knight, null));
+        }
+
+        private void ReduceThisDamage(ref int damage)
+        {
+            damage = Mathf.RoundToInt(damage * 0.5f);
             Bus<UseGimicEvent>.Raise(new UseGimicEvent(UnitType.Knight, null));
         }
 

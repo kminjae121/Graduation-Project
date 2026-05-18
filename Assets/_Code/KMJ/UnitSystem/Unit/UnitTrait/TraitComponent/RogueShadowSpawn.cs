@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Code.UnitSystem.UnitAttributes
+namespace Code.UnitSystem.TraitSystem
 {
     public class RogueShadowSpawn : MonoBehaviour, IUnitComponent
     {
@@ -12,6 +12,8 @@ namespace Code.UnitSystem.UnitAttributes
         private int _currentIdx = 0;
         private int _maxIdx = 0;
 
+        private CharacterUnit _unit;
+
         public void Initialize(Unit owner)
         {
             _maxIdx = shadows.Count;
@@ -20,6 +22,8 @@ namespace Code.UnitSystem.UnitAttributes
 
             foreach (var shadow in shadows)
                 shadow.gameObject.SetActive(false);
+
+            _unit = owner as CharacterUnit;
         }
 
         public int GetMaxShadowCnt() => maxShadowCnt;
@@ -34,7 +38,7 @@ namespace Code.UnitSystem.UnitAttributes
 
             var shadow = shadows[_currentIdx];
             shadow.gameObject.SetActive(true);
-            shadow.transform.position = trm.position;
+            shadow.SetPos(_unit.transform.position );
 
             if (_shadowCnt < maxShadowCnt)
                 _shadowCnt++;

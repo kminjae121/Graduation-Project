@@ -1,7 +1,7 @@
 using System;
 using Code.Core.Events.Bus;
 using Code.Core.Events.Bus.Trait;
-using Code.UnitSystem.UnitAttributes;
+using Code.UnitSystem.TraitSystem;
 using Input;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,10 +11,10 @@ namespace Code.UI
     public class UnitPerformBtn : MonoBehaviour
     {
         [SerializeField] private Button _performBtn;
+        [SerializeField] private InputReader _inputReader;
 
         private UnitTrait _traitCompo;
-
-        private InputReader _inputReader;
+        
         private void Awake()
         {
             Bus<UnitPerformEvent>.Subscribe(HandleAddUnit);
@@ -34,9 +34,9 @@ namespace Code.UI
 
         private void HandleClickBtn()
         {
-            if (_traitCompo.IsHasEnemy)
+            if (_traitCompo.IsNeedTarget)
             {
-                _traitCompo.Perform();
+                _traitCompo.SetTargeting();
             }
             else
             {

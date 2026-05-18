@@ -2,6 +2,7 @@
 using Code.Core.Events.Bus;
 using Code.Core.Interfaces;
 using Code.Map;
+using Code.UnitSystem.TraitSystem;
 using Code.UnitSystem.UnitComponent;
 using UnityEngine;
 using UnityEngine.Events;
@@ -13,6 +14,7 @@ namespace Code.UnitSystem
         [SerializeField] private UnitAnimation animationCompo;
         [SerializeField] private UnitRotator rotatorCompo;
         [SerializeField] private UnitAnimationTrigger triggerCompo;
+        [SerializeField] private RogueShadowSpawn rogueCompo = null;
 
         private PathMover _pathMoverCompo;
         [field: SerializeField] public GameObject VisualPrefabs { get; set; }
@@ -143,6 +145,12 @@ namespace Code.UnitSystem
         
         private void MoveStart(IMapTile tile)
         {
+            if (rogueCompo != null)
+            {
+                rogueCompo.SetShadow(_unit.transform);
+                Bus<UseGimicEvent>.Raise(new UseGimicEvent(UnitType.Rogue, null));
+            }
+            
             Bus<SetAtkUIEvent>.Raise(new SetAtkUIEvent(false));
             Bus<UnitCamSettingEvent>.Raise(new UnitCamSettingEvent(_unit.gameObject,
                 true, new Vector3(0.1f, 0.1f, 0.1f)));
