@@ -238,7 +238,7 @@ namespace Code.SkillSystem
                 return;
 
             StartEvent();
-            Bus<UnitSkilStartEvent>.Raise(new UnitSkilStartEvent(true));
+            Bus<UnitSkillStartEvent>.Raise(new UnitSkillStartEvent(true));
             SkillEvent?.Invoke(_targetEnemy);
             PlayBreathAnimation();
         }

@@ -115,7 +115,7 @@ namespace Code.SkillSystem
             BooleanSkillUse(false);
             rangeCompo.ResetTile();
             
-            Bus<UnitSkilStartEvent>.Raise(new UnitSkilStartEvent(false));
+            Bus<UnitSkillStartEvent>.Raise(new UnitSkillStartEvent(false));
         }
 
         public virtual void AttackEnemy()
@@ -147,7 +147,7 @@ namespace Code.SkillSystem
 
             StartEvent();
             
-            Bus<UnitSkilStartEvent>.Raise(new UnitSkilStartEvent(true));
+            Bus<UnitSkillStartEvent>.Raise(new UnitSkillStartEvent(true));
 
             SkillEvent?.Invoke(_targetEnemy);
         }

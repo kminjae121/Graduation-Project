@@ -8,11 +8,11 @@ namespace Code.SkillSystem
     public class EnemyMeleeAttack : EnemyBaseSkill
     {
         private GameObject _target;
-        private AbstractEnemyUnit _ownerEnemy;
+        private AbstractEnemyUnit _owner;
 
         private void Awake()
         {
-            _ownerEnemy = GetComponentInParent<AbstractEnemyUnit>();
+            _owner = GetComponentInParent<AbstractEnemyUnit>();
         }
 
         protected void Start()
@@ -71,11 +71,11 @@ namespace Code.SkillSystem
 
         private void PlayAttackAnimation()
         {
-            if (_ownerEnemy?.UnitAnimator == null || string.IsNullOrWhiteSpace(SkillSO.skillAnimationKey))
+            if (_owner?.UnitAnimator == null || string.IsNullOrWhiteSpace(SkillSO.skillAnimationKey))
                 return;
 
-            _ownerEnemy.UnitAnimator.RestartFromEntry();
-            _ownerEnemy.UnitAnimator.PlaySelectAnimation(SkillSO.skillAnimationKey);
+            _owner.UnitAnimator.RestartFromEntry();
+            _owner.UnitAnimator.PlaySelectAnimation(SkillSO.skillAnimationKey);
         }
     }
 }

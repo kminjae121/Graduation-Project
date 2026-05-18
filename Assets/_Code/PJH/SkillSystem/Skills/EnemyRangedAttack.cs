@@ -1,5 +1,5 @@
-using System.Collections;
 using Code.Core.Events.Bus;
+using Code.UnitSystem;
 using Code.UnitSystem.Enemies;
 using UnityEngine;
 
@@ -7,63 +7,49 @@ namespace Code.SkillSystem
 {
     public class EnemyRangedAttack : EnemyBaseSkill
     {
-        [SerializeField, Min(0f)] private float finishDelay = 0.35f;
-
         private GameObject _target;
         private AbstractEnemyUnit _ownerEnemy;
-        private Coroutine _finishCoroutine;
-        private bool _isFinished = true;
 
         private void Awake()
         {
             _ownerEnemy = GetComponentInParent<AbstractEnemyUnit>();
         }
 
+        protected void Start()
+        {
+            ResolveComponents();
+            SkillEvent.AddListener(AttackAction);
+        }
+
         public override void ForceUseSkill(GameObject target)
         {
-            _isFinished = false;
-
             if (target == null)
-            {
-                FinishSkill();
                 return;
-            }
 
-            _targetEnemy = target;
-            isCanUseSkill = true;
+            ResolveComponents();
+            base.ForceUseSkill(target);
+            PlayAttackAnimation();
+        }
 
-            if (RotatorCompo != null)
-                RotatorCompo.SetDir(target.transform.position);
-
-            BeginRangedAttack();
+        protected override void StartEvent()
+        {
+            base.StartEvent();
+            RegisterAnimationEvents();
         }
 
         protected override void OnDestroy()
         {
-            StopFinishCoroutine();
+            SkillEvent.RemoveListener(AttackAction);
+            UnregisterAnimationEvents();
             base.OnDestroy();
         }
 
-        private void BeginRangedAttack()
+        private void AttackAction(GameObject target)
         {
-            if (_targetEnemy == null)
-            {
-                FinishSkill();
-                return;
-            }
-
-            _target = _targetEnemy;
-            FinishAfterDelay();
-
-            StartEvent();
-            Bus<UnitSkilStartEvent>.Raise(new UnitSkilStartEvent(true));
-            SkillEvent?.Invoke(_target);
-
-            PlayAttackAnimation();
-            ApplyDamage();
+            _target = target;
         }
 
-        private void ApplyDamage()
+        private void TakeDamage()
         {
             if (_target == null)
                 return;
@@ -71,62 +57,58 @@ namespace Code.SkillSystem
             Bus<DamageEvent>.Raise(new DamageEvent(DamageData, _target, AddDamage, null, false, false, 0.1f));
         }
 
+        private void SkillEnd()
+        {
+            UnregisterAnimationEvents();
+            _target = null;
+
+            SkillFinished(false);
+            SkillEndEvent?.Invoke();
+        }
+
         private void PlayAttackAnimation()
         {
             if (_ownerEnemy?.UnitAnimator == null || SkillSO == null || string.IsNullOrWhiteSpace(SkillSO.skillAnimationKey))
+            {
+                SkillEnd();
                 return;
+            }
 
             _ownerEnemy.UnitAnimator.RestartFromEntry();
             _ownerEnemy.UnitAnimator.PlaySelectAnimation(SkillSO.skillAnimationKey);
             SkillFeedbackEvent?.Invoke();
         }
 
-        private void FinishAfterDelay()
+        private void ResolveComponents()
         {
-            StopFinishCoroutine();
+            if (_ownerEnemy == null)
+                _ownerEnemy = GetComponentInParent<AbstractEnemyUnit>();
 
-            _finishCoroutine = StartCoroutine(FinishAfterDelayRoutine());
+            if (triggerCompo == null)
+                triggerCompo = _ownerEnemy?.AnimationTrigger ?? _ownerEnemy?.GetUnitCompo<UnitAnimationTrigger>();
         }
 
-        private IEnumerator FinishAfterDelayRoutine()
+        private void RegisterAnimationEvents()
         {
-            yield return new WaitForSecondsRealtime(Mathf.Max(0f, finishDelay));
+            ResolveComponents();
 
-            _finishCoroutine = null;
-            FinishSkill();
-        }
-
-        private void FinishSkill()
-        {
-            if (_isFinished)
+            if (triggerCompo == null)
                 return;
 
-            _isFinished = true;
-            StopFinishCoroutine();
-            _target = null;
+            triggerCompo.OnAttackTrigger -= TakeDamage;
+            triggerCompo.OnAnimationEndTrigger -= SkillEnd;
 
-            try
-            {
-                SkillFinished(false);
-            }
-            catch (System.Exception exception)
-            {
-                Debug.LogException(exception);
-                Bus<UnitSkilStartEvent>.Raise(new UnitSkilStartEvent(false));
-            }
-            finally
-            {
-                SkillEndEvent?.Invoke();
-            }
+            triggerCompo.OnAttackTrigger += TakeDamage;
+            triggerCompo.OnAnimationEndTrigger += SkillEnd;
         }
 
-        private void StopFinishCoroutine()
+        private void UnregisterAnimationEvents()
         {
-            if (_finishCoroutine == null)
+            if (triggerCompo == null)
                 return;
 
-            StopCoroutine(_finishCoroutine);
-            _finishCoroutine = null;
+            triggerCompo.OnAttackTrigger -= TakeDamage;
+            triggerCompo.OnAnimationEndTrigger -= SkillEnd;
         }
     }
 }

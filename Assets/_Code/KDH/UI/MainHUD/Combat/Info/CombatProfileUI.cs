@@ -42,7 +42,7 @@ namespace Code.UI
 
             Bus<SkillUIEvent>.Subscribe(HandleSkillUI);
             Bus<SetAtkUIEvent>.Subscribe(HandleAtkUI);
-            Bus<UnitSkilStartEvent>.Subscribe(HandleSkillStart);
+            Bus<UnitSkillStartEvent>.Subscribe(HandleSkillStart);
             Bus<UnitMoveControlEvent>.Subscribe(HandleMoveControl);
             Bus<UnitTurnEndEvent>.Subscribe(HandleUnitTurnEnd);
             Bus<CombatSkillCancelEvent>.Subscribe(HandleSkillCancel);
@@ -52,7 +52,7 @@ namespace Code.UI
         {
             Bus<SkillUIEvent>.Unsubscribe(HandleSkillUI);
             Bus<SetAtkUIEvent>.Unsubscribe(HandleAtkUI);
-            Bus<UnitSkilStartEvent>.Unsubscribe(HandleSkillStart);
+            Bus<UnitSkillStartEvent>.Unsubscribe(HandleSkillStart);
             Bus<UnitMoveControlEvent>.Unsubscribe(HandleMoveControl);
             Bus<UnitTurnEndEvent>.Unsubscribe(HandleUnitTurnEnd);
             Bus<CombatSkillCancelEvent>.Unsubscribe(HandleSkillCancel);
@@ -121,7 +121,7 @@ namespace Code.UI
         }
 
         private void HandleAtkUI(SetAtkUIEvent evt) { _isAtkUIHidden = !evt.IsActive; EvaluateVisibility(); }
-        private void HandleSkillStart(UnitSkilStartEvent evt) { _isSkillPlaying = evt.isStart; if (!evt.isStart) _isAtkUIHidden = false; EvaluateVisibility(); }
+        private void HandleSkillStart(UnitSkillStartEvent evt) { _isSkillPlaying = evt.isStart; if (!evt.isStart) _isAtkUIHidden = false; EvaluateVisibility(); }
         private void HandleMoveControl(UnitMoveControlEvent evt) { _isMovePlaying = !evt.isMoving; if (evt.isMoving) _isAtkUIHidden = false; EvaluateVisibility(); }
         private void HandleUnitTurnEnd(UnitTurnEndEvent evt) { _isTurnEnded = true; _isSkillPlaying = false; _isMovePlaying = false; _isAtkUIHidden = false; EvaluateVisibility(); }
         private void HandleSkillCancel(CombatSkillCancelEvent evt) { if (!_isSkillPlaying && !_isMovePlaying) { _isAtkUIHidden = false; EvaluateVisibility(); } }

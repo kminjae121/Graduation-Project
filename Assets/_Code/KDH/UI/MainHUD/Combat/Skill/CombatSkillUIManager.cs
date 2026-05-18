@@ -62,7 +62,7 @@ namespace Code.UI
             Bus<CombatSkillSelectEvent>.Subscribe(HandleSkillSelected);
             Bus<UnitTurnEndEvent>.Subscribe(HandleTurnEnd);
             Bus<SetAtkUIEvent>.Subscribe(HandleAtkUI);
-            Bus<UnitSkilStartEvent>.Subscribe(HandleSkillStart);
+            Bus<UnitSkillStartEvent>.Subscribe(HandleSkillStart);
             Bus<UnitMoveControlEvent>.Subscribe(HandleMoveControl);
             Bus<CombatSkillCancelEvent>.Subscribe(HandleSkillCancel);
         }
@@ -76,7 +76,7 @@ namespace Code.UI
             Bus<CombatSkillSelectEvent>.Unsubscribe(HandleSkillSelected);
             Bus<UnitTurnEndEvent>.Unsubscribe(HandleTurnEnd);
             Bus<SetAtkUIEvent>.Unsubscribe(HandleAtkUI);
-            Bus<UnitSkilStartEvent>.Unsubscribe(HandleSkillStart);
+            Bus<UnitSkillStartEvent>.Unsubscribe(HandleSkillStart);
             Bus<UnitMoveControlEvent>.Unsubscribe(HandleMoveControl);
             Bus<CombatSkillCancelEvent>.Unsubscribe(HandleSkillCancel);
 
@@ -198,7 +198,7 @@ namespace Code.UI
             EvaluateVisibility();
         }
 
-        private void HandleSkillStart(UnitSkilStartEvent evt)
+        private void HandleSkillStart(UnitSkillStartEvent evt)
         {
             _isSkillPlaying = evt.isStart;
             if (!evt.isStart) _isAtkUIHidden = false;
