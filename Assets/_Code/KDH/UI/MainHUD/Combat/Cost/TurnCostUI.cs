@@ -65,7 +65,7 @@ namespace Code.UI
 
         private void HandleTurnEnd(UnitTurnEndEvent evt)
         {
-            if (_currentUnit != null && evt.Unit == _currentUnit)
+            if (_currentUnit != null && ReferenceEquals(evt.Unit, _currentUnit))
             {
                 ClearIcons();
                 UnsubscribeCurrentUnit();

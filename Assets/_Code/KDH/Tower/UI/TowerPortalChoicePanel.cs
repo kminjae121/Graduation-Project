@@ -34,7 +34,7 @@ namespace Code.Tower.UI
             titleText.alignment = TextAlignmentOptions.Center;
 
             nextFloorButton = CreateButton("NextFloorButton", self, new Vector2(40f, -118f), new Vector2(-40f, -166f), "다음 층으로 이동");
-            returnLobbyButton = CreateButton("ReturnLobbyButton", self, new Vector2(40f, -178f), new Vector2(-40f, -226f), "정비하러 복귀");
+            returnLobbyButton = CreateButton("ReturnLobbyButton", self, new Vector2(40f, -178f), new Vector2(-40f, -226f), "정비하러 돌아가기");
 
             WireButtons();
             Hide();
@@ -62,9 +62,11 @@ namespace Code.Tower.UI
             root.SetActive(true);
 
             if (titleText != null)
+            {
                 titleText.text = isBossPortal
-                    ? $"탑 {floorKey.DisplayName}층 보스 격파"
-                    : $"탑 {floorKey.DisplayName}층 포탈 발견";
+                    ? $"{floorKey.DisplayName} 보스 클리어"
+                    : $"{floorKey.DisplayName} 포탈 발견";
+            }
         }
 
         public void Hide()

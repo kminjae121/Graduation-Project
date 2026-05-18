@@ -298,10 +298,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2541666409870520583, guid: 9e231ba446800aa4ebe635b040ef13bd, type: 3}
-      propertyPath: transitionImagePrefab
-      value: 
-      objectReference: {fileID: 4852114888046675387, guid: a9337e0562aac524da58a054fbd75bc2, type: 3}
     - target: {fileID: 4834223626572779385, guid: 9e231ba446800aa4ebe635b040ef13bd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4708,6 +4704,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Code.Managers.PartyUIManager
   unitStorage: {fileID: 11400000, guid: 001b4c37e1da0a04bbe3f0aedc15543d, type: 2}
   characterUIList: []
+  characterClickMode: 0
+  sendPartyHoverEvents: 0
 --- !u!114 &1166224964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4727,6 +4725,9 @@ MonoBehaviour:
   - {fileID: 1167592268}
   unitStorage: {fileID: 11400000, guid: 001b4c37e1da0a04bbe3f0aedc15543d, type: 2}
   maxUnitCount: 3
+  selectionMode: 0
+  lobbySceneName: LobbyScene
+  towerMapSceneName: TowerMapScene
 --- !u!114 &1166224965
 MonoBehaviour:
   m_ObjectHideFlags: 0

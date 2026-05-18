@@ -15,8 +15,14 @@ EditorBuildSettings:
     path: Assets/Scenes/KMJ_Scenes/KMJUI.unity
     guid: 950c6c6207f2eea41ac48a9bee8f22ca
   - enabled: 1
-    path: Assets/Scenes/KDH_Scenes/BattleScene/BattleScene.unity
-    guid: dcdf416dc49c15c48b330d82cdf00d9a
+    path: Assets/Scenes/KDH_Scenes/TowerMapScene.unity
+    guid: 8f1a19b7f4f34a2f9c9bf7e7d036c901
+  - enabled: 1
+    path: Assets/Scenes/KDH_Scenes/BattleScene.unity
+    guid: 7187174113aa71c499806f2aef1b7387
+  - enabled: 1
+    path: Assets/Scenes/KDH_Scenes/BattleUI.unity
+    guid: 7310a3118cb8bed4cad6526e12a2bacf
   - enabled: 1
     path: Assets/Scenes/AJS_Scenes/Stage/Stage1.unity
     guid: ebe950c9aac5656458f5913ca6936aba

@@ -29,26 +29,37 @@ namespace Input
 
         public Vector2 MousePosition { get; private set; }
 
+        private bool TryGetMainCamera(out Camera mainCam)
+        {
+            mainCam = Camera.main;
+            return mainCam != null;
+        }
+
+        private void EnsureControls()
+        {
+            if (_controls != null)
+                return;
+
+            _controls = new Controls();
+            _controls.Player.SetCallbacks(this);
+        }
+
         private void OnEnable()
         {
-            if (_controls == null)
-            {
-                _controls = new Controls();
-                _controls.Player.SetCallbacks(this);
-            }
+            EnsureControls();
             
             _controls.Player.Enable();
         }
 
         private void OnDisable()
         {
-            _controls.Player.Disable();
+            _controls?.Player.Disable();
         }
 
         public GameObject GetWorldPosition()
         {
-            Camera mainCam = Camera.main;
-            Debug.Assert(mainCam != null, "메인 카메라가 씬에 없습니다.");
+            if (!TryGetMainCamera(out Camera mainCam))
+                return null;
 
             GameObject gameObj = null;
             
@@ -62,8 +73,8 @@ namespace Input
         
         public IMapTile GetSelectedTile()
         {
-            Camera mainCam = Camera.main;
-            Debug.Assert(mainCam != null, "메인 카메라가 씬에 없습니다.");
+            if (!TryGetMainCamera(out Camera mainCam))
+                return null;
             
             IMapTile maptile = null; 
             
@@ -77,8 +88,8 @@ namespace Input
 
         public Unit GetUnit()
         {
-            Camera mainCam = Camera.main;
-            Debug.Assert(mainCam != null, "메인 카메라가 씬에 없습니다.");
+            if (!TryGetMainCamera(out Camera mainCam))
+                return null;
             
             Ray cameraRay = mainCam.ScreenPointToRay(MousePosition);
             
@@ -88,8 +99,8 @@ namespace Input
 
         public GameObject GetEnemy()
         {
-            Camera mainCam = Camera.main;
-            Debug.Assert(mainCam != null, "메인 카메라가 씬에 없습니다.");
+            if (!TryGetMainCamera(out Camera mainCam))
+                return null;
             
             Ray cameraRay = mainCam.ScreenPointToRay(MousePosition);
             
@@ -144,6 +155,8 @@ namespace Input
 
         public void SetActive(bool isActive)
         {
+            EnsureControls();
+
             if (isActive)
                 _controls.Player.Enable();
             else

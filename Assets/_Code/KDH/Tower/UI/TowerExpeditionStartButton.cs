@@ -10,12 +10,19 @@ namespace Code.Tower.UI
         [SerializeField] private Button expeditionButton;
         [SerializeField] private GameObject partySelectionRoot;
         [SerializeField] private string partyPanelId;
+        [SerializeField] private bool hidePartySelectionOnStart = true;
         [SerializeField] private TransitionEffect transitionEffect;
 
         private void Awake()
         {
             if (expeditionButton == null)
                 expeditionButton = GetComponent<Button>();
+        }
+
+        private void Start()
+        {
+            if (hidePartySelectionOnStart && partySelectionRoot != null)
+                partySelectionRoot.SetActive(false);
         }
 
         private void OnEnable()
@@ -37,22 +44,27 @@ namespace Code.Tower.UI
 
         private void ShowPartySelection()
         {
-            if (!string.IsNullOrWhiteSpace(partyPanelId))
-            {
-                PanelManager.Open(partyPanelId);
+            if (!string.IsNullOrWhiteSpace(partyPanelId) && PanelManager.TryOpen(partyPanelId))
                 return;
-            }
 
             if (partySelectionRoot != null)
             {
                 partySelectionRoot.SetActive(true);
+                partySelectionRoot.transform.SetAsLastSibling();
                 return;
             }
 
             PartyUI partyUI = FindFirstObjectByType<PartyUI>(FindObjectsInactive.Include);
 
             if (partyUI != null)
+            {
                 partyUI.gameObject.SetActive(true);
+                partyUI.transform.SetAsLastSibling();
+            }
+            else
+            {
+                Debug.LogWarning("원정 파티 선택 UI를 찾을 수 없습니다.", this);
+            }
         }
     }
 }

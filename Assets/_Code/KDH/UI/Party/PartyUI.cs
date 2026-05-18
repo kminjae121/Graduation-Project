@@ -29,8 +29,8 @@ namespace Code.UI
 
         [Header("Flow")]
         [SerializeField] private PartySelectionMode selectionMode = PartySelectionMode.InitialParty;
-        [SerializeField] private string lobbySceneName = "LobbyScene";
-        [SerializeField] private string towerMapSceneName = "LobbyScene";
+        [SerializeField] private string lobbySceneName = TowerRunSession.DefaultLobbySceneName;
+        [SerializeField] private string towerMapSceneName = TowerRunSession.DefaultTowerMapSceneName;
 
         private UnitSO[] _partyUnits;
 
