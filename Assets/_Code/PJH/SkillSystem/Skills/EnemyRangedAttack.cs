@@ -1,5 +1,6 @@
+using System;
+using System.Collections;
 using Code.Core.Events.Bus;
-using Code.UnitSystem;
 using Code.UnitSystem.Enemies;
 using UnityEngine;
 
@@ -8,16 +9,15 @@ namespace Code.SkillSystem
     public class EnemyRangedAttack : EnemyBaseSkill
     {
         private GameObject _target;
-        private AbstractEnemyUnit _ownerEnemy;
+        private AbstractEnemyUnit _owner;
 
         private void Awake()
         {
-            _ownerEnemy = GetComponentInParent<AbstractEnemyUnit>();
+            _owner = GetComponentInParent<AbstractEnemyUnit>();
         }
 
-        protected void Start()
+        private void Start()
         {
-            ResolveComponents();
             SkillEvent.AddListener(AttackAction);
         }
 
@@ -26,7 +26,6 @@ namespace Code.SkillSystem
             if (target == null)
                 return;
 
-            ResolveComponents();
             base.ForceUseSkill(target);
             PlayAttackAnimation();
         }
@@ -34,16 +33,23 @@ namespace Code.SkillSystem
         protected override void StartEvent()
         {
             base.StartEvent();
-            RegisterAnimationEvents();
+            triggerCompo.OnAttackTrigger += TakeDamage;
+            triggerCompo.OnAnimationEndTrigger += SkillEnd;
         }
 
         protected override void OnDestroy()
         {
             SkillEvent.RemoveListener(AttackAction);
-            UnregisterAnimationEvents();
+            
+            if (triggerCompo != null)
+            {
+                triggerCompo.OnAttackTrigger -= TakeDamage;
+                triggerCompo.OnAnimationEndTrigger -= SkillEnd;
+            }
+            
             base.OnDestroy();
         }
-
+        
         private void AttackAction(GameObject target)
         {
             _target = target;
@@ -51,64 +57,25 @@ namespace Code.SkillSystem
 
         private void TakeDamage()
         {
-            if (_target == null)
-                return;
-
             Bus<DamageEvent>.Raise(new DamageEvent(DamageData, _target, AddDamage, null, false, false, 0.1f));
         }
-
+        
         private void SkillEnd()
         {
-            UnregisterAnimationEvents();
+            triggerCompo.OnAttackTrigger -= TakeDamage;
+            triggerCompo.OnAnimationEndTrigger -= SkillEnd;
             _target = null;
-
-            SkillFinished(false);
             SkillEndEvent?.Invoke();
+            SkillFinished(false);
         }
 
         private void PlayAttackAnimation()
         {
-            if (_ownerEnemy?.UnitAnimator == null || SkillSO == null || string.IsNullOrWhiteSpace(SkillSO.skillAnimationKey))
-            {
-                SkillEnd();
-                return;
-            }
-
-            _ownerEnemy.UnitAnimator.RestartFromEntry();
-            _ownerEnemy.UnitAnimator.PlaySelectAnimation(SkillSO.skillAnimationKey);
-            SkillFeedbackEvent?.Invoke();
-        }
-
-        private void ResolveComponents()
-        {
-            if (_ownerEnemy == null)
-                _ownerEnemy = GetComponentInParent<AbstractEnemyUnit>();
-
-            if (triggerCompo == null)
-                triggerCompo = _ownerEnemy?.AnimationTrigger ?? _ownerEnemy?.GetUnitCompo<UnitAnimationTrigger>();
-        }
-
-        private void RegisterAnimationEvents()
-        {
-            ResolveComponents();
-
-            if (triggerCompo == null)
+            if (_owner?.UnitAnimator == null || SkillSO == null || string.IsNullOrWhiteSpace(SkillSO.skillAnimationKey))
                 return;
 
-            triggerCompo.OnAttackTrigger -= TakeDamage;
-            triggerCompo.OnAnimationEndTrigger -= SkillEnd;
-
-            triggerCompo.OnAttackTrigger += TakeDamage;
-            triggerCompo.OnAnimationEndTrigger += SkillEnd;
-        }
-
-        private void UnregisterAnimationEvents()
-        {
-            if (triggerCompo == null)
-                return;
-
-            triggerCompo.OnAttackTrigger -= TakeDamage;
-            triggerCompo.OnAnimationEndTrigger -= SkillEnd;
+            _owner.UnitAnimator.RestartFromEntry();
+            _owner.UnitAnimator.PlaySelectAnimation(SkillSO.skillAnimationKey);
         }
     }
 }

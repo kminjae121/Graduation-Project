@@ -32,7 +32,16 @@ namespace Code.UnitSystem
             }   
         }
 
-        public void PlayTargetEffect(string effectName, Vector3 position = default(Vector3))
+        public void PlayTargetEffect(string effectName)
+        {
+            if (string.IsNullOrWhiteSpace(effectName)) 
+                return;
+            
+            if (_effectDict.TryGetValue(effectName, out var effect)) 
+                effect.PlayEffect();
+        }
+        
+        public void PlayTargetEffect(string effectName, Vector3 position)
         {
             if (string.IsNullOrWhiteSpace(effectName)) 
                     return;
@@ -40,10 +49,7 @@ namespace Code.UnitSystem
             if (_effectDict.TryGetValue(effectName, out var effect)) 
                 effect.PlayEffect();
 
-            if (position != default(Vector3))
-            {
-                effect.transform.position = position;
-            }
+            effect.transform.position = position;
         }
 
         public void StopTargetEffect(string effectName)

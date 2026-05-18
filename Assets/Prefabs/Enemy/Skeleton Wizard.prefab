@@ -5653,7 +5653,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Code.SkillSystem.EnemyRangedAttack
   <SkillSO>k__BackingField: {fileID: 11400000, guid: 4fbb9b81e26a4f8199495c7a3b531611, type: 2}
   attackData: {fileID: 11400000, guid: ecfa0452123f0c44487796bbeffe5d30, type: 2}
-  triggerCompo: {fileID: 0}
+  triggerCompo: {fileID: 1940582658058224665}
   statCompo: {fileID: 5194763914588384400}
   rangeCompo: {fileID: 3804150241390799231}
   SkillEvent:
@@ -5672,7 +5672,6 @@ MonoBehaviour:
   safeRange: 2
   aiPriority: 1
   needSight: 1
-  finishDelay: 0.35
 --- !u!1 &925196299955123228
 GameObject:
   m_ObjectHideFlags: 0
@@ -8818,7 +8817,7 @@ MonoBehaviour:
   <unitSO>k__BackingField: {fileID: 11400000, guid: 32ce4e1858963fe44b740451ca0d6f12, type: 2}
   <TurnGauge>k__BackingField: 0
   <PoolingType>k__BackingField: {fileID: 11400000, guid: 46482cf0fc8e21d4bba4fe75ba908dc6, type: 2}
-  aiProfile: {fileID: 0}
+  aiProfile: {fileID: 11400000, guid: 3021a5dad03303f458f2d8eb9e29c1c8, type: 2}
 --- !u!114 &5795725126314016874
 MonoBehaviour:
   m_ObjectHideFlags: 0
