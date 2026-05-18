@@ -59,13 +59,14 @@ namespace Code.Tower.UI
                 return;
 
             if (floorText != null)
-                floorText.text = $"탑 {map.FloorKey.DisplayName}층";
+                floorText.text = $"{map.FloorKey.DisplayName}층";
 
             if (roomText != null)
             {
+                string roomName = TowerRoomTypePresentation.GetDisplayName(currentRoom.RoomType);
                 roomText.text = currentRoom.IsCleared
-                    ? $"{TowerRoomTypePresentation.GetDisplayName(currentRoom.RoomType)} 완료 - 연결된 방을 선택하세요."
-                    : $"{TowerRoomTypePresentation.GetDisplayName(currentRoom.RoomType)} 진행 중";
+                    ? $"{roomName} 클리어 - 연결된 방을 선택하세요"
+                    : $"{roomName} 진행 중";
             }
 
             List<TowerRoomNode> visibleRooms = map.Rooms
@@ -110,7 +111,7 @@ namespace Code.Tower.UI
             image.color = room.Id == currentRoom.Id ? currentRoomColor : TowerRoomTypePresentation.GetColor(room.RoomType);
 
             Button button = rect.gameObject.AddComponent<Button>();
-            button.interactable = map.CanMoveTo(room.Id) && currentRoom.IsCleared;
+            button.interactable = room.Id != currentRoom.Id && map.CanMoveTo(room.Id) && currentRoom.IsCleared;
 
             int roomId = room.Id;
             button.onClick.AddListener(() => OnRoomSelected?.Invoke(roomId));

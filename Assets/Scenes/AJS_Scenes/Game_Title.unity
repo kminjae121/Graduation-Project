@@ -1693,7 +1693,7 @@ MonoBehaviour:
   sideFadeOnlyOnStartButton: 1
   enableHoverScaleOnButtons: 1
   hoverScaleOnButtons: 1.08
-  startSceneName: Lobby
+  startSceneName: StartScene
   startTransitionPanel: {fileID: 562762812}
   useStartTransitionPanel: 1
   startTransitionDuration: 0.5

@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using _Code.UnitSystem;
 using Code.Core.Events.Bus;
 using Code.Core.Managers;
-using Code.UnitSystem;
+using Code.Items;
 using Code.SkillSystem;
+using Code.UnitSystem;
 using GondrLib.ObjectPool.Runtime;
 using TMPro;
 using UnityEngine;
@@ -11,8 +12,12 @@ using UnityEngine.UI;
 
 namespace Code.UI
 {
-    public class CharacterStatPanel : Panel
+    public class CharacterStatPanel : MonoBehaviour
     {
+        [Header("Legacy Panel Binding")]
+        [SerializeField] private string id = "StatPanel";
+        [SerializeField] private RectTransform container;
+
         [Header("Pool Settings")]
         [SerializeField] private PoolingItemSO artifactButtonPoolingSO;
         [SerializeField] private PoolingItemSO skillButtonPoolingSO;
@@ -31,7 +36,7 @@ namespace Code.UI
         [Header("Stat & Info")]
         [SerializeField] private TextMeshProUGUI nameText;
         [SerializeField] private TextMeshProUGUI classText;
-        
+
         [SerializeField] private TextMeshProUGUI maxHealthText;
         [SerializeField] private TextMeshProUGUI atkText;
         [SerializeField] private TextMeshProUGUI defText;
@@ -42,195 +47,246 @@ namespace Code.UI
         [SerializeField] private TextMeshProUGUI maxSkillCostText;
         [SerializeField] private TextMeshProUGUI recoverySkillCostText;
 
+        private CharacterMainPanel _owner;
         private UnitState _currentUnit;
+        private bool _triggersInitialized;
 
-        public override void Awake()
+        public bool IsVisible => GetContainer().gameObject.activeSelf;
+
+        private void Awake()
         {
-            base.Awake();
-            Bus<CharacterInfoEvent>.Subscribe(HandleCharacterInfo);
+            SetupSlotTriggers();
+        }
+
+        private void OnDestroy()
+        {
+            UnsubscribeHpEvent();
+        }
+
+        public void Initialize(CharacterMainPanel owner)
+        {
+            _owner = owner;
+            SetupSlotTriggers();
+            Hide();
+        }
+
+        public bool MatchesPanelId(string panelId)
+            => string.Equals(id, panelId, System.StringComparison.OrdinalIgnoreCase);
+
+        public void SetUnit(UnitState unit)
+        {
+            UnsubscribeHpEvent();
+            _currentUnit = unit;
+
+            if (_currentUnit?.CurrentHp != null)
+                _currentUnit.CurrentHp.OnValueChanged += RefreshHpBar;
+
+            if (_currentUnit?.Data != null && SkillSendManager.Instance != null)
+                SkillSendManager.Instance.SyncEquippedSkills(_currentUnit.Data);
+
+            if (IsVisible)
+                RefreshView();
+        }
+
+        public void Show()
+        {
+            GetContainer().gameObject.SetActive(true);
+            RefreshView();
+        }
+
+        public void Hide()
+        {
+            GetContainer().gameObject.SetActive(false);
+            Bus<SkillUIHoverEvent>.Raise(new SkillUIHoverEvent(null, null));
+            Bus<ArtifactPopupEvent>.Raise(new ArtifactPopupEvent(null, false, null));
+        }
+
+        public void RefreshView()
+        {
+            if (_currentUnit?.Data == null)
+                return;
+
+            RefreshInfoTexts();
+            RefreshHpBar(0f, _currentUnit.CurrentHp != null ? _currentUnit.CurrentHp.Value : _currentUnit.Data.Maxhealth);
+            RefreshSkillSlots();
+            RefreshArtifactSlots();
+        }
+
+        private void SetupSlotTriggers()
+        {
+            if (_triggersInitialized)
+                return;
+
+            _triggersInitialized = true;
 
             Vector2 defaultSkillOffset = Vector2.zero;
             if (skillButtonPoolingSO != null && skillButtonPoolingSO.prefab != null)
             {
-                var btn = skillButtonPoolingSO.prefab.GetComponent<CharacterSkillButton>();
-                if (btn != null) defaultSkillOffset = btn.EquippedPopupOffset;
+                CharacterSkillButton btn = skillButtonPoolingSO.prefab.GetComponent<CharacterSkillButton>();
+                if (btn != null)
+                    defaultSkillOffset = btn.EquippedPopupOffset;
             }
 
             Vector2 defaultArtifactOffset = Vector2.zero;
             if (artifactButtonPoolingSO != null && artifactButtonPoolingSO.prefab != null)
             {
-                var btn = artifactButtonPoolingSO.prefab.GetComponent<ArtifactButton>();
-                if (btn != null) defaultArtifactOffset = btn.EquippedPopupOffset;
+                ArtifactButton btn = artifactButtonPoolingSO.prefab.GetComponent<ArtifactButton>();
+                if (btn != null)
+                    defaultArtifactOffset = btn.EquippedPopupOffset;
             }
 
-            for (int i = 0; i < skillIcons.Count; i++)
+            if (skillIcons != null)
             {
-                int index = i;
-                var trigger = skillIcons[i].GetComponent<SlotHoverClickTrigger>();
-                if (trigger == null)
+                for (int i = 0; i < skillIcons.Count; i++)
                 {
-                    trigger = skillIcons[i].gameObject.AddComponent<SlotHoverClickTrigger>();
-                }
+                    if (skillIcons[i] == null)
+                        continue;
 
-                trigger.useHoverVisuals = false;
-                
-                trigger.OnClick = (pivot, triggerOffset) => 
-                {
-                    Bus<SkillUIHoverEvent>.Raise(new SkillUIHoverEvent(null, null));
-                    OpenTargetPanel("EquipPanel");
-                };
-                trigger.OnHoverEnter = (pivot, triggerOffset) =>
-                {
-                    if (_currentUnit != null && SkillSendManager.Instance != null)
+                    int index = i;
+                    SlotHoverClickTrigger trigger = skillIcons[i].GetComponent<SlotHoverClickTrigger>();
+                    if (trigger == null)
+                        trigger = skillIcons[i].gameObject.AddComponent<SlotHoverClickTrigger>();
+
+                    trigger.useHoverVisuals = false;
+                    trigger.OnClick = (_, _) => RequestEquipmentTab();
+                    trigger.OnHoverEnter = (pivot, triggerOffset) =>
                     {
-                        var equippedSkills = SkillSendManager.Instance.GetEquipSkills(_currentUnit.Data.UnitType);
-                        if (index < equippedSkills.Length)
-                        {
-                            var skill = equippedSkills[index];
-                            Vector2 finalOffset = triggerOffset != Vector2.zero ? triggerOffset : defaultSkillOffset;
-                            Bus<SkillUIHoverEvent>.Raise(new SkillUIHoverEvent(skill, pivot, finalOffset));
-                        }
-                    }
-                };
-                trigger.OnHoverExit = () => Bus<SkillUIHoverEvent>.Raise(new SkillUIHoverEvent(null, null));
+                        SkillSO skill = GetEquippedSkill(index);
+                        if (skill == null)
+                            return;
+
+                        Vector2 finalOffset = triggerOffset != Vector2.zero ? triggerOffset : defaultSkillOffset;
+                        Bus<SkillUIHoverEvent>.Raise(new SkillUIHoverEvent(skill, pivot, finalOffset));
+                    };
+                    trigger.OnHoverExit = () => Bus<SkillUIHoverEvent>.Raise(new SkillUIHoverEvent(null, null));
+                }
             }
 
-            for (int i = 0; i < artifactIcons.Count; i++)
+            if (artifactIcons != null)
             {
-                int index = i;
-                var trigger = artifactIcons[i].GetComponent<SlotHoverClickTrigger>();
-                if (trigger == null)
+                for (int i = 0; i < artifactIcons.Count; i++)
                 {
-                    trigger = artifactIcons[i].gameObject.AddComponent<SlotHoverClickTrigger>();
-                }
+                    if (artifactIcons[i] == null)
+                        continue;
 
-                trigger.useHoverVisuals = false;
-                
-                trigger.OnClick = (pivot, triggerOffset) => 
-                {
-                    Bus<ArtifactPopupEvent>.Raise(new ArtifactPopupEvent(null, false, null));
-                    OpenTargetPanel("EquipPanel");
-                };
-                trigger.OnHoverEnter = (pivot, triggerOffset) =>
-                {
-                    if (_currentUnit != null && _currentUnit.Data.EquippedArtifacts != null)
+                    int index = i;
+                    SlotHoverClickTrigger trigger = artifactIcons[i].GetComponent<SlotHoverClickTrigger>();
+                    if (trigger == null)
+                        trigger = artifactIcons[i].gameObject.AddComponent<SlotHoverClickTrigger>();
+
+                    trigger.useHoverVisuals = false;
+                    trigger.OnClick = (_, _) => RequestEquipmentTab();
+                    trigger.OnHoverEnter = (pivot, triggerOffset) =>
                     {
-                        var artifacts = _currentUnit.Data.EquippedArtifacts.artifacts;
-                        if (index < artifacts.Count)
-                        {
-                            var artifact = artifacts[index];
-                            Vector2 finalOffset = triggerOffset != Vector2.zero ? triggerOffset : defaultArtifactOffset;
-                            Bus<ArtifactPopupEvent>.Raise(new ArtifactPopupEvent(artifact, true, pivot, finalOffset, true));
-                        }
-                    }
-                };
-                trigger.OnHoverExit = () => Bus<ArtifactPopupEvent>.Raise(new ArtifactPopupEvent(null, false, null));
+                        if (_currentUnit?.Data?.EquippedArtifacts?.artifacts == null)
+                            return;
+
+                        List<EquipmentItemSO> artifacts = _currentUnit.Data.EquippedArtifacts.artifacts;
+                        if (index >= artifacts.Count || artifacts[index] == null)
+                            return;
+
+                        Vector2 finalOffset = triggerOffset != Vector2.zero ? triggerOffset : defaultArtifactOffset;
+                        Bus<ArtifactPopupEvent>.Raise(new ArtifactPopupEvent(artifacts[index], true, pivot, finalOffset, true));
+                    };
+                    trigger.OnHoverExit = () => Bus<ArtifactPopupEvent>.Raise(new ArtifactPopupEvent(null, false, null));
+                }
             }
         }
 
-        protected override void OnDestroy()
+        private void RequestEquipmentTab()
         {
-            base.OnDestroy();
-            Bus<CharacterInfoEvent>.Unsubscribe(HandleCharacterInfo);
-            UnsubscribeHpEvent();
-        }
-
-        public override void Close()
-        {
-            base.Close();
             Bus<SkillUIHoverEvent>.Raise(new SkillUIHoverEvent(null, null));
             Bus<ArtifactPopupEvent>.Raise(new ArtifactPopupEvent(null, false, null));
-        }
 
-        private void OpenTargetPanel(string targetPanelId)
-        {
-            PanelManager.Close("StatPanel");
-            PanelManager.Open(targetPanelId);
-        }
-
-        private void HandleCharacterInfo(CharacterInfoEvent evt)
-        {
-            UnsubscribeHpEvent();
-            _currentUnit = evt.Unit;
-            if (_currentUnit != null)
+            if (_owner != null)
             {
-                if (SkillSendManager.Instance != null)
-                    SkillSendManager.Instance.SyncEquippedSkills(_currentUnit.Data);
-
-                _currentUnit.CurrentHp.OnValueChanged += RefreshHpBar;
-                if (IsOpen) RefreshAllUI();
+                _owner.ShowTab(CharacterUnitPanelTab.Equipment);
+                return;
             }
-        }
 
-        public override void Open()
-        {
-            base.Open();
-            if (_currentUnit != null) RefreshAllUI();
-        }
-
-        private void UnsubscribeHpEvent()
-        {
-            if (_currentUnit != null) _currentUnit.CurrentHp.OnValueChanged -= RefreshHpBar;
-        }
-
-        private void RefreshAllUI()
-        {
-            RefreshInfoTexts();
-            RefreshHpBar(0f, _currentUnit.CurrentHp.Value);
-            RefreshSkillSlots();
-            RefreshArtifactSlots();
+            CharacterMainPanel.TryOpenTab("EquipPanel");
         }
 
         private void RefreshInfoTexts()
         {
-            var data = _currentUnit.Data;
-            
-            if (nameText != null) nameText.text = data.UnitName;
-            if (classText != null) classText.text = data.UnitClass;
-            
-            if (maxHealthText != null) maxHealthText.text = (data.Maxhealth + InGameStatCompo.Instance.GetStatToInt(StatInfo.MaxHealth, data.UnitType)).ToString();
-            if (atkText != null) atkText.text = (data.AttackDamage + InGameStatCompo.Instance.GetStatToInt(StatInfo.AtkDamage, data.UnitType)).ToString();
-            if (defText != null) defText.text = (data.DefensivePower + InGameStatCompo.Instance.GetStatToInt(StatInfo.DefensivePower, data.UnitType)).ToString();
-            if (moveSpeedText != null) moveSpeedText.text = (data.MoveRange + InGameStatCompo.Instance.GetStatToInt(StatInfo.MoveRange, data.UnitType)).ToString();
-            if (turnSpeedText != null) turnSpeedText.text = data.Speed.ToString();
-            
-            if (criticalProbabilityText != null) criticalProbabilityText.text = $"{(data.CriticalProbability + InGameStatCompo.Instance.GetStatToInt(StatInfo.CriticalProbability, data.UnitType)):F1}%";
-            if (criticalDamageIncreaseText != null) criticalDamageIncreaseText.text = (data.CriticalDamageIncrease + InGameStatCompo.Instance.GetStatToInt(StatInfo.CriticalIncreaseValue, data.UnitType)).ToString("F1");
-            
-            if (maxSkillCostText != null) maxSkillCostText.text = data.MaxManaCost.ToString();
-            if (recoverySkillCostText != null) recoverySkillCostText.text = data.RecoveryManaCost.ToString();
+            UnitSO data = _currentUnit.Data;
+
+            if (nameText != null)
+                nameText.text = data.UnitName;
+
+            if (classText != null)
+                classText.text = data.UnitClass;
+
+            if (maxHealthText != null)
+                maxHealthText.text = (data.Maxhealth + GetStatBonus(StatInfo.MaxHealth, data.UnitType)).ToString();
+
+            if (atkText != null)
+                atkText.text = (data.AttackDamage + GetStatBonus(StatInfo.AtkDamage, data.UnitType)).ToString();
+
+            if (defText != null)
+                defText.text = (data.DefensivePower + GetStatBonus(StatInfo.DefensivePower, data.UnitType)).ToString();
+
+            if (moveSpeedText != null)
+                moveSpeedText.text = (data.MoveRange + GetStatBonus(StatInfo.MoveRange, data.UnitType)).ToString();
+
+            if (turnSpeedText != null)
+                turnSpeedText.text = data.Speed.ToString();
+
+            if (criticalProbabilityText != null)
+                criticalProbabilityText.text = $"{(data.CriticalProbability + GetStatBonus(StatInfo.CriticalProbability, data.UnitType)):F1}%";
+
+            if (criticalDamageIncreaseText != null)
+                criticalDamageIncreaseText.text = (data.CriticalDamageIncrease + GetStatBonus(StatInfo.CriticalIncreaseValue, data.UnitType)).ToString("F1");
+
+            if (maxSkillCostText != null)
+                maxSkillCostText.text = data.MaxManaCost.ToString();
+
+            if (recoverySkillCostText != null)
+                recoverySkillCostText.text = data.RecoveryManaCost.ToString();
         }
 
         private void RefreshHpBar(float prevValue, float nextValue)
         {
+            if (_currentUnit?.Data == null)
+                return;
+
             float maxHp = _currentUnit.Data.Maxhealth;
-            if (hpText != null) hpText.text = $"{nextValue:F0} / {maxHp:F0}";
-            if (hpBarFill != null) hpBarFill.fillAmount = maxHp > 0 ? nextValue / maxHp : 0f;
+
+            if (hpText != null)
+                hpText.text = $"{nextValue:F0} / {maxHp:F0}";
+
+            if (hpBarFill != null)
+                hpBarFill.fillAmount = maxHp > 0 ? nextValue / maxHp : 0f;
         }
 
         private void RefreshSkillSlots()
         {
-            var data = _currentUnit.Data;
-            SkillSO[] equippedSkills = System.Array.Empty<SkillSO>();
+            if (skillIcons == null)
+                return;
 
-            if (SkillSendManager.Instance != null && data != null)
-                equippedSkills = SkillSendManager.Instance.GetEquipSkills(data.UnitType);
-            
+            SkillSO[] equippedSkills = GetEquippedSkills();
+
             for (int i = 0; i < skillIcons.Count; i++)
             {
-                var trigger = skillIcons[i].GetComponent<SlotHoverClickTrigger>();
-                bool hasSkill = i < equippedSkills.Length;
+                if (skillIcons[i] == null)
+                    continue;
 
-                if (hasSkill) skillIcons[i].sprite = equippedSkills[i].skillUIImage;
-                else skillIcons[i].sprite = emptySkillSlotSprite;
-                
-                if (trigger != null) trigger.SetInteractable(hasSkill);
+                SlotHoverClickTrigger trigger = skillIcons[i].GetComponent<SlotHoverClickTrigger>();
+                SkillSO skill = i < equippedSkills.Length ? equippedSkills[i] : null;
+
+                skillIcons[i].sprite = skill != null ? skill.skillUIImage : emptySkillSlotSprite;
+
+                if (trigger != null)
+                    trigger.SetInteractable(true);
             }
         }
 
         private void RefreshArtifactSlots()
         {
-            var data = _currentUnit.Data;
+            if (artifactIcons == null || _currentUnit?.Data == null)
+                return;
+
+            UnitSO data = _currentUnit.Data;
             ArtifactButton prefabBtn = null;
 
             if (artifactButtonPoolingSO != null && artifactButtonPoolingSO.prefab != null)
@@ -238,33 +294,76 @@ namespace Code.UI
 
             for (int i = 0; i < artifactIcons.Count; i++)
             {
-                var trigger = artifactIcons[i].GetComponent<SlotHoverClickTrigger>();
-                bool hasArtifact = data.EquippedArtifacts != null && i < data.EquippedArtifacts.artifacts.Count;
+                if (artifactIcons[i] == null)
+                    continue;
+
+                SlotHoverClickTrigger trigger = artifactIcons[i].GetComponent<SlotHoverClickTrigger>();
+                bool hasArtifact = data.EquippedArtifacts != null &&
+                                   data.EquippedArtifacts.artifacts != null &&
+                                   i < data.EquippedArtifacts.artifacts.Count &&
+                                   data.EquippedArtifacts.artifacts[i] != null;
 
                 if (hasArtifact)
                 {
                     artifactIcons[i].sprite = data.EquippedArtifacts.artifacts[i].itemIcon;
-                    
+
                     if (artifactRarityIcons != null && i < artifactRarityIcons.Count && artifactRarityIcons[i] != null)
                     {
                         if (prefabBtn != null)
                             artifactRarityIcons[i].sprite = prefabBtn.GetRaritySprite(data.EquippedArtifacts.artifacts[i].rarity);
+
                         artifactRarityIcons[i].gameObject.SetActive(true);
                     }
                 }
                 else
                 {
                     artifactIcons[i].sprite = emptyArtifactSlotSprite;
-                    
+
                     if (artifactRarityIcons != null && i < artifactRarityIcons.Count && artifactRarityIcons[i] != null)
                     {
                         artifactRarityIcons[i].sprite = null;
                         artifactRarityIcons[i].gameObject.SetActive(false);
                     }
                 }
-                
-                if (trigger != null) trigger.SetInteractable(hasArtifact);
+
+                if (trigger != null)
+                    trigger.SetInteractable(true);
             }
+        }
+
+        private SkillSO GetEquippedSkill(int index)
+        {
+            SkillSO[] equippedSkills = GetEquippedSkills();
+            return index >= 0 && index < equippedSkills.Length ? equippedSkills[index] : null;
+        }
+
+        private SkillSO[] GetEquippedSkills()
+        {
+            if (_currentUnit?.Data == null || SkillSendManager.Instance == null)
+                return System.Array.Empty<SkillSO>();
+
+            return SkillSendManager.Instance.GetEquipSkills(_currentUnit.Data.UnitType) ?? System.Array.Empty<SkillSO>();
+        }
+
+        private RectTransform GetContainer()
+        {
+            if (container == null)
+                container = transform as RectTransform;
+
+            return container;
+        }
+
+        private void UnsubscribeHpEvent()
+        {
+            if (_currentUnit?.CurrentHp != null)
+                _currentUnit.CurrentHp.OnValueChanged -= RefreshHpBar;
+        }
+
+        private static int GetStatBonus(StatInfo statInfo, UnitType unitType)
+        {
+            return InGameStatCompo.Instance != null
+                ? InGameStatCompo.Instance.GetStatToInt(statInfo, unitType)
+                : 0;
         }
     }
 }

@@ -1,104 +1,134 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PanelManager : MonoBehaviour
+namespace Code.UI
 {
-    private Dictionary<string, Panel> panels = new Dictionary<string, Panel>();
-    private static PanelManager singleton = null;
-    
-    public static PanelManager Singleton
+    [DisallowMultipleComponent]
+    public class PanelManager : MonoBehaviour
     {
-        get
+        private readonly Dictionary<string, Panel> _panels = new();
+        private static PanelManager _singleton;
+
+        public static PanelManager Singleton
         {
-            if (singleton == null)
+            get
             {
-                singleton = FindFirstObjectByType<PanelManager>();
-                if (singleton == null)
+                if (_singleton != null)
+                    return _singleton;
+
+                _singleton = FindFirstObjectByType<PanelManager>(FindObjectsInactive.Include);
+
+                if (_singleton == null)
                 {
-                    singleton = new GameObject("PanelManager").AddComponent<PanelManager>();
+                    Debug.LogWarning("PanelManager가 씬에 없어 런타임 객체를 생성합니다. 로비 UI 씬에는 PanelManager를 명시적으로 배치하는 것을 권장합니다.");
+                    _singleton = new GameObject("PanelManager").AddComponent<PanelManager>();
                 }
+
+                return _singleton;
             }
-            return singleton; 
         }
-    }
 
-    public static void Register(Panel panel)
-    {
-        if (panel == null || string.IsNullOrEmpty(panel.ID)) return;
-
-        if (!Singleton.panels.ContainsKey(panel.ID))
+        private void Awake()
         {
-            Singleton.panels.Add(panel.ID, panel);
-        }
-        else
-        {
-            Singleton.panels[panel.ID] = panel;
-        }
-    }
-
-    public static void Unregister(Panel panel)
-    {
-        if (panel == null || string.IsNullOrEmpty(panel.ID)) return;
-
-        if (singleton != null && singleton.panels.ContainsKey(panel.ID))
-        {
-            singleton.panels.Remove(panel.ID);
-        }
-    }
-    
-    private void OnDestroy()
-    {
-        if (singleton == this)
-        {
-            singleton = null;
-        }
-    }
-    
-    public static Panel GetSingleton(string id)
-    {
-        if (Singleton.panels.ContainsKey(id))
-        {
-            return Singleton.panels[id];
-        }
-        
-        Debug.LogWarning($"패널 매니저에 '{id}' ID를 가진 패널이 등록되어 있지 않습니다.");
-        return null;
-    }
-    
-    public static void Open(string id)
-    {
-        var panel = GetSingleton(id);
-        if (panel != null)
-        {
-            panel.Open();
-        }
-    }
-    
-    public static void Close(string id)
-    {
-        var panel = GetSingleton(id);
-        if (panel != null)
-        {
-            panel.Close();
-        }
-    }
-    
-    public static bool IsOpen(string id)
-    {
-        if (Singleton.panels.ContainsKey(id))
-        {
-            return Singleton.panels[id].IsOpen;
-        }
-        return false;
-    }
-    
-    public static void CloseAll()
-    {
-        foreach (var panel in Singleton.panels)
-        {
-            if (panel.Value != null)
+            if (_singleton != null && _singleton != this)
             {
-                panel.Value.Close();
+                Debug.LogWarning("씬에 PanelManager가 둘 이상 있습니다. 나중에 생성된 PanelManager를 제거합니다.", this);
+                Destroy(gameObject);
+                return;
+            }
+
+            _singleton = this;
+        }
+
+        private void OnDestroy()
+        {
+            if (_singleton != this)
+                return;
+
+            _panels.Clear();
+            _singleton = null;
+        }
+
+        public static void Register(Panel panel)
+        {
+            if (panel == null || string.IsNullOrWhiteSpace(panel.ID))
+                return;
+
+            if (Singleton._panels.TryGetValue(panel.ID, out Panel registeredPanel) && registeredPanel != panel)
+                Debug.LogWarning($"중복 패널 ID가 등록되었습니다: {panel.ID}", panel);
+
+            Singleton._panels[panel.ID] = panel;
+        }
+
+        public static void Unregister(Panel panel)
+        {
+            if (_singleton == null || panel == null || string.IsNullOrWhiteSpace(panel.ID))
+                return;
+
+            if (_singleton._panels.TryGetValue(panel.ID, out Panel registeredPanel) && registeredPanel == panel)
+                _singleton._panels.Remove(panel.ID);
+        }
+
+        public static bool TryGet(string id, out Panel panel)
+        {
+            panel = null;
+
+            if (string.IsNullOrWhiteSpace(id))
+                return false;
+
+            return Singleton._panels.TryGetValue(id, out panel) && panel != null;
+        }
+
+        public static Panel GetSingleton(string id)
+        {
+            if (TryGet(id, out Panel panel))
+                return panel;
+
+            Debug.LogWarning($"패널 매니저에 '{id}' ID를 가진 패널이 등록되어 있지 않습니다.");
+            return null;
+        }
+
+        public static bool TryOpen(string id)
+        {
+            if (!TryGet(id, out Panel panel))
+                return false;
+
+            panel.Open();
+            return true;
+        }
+
+        public static void Open(string id)
+        {
+            TryOpen(id);
+        }
+
+        public static bool TryClose(string id)
+        {
+            if (!TryGet(id, out Panel panel))
+                return false;
+
+            panel.Close();
+            return true;
+        }
+
+        public static void Close(string id)
+        {
+            TryClose(id);
+        }
+
+        public static bool IsOpen(string id)
+        {
+            return TryGet(id, out Panel panel) && panel.IsOpen;
+        }
+
+        public static void CloseAll()
+        {
+            List<Panel> panels = new(Singleton._panels.Values);
+
+            foreach (Panel panel in panels)
+            {
+                if (panel != null)
+                    panel.Close();
             }
         }
     }
