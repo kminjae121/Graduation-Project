@@ -5,7 +5,7 @@ using Code.UnitSystem.Combat;
 using GondrLib.Dependencies;
 using UnityEngine;
 
-namespace Code.UnitSystem.UnitAttributes
+namespace Code.UnitSystem.TraitSystem
 {
     public class InvincibilityCompo : MonoBehaviour, IUnitComponent
     {

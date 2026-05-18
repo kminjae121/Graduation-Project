@@ -2,6 +2,7 @@
 using Code.SkillSystem;
 using EnemySystem;
 using Input;
+using Code.UnitSystem.TraitSystem;
 using UnityEngine;
 
 namespace Code.UnitSystem.Combat
@@ -9,6 +10,7 @@ namespace Code.UnitSystem.Combat
     public class CharacterUnitTargeting : MonoBehaviour, IUnitComponent
     {
         [SerializeField] private InputReader inputSO;
+        [SerializeField] private UnitTrait traitCompo;
         [SerializeField] private UnitMoveCompo moveCompo;
         [SerializeField] private SkillManageComponent skillManager;
 
@@ -37,8 +39,45 @@ namespace Code.UnitSystem.Combat
                 SetSkillTargeting();
                 return;
             }
+            else if (traitCompo.IsTargeting)
+            {
+                SetTargetingTraitCompo();
+                return;
+            }
+            
+            traitCompo.SetEnemy(null);
             
             EnemyInfoTargeting();
+        }
+
+        private void SetTargetingTraitCompo()
+        {
+            GameObject enemy = inputSO.GetEnemy();
+            
+            if (enemy == null)
+            {
+                if (_targetEnemy != null)
+                {
+                    _targetOutLineCompo = _targetEnemy.GetComponent<UnitOutLineCompo>();
+                    
+                    if(_targetOutLineCompo != null)
+                        _targetOutLineCompo.ResetOutLine();
+
+                    traitCompo.SetEnemy(null);
+                    _targetEnemy = null;
+                }
+            }
+            else
+            {
+                _targetEnemy = enemy;
+                
+                _targetOutLineCompo = _targetEnemy.GetComponent<UnitOutLineCompo>();
+                
+                if(_targetOutLineCompo != null)
+                    _targetOutLineCompo.SetOutLine();
+                
+                traitCompo.SetEnemy(_targetEnemy);
+            }
         }
 
         private void EnemyInfoTargeting()

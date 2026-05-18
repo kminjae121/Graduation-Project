@@ -3,7 +3,7 @@ using Code.UnitSystem.Combat;
 using Code.UnitSystem.Enemies;
 using UnityEngine;
 
-namespace Code.UnitSystem.UnitAttributes
+namespace Code.UnitSystem.TraitSystem
 {
     public class MagicianPerform : MonoBehaviour, IUnitPerform
     {

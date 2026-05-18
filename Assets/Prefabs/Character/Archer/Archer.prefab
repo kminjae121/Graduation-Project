@@ -1214,6 +1214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitSystem.UnitTargeting
   inputSO: {fileID: 11400000, guid: a0d5dad133beb4c44a762d5d8e9a9457, type: 2}
+  traitCompo: {fileID: 0}
   moveCompo: {fileID: 8324561617133896265}
   skillManager: {fileID: 2634193257307267230}
   unit: {fileID: 3173451793327125779}
@@ -14313,6 +14314,7 @@ MonoBehaviour:
   animationCompo: {fileID: 6887629369385767178}
   rotatorCompo: {fileID: 1970335402761181577}
   triggerCompo: {fileID: 331084079312153192}
+  rogueCompo: {fileID: 0}
   <VisualPrefabs>k__BackingField: {fileID: 2383773348105182744}
 --- !u!114 &8857494282733115528
 MonoBehaviour:

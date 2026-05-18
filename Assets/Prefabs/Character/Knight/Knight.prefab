@@ -5868,6 +5868,7 @@ MonoBehaviour:
   animationCompo: {fileID: 7674309606660432599}
   rotatorCompo: {fileID: 6429403500470982661}
   triggerCompo: {fileID: 2182226686137127293}
+  rogueCompo: {fileID: 0}
   <VisualPrefabs>k__BackingField: {fileID: 4978730349760973491}
 --- !u!114 &1138369471046449206
 MonoBehaviour:
@@ -6509,7 +6510,7 @@ Transform:
   m_GameObject: {fileID: 1077728548742184760}
   serializedVersion: 2
   m_LocalRotation: {x: 0.15862337, y: -0, z: -0, w: 0.9873392}
-  m_LocalPosition: {x: 0, y: 3.5395355, z: -4.2735476}
+  m_LocalPosition: {x: 0, y: 3.8919196, z: -5.3419347}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22214,6 +22215,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21876926968d4e09a8873423ba4e849e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.UnitAttributes.UnitTrait
+  <IsNeedTarget>k__BackingField: 0
+  _inputReader: {fileID: 11400000, guid: a0d5dad133beb4c44a762d5d8e9a9457, type: 2}
 --- !u!114 &2633441288690359795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27315,6 +27318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitSystem.UnitTargeting
   inputSO: {fileID: 11400000, guid: a0d5dad133beb4c44a762d5d8e9a9457, type: 2}
+  traitCompo: {fileID: 614002486667121359}
   moveCompo: {fileID: 1305109529308842748}
   skillManager: {fileID: 6242146832756852556}
   unit: {fileID: 2682628836158502387}
@@ -27588,7 +27592,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3199499263836454909}
@@ -58381,10 +58385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2dcd7836d674f3c94ab3f3ddd268219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Code.Passive.PassiveComponent
-  _passiveList:
-  - {fileID: 11400000, guid: d619cfc2deecc7241b5408eae3827cf8, type: 2}
-  - {fileID: 11400000, guid: f2fe4011ba098b946a60431cf08804bf, type: 2}
-  - {fileID: 11400000, guid: 75fbfc3635058d74e8573f3161ba060f, type: 2}
+  _passiveList: []
 --- !u!1 &3811478621399425884
 GameObject:
   m_ObjectHideFlags: 0
@@ -131400,6 +131401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c51ff6707be845db8efefdaf4bbc4a4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.UnitAttributes.KnightPerform
+  condition: {fileID: 6771855028922539995}
   circleParticle: {fileID: 1701711509463844308}
   defenseCompo: {fileID: 3787373734302887054}
 --- !u!1 &7442990935783276029

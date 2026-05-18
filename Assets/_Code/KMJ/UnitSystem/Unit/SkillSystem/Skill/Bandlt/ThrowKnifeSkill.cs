@@ -55,7 +55,7 @@ using UnityEngine;
             int count = _getUnitCompo.Enemies.Count;
             int randomInt = Random.Range(0, count);
             
-            Bus<UseGimicEvent>.Raise(new UseGimicEvent(UnitType.Bandlt,  _getUnitCompo.Enemies[randomInt].gameObject));
+            Bus<UseGimicEvent>.Raise(new UseGimicEvent(UnitType.Rogue,  _getUnitCompo.Enemies[randomInt].gameObject));
         }
         
         protected override void SkillEnd()

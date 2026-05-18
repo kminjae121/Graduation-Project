@@ -13,7 +13,7 @@ public enum UnitType
 {
     None,
     Archer,
-    Bandlt,
+    Rogue,
     Knight,
     Magician,
 }

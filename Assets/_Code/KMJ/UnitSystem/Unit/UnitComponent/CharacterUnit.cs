@@ -2,9 +2,11 @@ using System.Collections;
 using Code.Passive;
 using Code.Core.Managers;
 using Code.Core.Events.Bus;
+using Code.Core.Events.Bus.Trait;
 using Code.Core.Interfaces;
 using Code.Map;
 using Code.SkillSystem;
+using Code.UnitSystem.TraitSystem;
 using Input;
 using UnityEngine;
 using UnityEngine.Events;
@@ -29,6 +31,8 @@ namespace Code.UnitSystem
         public UnitSkillCost SkillCostCompo { get; private set; }
         public PassiveComponent PassiveCompo { get; private set; }
         public UnitOutLineCompo OutLineCompo { get; private set; }
+        
+        public UnitTrait TraitCompo { get; private set; }
 
         #endregion
         
@@ -50,6 +54,7 @@ namespace Code.UnitSystem
             SkillCostCompo =  GetUnitCompo<UnitSkillCost>();
             OutLineCompo =  GetUnitCompo<UnitOutLineCompo>();
             PassiveCompo = GetUnitCompo<PassiveComponent>();
+            TraitCompo =  GetUnitCompo<UnitTrait>();
             
             if (unitSO != null && SkillSendManager.Instance != null)
             {
@@ -79,6 +84,7 @@ namespace Code.UnitSystem
         {
             base.OnTurnStart();
             
+            Bus<UnitPerformEvent>.Raise(new UnitPerformEvent(unitSO.UnitType,TraitCompo)); 
             Bus<UnitCamSettingEvent>.Raise(new UnitCamSettingEvent(gameObject, false,_dampingSpeed));
             Bus<SetAtkUIEvent>.Raise(new SetAtkUIEvent(true));
             Bus<TurnEndUIEvent>.Raise(new TurnEndUIEvent(false));
@@ -125,6 +131,7 @@ namespace Code.UnitSystem
                 PassiveCompo.StopAllTurnPassives();
                 Bus<UnitMoveControlEvent>.Raise(new UnitMoveControlEvent(true));
                 Bus<UnitAttackControlEvent>.Raise(new UnitAttackControlEvent(true));      
+                Bus<UnitPerformEvent>.Raise(new UnitPerformEvent(UnitType.None, null)); 
             }
         }
 

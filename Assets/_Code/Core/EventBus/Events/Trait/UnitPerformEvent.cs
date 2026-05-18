@@ -1,4 +1,4 @@
-using Code.UnitSystem.UnitAttributes;
+using Code.UnitSystem.TraitSystem;
 
 namespace Code.Core.Events.Bus.Trait
 {
