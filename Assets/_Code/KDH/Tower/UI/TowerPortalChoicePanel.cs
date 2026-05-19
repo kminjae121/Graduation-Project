@@ -9,6 +9,7 @@ namespace Code.Tower.UI
     {
         [SerializeField] private GameObject root;
         [SerializeField] private TextMeshProUGUI titleText;
+        [SerializeField] private TextMeshProUGUI descriptionText;
         [SerializeField] private Button nextFloorButton;
         [SerializeField] private Button returnLobbyButton;
 
@@ -17,24 +18,29 @@ namespace Code.Tower.UI
 
         public void BuildDefaultLayout(RectTransform parent)
         {
-            RectTransform self = gameObject.GetComponent<RectTransform>();
+            RectTransform self = GetComponent<RectTransform>();
             self.SetParent(parent, false);
-            self.anchorMin = new Vector2(0.5f, 0.5f);
-            self.anchorMax = new Vector2(0.5f, 0.5f);
-            self.pivot = new Vector2(0.5f, 0.5f);
-            self.anchoredPosition = Vector2.zero;
-            self.sizeDelta = new Vector2(460f, 260f);
+            self.anchorMin = Vector2.zero;
+            self.anchorMax = Vector2.one;
+            self.offsetMin = Vector2.zero;
+            self.offsetMax = Vector2.zero;
 
             root = gameObject;
 
-            Image background = gameObject.AddComponent<Image>();
-            background.color = new Color(0f, 0f, 0f, 0.72f);
+            Image overlay = gameObject.AddComponent<Image>();
+            overlay.color = new Color(0.01f, 0.012f, 0.02f, 0.72f);
 
-            titleText = CreateText("Title", self, new Vector2(24f, -24f), new Vector2(-24f, -82f), 24f, FontStyles.Bold);
+            RectTransform panel = CreatePanel("PortalPanel", self, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(-270f, -190f), new Vector2(270f, 190f), new Color(0.055f, 0.06f, 0.09f, 0.96f));
+
+            titleText = CreateText("Title", panel, new Vector2(32f, -30f), new Vector2(-32f, -86f), 27f, FontStyles.Bold);
             titleText.alignment = TextAlignmentOptions.Center;
 
-            nextFloorButton = CreateButton("NextFloorButton", self, new Vector2(40f, -118f), new Vector2(-40f, -166f), "다음 층으로 이동");
-            returnLobbyButton = CreateButton("ReturnLobbyButton", self, new Vector2(40f, -178f), new Vector2(-40f, -226f), "정비하러 돌아가기");
+            descriptionText = CreateText("Description", panel, new Vector2(40f, -98f), new Vector2(-40f, -170f), 17f, FontStyles.Normal);
+            descriptionText.alignment = TextAlignmentOptions.Center;
+            descriptionText.textWrappingMode = TextWrappingModes.Normal;
+
+            nextFloorButton = CreateButton("NextFloorButton", panel, new Vector2(46f, -206f), new Vector2(-46f, -260f), "다음 층으로 이동");
+            returnLobbyButton = CreateButton("ReturnLobbyButton", panel, new Vector2(46f, -276f), new Vector2(-46f, -330f), "로비로 귀환");
 
             WireButtons();
             Hide();
@@ -60,12 +66,16 @@ namespace Code.Tower.UI
                 root = gameObject;
 
             root.SetActive(true);
+            transform.SetAsLastSibling();
 
             if (titleText != null)
+                titleText.text = isBossPortal ? $"{floorKey.DisplayName} 보스 격파" : $"{floorKey.DisplayName} 포탈 발견";
+
+            if (descriptionText != null)
             {
-                titleText.text = isBossPortal
-                    ? $"{floorKey.DisplayName} 보스 클리어"
-                    : $"{floorKey.DisplayName} 포탈 발견";
+                descriptionText.text = isBossPortal
+                    ? "보스방에 열린 포탈이 다음 꿈으로 이어집니다."
+                    : "포탈의 빛이 안정되었습니다. 더 깊이 내려가거나 원정을 마칠 수 있습니다.";
             }
         }
 
@@ -107,15 +117,33 @@ namespace Code.Tower.UI
             rect.offsetMax = offsetMax;
 
             Image image = rect.gameObject.AddComponent<Image>();
-            image.color = new Color(0.9f, 0.82f, 0.58f);
+            image.color = new Color(0.82f, 0.92f, 1f, 0.95f);
 
             Button button = rect.gameObject.AddComponent<Button>();
+            button.targetGraphic = image;
 
             TextMeshProUGUI text = CreateText("Label", rect, Vector2.zero, Vector2.zero, 18f, FontStyles.Bold);
             text.text = label;
-            text.color = Color.black;
+            text.color = new Color(0.05f, 0.06f, 0.09f);
             text.alignment = TextAlignmentOptions.Center;
             return button;
+        }
+
+        private static RectTransform CreatePanel(string objectName, Transform parent, Vector2 anchorMin, Vector2 anchorMax, Vector2 offsetMin, Vector2 offsetMax, Color color)
+        {
+            RectTransform rect = CreateRect(objectName, parent);
+            rect.anchorMin = anchorMin;
+            rect.anchorMax = anchorMax;
+            rect.offsetMin = offsetMin;
+            rect.offsetMax = offsetMax;
+
+            Image image = rect.gameObject.AddComponent<Image>();
+            image.color = color;
+
+            Outline outline = rect.gameObject.AddComponent<Outline>();
+            outline.effectColor = new Color(1f, 1f, 1f, 0.18f);
+            outline.effectDistance = new Vector2(2f, -2f);
+            return rect;
         }
 
         private static RectTransform CreateRect(string objectName, Transform parent)

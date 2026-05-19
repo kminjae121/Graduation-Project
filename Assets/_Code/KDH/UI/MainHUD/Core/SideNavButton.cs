@@ -112,15 +112,21 @@ namespace Code.UI
                 foreach (var id in panelsToClose)
                 {
                     if (string.IsNullOrEmpty(id) == false)
-                    {
-                        if (!PanelManager.TryClose(id))
-                            CharacterMainPanel.TryCloseTab(id);
-                    }
+                        TryClosePanelOrTab(id);
                 }
             }
 
-            if (!PanelManager.TryOpen(targetPanelId))
-                CharacterMainPanel.TryOpenTab(targetPanelId);
+            TryOpenPanelOrTab(targetPanelId);
+        }
+
+        private static bool TryOpenPanelOrTab(string id)
+        {
+            return CharacterMainPanel.TryOpenTab(id) || PanelManager.TryOpen(id);
+        }
+
+        private static bool TryClosePanelOrTab(string id)
+        {
+            return CharacterMainPanel.TryCloseTab(id) || PanelManager.TryClose(id);
         }
     }
 }

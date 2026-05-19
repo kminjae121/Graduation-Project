@@ -1,3 +1,4 @@
+using Code.Core.Managers;
 using Code.UI;
 using PixeLadder.EasyTransition;
 using UnityEngine;
@@ -11,18 +12,25 @@ namespace Code.Tower.UI
         [SerializeField] private GameObject partySelectionRoot;
         [SerializeField] private string partyPanelId;
         [SerializeField] private bool hidePartySelectionOnStart = true;
+        [SerializeField] private PartyUIManager partyUIManager;
+        [SerializeField] private bool enablePartyHoverEventsInSelection;
         [SerializeField] private TransitionEffect transitionEffect;
 
         private void Awake()
         {
             if (expeditionButton == null)
                 expeditionButton = GetComponent<Button>();
+
+            if (partyUIManager == null)
+                partyUIManager = FindFirstObjectByType<PartyUIManager>(FindObjectsInactive.Include);
         }
 
         private void Start()
         {
             if (hidePartySelectionOnStart && partySelectionRoot != null)
                 partySelectionRoot.SetActive(false);
+
+            partyUIManager?.ResetCharacterInteractionMode();
         }
 
         private void OnEnable()
@@ -44,6 +52,10 @@ namespace Code.Tower.UI
 
         private void ShowPartySelection()
         {
+            partyUIManager?.SetCharacterInteractionMode(
+                CharacterStateClickMode.SelectExpeditionParty,
+                enablePartyHoverEventsInSelection);
+
             if (!string.IsNullOrWhiteSpace(partyPanelId) && PanelManager.TryOpen(partyPanelId))
                 return;
 
