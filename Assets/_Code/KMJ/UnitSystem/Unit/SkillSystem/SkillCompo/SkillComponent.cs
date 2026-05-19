@@ -84,11 +84,11 @@ namespace Code.SkillSystem
                     if (_statCompo != null)
                     {
                         int skillDamageValue = _statCompo.GetStat(StatInfo.AtkDamage);  
-                        int finallyDamage = skillDamageValue * skill.BasicSkillDamage/ 100;  
+                        int finallyDamage = skillDamageValue * (skill.BasicSkillDamage/ 100);  
                         basicDamage = finallyDamage;
                     }
                     else
-                        basicDamage = skill.BasicSkillDamage;
+                        basicDamage = _statCompo.GetStat(StatInfo.AtkDamage);
 
                     skill.InitializeSkill();
                     skill.SetDamage(basicDamage);

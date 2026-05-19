@@ -934,7 +934,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5928557692450035056}
-        m_TargetAssemblyTypeName: _Code.UnitSystem.UnitEffectCompo, Assembly-CSharp
+        m_TargetAssemblyTypeName: Code.UnitSystem.UnitEffectCompo, Assembly-CSharp
         m_MethodName: PlayTargetEffect
         m_Mode: 5
         m_Arguments:

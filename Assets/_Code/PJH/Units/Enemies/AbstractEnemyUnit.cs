@@ -273,7 +273,7 @@ namespace Code.UnitSystem.Enemies
             if (!TryGetSkill(skillSO, out _, out var selectedSkill))
                 return false;
 
-            if (selectedSkill is not EnemyBaseSkill enemySkill)
+            if (selectedSkill is not EnemySkill enemySkill)
             {
                 UnityLogger.LogError($"[{nameof(AbstractEnemyUnit)}] {name} tried to evaluate a non-enemy skill.");
                 return false;

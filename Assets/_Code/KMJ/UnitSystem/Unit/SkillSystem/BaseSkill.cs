@@ -16,7 +16,7 @@ namespace Code.SkillSystem
     {
         [Header("Base Settings")] 
         [field: SerializeField] public SkillSO SkillSO { get; private set; }
-        [SerializeField] protected AttackDataSO attackData;
+
         public int BasicSkillDamage => SkillSO.SkillDamage;
         
         public int AddDamage { get; private set; } = 0;
@@ -115,7 +115,7 @@ namespace Code.SkillSystem
             BooleanSkillUse(false);
             rangeCompo.ResetTile();
             
-            Bus<UnitSkilStartEvent>.Raise(new UnitSkilStartEvent(false));
+            Bus<UnitSkillStartEvent>.Raise(new UnitSkillStartEvent(false));
         }
 
         public virtual void AttackEnemy()
@@ -147,7 +147,7 @@ namespace Code.SkillSystem
 
             StartEvent();
             
-            Bus<UnitSkilStartEvent>.Raise(new UnitSkilStartEvent(true));
+            Bus<UnitSkillStartEvent>.Raise(new UnitSkillStartEvent(true));
 
             SkillEvent?.Invoke(_targetEnemy);
         }

@@ -56,7 +56,7 @@ namespace Code.UnitSystem.Enemies.AI
                 return false;
 
             SkillSO bestSkillSO = null;
-            EnemyBaseSkill bestSkill = null;
+            EnemySkill bestSkill = null;
             var bestScore = float.MinValue;
 
             foreach (var (skillSO, skill) in enemy.SkillCompo.Skills)
@@ -64,7 +64,7 @@ namespace Code.UnitSystem.Enemies.AI
                 if (skillSO == null || skill == null)
                     continue;
 
-                if (skill is not EnemyBaseSkill enemySkill || !enemySkill.CanUseAt(from, target))
+                if (skill is not EnemySkill enemySkill || !enemySkill.CanUseAt(from, target))
                     continue;
 
                 float score = enemySkill.ScoreAt(from, target, enemy.AIProfile);
@@ -113,7 +113,7 @@ namespace Code.UnitSystem.Enemies.AI
 
                 foreach (var (skillSO, skill) in enemy.SkillCompo.Skills)
                 {
-                    if (skillSO == null || skill is not EnemyBaseSkill enemySkill)
+                    if (skillSO == null || skill is not EnemySkill enemySkill)
                         continue;
 
                     if (!enemySkill.TooClose(from, target.gameObject))
@@ -167,7 +167,7 @@ namespace Code.UnitSystem.Enemies.AI
 
                 foreach (var (skillSO, skill) in enemy.SkillCompo.Skills)
                 {
-                    if (skillSO == null || skill is not EnemyBaseSkill enemySkill)
+                    if (skillSO == null || skill is not EnemySkill enemySkill)
                         continue;
 
                     if (!enemySkill.WantsMove(from, target.gameObject))
@@ -196,7 +196,7 @@ namespace Code.UnitSystem.Enemies.AI
                 return false;
 
             foreach (var skill in enemy.SkillCompo.Skills.Values)
-                if (skill is EnemyBaseSkill enemySkill && enemySkill.TooClose(from, target))
+                if (skill is EnemySkill enemySkill && enemySkill.TooClose(from, target))
                     return true;
 
             return false;

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: DragonEnemy
   m_EditorClassIdentifier: ObjectPoolAssembly::GondrLib.ObjectPool.Runtime.PoolingItemSO
   poolingName: DragonEnemy
-  prefab: {fileID: 6855422769672034763, guid: 9b3d92c02043088438a183bf6a469746, type: 3}
+  prefab: {fileID: 6274815829309555608, guid: 5d78297e1d4f1884eb153d0cb0b4278b, type: 3}
   initCount: 5

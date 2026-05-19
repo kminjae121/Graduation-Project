@@ -8,17 +8,13 @@ namespace Code.UnitSystem.Combat
     public class ShootItemAttackManager : MonoBehaviour, IUnitComponent
     {
         [SerializeField] private List<ShootItem> shootItems;
-        [SerializeField] private AttackDataSO atkData;
         
         public Unit Unit { get; private set; }
-        
-        private GameObject _target = null;
-
-        private Dictionary<string, ShootItem> _shootItemDict = new Dictionary<string, ShootItem>();
-        public DamageData DamageData { get; set; }  
-
+        public DamageData DamageData { get; private set; }  
         public Action hitEvent;
-
+        
+        private readonly Dictionary<string, ShootItem> _shootItemDict = new();
+        private GameObject _target;
         
         public void Initialize(Unit owner)
         {

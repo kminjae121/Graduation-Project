@@ -2,11 +2,11 @@
 
 namespace Code.Core.Events.Bus
 {
-    public struct UnitSkilStartEvent : IEvent
+    public struct UnitSkillStartEvent : IEvent
     {
         public bool isStart;
 
-        public UnitSkilStartEvent(bool isStart)
+        public UnitSkillStartEvent(bool isStart)
         {
             this.isStart = isStart;
         }

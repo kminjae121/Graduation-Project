@@ -58,7 +58,7 @@ namespace Code.SkillSystem
         {
             base.CanUseSkillTrue();
             
-            Bus<UnitSkilStartEvent>.Raise(new UnitSkilStartEvent(false));
+            Bus<UnitSkillStartEvent>.Raise(new UnitSkillStartEvent(false));
             Bus<UsingSkillEvent>.Raise(new UsingSkillEvent(true));
         }
 
