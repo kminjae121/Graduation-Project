@@ -25,12 +25,12 @@ MonoBehaviour:
   Speed: 3
   isPlayerUnit: 1
   MoveRange: 5
-  Maxhealth: 240
-  AttackDamage: 5
+  Maxhealth: 80
+  AttackDamage: 25
   DefensivePower: 0
   ShieldValue: 0
   AvoidProbability: 0
-  CriticalProbability: 0
+  CriticalProbability: 20
   CriticalDamageIncrease: 0
   MaxManaCost: 10
   RecoveryManaCost: 1
