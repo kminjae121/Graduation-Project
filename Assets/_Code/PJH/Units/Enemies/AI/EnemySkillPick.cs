@@ -6,10 +6,10 @@ namespace Code.UnitSystem.Enemies.AI
     {
         public readonly Unit Target;
         public readonly SkillSO SkillSO;
-        public readonly EnemyBaseSkill Skill;
+        public readonly EnemySkill Skill;
         public readonly float Score;
 
-        public EnemySkillPick(Unit target, SkillSO skillSO, EnemyBaseSkill skill, float score)
+        public EnemySkillPick(Unit target, SkillSO skillSO, EnemySkill skill, float score)
         {
             Target = target;
             SkillSO = skillSO;

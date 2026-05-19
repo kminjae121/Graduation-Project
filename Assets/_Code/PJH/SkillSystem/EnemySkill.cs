@@ -6,14 +6,11 @@ using UnityEngine;
 
 namespace Code.SkillSystem
 {
-    public abstract class EnemyBaseSkill : BaseSkill
+    public abstract class EnemySkill : BaseSkill
     {
-        [Header("AI Positioning")]
         [SerializeField] private bool useRange;
         [SerializeField] private int prefRange = 1;
         [SerializeField] private int safeRange;
-
-        [Header("AI Score")]
         [SerializeField] private int aiPriority;
         [SerializeField] private bool needSight;
 
@@ -113,8 +110,8 @@ namespace Code.SkillSystem
 
         protected Vector3 GetCasterWorldPos()
         {
-            var ownerEnemy = GetComponentInParent<AbstractEnemyUnit>();
-            return ownerEnemy != null ? ownerEnemy.transform.position : transform.position;
+            var owner = GetComponentInParent<AbstractEnemyUnit>();
+            return owner != null ? owner.transform.position : transform.position;
         }
 
         protected bool PassRange(Vector2Int from, Vector2Int to, bool useMax = true)

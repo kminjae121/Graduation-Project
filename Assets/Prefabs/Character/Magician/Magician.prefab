@@ -33336,7 +33336,6 @@ MonoBehaviour:
   _whatIsEnemy:
     serializedVersion: 2
     m_Bits: 256
-  atkData: {fileID: 11400000, guid: ecfa0452123f0c44487796bbeffe5d30, type: 2}
   _particleSystem: {fileID: 3995481533494280350}
 --- !u!1 &2552317809038505516
 GameObject:
@@ -50826,7 +50825,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LongAttack
   <SkillSO>k__BackingField: {fileID: 11400000, guid: c0f306b00f672d743aef7ad4bc4e4776, type: 2}
-  attackData: {fileID: 11400000, guid: d67440d00c338d3458b27b3528592cfe, type: 2}
   triggerCompo: {fileID: 1017355007122269373}
   statCompo: {fileID: 6021934548967281175}
   rangeCompo: {fileID: 6766155429207633582}
@@ -50872,7 +50870,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SkillSO>k__BackingField: {fileID: 11400000, guid: d55721ce64d71b44ab8c0a09e708d036, type: 2}
-  attackData: {fileID: 11400000, guid: d67440d00c338d3458b27b3528592cfe, type: 2}
   triggerCompo: {fileID: 1017355007122269373}
   statCompo: {fileID: 6021934548967281175}
   rangeCompo: {fileID: 6766155429207633582}
@@ -50915,7 +50912,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SkillSO>k__BackingField: {fileID: 11400000, guid: 49aa6bbcc524d604e97103df070426a5, type: 2}
-  attackData: {fileID: 11400000, guid: d67440d00c338d3458b27b3528592cfe, type: 2}
   triggerCompo: {fileID: 1017355007122269373}
   statCompo: {fileID: 6021934548967281175}
   rangeCompo: {fileID: 6766155429207633582}
@@ -73861,7 +73857,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootItems:
   - {fileID: 3264137535007069706, guid: 301810faaa5dfd742ba3bf309b1360be, type: 3}
-  atkData: {fileID: 11400000, guid: d67440d00c338d3458b27b3528592cfe, type: 2}
 --- !u!114 &6766155429207633582
 MonoBehaviour:
   m_ObjectHideFlags: 0

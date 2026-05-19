@@ -16,7 +16,7 @@ namespace Code.SkillSystem
     {
         [Header("Base Settings")] 
         [field: SerializeField] public SkillSO SkillSO { get; private set; }
-        [SerializeField] protected AttackDataSO attackData;
+
         public int BasicSkillDamage => SkillSO.SkillDamage;
         
         public int AddDamage { get; private set; } = 0;

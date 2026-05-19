@@ -1,0 +1,141 @@
+using Code.Core.Events.Bus;
+using Code.UnitSystem;
+using Code.UnitSystem.Enemies;
+using UnityEngine;
+
+namespace Code.SkillSystem
+{
+    public abstract class EnemyBaseSkill : EnemySkill
+    {
+        protected GameObject Target { get; private set; }
+        protected AbstractEnemyUnit Owner { get; private set; }
+
+        private bool _isFinished = true;
+        private bool _isEventBound;
+
+        protected virtual void Awake()
+        {
+            Owner = GetComponentInParent<AbstractEnemyUnit>();
+
+            if (Owner != null)
+                triggerCompo = Owner.GetUnitCompo<UnitAnimationTrigger>();
+        }
+
+        public override void ForceUseSkill(GameObject target)
+        {
+            if (target == null)
+                return;
+
+            _targetEnemy = target;
+            Target = target;
+            isCanUseSkill = true;
+            _isFinished = false;
+
+            if (RotatorCompo != null)
+            {
+                RotatorCompo.SetDir(target.transform.position, BeginSkill);
+                return;
+            }
+
+            BeginSkill();
+        }
+
+        protected override void StartEvent()
+        {
+            base.StartEvent();
+            BindAnimationEvents();
+        }
+
+        protected override void OnDestroy()
+        {
+            UnbindAnimationEvents();
+            base.OnDestroy();
+        }
+
+        protected virtual void OnSkillStarted()
+        {
+        }
+
+        protected abstract void OnAttack(GameObject target);
+
+        private void BeginSkill()
+        {
+            if (_targetEnemy == null)
+            {
+                FinishSkill();
+                return;
+            }
+
+            StartEvent();
+
+            if (_isFinished)
+                return;
+
+            Bus<UnitSkillStartEvent>.Raise(new UnitSkillStartEvent(true));
+            SkillEvent?.Invoke(_targetEnemy);
+            OnSkillStarted();
+
+            if (!PlayAttackAnimation())
+                FinishSkill();
+        }
+
+        private void BindAnimationEvents()
+        {
+            if (triggerCompo == null)
+            {
+                FinishSkill();
+                return;
+            }
+
+            UnbindAnimationEvents();
+
+            triggerCompo.OnAttackTrigger += HandleAttack;
+            triggerCompo.OnAnimationEndTrigger += FinishSkill;
+            _isEventBound = true;
+        }
+
+        private void UnbindAnimationEvents()
+        {
+            if (!_isEventBound || triggerCompo == null)
+                return;
+
+            triggerCompo.OnAttackTrigger -= HandleAttack;
+            triggerCompo.OnAnimationEndTrigger -= FinishSkill;
+            _isEventBound = false;
+        }
+
+        private void HandleAttack()
+        {
+            OnAttack(Target);
+        }
+
+        private void FinishSkill()
+        {
+            if (_isFinished)
+                return;
+
+            _isFinished = true;
+            UnbindAnimationEvents();
+            Target = null;
+
+            try
+            {
+                SkillFinished(false);
+            }
+            finally
+            {
+                SkillEndEvent?.Invoke();
+            }
+        }
+
+        private bool PlayAttackAnimation()
+        {
+            if (Owner?.UnitAnimator == null || SkillSO == null || string.IsNullOrWhiteSpace(SkillSO.skillAnimationKey))
+                return false;
+
+            Owner.UnitAnimator.RestartFromEntry();
+            Owner.UnitAnimator.PlaySelectAnimation(SkillSO.skillAnimationKey);
+            return true;
+        }
+    }
+}

@@ -5,87 +5,36 @@ using Code.Core.Events.Bus;
 using Code.Core.Managers;
 using Code.Map;
 using Code.UnitSystem;
-using Code.UnitSystem.Enemies;
 using Code.UnitSystem.Enemies.AI;
 using UnityEngine;
 
 namespace Code.SkillSystem
 {
     public class DragonBreathSkill : EnemyBaseSkill
-    { 
+    {
         [SerializeField] private int pierceLength = 3;
         [SerializeField] private int burnDuration = 2;
         [SerializeField] private int burnDamage = 5;
 
-        private GameObject _target;
-        private AbstractEnemyUnit _ownerEnemy;
         private UnitManager _unitManager;
 
-        private void Awake()
+        protected override void Awake()
         {
-            _ownerEnemy = GetComponentInParent<AbstractEnemyUnit>();
-            triggerCompo = _ownerEnemy.GetUnitCompo<UnitAnimationTrigger>();
+            base.Awake();
+
+            if (Owner != null)
+                _unitManager = Owner.UnitManager;
         }
 
-        protected void Start()
-        {
-            SkillEvent.AddListener(AttackAction);
-            
-            if (_ownerEnemy != null)
-                _unitManager = _ownerEnemy.UnitManager;
-        }
-
-        public override void ForceUseSkill(GameObject target)
+        protected override void OnAttack(GameObject target)
         {
             if (target == null)
                 return;
 
-            _targetEnemy = target;
-            isCanUseSkill = true;
-
-            if (RotatorCompo != null)
-            {
-                RotatorCompo.SetDir(target.transform.position, BeginBreathSkill);
-                return;
-            }
-
-            BeginBreathSkill();
-        }
-
-        protected override void StartEvent()
-        {
-            base.StartEvent();
-            triggerCompo.OnAttackTrigger += TakeDamage;
-            triggerCompo.OnAnimationEndTrigger += SkillEnd;
-        }
-
-        protected override void OnDestroy()
-        {
-            SkillEvent.RemoveListener(AttackAction);
-
-            if (triggerCompo != null)
-            {
-                triggerCompo.OnAttackTrigger -= TakeDamage;
-                triggerCompo.OnAnimationEndTrigger -= SkillEnd;
-            }
-
-            base.OnDestroy();
-        }
-
-        private void AttackAction(GameObject target)
-        {
-            _target = target;
-        }
-
-        private void TakeDamage()
-        {
-            if (_target == null)
-                return;
-
-            foreach (var hitTarget in GetHitTargets(_target))
+            foreach (var hitTarget in GetHitTargets(target))
             {
                 Bus<DamageEvent>.Raise(new DamageEvent(DamageData, hitTarget, AddDamage,
-                    null, false,false,0.1f));
+                    null, false, false, 0.1f));
 
                 if (burnDuration <= 0 || burnDamage <= 0)
                     continue;
@@ -137,9 +86,6 @@ namespace Code.SkillSystem
             return PassRange(sourcePos, gridMap.WorldToGridPos(target.transform.position), false);
         }
 
-        public int GetPredictedHitCount(GameObject target)
-            => GetHitTargetsFromPos(GetCasterGridPos(), target).Count;
-
         private int GetPredictedHitCountFromPos(Vector2Int sourcePos, GameObject target)
             => GetHitTargetsFromPos(sourcePos, target).Count;
 
@@ -149,7 +95,7 @@ namespace Code.SkillSystem
                 return float.MinValue;
 
             int predictedHitCount = GetPredictedHitCountFromPos(sourcePos, target);
-            
+
             if (predictedHitCount <= 0)
                 return float.MinValue;
 
@@ -174,9 +120,9 @@ namespace Code.SkillSystem
                 return hitTargets;
             }
 
-            if (_ownerEnemy != null)
-                _unitManager = _ownerEnemy.UnitManager;
-            
+            if (Owner != null)
+                _unitManager = Owner.UnitManager;
+
             if (_unitManager == null)
             {
                 UnityLogger.LogError($"[{nameof(DragonBreathSkill)}] UnitManager is missing.");
@@ -215,42 +161,12 @@ namespace Code.SkillSystem
 
         private Vector2Int GetCasterGridPos()
         {
-            GridMap gridMap = GridMap.Instance;
+            var gridMap = GridMap.Instance;
 
             if (gridMap == null)
                 return Vector2Int.zero;
 
             return gridMap.WorldToGridPos(GetCasterWorldPos());
-        }
-
-        private void SkillEnd()
-        {
-            triggerCompo.OnAttackTrigger -= TakeDamage;
-            triggerCompo.OnAnimationEndTrigger -= SkillEnd;
-            _target = null;
-            SkillFinished(false);
-            SkillEndEvent?.Invoke();
-        }
-
-        private void BeginBreathSkill()
-        {
-            if (_targetEnemy == null)
-                return;
-
-            StartEvent();
-            Bus<UnitSkillStartEvent>.Raise(new UnitSkillStartEvent(true));
-            SkillEvent?.Invoke(_targetEnemy);
-            PlayBreathAnimation();
-        }
-
-        private void PlayBreathAnimation()
-        {
-            if (_ownerEnemy?.UnitAnimator == null || string.IsNullOrWhiteSpace(SkillSO.skillAnimationKey))
-                return;
-            
-            _ownerEnemy.UnitAnimator.RestartFromEntry();
-            _ownerEnemy.UnitAnimator.PlaySelectAnimation(SkillSO.skillAnimationKey);
-            SkillFeedbackEvent?.Invoke();
         }
 
         private static Vector2Int GetForwardDir(Vector2Int origin, Vector2Int target)
