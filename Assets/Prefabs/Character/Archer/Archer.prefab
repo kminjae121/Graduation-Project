@@ -2971,7 +2971,6 @@ MonoBehaviour:
   - {fileID: 1268068733913830513, guid: 40681ef34cf38bc43bb30e622f0a31cb, type: 3}
   - {fileID: 3987707671734161806, guid: f5d104d4b6b134c4eb52df5fed1c431c, type: 3}
   - {fileID: 452093210579103965, guid: 462bfbb733049e6449500a008da03fda, type: 3}
-  atkData: {fileID: 11400000, guid: a3c8bc6bf3ae17b47b2e6b491ef64b9d, type: 2}
 --- !u!114 &647129778875576278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10958,7 +10957,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.SkillSystem.CriticalArrow
   <SkillSO>k__BackingField: {fileID: 11400000, guid: ec7386cc717fd65478445094a1ee932c, type: 2}
-  attackData: {fileID: 11400000, guid: a3c8bc6bf3ae17b47b2e6b491ef64b9d, type: 2}
   triggerCompo: {fileID: 0}
   statCompo: {fileID: 1501015307250350184}
   rangeCompo: {fileID: 647129778875576278}
@@ -12737,7 +12735,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShooterAttack
   <SkillSO>k__BackingField: {fileID: 11400000, guid: 9b2ffd0514d0f6b4f8a31cce69681977, type: 2}
-  attackData: {fileID: 11400000, guid: a3c8bc6bf3ae17b47b2e6b491ef64b9d, type: 2}
   triggerCompo: {fileID: 331084079312153192}
   statCompo: {fileID: 1501015307250350184}
   rangeCompo: {fileID: 647129778875576278}
@@ -12781,7 +12778,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SkillSO>k__BackingField: {fileID: 11400000, guid: cc8abb61a159ed94e925dbbe9ed92bbe, type: 2}
-  attackData: {fileID: 11400000, guid: a3c8bc6bf3ae17b47b2e6b491ef64b9d, type: 2}
   triggerCompo: {fileID: 331084079312153192}
   statCompo: {fileID: 1501015307250350184}
   rangeCompo: {fileID: 647129778875576278}
@@ -12823,7 +12819,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.SkillSystem.PiercingArrow
   <SkillSO>k__BackingField: {fileID: 11400000, guid: ff62dcacdbbb71848bacb625cd1be429, type: 2}
-  attackData: {fileID: 11400000, guid: a3c8bc6bf3ae17b47b2e6b491ef64b9d, type: 2}
   triggerCompo: {fileID: 331084079312153192}
   statCompo: {fileID: 1501015307250350184}
   rangeCompo: {fileID: 647129778875576278}
@@ -12865,7 +12860,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SkillSO>k__BackingField: {fileID: 11400000, guid: 9e6d2bb982fdce24195828fbf5725261, type: 2}
-  attackData: {fileID: 11400000, guid: a3c8bc6bf3ae17b47b2e6b491ef64b9d, type: 2}
   triggerCompo: {fileID: 331084079312153192}
   statCompo: {fileID: 1501015307250350184}
   rangeCompo: {fileID: 647129778875576278}

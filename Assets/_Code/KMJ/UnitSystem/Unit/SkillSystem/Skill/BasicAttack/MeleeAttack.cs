@@ -11,11 +11,10 @@ public class MeleeAttack : BasicUnitSkill
 { 
     [SerializeField] private Animator animator;
     [SerializeField] private float atkMoveSpeed;
-    [SerializeField] private AttackDataSO atkData;
     
     private UnitAnimation _animationCompo;
     
-    public bool isRunningAttack = false;
+    public bool isRunningAttack;
     
     private Vector3 _ownTrm;
     

@@ -90211,7 +90211,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SkillSO>k__BackingField: {fileID: 11400000, guid: 360758d6c5706a14fb57766e08f97bca, type: 2}
-  attackData: {fileID: 11400000, guid: ecfa0452123f0c44487796bbeffe5d30, type: 2}
   triggerCompo: {fileID: 2182226686137127293}
   statCompo: {fileID: 6435623573887263718}
   rangeCompo: {fileID: 6592657090282267379}
@@ -90256,7 +90255,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeAttack
   <SkillSO>k__BackingField: {fileID: 11400000, guid: 85ce8256606c74740915e79bfc5b124a, type: 2}
-  attackData: {fileID: 11400000, guid: b6f7f282f7c847f42a11ebd4685a3ff9, type: 2}
   triggerCompo: {fileID: 2182226686137127293}
   statCompo: {fileID: 6435623573887263718}
   rangeCompo: {fileID: 6592657090282267379}
@@ -90288,7 +90286,6 @@ MonoBehaviour:
   _characterUnit: {fileID: 2682628836158502387}
   animator: {fileID: 3539785908377103762}
   atkMoveSpeed: 6
-  atkData: {fileID: 11400000, guid: b6f7f282f7c847f42a11ebd4685a3ff9, type: 2}
   isRunningAttack: 1
 --- !u!114 &916718369853948393
 MonoBehaviour:
@@ -90303,7 +90300,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SheldSkill
   <SkillSO>k__BackingField: {fileID: 11400000, guid: b8572723cb14fa04580c634e6a40dc30, type: 2}
-  attackData: {fileID: 11400000, guid: b6f7f282f7c847f42a11ebd4685a3ff9, type: 2}
   triggerCompo: {fileID: 2182226686137127293}
   statCompo: {fileID: 6435623573887263718}
   rangeCompo: {fileID: 6592657090282267379}

@@ -8,20 +8,17 @@ namespace Code.UnitSystem
     public class BoomingEffect : MonoBehaviour
     {
         [SerializeField] private LayerMask _whatIsEnemy;
+        [SerializeField] private ParticleSystem _particleSystem;
 
         private DamageData _damageData;
-
-        [SerializeField] private AttackDataSO atkData;
-
         private float _addDamage;
         private GameObject _target;
-
-        [SerializeField] private ParticleSystem _particleSystem;
 
         private void Awake()
         {
             _damageData.damage = 4;
         }
+        
         public void StartParticleEffect(Vector3 trm)
         {
             transform.position = trm;
