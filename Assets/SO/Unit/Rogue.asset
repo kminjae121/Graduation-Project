@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ac6c49583ad8fa498a963cb4786ab53, type: 3}
-  m_Name: Bandit
+  m_Name: Rogue
   m_EditorClassIdentifier: 
-  UnitName: Bandit
+  UnitName: Rogue
   UnitClass: "\uB0C9\uD639\uD55C \uB3C4\uC801"
   UnitImage: {fileID: 21300000, guid: e2a3602bcd60d22449e1aea7ec6b9e4f, type: 3}
   UnitSpawn: {fileID: 11400000, guid: 0458a1ab73a81ec4fb907ae3a1ceb906, type: 2}
@@ -24,14 +24,14 @@ MonoBehaviour:
   isLongRange: 1
   Speed: 3
   isPlayerUnit: 1
-  MoveRange: 5
-  Maxhealth: 280
-  AttackDamage: 5
+  MoveRange: 6
+  Maxhealth: 80
+  AttackDamage: 30
   DefensivePower: 0
   ShieldValue: 0
   AvoidProbability: 0
-  CriticalProbability: 0
-  CriticalDamageIncrease: 0
+  CriticalProbability: 25
+  CriticalDamageIncrease: 3
   MaxManaCost: 10
   RecoveryManaCost: 1
   unitInGame: {fileID: 11400000, guid: 35df72f5856958a4291e10252b2d6950, type: 2}

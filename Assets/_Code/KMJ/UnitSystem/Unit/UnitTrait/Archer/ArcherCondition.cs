@@ -5,8 +5,7 @@ namespace Code.UnitSystem.TraitSystem
 {
     public class ArcherCondition : MonoBehaviour, IUnitCondition
     {
-        [SerializeField] private int currentValue = 1;
-        [SerializeField] private int endValue = 8;
+        [SerializeField] private ArcherMark archerMark;
 
         public void Initialize(Unit unit)
         {
@@ -14,16 +13,7 @@ namespace Code.UnitSystem.TraitSystem
 
         public bool CheckCondition(GameObject target)
         {
-            if (target == null) return false;
-
-            currentValue += 1;
-
-            if (currentValue >= endValue)
-            {
-                return true;
-            }
-            
-            return false;
+            return archerMark.SetMarkEnemy(target);
         }
     }
 }
