@@ -9043,6 +9043,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Code.SkillSystem.EnemySkillComponent
   skillList:
   - {fileID: 11400000, guid: 4fbb9b81e26a4f8199495c7a3b531611, type: 2}
+  - {fileID: 11400000, guid: f146fa9fd77a01d499255c82addafc12, type: 2}
   skillStorage: {fileID: 0}
 --- !u!1 &6882120225737397472
 GameObject:
