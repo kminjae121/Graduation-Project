@@ -106,6 +106,9 @@ namespace Code.UI
 
         public void Show()
         {
+            if (!gameObject.activeSelf)
+                gameObject.SetActive(true);
+
             GetContainer().gameObject.SetActive(true);
             RefreshView();
         }

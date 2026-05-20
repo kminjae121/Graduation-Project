@@ -70,11 +70,13 @@ namespace Code.UI
             if (tab == CharacterUnitPanelTab.Stat)
             {
                 equipmentPanel?.Hide();
+                BringViewToFront(statPanel);
                 statPanel?.Show();
                 return;
             }
 
             statPanel?.Hide();
+            BringViewToFront(equipmentPanel);
             equipmentPanel?.Show();
         }
 
@@ -116,10 +118,22 @@ namespace Code.UI
             if (mainPanel == null)
                 return false;
 
+            mainPanel.ResolveViews();
+            mainPanel.InitializeViews();
+
+            CharacterUnitPanelTab tab;
+            if (mainPanel.statPanel != null && mainPanel.statPanel.MatchesPanelId(panelId))
+                tab = CharacterUnitPanelTab.Stat;
+            else if (mainPanel.equipmentPanel != null && mainPanel.equipmentPanel.MatchesPanelId(panelId))
+                tab = CharacterUnitPanelTab.Equipment;
+            else
+                return false;
+
             if (!mainPanel.IsOpen)
                 mainPanel.Open();
 
-            return mainPanel.TryShowTabByPanelId(panelId);
+            mainPanel.ShowTab(tab);
+            return true;
         }
 
         public static bool TryCloseTab(string panelId)
@@ -150,10 +164,23 @@ namespace Code.UI
         private void ResolveViews()
         {
             if (statPanel == null)
-                statPanel = FindFirstObjectByType<CharacterStatPanel>(FindObjectsInactive.Include);
+                statPanel = FindViewInCurrentScene<CharacterStatPanel>();
 
             if (equipmentPanel == null)
-                equipmentPanel = FindFirstObjectByType<CharacterEquipmentPanel>(FindObjectsInactive.Include);
+                equipmentPanel = FindViewInCurrentScene<CharacterEquipmentPanel>();
+        }
+
+        private T FindViewInCurrentScene<T>() where T : MonoBehaviour
+        {
+            T[] views = FindObjectsByType<T>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+
+            foreach (T view in views)
+            {
+                if (view != null && view.gameObject.scene == gameObject.scene)
+                    return view;
+            }
+
+            return null;
         }
 
         private void InitializeViews()
@@ -189,6 +216,12 @@ namespace Code.UI
                 return CharacterUnitPanelTab.Equipment;
 
             return CharacterUnitPanelTab.Stat;
+        }
+
+        private static void BringViewToFront(MonoBehaviour view)
+        {
+            if (view != null)
+                view.transform.SetAsLastSibling();
         }
 
         private static void ClearTransientPopups()

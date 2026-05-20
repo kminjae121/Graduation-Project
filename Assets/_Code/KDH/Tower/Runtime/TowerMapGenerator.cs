@@ -6,127 +6,110 @@ namespace Code.Tower
 {
     public static class TowerMapGenerator
     {
-        private static readonly Vector2Int[] Directions =
-        {
-            Vector2Int.up,
-            Vector2Int.down,
-            Vector2Int.left,
-            Vector2Int.right
-        };
-
         public static TowerFloorMap Generate(TowerFloorKey floorKey, int seed = 0)
         {
             int actualSeed = seed != 0 ? seed : Random.Range(int.MinValue, int.MaxValue);
             System.Random rng = new(actualSeed);
-            int roomCount = floorKey.IsBossStage ? rng.Next(6, 9) : rng.Next(8, 12);
+
+            int middleLayerCount = floorKey.IsBossStage ? 2 : 3;
+            int targetRoomCount = floorKey.IsBossStage ? rng.Next(6, 9) : rng.Next(9, 13);
 
             TowerFloorMap map = new(floorKey);
-            Dictionary<Vector2Int, TowerRoomNode> roomsByPosition = new();
             List<TowerRoomNode> rooms = new();
+            List<List<TowerRoomNode>> layers = new();
 
             TowerRoomNode startRoom = new(0, Vector2Int.zero, TowerRoomType.Start);
-            AddRoom(map, roomsByPosition, rooms, startRoom);
+            AddRoom(map, rooms, startRoom);
             startRoom.Clear();
+            layers.Add(new List<TowerRoomNode> { startRoom });
 
-            for (int id = 1; id < roomCount; ++id)
+            int nextId = 1;
+            int remainingMiddleRooms = Mathf.Max(1, targetRoomCount - 2);
+
+            for (int layerIndex = 1; layerIndex <= middleLayerCount; layerIndex++)
             {
-                TowerRoomNode parent = PickExpandableRoom(rooms, roomsByPosition, rng);
-                Vector2Int position = PickFreeNeighbor(parent.GridPosition, roomsByPosition, rng);
+                int layersLeft = middleLayerCount - layerIndex;
+                int maxForLayer = Mathf.Min(floorKey.IsBossStage ? 2 : 3, remainingMiddleRooms - layersLeft);
+                int minForLayer = Mathf.Min(layerIndex == 1 ? 2 : 1, maxForLayer);
+                int roomCount = rng.Next(minForLayer, maxForLayer + 1);
 
-                TowerRoomNode room = new(id, position, TowerRoomType.Combat);
-                AddRoom(map, roomsByPosition, rooms, room);
-                Connect(parent, room);
+                List<TowerRoomNode> layer = new();
+                foreach (int y in GetLayerYPositions(roomCount))
+                {
+                    TowerRoomNode room = new(nextId++, new Vector2Int(layerIndex, y), TowerRoomType.Combat);
+                    AddRoom(map, rooms, room);
+                    layer.Add(room);
+                }
+
+                layers.Add(layer);
+                remainingMiddleRooms -= roomCount;
             }
 
-            AddExtraConnections(rooms, roomsByPosition, rng);
-            AssignRoomTypes(floorKey, rooms, rng);
+            TowerRoomNode finalRoom = new(
+                nextId,
+                new Vector2Int(middleLayerCount + 1, 0),
+                floorKey.IsBossStage ? TowerRoomType.Boss : TowerRoomType.Portal);
+
+            AddRoom(map, rooms, finalRoom);
+            layers.Add(new List<TowerRoomNode> { finalRoom });
+
+            for (int i = 0; i < layers.Count - 1; i++)
+                ConnectLayer(layers[i], layers[i + 1], rng);
+
+            AssignRoomTypes(floorKey, rooms, finalRoom, rng);
             map.RevealFromCurrentRoom();
             return map;
         }
 
-        private static void AddRoom(
-            TowerFloorMap map,
-            Dictionary<Vector2Int, TowerRoomNode> roomsByPosition,
-            List<TowerRoomNode> rooms,
-            TowerRoomNode room)
+        private static void AddRoom(TowerFloorMap map, List<TowerRoomNode> rooms, TowerRoomNode room)
         {
-            roomsByPosition[room.GridPosition] = room;
             rooms.Add(room);
             map.AddRoom(room);
         }
 
-        private static TowerRoomNode PickExpandableRoom(
-            IReadOnlyList<TowerRoomNode> rooms,
-            IReadOnlyDictionary<Vector2Int, TowerRoomNode> roomsByPosition,
-            System.Random rng)
+        private static IEnumerable<int> GetLayerYPositions(int count)
         {
-            List<TowerRoomNode> candidates = rooms
-                .Where(room => HasFreeNeighbor(room.GridPosition, roomsByPosition))
-                .ToList();
-
-            if (candidates.Count == 0)
-                return rooms[^1];
-
-            return candidates[rng.Next(candidates.Count)];
-        }
-
-        private static bool HasFreeNeighbor(Vector2Int position, IReadOnlyDictionary<Vector2Int, TowerRoomNode> roomsByPosition)
-        {
-            foreach (Vector2Int dir in Directions)
-                if (!roomsByPosition.ContainsKey(position + dir))
-                    return true;
-
-            return false;
-        }
-
-        private static Vector2Int PickFreeNeighbor(
-            Vector2Int position,
-            IReadOnlyDictionary<Vector2Int, TowerRoomNode> roomsByPosition,
-            System.Random rng)
-        {
-            List<Vector2Int> candidates = Directions
-                .Select(dir => position + dir)
-                .Where(candidate => !roomsByPosition.ContainsKey(candidate))
-                .ToList();
-
-            return candidates[rng.Next(candidates.Count)];
-        }
-
-        private static void AddExtraConnections(
-            IReadOnlyList<TowerRoomNode> rooms,
-            IReadOnlyDictionary<Vector2Int, TowerRoomNode> roomsByPosition,
-            System.Random rng)
-        {
-            foreach (TowerRoomNode room in rooms)
+            return count switch
             {
-                if (rng.NextDouble() > 0.18f)
-                    continue;
+                1 => new[] { 0 },
+                2 => new[] { 1, -1 },
+                3 => new[] { 1, 0, -1 },
+                _ => Enumerable.Range(0, count).Select(index => index - count / 2)
+            };
+        }
 
-                foreach (Vector2Int dir in Directions.OrderBy(_ => rng.Next()))
+        private static void ConnectLayer(IReadOnlyList<TowerRoomNode> previousLayer, IReadOnlyList<TowerRoomNode> nextLayer, System.Random rng)
+        {
+            if (previousLayer == null || nextLayer == null || previousLayer.Count == 0 || nextLayer.Count == 0)
+                return;
+
+            foreach (TowerRoomNode nextRoom in nextLayer)
+            {
+                TowerRoomNode previousRoom = previousLayer[rng.Next(previousLayer.Count)];
+                Connect(previousRoom, nextRoom);
+            }
+
+            foreach (TowerRoomNode previousRoom in previousLayer)
+            {
+                TowerRoomNode nextRoom = nextLayer[rng.Next(nextLayer.Count)];
+                Connect(previousRoom, nextRoom);
+
+                if (nextLayer.Count > 1 && rng.NextDouble() < 0.42f)
                 {
-                    if (!roomsByPosition.TryGetValue(room.GridPosition + dir, out TowerRoomNode neighbor))
-                        continue;
-
-                    Connect(room, neighbor);
-                    break;
+                    TowerRoomNode extraRoom = nextLayer[rng.Next(nextLayer.Count)];
+                    Connect(previousRoom, extraRoom);
                 }
             }
         }
 
-        private static void AssignRoomTypes(TowerFloorKey floorKey, IReadOnlyList<TowerRoomNode> rooms, System.Random rng)
+        private static void AssignRoomTypes(
+            TowerFloorKey floorKey,
+            IReadOnlyList<TowerRoomNode> rooms,
+            TowerRoomNode finalRoom,
+            System.Random rng)
         {
-            TowerRoomNode farthestRoom = rooms
-                .Where(room => room.RoomType != TowerRoomType.Start)
-                .OrderByDescending(room => room.GridPosition.sqrMagnitude)
-                .FirstOrDefault();
-
-            if (farthestRoom == null)
-                return;
-
-            farthestRoom.RoomType = floorKey.IsBossStage ? TowerRoomType.Boss : TowerRoomType.Portal;
-
             List<TowerRoomNode> normalRooms = rooms
-                .Where(room => room.RoomType == TowerRoomType.Combat && room.Id != 0)
+                .Where(room => room.RoomType == TowerRoomType.Combat && room.Id != finalRoom.Id)
                 .OrderBy(_ => rng.Next())
                 .ToList();
 

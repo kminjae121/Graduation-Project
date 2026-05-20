@@ -13,13 +13,24 @@ namespace Code.Core.Managers
         [Header("UI Elements")]
         [SerializeField] private List<CharacterStateUI> characterUIList;
 
-        [Header("Interaction")]
+        [Header("Default Interaction")]
         [SerializeField] private CharacterStateClickMode characterClickMode = CharacterStateClickMode.OpenInfoPanel;
         [SerializeField] private bool sendPartyHoverEvents;
 
         private void Start()
         {
             BindPartyUnits();
+            ResetCharacterInteractionMode();
+        }
+
+        public void SetCharacterInteractionMode(CharacterStateClickMode clickMode, bool enablePartyHoverEvents)
+        {
+            ApplyCharacterInteractionMode(clickMode, enablePartyHoverEvents);
+        }
+
+        public void ResetCharacterInteractionMode()
+        {
+            ApplyCharacterInteractionMode(characterClickMode, sendPartyHoverEvents);
         }
 
         private void BindPartyUnits()
@@ -34,8 +45,6 @@ namespace Code.Core.Managers
                 if (characterUI == null)
                     continue;
 
-                characterUI.SetClickMode(characterClickMode, sendPartyHoverEvents);
-
                 if (unitStorage != null && i < unitStorage.unitStates.Count)
                 {
                     characterUI.gameObject.SetActive(true);
@@ -46,6 +55,18 @@ namespace Code.Core.Managers
                     characterUI.SetUnit(null);
                     characterUI.gameObject.SetActive(false);
                 }
+            }
+        }
+
+        private void ApplyCharacterInteractionMode(CharacterStateClickMode clickMode, bool enablePartyHoverEvents)
+        {
+            if (characterUIList == null)
+                return;
+
+            foreach (CharacterStateUI characterUI in characterUIList)
+            {
+                if (characterUI != null)
+                    characterUI.SetClickMode(clickMode, enablePartyHoverEvents);
             }
         }
     }
