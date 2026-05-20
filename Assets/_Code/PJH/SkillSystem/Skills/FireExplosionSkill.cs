@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using Code.Combat.StatusEffect;
 using Code.Core.Debugs;
 using Code.Core.Events.Bus;
 using Code.Core.Managers;
 using Code.Map;
+using Code.UnitSystem;
 using Code.UnitSystem.Enemies.AI;
 using UnityEngine;
 
@@ -31,7 +33,10 @@ namespace Code.SkillSystem
             Owner.VFXCompo.PlayVFX("FireExplosion", target.transform.position, Quaternion.identity);
             
             foreach (var hitTarget in GetHitTargets(target))
+            {
                 Bus<DamageEvent>.Raise(new DamageEvent(DamageData, hitTarget, AddDamage, null, false, false, 0.1f));
+                Bus<ApplyStatusEffectEvent>.Raise(new ApplyStatusEffectEvent(target.GetComponent<Unit>(), EffectType.Burn, new StatusEffectApplyData(2, 5)));
+            }
         }
 
         public override bool CanUseAt(Vector2Int sourcePos, GameObject target)
