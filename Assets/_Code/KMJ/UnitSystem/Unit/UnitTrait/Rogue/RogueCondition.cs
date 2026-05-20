@@ -21,7 +21,6 @@ namespace Code.UnitSystem.TraitSystem
                 Vector3 pos = _unit.transform.position;
 
                 pos.y += 0.4f;
-                vfxCompo.PlayVFX("DarkHeal", pos, Quaternion.identity);
                 return true;
             }
             

@@ -52,7 +52,7 @@ namespace Code.UnitSystem.TraitSystem
                     UnitHealth health = enemy.GetUnitCompo<UnitHealth>();
                     if (health != null)
                     {
-                        int damage = Mathf.FloorToInt(health.CurrentHealth * 0.1f);
+                        int damage = Mathf.FloorToInt(health.CurrentHealth * 0.2f);
 
                         _damageData.damage = damage;
                         addDamage += damage;
@@ -65,7 +65,7 @@ namespace Code.UnitSystem.TraitSystem
             }
 
             _unit.transform.position = pos;
-            _damageData.damage = addDamage;
+            _damageData.damage = addDamage * 2;
             
             Bus<DamageEvent>.Raise(new DamageEvent(_damageData,target.gameObject,0, _unit,false,false,0.3f));
             shadowCompo.ResetAllShadow();

@@ -36,7 +36,7 @@ namespace Code.UnitSystem.TraitSystem
             _maxTurnCnt = maxTurn;
             _curTurnCnt = 0;
             
-            _vfxCompo.PlayVFX("SunShield", _owner.transform.position, Quaternion.identity);
+            //_vfxCompo.PlayVFX("SunShield", _owner.transform.position, Quaternion.identity);
             _turnManager.OnTurnStart -= CheckInvincibility;
             _turnManager.OnTurnStart += CheckInvincibility;
         }

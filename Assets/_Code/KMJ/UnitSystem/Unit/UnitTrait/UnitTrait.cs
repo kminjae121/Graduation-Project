@@ -8,7 +8,7 @@ namespace Code.UnitSystem.TraitSystem
     public class UnitTrait : MonoBehaviour, IUnitComponent
     {
         [field: SerializeField] public bool IsNeedTarget { get; private set; } = false;
-        [SerializeField] private InputReader _inputReader;
+        [SerializeField] private InputReader inputReader;
         
         private Unit _unit;
         private IUnitPerform _perform;
@@ -29,8 +29,8 @@ namespace Code.UnitSystem.TraitSystem
             
             Bus<UseGimicEvent>.Subscribe(CheckCondition);
 
-            if (_inputReader != null)
-                _inputReader.OnAttackEvent += HandleTraitEnemy;
+            if (inputReader != null)
+                inputReader.OnAttackEvent += HandleTraitEnemy;
             else
                 UnityLogger.LogWarning("InputReader가 존재하지 않습니다.");
             
@@ -62,7 +62,8 @@ namespace Code.UnitSystem.TraitSystem
         private void OnDestroy()
         {
             Bus<UseGimicEvent>.Unsubscribe(CheckCondition);
-            _inputReader.OnAttackEvent -= HandleTraitEnemy;
+            if(inputReader != null)
+                inputReader.OnAttackEvent -= HandleTraitEnemy;
         }
 
         public void CheckCondition(UseGimicEvent evt)

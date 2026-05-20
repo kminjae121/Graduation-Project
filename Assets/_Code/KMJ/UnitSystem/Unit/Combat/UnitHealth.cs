@@ -77,7 +77,20 @@ namespace Code.UnitSystem.Combat
 
         public void SetMaxHp(float value)
         {
-            //MaxHealth = value;
+            maxHealth = value;
+
+            if (currentHealth >= MaxHealth)
+                currentHealth = MaxHealth;
+            
+            Debug.Log(maxHealth);
+            
+            if (_entity as CharacterUnit)
+            {
+                CharacterUnit characterUnit = _entity as CharacterUnit;
+               
+                Bus<SetUpUnitHealthBar>.Raise(new SetUpUnitHealthBar(characterUnit.PlayableUnitID,CurrentHealth,
+                    MaxHealth, characterUnit.UnitImage));
+            }
         }
 
         public void HealHp(float amount)
@@ -115,6 +128,8 @@ namespace Code.UnitSystem.Combat
         {
             if (IsDead)
                 return;
+            
+            Debug.Log(isCritical);
 
             if (IsInvincibility)
                 return;

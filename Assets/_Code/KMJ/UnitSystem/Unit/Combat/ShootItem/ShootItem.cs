@@ -1,4 +1,6 @@
-﻿ using UnityEngine;
+﻿ using Code.Core.Events.Bus;
+ using Code.UnitSystem.TraitSystem;
+ using UnityEngine;
 using UnityEngine.Events;
 
 namespace Code.UnitSystem.Combat
@@ -54,6 +56,11 @@ namespace Code.UnitSystem.Combat
                         
                         _shootItemManager.hitEvent?.Invoke();
                         AtkEvent?.Invoke();
+                        
+                        if (_target.GetComponentInChildren<EnemyMark>())
+                        {
+                            Bus<UseGimicEvent>.Raise(new UseGimicEvent(UnitType.Archer, _target));
+                        }
             
                         AttackEnd();     
                     }   
@@ -67,7 +74,12 @@ namespace Code.UnitSystem.Combat
                     
                     _shootItemManager.hitEvent?.Invoke();
                     AtkEvent?.Invoke();
-                    
+
+                    if (_target.GetComponentInChildren<EnemyMark>())
+                    {
+                        Bus<UseGimicEvent>.Raise(new UseGimicEvent(UnitType.Archer, _target));
+                    }
+
                     AttackEnd();     
                 }
             }
