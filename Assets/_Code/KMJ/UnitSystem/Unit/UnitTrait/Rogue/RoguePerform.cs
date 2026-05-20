@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using Code.UnitSystem;
 using Code.Core.Events.Bus;
 using Code.Effects;
 using Code.UnitSystem.Combat;
@@ -16,7 +15,6 @@ namespace Code.UnitSystem.TraitSystem
         [SerializeField] private RogueShadowSpawn shadowCompo;
 
         private Unit _unit;
-
         private DamageData _damageData;
         
         public void Initialize(Unit unit)
