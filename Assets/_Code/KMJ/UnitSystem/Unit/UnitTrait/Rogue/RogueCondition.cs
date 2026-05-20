@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using Code.UI;
+﻿using Code.Effects;
 using UnityEngine;
 
 namespace Code.UnitSystem.TraitSystem
 {
     public class RogueCondition : MonoBehaviour, IUnitCondition
     {
-        [SerializeField] private UnitEffectCompo effectCompo;
+        [SerializeField] private UnitVFXCompo vfxCompo;
         [SerializeField] private RogueShadowSpawn rogueShadowCompo;
 
         private Unit _unit;
@@ -22,9 +21,9 @@ namespace Code.UnitSystem.TraitSystem
                 Vector3 pos = _unit.transform.position;
 
                 pos.y += 0.4f;
-                effectCompo.PlayTargetEffect("DarkHeal",pos);
                 return true;
             }
+            
             return false;
         }
     }

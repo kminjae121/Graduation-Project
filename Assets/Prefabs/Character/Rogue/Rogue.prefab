@@ -89804,7 +89804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.UnitAttributes.UnitTrait
   <IsNeedTarget>k__BackingField: 1
-  _inputReader: {fileID: 11400000, guid: a0d5dad133beb4c44a762d5d8e9a9457, type: 2}
+  inputReader: {fileID: 11400000, guid: a0d5dad133beb4c44a762d5d8e9a9457, type: 2}
 --- !u!114 &5685965640097818336
 MonoBehaviour:
   m_ObjectHideFlags: 0

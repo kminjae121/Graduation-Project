@@ -100,8 +100,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7455794510644018766}
   - component: {fileID: 6900052037099315664}
-  - component: {fileID: 452093210579103965}
   - component: {fileID: 3571525530759933841}
+  - component: {fileID: 4731921740717432941}
   m_Layer: 0
   m_Name: CriticalArrow
   m_TagString: Untagged
@@ -146,25 +146,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.17301261, y: 0.19090463, z: 0.5965034}
   m_Center: {x: -0.0010914803, y: 0.021938555, z: 0.039788425}
---- !u!114 &452093210579103965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9115162897217047785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbcbe1873b0148f49086904d0dee1b5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.Combat.NormalShootItem
-  <itemName>k__BackingField: CriticalArrow
-  _moveSpeed: 5
-  isOwnTarget: 1
-  AtkEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  _rbCompo: {fileID: 3571525530759933841}
 --- !u!54 &3571525530759933841
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -192,3 +173,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4731921740717432941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9115162897217047785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e539e6a8f1642679054db54cc999bab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.Combat.CriticalItem
+  <itemName>k__BackingField: CriticalArrow
+  _moveSpeed: 8
+  isOwnTarget: 1
+  AtkEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _rbCompo: {fileID: 3571525530759933841}

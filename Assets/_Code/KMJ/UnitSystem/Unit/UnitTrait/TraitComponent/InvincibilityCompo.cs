@@ -1,6 +1,5 @@
-﻿using System;
-using Code.UnitSystem;
-using Code.Core.Managers;
+﻿using Code.Core.Managers;
+using Code.Effects;
 using Code.UnitSystem.Combat;
 using GondrLib.Dependencies;
 using UnityEngine;
@@ -10,17 +9,19 @@ namespace Code.UnitSystem.TraitSystem
     public class InvincibilityCompo : MonoBehaviour, IUnitComponent
     {
         [Inject] protected TurnManager _turnManager;
-        private UnitEffectCompo _effectCompo;
+        private UnitVFXCompo _vfxCompo;
         
         private UnitHealth _healthCompo;
+        private Unit _owner;
         
-        private int _curTurnCnt = 0;
+        private int _curTurnCnt;
         private int _maxTurnCnt;
         
         public void Initialize(Unit owner)
         {
+            _owner = owner;
             _healthCompo = owner.GetUnitCompo<UnitHealth>();
-            _effectCompo = owner.GetUnitCompo<UnitEffectCompo>();   
+            _vfxCompo = owner.GetUnitCompo<UnitVFXCompo>();   
             Injector.InjectInto(this);
         }
 
@@ -35,7 +36,7 @@ namespace Code.UnitSystem.TraitSystem
             _maxTurnCnt = maxTurn;
             _curTurnCnt = 0;
             
-            _effectCompo.PlayTargetEffect("SunShield");
+            //_vfxCompo.PlayVFX("SunShield", _owner.transform.position, Quaternion.identity);
             _turnManager.OnTurnStart -= CheckInvincibility;
             _turnManager.OnTurnStart += CheckInvincibility;
         }
@@ -47,7 +48,7 @@ namespace Code.UnitSystem.TraitSystem
                 _turnManager.OnTurnStart -= CheckInvincibility;
                 _healthCompo.IsInvincibility = false;
                 _curTurnCnt = 0;
-                _effectCompo.StopTargetEffect("SunShield");
+                _vfxCompo.StopVFX("SunShield");
                 return;
             }
             
