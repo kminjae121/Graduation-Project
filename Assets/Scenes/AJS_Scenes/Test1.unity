@@ -528,15 +528,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb6fe3a8cf7649c5b87db699af745cae, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Code.UI.CharacterStatPanel
+  m_EditorClassIdentifier: Assembly-CSharp::Code.UI.StatPanel
   id: StatPanel
   container: {fileID: 972823833}
-  skillIcons:
-  - {fileID: 1096817195}
-  - {fileID: 1324428981}
-  - {fileID: 2040492271}
-  - {fileID: 666495096}
-  emptySkillSlotSprite: {fileID: 21300000, guid: 4293f3f43e7a5524dbcb191b0ef09d9c, type: 3}
   artifactIcons:
   - {fileID: 1180578039}
   - {fileID: 1071395994}
@@ -5534,7 +5528,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5faa870b9beb4f7b89bde2fcb0946cd7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Code.UI.CharacterMainPanel
+  m_EditorClassIdentifier: Assembly-CSharp::Code.UI.MainPanel
   id: MainUnitInfoPanel
   container: {fileID: 703553655}
   defaultOpenPanelId: StatPanel

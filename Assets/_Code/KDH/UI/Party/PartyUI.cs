@@ -31,6 +31,7 @@ namespace Code.UI
         [SerializeField] private PartySelectionMode selectionMode = PartySelectionMode.InitialParty;
         [SerializeField] private string lobbySceneName = TowerRunSession.DefaultLobbySceneName;
         [SerializeField] private string towerMapSceneName = TowerRunSession.DefaultTowerMapSceneName;
+        [SerializeField] private TowerMapDatabase towerMapDatabase;
 
         private UnitSO[] _partyUnits;
 
@@ -115,7 +116,7 @@ namespace Code.UI
                 return;
             }
 
-            TowerRunSession.StartNewRun(selectedUnits, towerMapSceneName, lobbySceneName);
+            TowerRunSession.StartNewRun(selectedUnits, towerMapSceneName, lobbySceneName, 0, towerMapDatabase);
             TowerRunSession.WritePartyToStorage(unitStorage);
             TowerSceneLoader.LoadScene(TowerRunSession.TowerSceneName);
         }

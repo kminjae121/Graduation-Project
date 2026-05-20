@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 namespace Code.UI
 {
-    public class CharacterUpgradePanel : Panel
+    public class UpgradePanel : Panel
     {
         [Header("Tree Settings")]
         [SerializeField] private PoolingItemSO nodeButtonPoolSO;

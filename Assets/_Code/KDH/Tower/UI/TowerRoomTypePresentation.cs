@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace Code.Tower.UI
 {
     public static class TowerRoomTypePresentation
@@ -19,21 +17,6 @@ namespace Code.Tower.UI
             };
         }
 
-        public static string GetShortName(TowerRoomType roomType)
-        {
-            return roomType switch
-            {
-                TowerRoomType.Start => "시",
-                TowerRoomType.Event => "사",
-                TowerRoomType.Combat => "전",
-                TowerRoomType.EliteCombat => "정",
-                TowerRoomType.Reward => "보",
-                TowerRoomType.Portal => "문",
-                TowerRoomType.Boss => "왕",
-                _ => "?"
-            };
-        }
-
         public static string GetDescription(TowerRoomType roomType)
         {
             return roomType switch
@@ -46,21 +29,6 @@ namespace Code.Tower.UI
                 TowerRoomType.Portal => "다음 층으로 이동하거나 원정을 마칠 수 있습니다.",
                 TowerRoomType.Boss => "층의 보스가 기다립니다. 승리하면 포탈이 열립니다.",
                 _ => string.Empty
-            };
-        }
-
-        public static Color GetColor(TowerRoomType roomType)
-        {
-            return roomType switch
-            {
-                TowerRoomType.Start => new Color(0.42f, 0.82f, 1f),
-                TowerRoomType.Event => new Color(0.78f, 0.54f, 1f),
-                TowerRoomType.Combat => new Color(1f, 0.42f, 0.36f),
-                TowerRoomType.EliteCombat => new Color(1f, 0.22f, 0.18f),
-                TowerRoomType.Reward => new Color(1f, 0.76f, 0.28f),
-                TowerRoomType.Portal => new Color(0.34f, 1f, 0.78f),
-                TowerRoomType.Boss => new Color(0.95f, 0.12f, 0.18f),
-                _ => Color.white
             };
         }
     }

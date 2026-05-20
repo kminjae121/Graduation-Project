@@ -14,7 +14,6 @@ namespace Code.UI
 
         [Header("Animation Targets")]
         [SerializeField] private Transform scaleTarget;
-        [SerializeField] private CanvasGroup panelNameCanvasGroup;
         [SerializeField] private GameObject hoverArea;
 
         [Header("Hover Animation Settings")]
@@ -25,7 +24,6 @@ namespace Code.UI
         private Button _navButton;
         private Vector3 _originalScale;
         private Tween _scaleTween;
-        private Tween _fadeTween;
         private HoverDetector _detector;
 
         private void Awake()
@@ -36,18 +34,6 @@ namespace Code.UI
                 scaleTarget = transform;
                 
             _originalScale = scaleTarget.localScale;
-
-            if (panelNameCanvasGroup != null)
-            {
-                panelNameCanvasGroup.alpha = 0f;
-                Canvas textCanvas = panelNameCanvasGroup.GetComponent<Canvas>();
-                if (textCanvas == null)
-                {
-                    textCanvas = panelNameCanvasGroup.gameObject.AddComponent<Canvas>();
-                }
-                textCanvas.overrideSorting = true;
-                textCanvas.sortingOrder = 100;
-            }
 
             _navButton.onClick.AddListener(HandleNavButtonClick);
 
@@ -72,31 +58,18 @@ namespace Code.UI
             }
 
             _scaleTween?.Kill();
-            _fadeTween?.Kill();
         }
 
         private void PlayHoverEnter()
         {
             _scaleTween?.Kill();
             _scaleTween = scaleTarget.DOScale(hoverScale, animationDuration).SetEase(animationEase);
-
-            if (panelNameCanvasGroup != null)
-            {
-                _fadeTween?.Kill();
-                _fadeTween = panelNameCanvasGroup.DOFade(1f, animationDuration).SetEase(animationEase);
-            }
         }
 
         private void PlayHoverExit()
         {
             _scaleTween?.Kill();
             _scaleTween = scaleTarget.DOScale(_originalScale, animationDuration).SetEase(animationEase);
-
-            if (panelNameCanvasGroup != null)
-            {
-                _fadeTween?.Kill();
-                _fadeTween = panelNameCanvasGroup.DOFade(0f, animationDuration).SetEase(animationEase);
-            }
         }
 
         private void HandleNavButtonClick()
@@ -121,12 +94,12 @@ namespace Code.UI
 
         private static bool TryOpenPanelOrTab(string id)
         {
-            return CharacterMainPanel.TryOpenTab(id) || PanelManager.TryOpen(id);
+            return MainPanel.TryOpenTab(id) || PanelManager.TryOpen(id);
         }
 
         private static bool TryClosePanelOrTab(string id)
         {
-            return CharacterMainPanel.TryCloseTab(id) || PanelManager.TryClose(id);
+            return MainPanel.TryCloseTab(id) || PanelManager.TryClose(id);
         }
     }
 }

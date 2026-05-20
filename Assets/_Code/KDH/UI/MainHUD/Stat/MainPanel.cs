@@ -4,23 +4,23 @@ using UnityEngine;
 
 namespace Code.UI
 {
-    public enum CharacterUnitPanelTab
+    public enum UnitPanelTab
     {
         Stat,
-        Equipment
+        Inventory
     }
 
-    public class CharacterMainPanel : Panel
+    public class MainPanel : Panel
     {
         [Header("Default Settings")]
         [SerializeField] private string defaultOpenPanelId = "StatPanel";
 
         [Header("Views")]
-        [SerializeField] private CharacterStatPanel statPanel;
-        [SerializeField] private CharacterEquipmentPanel equipmentPanel;
+        [SerializeField] private StatPanel statPanel;
+        [SerializeField] private InventoryPanel inventoryPanel;
 
         private UnitState _currentUnit;
-        private CharacterUnitPanelTab _currentTab;
+        private UnitPanelTab _currentTab;
         private bool _viewsInitialized;
 
         public override void Awake()
@@ -53,31 +53,31 @@ namespace Code.UI
             if (_viewsInitialized)
             {
                 statPanel?.Hide();
-                equipmentPanel?.Hide();
+                inventoryPanel?.Hide();
                 ClearTransientPopups();
             }
 
             base.Close();
         }
 
-        public void ShowTab(CharacterUnitPanelTab tab)
+        public void ShowTab(UnitPanelTab tab)
         {
             ResolveViews();
             InitializeViews();
 
             _currentTab = tab;
 
-            if (tab == CharacterUnitPanelTab.Stat)
+            if (tab == UnitPanelTab.Stat)
             {
-                equipmentPanel?.Hide();
+                inventoryPanel?.Hide();
                 BringViewToFront(statPanel);
                 statPanel?.Show();
                 return;
             }
 
             statPanel?.Hide();
-            BringViewToFront(equipmentPanel);
-            equipmentPanel?.Show();
+            BringViewToFront(inventoryPanel);
+            inventoryPanel?.Show();
         }
 
         public bool TryShowTabByPanelId(string panelId)
@@ -90,30 +90,30 @@ namespace Code.UI
 
             if (statPanel != null && statPanel.MatchesPanelId(panelId))
             {
-                ShowTab(CharacterUnitPanelTab.Stat);
+                ShowTab(UnitPanelTab.Stat);
                 return true;
             }
 
-            if (equipmentPanel != null && equipmentPanel.MatchesPanelId(panelId))
+            if (inventoryPanel != null && inventoryPanel.MatchesPanelId(panelId))
             {
-                ShowTab(CharacterUnitPanelTab.Equipment);
+                ShowTab(UnitPanelTab.Inventory);
                 return true;
             }
 
             return false;
         }
 
-        public void RefreshViewsAfterEquipmentChanged()
+        public void RefreshViewsAfterInventoryChanged()
         {
             statPanel?.RefreshView();
 
-            if (_currentTab == CharacterUnitPanelTab.Equipment)
-                equipmentPanel?.RefreshView();
+            if (_currentTab == UnitPanelTab.Inventory)
+                inventoryPanel?.RefreshView();
         }
 
         public static bool TryOpenTab(string panelId)
         {
-            CharacterMainPanel mainPanel = FindFirstObjectByType<CharacterMainPanel>(FindObjectsInactive.Include);
+            MainPanel mainPanel = FindFirstObjectByType<MainPanel>(FindObjectsInactive.Include);
 
             if (mainPanel == null)
                 return false;
@@ -121,11 +121,11 @@ namespace Code.UI
             mainPanel.ResolveViews();
             mainPanel.InitializeViews();
 
-            CharacterUnitPanelTab tab;
+            UnitPanelTab tab;
             if (mainPanel.statPanel != null && mainPanel.statPanel.MatchesPanelId(panelId))
-                tab = CharacterUnitPanelTab.Stat;
-            else if (mainPanel.equipmentPanel != null && mainPanel.equipmentPanel.MatchesPanelId(panelId))
-                tab = CharacterUnitPanelTab.Equipment;
+                tab = UnitPanelTab.Stat;
+            else if (mainPanel.inventoryPanel != null && mainPanel.inventoryPanel.MatchesPanelId(panelId))
+                tab = UnitPanelTab.Inventory;
             else
                 return false;
 
@@ -138,7 +138,7 @@ namespace Code.UI
 
         public static bool TryCloseTab(string panelId)
         {
-            CharacterMainPanel mainPanel = FindFirstObjectByType<CharacterMainPanel>(FindObjectsInactive.Include);
+            MainPanel mainPanel = FindFirstObjectByType<MainPanel>(FindObjectsInactive.Include);
 
             if (mainPanel == null)
                 return false;
@@ -152,9 +152,9 @@ namespace Code.UI
                 return true;
             }
 
-            if (mainPanel.equipmentPanel != null && mainPanel.equipmentPanel.MatchesPanelId(panelId))
+            if (mainPanel.inventoryPanel != null && mainPanel.inventoryPanel.MatchesPanelId(panelId))
             {
-                mainPanel.equipmentPanel.Hide();
+                mainPanel.inventoryPanel.Hide();
                 return true;
             }
 
@@ -164,10 +164,10 @@ namespace Code.UI
         private void ResolveViews()
         {
             if (statPanel == null)
-                statPanel = FindViewInCurrentScene<CharacterStatPanel>();
+                statPanel = FindViewInCurrentScene<StatPanel>();
 
-            if (equipmentPanel == null)
-                equipmentPanel = FindViewInCurrentScene<CharacterEquipmentPanel>();
+            if (inventoryPanel == null)
+                inventoryPanel = FindViewInCurrentScene<InventoryPanel>();
         }
 
         private T FindViewInCurrentScene<T>() where T : MonoBehaviour
@@ -189,7 +189,7 @@ namespace Code.UI
                 return;
 
             statPanel?.Initialize(this);
-            equipmentPanel?.Initialize(this);
+            inventoryPanel?.Initialize(this);
             _viewsInitialized = true;
         }
 
@@ -205,17 +205,17 @@ namespace Code.UI
         private void ApplyCurrentUnitToViews()
         {
             statPanel?.SetUnit(_currentUnit);
-            equipmentPanel?.SetUnit(_currentUnit);
+            inventoryPanel?.SetUnit(_currentUnit);
         }
 
-        private CharacterUnitPanelTab GetDefaultTab()
+        private UnitPanelTab GetDefaultTab()
         {
             ResolveViews();
 
-            if (equipmentPanel != null && equipmentPanel.MatchesPanelId(defaultOpenPanelId))
-                return CharacterUnitPanelTab.Equipment;
+            if (inventoryPanel != null && inventoryPanel.MatchesPanelId(defaultOpenPanelId))
+                return UnitPanelTab.Inventory;
 
-            return CharacterUnitPanelTab.Stat;
+            return UnitPanelTab.Stat;
         }
 
         private static void BringViewToFront(MonoBehaviour view)
@@ -227,6 +227,7 @@ namespace Code.UI
         private static void ClearTransientPopups()
         {
             Bus<SkillUIHoverEvent>.Raise(new SkillUIHoverEvent(null, null));
+            Bus<SkillEquipPopupEvent>.Raise(new SkillEquipPopupEvent(null, false, null));
             Bus<ArtifactPopupEvent>.Raise(new ArtifactPopupEvent(null, false, null));
         }
     }
