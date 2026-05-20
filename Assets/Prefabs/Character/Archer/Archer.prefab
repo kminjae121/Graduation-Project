@@ -1214,7 +1214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitSystem.UnitTargeting
   inputSO: {fileID: 11400000, guid: a0d5dad133beb4c44a762d5d8e9a9457, type: 2}
-  traitCompo: {fileID: 0}
+  traitCompo: {fileID: 8194838820494296014}
   moveCompo: {fileID: 8324561617133896265}
   skillManager: {fileID: 2634193257307267230}
   unit: {fileID: 3173451793327125779}
@@ -2050,6 +2050,54 @@ Transform:
   - {fileID: 1489558379106235553}
   m_Father: {fileID: 4100354341984061747}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1509302631170904679
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1128524672063220447}
+  - component: {fileID: 3360596961124641010}
+  m_Layer: 0
+  m_Name: Perform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1128524672063220447
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509302631170904679}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3069327487847749708}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3360596961124641010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509302631170904679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eec463aa22664b10bbdee63126a8082f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.TraitSystem.ArcherPerform
+  markCompo: {fileID: 7377092567642248838}
+  getEnemyCompo: {fileID: 5858650671638023926}
+  animationCompo: {fileID: 6887629369385767178}
+  triggerCompo: {fileID: 331084079312153192}
 --- !u!1 &1517028815687319701
 GameObject:
   m_ObjectHideFlags: 0
@@ -2614,7 +2662,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3353163040509015749}
@@ -2811,7 +2859,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6801245415895940446}
@@ -2970,7 +3018,7 @@ MonoBehaviour:
   - {fileID: 4692086598674481567, guid: f68319a6f4d5bbc4dbd0566e69d3ab26, type: 3}
   - {fileID: 1268068733913830513, guid: 40681ef34cf38bc43bb30e622f0a31cb, type: 3}
   - {fileID: 3987707671734161806, guid: f5d104d4b6b134c4eb52df5fed1c431c, type: 3}
-  - {fileID: 452093210579103965, guid: 462bfbb733049e6449500a008da03fda, type: 3}
+  - {fileID: 4731921740717432941, guid: 462bfbb733049e6449500a008da03fda, type: 3}
 --- !u!114 &647129778875576278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6555,6 +6603,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: EPO::EPOOutline.TargetStateListener
+--- !u!1 &3707557395208370773
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4846416378487940075}
+  - component: {fileID: 887972563874208399}
+  m_Layer: 0
+  m_Name: Condition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4846416378487940075
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3707557395208370773}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3069327487847749708}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &887972563874208399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3707557395208370773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 352f2271e041440d9a717c064f651b9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.TraitSystem.ArcherCondition
+  archerMark: {fileID: 7377092567642248838}
 --- !u!1 &3763254328368963180
 GameObject:
   m_ObjectHideFlags: 0
@@ -10155,6 +10248,51 @@ Transform:
   - {fileID: 954618421148860336}
   m_Father: {fileID: 8385725731182462065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4759276327761042149
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3536500772876450114}
+  - component: {fileID: 7377092567642248838}
+  m_Layer: 0
+  m_Name: ArcherTraitCompo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3536500772876450114
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4759276327761042149}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3069327487847749708}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7377092567642248838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4759276327761042149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d9ba8f1cf364dac907b15b57e96b9f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.TraitSystem.ArcherMark
+  maxValue: 3
 --- !u!1 &4870315081960443975
 GameObject:
   m_ObjectHideFlags: 0
@@ -10957,7 +11095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.SkillSystem.CriticalArrow
   <SkillSO>k__BackingField: {fileID: 11400000, guid: ec7386cc717fd65478445094a1ee932c, type: 2}
-  triggerCompo: {fileID: 0}
+  triggerCompo: {fileID: 331084079312153192}
   statCompo: {fileID: 1501015307250350184}
   rangeCompo: {fileID: 647129778875576278}
   SkillEvent:
@@ -10965,19 +11103,7 @@ MonoBehaviour:
       m_Calls: []
   SkillFeedbackEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 84901222180032863}
-        m_TargetAssemblyTypeName: _Code.UnitSystem.UnitEffectCompo, Assembly-CSharp
-        m_MethodName: PlayTargetEffect
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: ChargeEffect
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   SkillEndEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -15415,8 +15541,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3069327487847749708}
+  - component: {fileID: 8194838820494296014}
+  - component: {fileID: 5858650671638023926}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Trait
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15434,9 +15562,38 @@ Transform:
   m_LocalPosition: {x: -0.79909, y: 0, z: -1.01776}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4846416378487940075}
+  - {fileID: 1128524672063220447}
+  - {fileID: 3536500772876450114}
   m_Father: {fileID: 2773054132212776123}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8194838820494296014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8181070475423504813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21876926968d4e09a8873423ba4e849e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.TraitSystem.UnitTrait
+  <IsNeedTarget>k__BackingField: 0
+  inputReader: {fileID: 11400000, guid: a0d5dad133beb4c44a762d5d8e9a9457, type: 2}
+--- !u!114 &5858650671638023926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8181070475423504813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a897f4930ec418b97ea63c23b3d0054, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.UnitGetEnemyCompo
 --- !u!1 &8294978530711175924
 GameObject:
   m_ObjectHideFlags: 0
@@ -17284,7 +17441,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3042519775331041172, guid: 841004c4c6a39e244abe2257394de913, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6211555609909647359}
+      addedObject: {fileID: 4538271094100698076}
   m_SourcePrefab: {fileID: 100100000, guid: 841004c4c6a39e244abe2257394de913, type: 3}
 --- !u!4 &858721169359284173 stripped
 Transform:
@@ -17296,7 +17453,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3042519775331041172, guid: 841004c4c6a39e244abe2257394de913, type: 3}
   m_PrefabInstance: {fileID: 259458990302814741}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6211555609909647359
+--- !u!114 &4538271094100698076
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -17305,11 +17462,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2999673390055480705}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a313a5389a9438c895b8998fdbabfe8, type: 3}
+  m_Script: {fileID: 11500000, guid: 38c9176e4568430883ed42f9b467e0d0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::_Code.UnitSystem.UnitEffect
-  <EffectName>k__BackingField: ChargeEffect
-  particleSystem: {fileID: 4781968817674519544}
+  m_EditorClassIdentifier: Assembly-CSharp::Code.Effects.PlayParticleVFX
+  <VFXName>k__BackingField: ChargeEffect
+  isOnPosition: 0
+  particle: {fileID: 4781968817674519544}
 --- !u!198 &4781968817674519544 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 4739264407584629229, guid: 841004c4c6a39e244abe2257394de913, type: 3}
@@ -17477,7 +17635,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3042519775331041172, guid: 841004c4c6a39e244abe2257394de913, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6121097297049122550}
+      addedObject: {fileID: 1585036443430133149}
   m_SourcePrefab: {fileID: 100100000, guid: 841004c4c6a39e244abe2257394de913, type: 3}
 --- !u!4 &1355497984953460524 stripped
 Transform:
@@ -17489,7 +17647,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3042519775331041172, guid: 841004c4c6a39e244abe2257394de913, type: 3}
   m_PrefabInstance: {fileID: 1926609308748604148}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6121097297049122550
+--- !u!114 &1585036443430133149
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -17498,11 +17656,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3496345172489198944}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a313a5389a9438c895b8998fdbabfe8, type: 3}
+  m_Script: {fileID: 11500000, guid: 38c9176e4568430883ed42f9b467e0d0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::_Code.UnitSystem.UnitEffect
-  <EffectName>k__BackingField: FireChargeEffect
-  particleSystem: {fileID: 6591456944921248537}
+  m_EditorClassIdentifier: Assembly-CSharp::Code.Effects.PlayParticleVFX
+  <VFXName>k__BackingField: FireChargeEffect
+  isOnPosition: 0
+  particle: {fileID: 6591456944921248537}
 --- !u!198 &6591456944921248537 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 4739264407584629229, guid: 841004c4c6a39e244abe2257394de913, type: 3}
@@ -17670,14 +17829,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3042519775331041172, guid: 841004c4c6a39e244abe2257394de913, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4753744942998633292}
+      addedObject: {fileID: 1575475872389164585}
   m_SourcePrefab: {fileID: 100100000, guid: 841004c4c6a39e244abe2257394de913, type: 3}
 --- !u!1 &515622198235193129 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3042519775331041172, guid: 841004c4c6a39e244abe2257394de913, type: 3}
   m_PrefabInstance: {fileID: 3251291298873237693}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4753744942998633292
+--- !u!114 &1575475872389164585
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -17686,11 +17845,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 515622198235193129}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a313a5389a9438c895b8998fdbabfe8, type: 3}
+  m_Script: {fileID: 11500000, guid: 38c9176e4568430883ed42f9b467e0d0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::_Code.UnitSystem.UnitEffect
-  <EffectName>k__BackingField: HardChargeEffect
-  particleSystem: {fileID: 7844100583065878864}
+  m_EditorClassIdentifier: Assembly-CSharp::Code.Effects.PlayParticleVFX
+  <VFXName>k__BackingField: HardChargeEffect
+  isOnPosition: 0
+  particle: {fileID: 7844100583065878864}
 --- !u!4 &2697070123955201381 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 608833437507470808, guid: 841004c4c6a39e244abe2257394de913, type: 3}

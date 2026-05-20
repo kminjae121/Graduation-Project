@@ -128,6 +128,8 @@ namespace Code.UnitSystem.Combat
         {
             if (IsDead)
                 return;
+            
+            Debug.Log(isCritical);
 
             if (IsInvincibility)
                 return;

@@ -61,16 +61,23 @@ namespace Code.UnitSystem.Combat
         
         private void CalculateCritical(ref DamageEvent evt, ref bool isCritical, ref bool isPenetrate)
         {
-            if (isCritical)
-                return;
-            
             float damage = evt.DamageData.damage;
+            
+            if (isCritical)
+            {
+                damage *= evt.Owner.unitSO.CriticalDamageIncrease;
+                evt.DamageData.damage = (int)damage;
+                Debug.Log("크리티컬");
+                isCritical = true;
+                return;
+            }
+            
             float criticalProbilityValue = Random.Range(0f, 100f);
 
             if (evt.Owner != null && criticalProbilityValue <= evt.Owner.unitSO.CriticalProbability)
             {
                 isCritical = true;
-                damage *= (evt.Owner.unitSO.CriticalDamageIncrease / 100);
+                damage *= evt.Owner.unitSO.CriticalDamageIncrease;
                 evt.DamageData.damage = (int)damage;
             }
         }

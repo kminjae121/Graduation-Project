@@ -9,6 +9,8 @@ namespace Code.UnitSystem.Combat
         {
             Bus<DamageEvent>.Raise(new DamageEvent(_shootItemManager.DamageData,_target,0,_shootItemManager.Unit
                 , true,false,0.2f));
+            
+            gameObject.SetActive(false);
         }
     }
 }

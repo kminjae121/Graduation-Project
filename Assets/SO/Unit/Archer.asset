@@ -26,12 +26,12 @@ MonoBehaviour:
   isPlayerUnit: 1
   MoveRange: 5
   Maxhealth: 80
-  AttackDamage: 25
-  DefensivePower: 0
+  AttackDamage: 30
+  DefensivePower: 3
   ShieldValue: 0
   AvoidProbability: 0
-  CriticalProbability: 20
-  CriticalDamageIncrease: 0
+  CriticalProbability: 12
+  CriticalDamageIncrease: 2
   MaxManaCost: 10
   RecoveryManaCost: 1
   unitInGame: {fileID: 11400000, guid: 3a3f63fa5508c724bb16be6895886bbf, type: 2}
