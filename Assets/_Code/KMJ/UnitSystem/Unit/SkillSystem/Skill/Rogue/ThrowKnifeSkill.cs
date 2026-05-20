@@ -1,32 +1,31 @@
 ﻿using System.Collections;
-using Code.Core.Events.Bus;
+using System.Collections.Generic;
 using Code.UnitSystem;
-using Code.UnitSystem.Combat;
 using Code.SkillSystem;
+using Code.UnitSystem.TraitSystem;
+using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering;
+using UnityEngine.Rendering.UI;
+using UnityEngine.UI;
 
     public class ThrowKnifeSkill : BasicUnitSkill
     {
-        private UnitAnimation animtionCompo;
+        private UnitAnimation _animtionCompo;
 
-        private GameObject _target;
-
-        private ShootItemAttackManager _shootItemManager;
-
-        private UnitGetEnemyCompo _getUnitCompo;
+        private RogueShadowSpawn _shadowSpawn;
         
         protected void Start()
         {
             SkillEvent.AddListener(AttackAction);
-            animtionCompo = _characterUnit.GetUnitCompo<UnitAnimation>();
-            _shootItemManager = _characterUnit.GetUnitCompo<ShootItemAttackManager>();
-            _getUnitCompo = _characterUnit.GetUnitCompo<UnitGetEnemyCompo>();
+            _animtionCompo = _characterUnit.GetUnitCompo<UnitAnimation>();
+            _shadowSpawn = _characterUnit.GetUnitCompo<RogueShadowSpawn>();
         }
 
         protected override void StartEvent()
         {
             base.StartEvent();
-            triggerCompo.OnAttackTrigger += MakeThrowKnife;
+            triggerCompo.OnAttackTrigger += MoveShadow;
             triggerCompo.OnAnimationEndTrigger += SkillEnd;
         }
 
@@ -39,32 +38,31 @@ using UnityEngine;
         public void AttackAction(GameObject target)
         {
             StartCoroutine(SlashFlag());
-            _target = target;
         }
         
         private IEnumerator SlashFlag()
         {
             yield return new WaitForSeconds(0.4f);
             SkillFeedbackEvent?.Invoke();   
-            animtionCompo.PlaySelectAnimation("THROW");
+            _animtionCompo.PlaySelectAnimation("THROW");
         }
         
-        public void MakeThrowKnife()
+        public void MoveShadow()
         {
-            _getUnitCompo.FindEnemies();
-            int count = _getUnitCompo.Enemies.Count;
-            int randomInt = Random.Range(0, count);
-            
-            Bus<UseGimicEvent>.Raise(new UseGimicEvent(UnitType.Rogue,  _getUnitCompo.Enemies[randomInt].gameObject));
+            if (_shadowSpawn.GetCurrentShadow() == null)
+                return;
+             
+            _characterUnit.transform.position = _shadowSpawn.GetCurrentShadow().transform.position;
+            _shadowSpawn.SetShadowInfo(_shadowSpawn.GetCurrentShadow(), false);
         }
         
         protected override void SkillEnd()
         {
             base.SkillEnd();
             
-            triggerCompo.OnAttackTrigger -= MakeThrowKnife;
+            triggerCompo.OnAttackTrigger -= MoveShadow;
             triggerCompo.OnAnimationEndTrigger -= SkillEnd;
             SkillEndEvent?.Invoke();
-            animtionCompo.PlaySelectAnimation("IDLE");
+            _animtionCompo.PlaySelectAnimation("IDLE");
         }
     }

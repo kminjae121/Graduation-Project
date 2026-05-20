@@ -7,6 +7,7 @@ namespace Code.UnitSystem.TraitSystem
     {
         [SerializeField] private List<RogueShadow> shadows = new List<RogueShadow>();
         [SerializeField] private int maxShadowCnt = 3;
+        private RogueShadow _currentShadowObj;
 
         private int _shadowCnt = 0;
         private int _currentIdx = 0;
@@ -30,7 +31,19 @@ namespace Code.UnitSystem.TraitSystem
 
         public int GetShadowCnt() => _shadowCnt;
 
+        public int GetCurrentShadowIdx() => _currentIdx;
+
         public List<RogueShadow> GetShadows() => shadows;
+        
+        public RogueShadow GetCurrentShadow() => _currentShadowObj;
+
+        public void SetShadowInfo(RogueShadow shadow, bool active)
+        {
+            foreach (var shadowInfo in shadows)
+            {
+                shadowInfo.gameObject.SetActive(active);
+            }
+        }
 
         public void SetShadow(Transform trm)
         {
@@ -38,7 +51,8 @@ namespace Code.UnitSystem.TraitSystem
 
             var shadow = shadows[_currentIdx];
             shadow.gameObject.SetActive(true);
-            shadow.SetPos(_unit.transform.position );
+            shadow.SetPos(_unit.transform.position);
+            _currentShadowObj = shadow;
 
             if (_shadowCnt < maxShadowCnt)
                 _shadowCnt++;

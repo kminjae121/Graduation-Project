@@ -65,7 +65,7 @@ namespace Code.UnitSystem.TraitSystem
             }
 
             _unit.transform.position = pos;
-            _damageData.damage = addDamage;
+            _damageData.damage = addDamage * 2;
             
             Bus<DamageEvent>.Raise(new DamageEvent(_damageData,target.gameObject,0, _unit,false,false,0.3f));
             shadowCompo.ResetAllShadow();

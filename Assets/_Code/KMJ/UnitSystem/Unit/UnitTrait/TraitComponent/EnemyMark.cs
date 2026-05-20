@@ -6,15 +6,15 @@ namespace Code.UnitSystem.TraitSystem
     public class EnemyMark : MonoBehaviour
     {
         [SerializeField] private GameObject targetMark;
-
-        [SerializeField] private int _maxCnt;
+        [SerializeField] private int maxCnt;
+        
         private int _markCnt = 0;
 
         private bool _isMarked = false;
         
         public void SetMark()
         {
-            if (_markCnt >= _maxCnt)
+            if (_markCnt >= maxCnt)
                 _isMarked = true;
 
             if (_isMarked)

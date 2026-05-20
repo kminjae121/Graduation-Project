@@ -15,10 +15,10 @@ namespace Code.UnitSystem.TraitSystem
     public class KnightDefenseRange : MonoBehaviour, IUnitComponent
     {
         [SerializeField] private int rangeSize;
+        [Inject] protected TurnManager _turnManager;
 
         private CharacterUnit _unit;
         private UnitHealth _unitHealthCompo;
-        [Inject] protected TurnManager _turnManager;
         
         public HashSet<CharacterUnit> Targets { get; private set; } = new();
         public HashSet<AbstractEnemyUnit> Enemies { get; private set; } = new();
@@ -141,14 +141,17 @@ namespace Code.UnitSystem.TraitSystem
         {
             damage = Mathf.RoundToInt(damage * 0.5f);
 
-            _unitHealthCompo.SetMaxHp(_unitHealthCompo.MaxHealth - 1);
+            _unitHealthCompo.SetMaxHp(_unitHealthCompo.MaxHealth - 5);
             
             Bus<UseGimicEvent>.Raise(new UseGimicEvent(UnitType.Knight, null));
         }
 
         private void ReduceThisDamage(ref int damage)
         {
-            damage = Mathf.RoundToInt(damage * 0.5f);
+            damage = 0;
+            
+            _unitHealthCompo.SetMaxHp(_unitHealthCompo.MaxHealth - 5);
+            
             Bus<UseGimicEvent>.Raise(new UseGimicEvent(UnitType.Knight, null));
         }
 

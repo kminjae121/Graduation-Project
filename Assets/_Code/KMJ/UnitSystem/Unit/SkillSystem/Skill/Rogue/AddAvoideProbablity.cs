@@ -6,14 +6,14 @@ using UnityEngine;
 
     public class AddAvoideProbablity : BasicUnitSkill
     {
-        private UnitAnimation animtionCompo;
+        private UnitAnimation _animtionCompo;
 
-        private int skillCnt = 0;
+        private int _skillCnt = 0;
 
         protected void Start()
         {
             SkillEvent.AddListener(AddAP);
-            animtionCompo = _characterUnit.GetUnitCompo<UnitAnimation>();
+            _animtionCompo = _characterUnit.GetUnitCompo<UnitAnimation>();
         }
 
         protected override void StartEvent()
@@ -39,18 +39,18 @@ using UnityEngine;
             Bus<UnitSetMoveEvent>.Raise(new UnitSetMoveEvent(false));
             yield return new WaitForSeconds(0.4f);
             SkillFeedbackEvent?.Invoke();   
-            animtionCompo.PlaySelectAnimation("HEAL");
+            _animtionCompo.PlaySelectAnimation("HEAL");
         }
     
         private void PlusAvoideProbablity()
         {
-            if (skillCnt >= 3)
+            if (_skillCnt >= 3)
             {
                 _characterUnit.InitializeAvoidProbability();
                 return;
             }
 
-            skillCnt += 1;
+            _skillCnt += 1;
             
             _characterUnit.AddAvoidProbability += 10;
             _characterUnit.unitSO.AvoidProbability += 10;
@@ -64,7 +64,7 @@ using UnityEngine;
         protected override void SkillEnd()
         { 
             base.SkillEnd();
-            animtionCompo.PlaySelectAnimation("IDLE");
+            _animtionCompo.PlaySelectAnimation("IDLE");
             triggerCompo.OnAnimationEndTrigger -= SkillEnd; 
             triggerCompo.OnAttackTrigger -= PlusAvoideProbablity;
             Bus<TurnEndUIEvent>.Raise(new TurnEndUIEvent(false));

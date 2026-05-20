@@ -5,8 +5,9 @@ namespace Code.UnitSystem.TraitSystem
 {
     public class ArcherMark : MonoBehaviour
     {
+        [SerializeField] private int maxValue = 10;
+        
         private int _currentValue = 0;
-        [SerializeField] private int _maxValue = 10;
 
         public bool SetMarkEnemy(GameObject target)
         {
@@ -16,7 +17,7 @@ namespace Code.UnitSystem.TraitSystem
 
             _currentValue += 1;
             
-            if (_currentValue >= _maxValue)
+            if (_currentValue >= maxValue) 
             {
                 return true;
             }

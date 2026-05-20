@@ -22,13 +22,14 @@ namespace Code.UnitSystem.TraitSystem
         {
             condition.ResetStack();
             Bus<KnightGimicBarEvent>.Raise(new KnightGimicBarEvent(0));
+            
             foreach (var unit in defenseCompo.Targets)
             {
                 unit.GetUnitCompo<InvincibilityCompo>().SetUnitInvincibility(2);
                 unit.GetUnitCompo<UnitHealth>().HealHp(20);
             }
             
-            _unit.GetUnitCompo<InvincibilityCompo>().SetUnitInvincibility(1);
+            _unit.GetUnitCompo<InvincibilityCompo>().SetUnitInvincibility(4);
 
             _healthCompo.SetMaxHp(_unit.unitSO.Maxhealth);
             circleParticle.Play();
