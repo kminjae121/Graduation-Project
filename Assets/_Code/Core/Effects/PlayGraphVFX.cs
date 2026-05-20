@@ -5,11 +5,11 @@ namespace Code.Effects
 {
     public class PlayGraphVFX : MonoBehaviour, IPlayableVFX
     {
-        [field: SerializeField] public string VfxName { get; private set; }
+        [field: SerializeField] public string VFXName { get; private set; }
         [SerializeField] private bool isOnPosition;
         [SerializeField] private VisualEffect[] effects;
         
-        public void PlayVfx(Vector3 position, Quaternion rotation)
+        public void PlayVFX(Vector3 position, Quaternion rotation)
         {
             if(isOnPosition == false)
                 transform.SetPositionAndRotation(position, rotation);
@@ -20,7 +20,7 @@ namespace Code.Effects
             }
         }
 
-        public void StopVfx()
+        public void StopVFX()
         {
             foreach (VisualEffect effect in effects)
             {
@@ -30,8 +30,8 @@ namespace Code.Effects
 
         private void OnValidate()
         {
-            if(string.IsNullOrEmpty(VfxName) == false)
-                gameObject.name = VfxName;
+            if(string.IsNullOrEmpty(VFXName) == false)
+                gameObject.name = VFXName;
         }
     }
 }

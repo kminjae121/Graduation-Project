@@ -1,4 +1,3 @@
-using System;
 using GondrLib.ObjectPool.Runtime;
 using UnityEngine;
 
@@ -21,13 +20,15 @@ namespace Code.Effects
 
         public void ResetItem()
         {
-            
         }
 
         private void OnValidate()
         {
-            if(effectObject == null) return;
+            if(effectObject == null)
+                return;
+            
             _playableVFX = effectObject.GetComponent<IPlayableVFX>();
+            
             if (_playableVFX == null)
             {
                 Debug.LogError($"The effect object {effectObject.name} does not implement IPlayableVFX.");
@@ -37,7 +38,7 @@ namespace Code.Effects
 
         public void PlayVFX(Vector3 hitPoint, Quaternion rotation)
         {
-            _playableVFX.PlayVfx(hitPoint, rotation);
+            _playableVFX.PlayVFX(hitPoint, rotation);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Code.UnitSystem;
 using Code.Core.Events.Bus;
+using Code.Effects;
 using Code.UnitSystem.Combat;
 using Code.UnitSystem.Enemies;
 using UnityEngine;
@@ -11,10 +12,9 @@ namespace Code.UnitSystem.TraitSystem
     {
         [SerializeField] private UnitRotator rotatorCompo;
         [SerializeField] private UnitAnimation animCompo;
-        [SerializeField] private UnitEffectCompo effectCompo;
+        [SerializeField] private UnitVFXCompo vfxCompo;
         [SerializeField] private RogueShadowSpawn shadowCompo;
-        
-        private UnitEffectCompo _effectCompo;
+
         private Unit _unit;
 
         private DamageData _damageData;
@@ -22,7 +22,7 @@ namespace Code.UnitSystem.TraitSystem
         public void Initialize(Unit unit)
         {
             _unit = unit;
-            _effectCompo = _unit.GetUnitCompo<UnitEffectCompo>();
+            _unit.GetUnitCompo<UnitVFXCompo>();
             _damageData = new DamageData();
         }
 
@@ -33,7 +33,7 @@ namespace Code.UnitSystem.TraitSystem
 
         private IEnumerator PerformTarget(GameObject target)
         {
-            effectCompo.StopTargetEffect("DarkHeal");
+            vfxCompo.PlayVFX("DarkHeal", _unit.transform.position, Quaternion.identity);
             int addDamage = 0;
             Vector3 pos = _unit.transform.position;
             
