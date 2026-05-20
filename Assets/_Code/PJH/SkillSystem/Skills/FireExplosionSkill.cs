@@ -28,6 +28,7 @@ namespace Code.SkillSystem
                 return;
 
             SkillFeedbackEvent?.Invoke();
+            Owner.VFXCompo.PlayVFX("FireExplosion", target.transform.position, Quaternion.identity);
             
             foreach (var hitTarget in GetHitTargets(target))
                 Bus<DamageEvent>.Raise(new DamageEvent(DamageData, hitTarget, AddDamage, null, false, false, 0.1f));

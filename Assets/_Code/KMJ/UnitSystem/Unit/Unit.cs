@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Code.Core.Events.Bus;
 using Code.Core.Interfaces;
+using Code.Effects;
 using Code.UnitSystem.Combat;
 using Code.UnitSystem.UnitComponent;
 using GondrLib.ObjectPool.Runtime;
@@ -32,6 +33,7 @@ namespace Code.UnitSystem
         
         public UnitHealth HealthCompo { get; private set; }
         public StatusEffectCompo StatusEffectCompo { get; private set; }
+        public UnitVFXCompo VFXCompo { get; private set; }
         
         [Header("Events")]
         public Action OnDeathEvent;
@@ -154,7 +156,8 @@ namespace Code.UnitSystem
             RangeCompo = GetUnitCompo<UnitManageRangeCompo>();
             AnimationCompo = GetUnitCompo<UnitAnimation>();
             StatusEffectCompo = GetUnitCompo<StatusEffectCompo>();
-            HealthCompo = GetUnitCompo<UnitHealth>();   
+            HealthCompo = GetUnitCompo<UnitHealth>();
+            VFXCompo = GetUnitCompo<UnitVFXCompo>();
         }
         
         protected virtual void InitComponents()
