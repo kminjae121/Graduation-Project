@@ -90,3 +90,10 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 315464
+  packageName: Triple-A MOBA Projectiles
+  packageVersion: 1.4
+  assetPath: Assets/Hovl Studio/HSFiles/Models/QuadToCircle.fbx
+  uploadId: 832152

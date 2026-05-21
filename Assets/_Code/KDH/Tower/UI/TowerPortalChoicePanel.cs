@@ -74,7 +74,7 @@ namespace Code.Tower.UI
             if (descriptionText != null)
             {
                 descriptionText.text = isBossPortal
-                    ? "보스방에 열린 포탈이 다음 꿈으로 이어집니다."
+                    ? "보스방에 열린 포탈이 다음 구역으로 이어집니다."
                     : "포탈의 빛이 안정되었습니다. 더 깊이 내려가거나 원정을 마칠 수 있습니다.";
             }
         }

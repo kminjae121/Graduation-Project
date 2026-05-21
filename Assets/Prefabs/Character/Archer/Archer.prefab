@@ -17466,7 +17466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.Effects.PlayParticleVFX
   <VFXName>k__BackingField: ChargeEffect
-  isOnPosition: 0
+  isOnPosition: 1
   particle: {fileID: 4781968817674519544}
 --- !u!198 &4781968817674519544 stripped
 ParticleSystem:
@@ -17660,7 +17660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.Effects.PlayParticleVFX
   <VFXName>k__BackingField: FireChargeEffect
-  isOnPosition: 0
+  isOnPosition: 1
   particle: {fileID: 6591456944921248537}
 --- !u!198 &6591456944921248537 stripped
 ParticleSystem:
@@ -17849,7 +17849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.Effects.PlayParticleVFX
   <VFXName>k__BackingField: HardChargeEffect
-  isOnPosition: 0
+  isOnPosition: 1
   particle: {fileID: 7844100583065878864}
 --- !u!4 &2697070123955201381 stripped
 Transform:

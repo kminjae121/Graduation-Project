@@ -11,6 +11,7 @@ namespace Code.Tower
         public const string DefaultTowerMapSceneName = "TowerMapScene";
 
         private static readonly List<UnitSO> _selectedUnits = new();
+        private static TowerMapDatabase _mapDatabase;
 
         public static bool IsActive { get; private set; }
         public static TowerFloorKey CurrentFloorKey { get; private set; } = new(1, 1);
@@ -29,7 +30,8 @@ namespace Code.Tower
             IEnumerable<UnitSO> selectedUnits,
             string towerSceneName = DefaultTowerMapSceneName,
             string lobbySceneName = DefaultLobbySceneName,
-            int seed = 0)
+            int seed = 0,
+            TowerMapDatabase mapDatabase = null)
         {
             _selectedUnits.Clear();
 
@@ -40,9 +42,10 @@ namespace Code.Tower
 
             TowerSceneName = string.IsNullOrWhiteSpace(towerSceneName) ? DefaultTowerMapSceneName : towerSceneName;
             LobbySceneName = string.IsNullOrWhiteSpace(lobbySceneName) ? DefaultLobbySceneName : lobbySceneName;
+            _mapDatabase = mapDatabase != null ? mapDatabase : TowerMapDatabase.LoadDefault();
             IsActive = true;
             CurrentFloorKey = new TowerFloorKey(1, 1);
-            CurrentMap = TowerMapGenerator.Generate(CurrentFloorKey, seed);
+            CurrentMap = CreateMap(CurrentFloorKey, seed);
         }
 
         public static bool TryMoveToRoom(int roomId, out TowerRoomNode room)
@@ -79,7 +82,7 @@ namespace Code.Tower
                 return;
 
             CurrentFloorKey = CurrentFloorKey.Next();
-            CurrentMap = TowerMapGenerator.Generate(CurrentFloorKey, seed);
+            CurrentMap = CreateMap(CurrentFloorKey, seed);
         }
 
         public static void FailRun()
@@ -91,6 +94,7 @@ namespace Code.Tower
         {
             IsActive = false;
             CurrentMap = null;
+            _mapDatabase = null;
             _selectedUnits.Clear();
             TowerSceneName = DefaultTowerMapSceneName;
             LobbySceneName = DefaultLobbySceneName;
@@ -120,6 +124,17 @@ namespace Code.Tower
                 return string.Empty;
 
             return CurrentFloorKey.DisplayName;
+        }
+
+        private static TowerFloorMap CreateMap(TowerFloorKey floorKey, int seed)
+        {
+            _mapDatabase ??= TowerMapDatabase.LoadDefault();
+
+            if (_mapDatabase != null && _mapDatabase.TryCreateMap(floorKey, out TowerFloorMap map))
+                return map;
+
+            Debug.LogWarning($"[TowerRunSession] {floorKey.DisplayName} 수동 맵 정의를 찾지 못해 자동 생성 맵을 사용합니다.");
+            return TowerMapGenerator.Generate(floorKey, seed);
         }
     }
 }

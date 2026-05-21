@@ -7,3 +7,10 @@ ShaderImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 315464
+  packageName: Triple-A MOBA Projectiles
+  packageVersion: 1.4
+  assetPath: Assets/Hovl Studio/HSFiles/Shaders/DissolveNoise.shader
+  uploadId: 832152

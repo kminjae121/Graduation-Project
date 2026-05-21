@@ -1,6 +1,7 @@
 using Code.Core;
 using Code.Tower;
 using Code.Tower.UI;
+using PixeLadder.EasyTransition;
 using UnityEngine;
 using UnityEngine.EventSystems;
 #if ENABLE_INPUT_SYSTEM
@@ -16,6 +17,7 @@ namespace Code.Expedition.Managers
         [SerializeField] private string battleSceneName = "BattleScene";
         [SerializeField] private string eliteBattleSceneName = "BattleScene";
         [SerializeField] private string bossBattleSceneName = "BattleScene";
+        [SerializeField] private TransitionEffect battleTransitionEffect;
 
         [Header("Runtime UI")]
         [SerializeField] private bool autoCreateRuntimeUI = true;
@@ -39,8 +41,9 @@ namespace Code.Expedition.Managers
 
             EnsureRuntimeUI();
             WireUIEvents();
-            ResolveCurrentRoomOnMapEnter();
-            RefreshUI();
+
+            if (ResolveCurrentRoomOnMapEnter())
+                RefreshUI();
         }
 
         private void OnDestroy()
@@ -56,17 +59,17 @@ namespace Code.Expedition.Managers
                 return;
             }
 
-            ResolveCurrentRoomOnMapEnter(movedRoom);
-            RefreshUI();
+            if (ResolveCurrentRoomOnMapEnter(movedRoom))
+                RefreshUI();
         }
 
-        private void ResolveCurrentRoomOnMapEnter(TowerRoomNode roomOverride = null)
+        private bool ResolveCurrentRoomOnMapEnter(TowerRoomNode roomOverride = null)
         {
             TowerFloorMap map = TowerRunSession.CurrentMap;
             TowerRoomNode room = roomOverride ?? map?.GetCurrentRoom();
 
             if (room == null)
-                return;
+                return true;
 
             room.Visit();
 
@@ -80,17 +83,28 @@ namespace Code.Expedition.Managers
                     break;
                 case TowerRoomType.Combat:
                     if (!room.IsCleared)
+                    {
                         LoadBattleScene(battleSceneName);
+                        return false;
+                    }
                     break;
                 case TowerRoomType.EliteCombat:
                     if (!room.IsCleared)
+                    {
                         LoadBattleScene(eliteBattleSceneName);
+                        return false;
+                    }
                     break;
                 case TowerRoomType.Boss:
                     if (!room.IsCleared)
+                    {
                         LoadBattleScene(bossBattleSceneName);
+                        return false;
+                    }
                     break;
             }
+
+            return true;
         }
 
         private void RefreshUI()
@@ -100,6 +114,7 @@ namespace Code.Expedition.Managers
             if (map == null)
                 return;
 
+            SetRuntimeUIVisible(true);
             nodeMapView?.Render(map);
 
             if (TowerRunSession.CanUseCurrentPortal)
@@ -130,7 +145,17 @@ namespace Code.Expedition.Managers
                 return;
             }
 
-            TowerSceneLoader.LoadScene(sceneName);
+            SetRuntimeUIVisible(false);
+            TowerSceneLoader.LoadScene(sceneName, battleTransitionEffect);
+        }
+
+        private void SetRuntimeUIVisible(bool visible)
+        {
+            if (nodeMapView != null)
+                nodeMapView.gameObject.SetActive(visible);
+
+            if (!visible)
+                portalChoicePanel?.Hide();
         }
 
         private void EnsureRuntimeUI()

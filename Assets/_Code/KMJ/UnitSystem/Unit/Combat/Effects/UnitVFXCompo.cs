@@ -7,18 +7,13 @@ namespace Code.Effects
 {
     public class UnitVFXCompo : MonoBehaviour, IUnitComponent
     {
-        private UnitAnimation animationCompo;
         private Dictionary<string, IPlayableVFX> _vfxDict = new();
-        private Unit _owner;
 
         public void Initialize(Unit owner)
         {
-            _owner = owner;
             _vfxDict = new Dictionary<string, IPlayableVFX>();
             GetComponentsInChildren<IPlayableVFX>().ToList()
                 .ForEach(playable => _vfxDict.Add(playable.VFXName, playable));
-
-            animationCompo = owner.GetUnitCompo<UnitAnimation>();
         }
         
         public void PlayVFX(string vfxName, Vector3 position, Quaternion rotation)

@@ -8,9 +8,10 @@ namespace Code.UnitSystem.TraitSystem
 {
     public class InvincibilityCompo : MonoBehaviour, IUnitComponent
     {
+        [SerializeField] private string effectName;
         [Inject] protected TurnManager _turnManager;
-        private UnitVFXCompo _vfxCompo;
         
+        private UnitVFXCompo _vfxCompo;
         private UnitHealth _healthCompo;
         private Unit _owner;
         
@@ -36,7 +37,7 @@ namespace Code.UnitSystem.TraitSystem
             _maxTurnCnt = maxTurn;
             _curTurnCnt = 0;
             
-            //_vfxCompo.PlayVFX("SunShield", _owner.transform.position, Quaternion.identity);
+            _vfxCompo.PlayVFX(effectName, _owner.transform.position, Quaternion.identity);
             _turnManager.OnTurnStart -= CheckInvincibility;
             _turnManager.OnTurnStart += CheckInvincibility;
         }
@@ -48,7 +49,7 @@ namespace Code.UnitSystem.TraitSystem
                 _turnManager.OnTurnStart -= CheckInvincibility;
                 _healthCompo.IsInvincibility = false;
                 _curTurnCnt = 0;
-                _vfxCompo.StopVFX("SunShield");
+                _vfxCompo.StopVFX(effectName);
                 return;
             }
             

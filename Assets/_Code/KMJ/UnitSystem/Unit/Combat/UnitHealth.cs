@@ -82,8 +82,6 @@ namespace Code.UnitSystem.Combat
             if (currentHealth >= MaxHealth)
                 currentHealth = MaxHealth;
             
-            Debug.Log(maxHealth);
-            
             if (_entity as CharacterUnit)
             {
                 CharacterUnit characterUnit = _entity as CharacterUnit;

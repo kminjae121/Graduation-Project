@@ -860,7 +860,7 @@ GameObject:
   - component: {fileID: 31057235}
   - component: {fileID: 31057236}
   m_Layer: 5
-  m_Name: UnitEquipPanel
+  m_Name: UnitInventoryPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -897,11 +897,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3db8974afe1450f9709337d4d8608a4, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Code.UI.CharacterEquipmentPanel
-  id: EquipPanel
+  m_EditorClassIdentifier: Assembly-CSharp::Code.UI.InventoryPanel
+  id: InventoryPanel
   container: {fileID: 1781067593}
   artifactButtonPoolingSO: {fileID: 11400000, guid: 2af3ed30fd75dec40b638ebb0afe9476, type: 2}
-  skillButtonPoolingSO: {fileID: 11400000, guid: a9b7d0dad62b8e94185ce27528b07eca, type: 2}
   unitStorageSO: {fileID: 0}
   artifactInventoryTrm: {fileID: 1585087525}
   artifactCountText: {fileID: 1185757805}
@@ -909,10 +908,6 @@ MonoBehaviour:
   artifactSortText: {fileID: 956039073}
   maxArtifactInventoryCapacity: 20
   maxArtifactEquipCount: 2
-  ownSkillContainer: {fileID: 1060732118}
-  skillLoadoutFillImage: {fileID: 1236021678}
-  skillLoadoutText: {fileID: 1352930109}
-  fillAnimationDuration: 0.3
 --- !u!1 &37770936
 GameObject:
   m_ObjectHideFlags: 0
@@ -2800,7 +2795,7 @@ MonoBehaviour:
   targetPanelId: SettingsPanel
   panelsToClose:
   - StatPanel
-  - EquipPanel
+  - InventoryPanel
   - UpgradePanel
   scaleTarget: {fileID: 122439873}
   panelNameCanvasGroup: {fileID: 922463233}
@@ -16629,7 +16624,7 @@ MonoBehaviour:
   targetPanelId: UpgradePanel
   panelsToClose:
   - StatPanel
-  - EquipPanel
+  - InventoryPanel
   - SettingsPanel
   scaleTarget: {fileID: 692188996}
   panelNameCanvasGroup: {fileID: 1571786874}
@@ -21055,7 +21050,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Code.UI.SideNavButton
   targetPanelId: StatPanel
   panelsToClose:
-  - EquipPanel
+  - InventoryPanel
   - UpgradePanel
   - SettingsPanel
   scaleTarget: {fileID: 883071572}
@@ -32366,7 +32361,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5faa870b9beb4f7b89bde2fcb0946cd7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Code.UI.CharacterMainPanel
+  m_EditorClassIdentifier: Assembly-CSharp::Code.UI.MainPanel
   id: MainUnitInfoPanel
   container: {fileID: 1555308881}
   defaultOpenPanelId: StatPanel
@@ -33742,6 +33737,7 @@ RectTransform:
   - {fileID: 1982012381}
   - {fileID: 1770492765}
   - {fileID: 355111516}
+  - {fileID: 1736303810}
   m_Father: {fileID: 1614540573}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -35906,7 +35902,7 @@ GameObject:
   - component: {fileID: 1477787634}
   - component: {fileID: 1477787633}
   m_Layer: 5
-  m_Name: EquipPanel
+  m_Name: InventoryPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35945,7 +35941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d4a02600ec44e2bc4151b1ece7e93a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.UI.SideNavButton
-  targetPanelId: EquipPanel
+  targetPanelId: InventoryPanel
   panelsToClose:
   - StatPanel
   - UpgradePanel
@@ -38974,17 +38970,11 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb6fe3a8cf7649c5b87db699af745cae, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Code.UI.CharacterStatPanel
+  m_EditorClassIdentifier: Assembly-CSharp::Code.UI.StatPanel
   id: StatPanel
   container: {fileID: 1416004220}
   artifactButtonPoolingSO: {fileID: 11400000, guid: 2af3ed30fd75dec40b638ebb0afe9476, type: 2}
   skillButtonPoolingSO: {fileID: 11400000, guid: a9b7d0dad62b8e94185ce27528b07eca, type: 2}
-  skillIcons:
-  - {fileID: 1045537787}
-  - {fileID: 1756408075}
-  - {fileID: 928638496}
-  - {fileID: 737911979}
-  emptySkillSlotSprite: {fileID: 21300000, guid: 9a58626c9e95e25428adaddbc0914509, type: 3}
   artifactIcons:
   - {fileID: 595215022}
   - {fileID: 1528760191}
@@ -38992,6 +38982,10 @@ MonoBehaviour:
   - {fileID: 976850225}
   - {fileID: 907409919}
   emptyArtifactSlotSprite: {fileID: 21300000, guid: 9a58626c9e95e25428adaddbc0914509, type: 3}
+  ownSkillContainer: {fileID: 1060732118}
+  skillLoadoutFillImage: {fileID: 1236021678}
+  skillLoadoutText: {fileID: 1352930109}
+  fillAnimationDuration: 0.3
   hpBarFill: {fileID: 196555700}
   hpText: {fileID: 738800865}
   nameText: {fileID: 1068445018}
@@ -41562,7 +41556,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1341427139}
-  m_Father: {fileID: 1781067593}
+  m_Father: {fileID: 1416004220}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
@@ -42365,7 +42359,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 503576458}
-  - {fileID: 1736303810}
   - {fileID: 1517676534}
   m_Father: {fileID: 31057235}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -44732,7 +44725,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 329a41e132f444e58540e74cbcfc4495, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Code.UI.CharacterUpgradePanel
+  m_EditorClassIdentifier: Assembly-CSharp::Code.UI.UpgradePanel
   id: UpgradePanel
   container: {fileID: 58105910}
   nodeButtonPoolSO: {fileID: 11400000, guid: 6a562532f2dd0584ab6e19a248cf5d42, type: 2}
