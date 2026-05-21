@@ -42,7 +42,7 @@ namespace Code.UnitSystem.TraitSystem
             foreach (var shadowInfo in shadows)
             {
                 if(shadowInfo == shadow)
-                    shadowInfo.gameObject.SetActive(active);
+                        shadowInfo.gameObject.SetActive(active);
             }
         }
 
