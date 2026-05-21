@@ -923,7 +923,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.SkillSystem.FrontPierceEnemyAttack
   <SkillSO>k__BackingField: {fileID: 11400000, guid: f7275ff2d092b5845ae225047350a9e4, type: 2}
-  attackData: {fileID: 11400000, guid: ecfa0452123f0c44487796bbeffe5d30, type: 2}
   triggerCompo: {fileID: 8903344709663485480}
   statCompo: {fileID: 3886533167665005489}
   rangeCompo: {fileID: 1720830824041754209}
@@ -932,19 +931,7 @@ MonoBehaviour:
       m_Calls: []
   SkillFeedbackEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5928557692450035056}
-        m_TargetAssemblyTypeName: Code.UnitSystem.UnitEffectCompo, Assembly-CSharp
-        m_MethodName: PlayTargetEffect
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: DragonBreath
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   SkillEndEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -956,6 +943,7 @@ MonoBehaviour:
   aiPriority: 0
   needSight: 0
   pierceLength: 3
+  useMaxRange: 0
   burnDuration: 2
   burnDamage: 5
 --- !u!1 &2951595371588192628
@@ -2162,7 +2150,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.SkillSystem.MeleeEnemyAttack
   <SkillSO>k__BackingField: {fileID: 11400000, guid: a45cf72c25b0a884fbae08f59cbe47ff, type: 2}
-  attackData: {fileID: 11400000, guid: ecfa0452123f0c44487796bbeffe5d30, type: 2}
   triggerCompo: {fileID: 8903344709663485480}
   statCompo: {fileID: 3886533167665005489}
   rangeCompo: {fileID: 1720830824041754209}
@@ -2677,15 +2664,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8638046617530618208, guid: 91dda8669248fe449b8b886ebf7b7995, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.02
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 8638046617530618208, guid: 91dda8669248fe449b8b886ebf7b7995, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.02
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 8638046617530618208, guid: 91dda8669248fe449b8b886ebf7b7995, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.02
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 8638046617530618208, guid: 91dda8669248fe449b8b886ebf7b7995, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2920,7 +2907,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1259762591101698, guid: d9c1fac1f620ebd4f9e47ef7b9ca6bca, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7777358420625762256}
+      addedObject: {fileID: 8891064119556806678}
   m_SourcePrefab: {fileID: 100100000, guid: d9c1fac1f620ebd4f9e47ef7b9ca6bca, type: 3}
 --- !u!198 &3205382900275073672 stripped
 ParticleSystem:
@@ -2932,7 +2919,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1259762591101698, guid: d9c1fac1f620ebd4f9e47ef7b9ca6bca, type: 3}
   m_PrefabInstance: {fileID: 3370012764395931796}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7777358420625762256
+--- !u!114 &8891064119556806678
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2941,11 +2928,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3368914065817893782}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a313a5389a9438c895b8998fdbabfe8, type: 3}
+  m_Script: {fileID: 11500000, guid: 38c9176e4568430883ed42f9b467e0d0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::_Code.UnitSystem.UnitEffect
-  <EffectName>k__BackingField: DragonBreath
-  particleSystem: {fileID: 3205382900275073672}
+  m_EditorClassIdentifier: Assembly-CSharp::Code.Effects.PlayParticleVFX
+  <VFXName>k__BackingField: DragonBreath
+  isOnPosition: 0
+  particle: {fileID: 3205382900275073672}
 --- !u!4 &3374752021859976626 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4846459981974822, guid: d9c1fac1f620ebd4f9e47ef7b9ca6bca, type: 3}

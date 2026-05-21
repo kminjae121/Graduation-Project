@@ -56639,6 +56639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60cbc5c34c6f42c0b0ffb8b8cd797c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.UnitAttributes.InvincibilityCompo
+  effectName: 
 --- !u!1 &2008072376625463879
 GameObject:
   m_ObjectHideFlags: 0

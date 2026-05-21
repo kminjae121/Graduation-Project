@@ -8583,6 +8583,8 @@ MonoBehaviour:
   aiPriority: 1
   needSight: 1
   radius: 1
+  burnDuration: 2
+  burnDamage: 5
 --- !u!1 &5706579372422178924
 GameObject:
   m_ObjectHideFlags: 0
@@ -15416,15 +15418,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8638046617530618208, guid: 91dda8669248fe449b8b886ebf7b7995, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.02
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 8638046617530618208, guid: 91dda8669248fe449b8b886ebf7b7995, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.02
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 8638046617530618208, guid: 91dda8669248fe449b8b886ebf7b7995, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.02
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 8638046617530618208, guid: 91dda8669248fe449b8b886ebf7b7995, type: 3}
       propertyPath: m_LocalPosition.x

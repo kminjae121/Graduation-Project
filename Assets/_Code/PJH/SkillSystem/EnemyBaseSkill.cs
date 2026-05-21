@@ -1,4 +1,6 @@
 using Code.Core.Events.Bus;
+using Code.Core.Managers;
+using Code.Map;
 using Code.UnitSystem;
 using Code.UnitSystem.Enemies;
 using UnityEngine;
@@ -9,6 +11,7 @@ namespace Code.SkillSystem
     {
         protected GameObject Target { get; private set; }
         protected AbstractEnemyUnit Owner { get; private set; }
+        protected UnitManager UnitManager => Owner != null ? Owner.UnitManager : null;
 
         private bool _isFinished = true;
         private bool _isEventBound;
@@ -57,6 +60,16 @@ namespace Code.SkillSystem
         }
 
         protected abstract void OnAttack(GameObject target);
+
+        protected Vector2Int GetCasterGridPos()
+        {
+            var gridMap = GridMap.Instance;
+
+            if (gridMap == null)
+                return Vector2Int.zero;
+
+            return gridMap.WorldToGridPos(GetCasterWorldPos());
+        }
 
         private void BeginSkill()
         {
