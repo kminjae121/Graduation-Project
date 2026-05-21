@@ -1,5 +1,6 @@
 using System.Collections;
 using Code.Core.Events.Bus;
+using Code.Effects;
 using Code.UnitSystem;
 using Code.SkillSystem;
 using UnityEngine;
@@ -7,10 +8,10 @@ using UnityEngine;
 public class BasicAttackSkill : BasicUnitSkill
 {
     [SerializeField] private Animator animator;
-    private UnitAnimation animtionCompo;
-
     [SerializeField] private float atkMoveSpeed;
 
+    private UnitVFXCompo vfxCompo;
+    private UnitAnimation animtionCompo;
     private GameObject _target;
         
     private Vector3 _ownTrm;
@@ -18,6 +19,7 @@ public class BasicAttackSkill : BasicUnitSkill
     protected void Start()
     {
         SkillEvent.AddListener(AttackAction);
+        vfxCompo = _characterUnit.GetUnitCompo<UnitVFXCompo>();
         animtionCompo = _characterUnit.GetUnitCompo<UnitAnimation>();
     }
 
@@ -26,12 +28,12 @@ public class BasicAttackSkill : BasicUnitSkill
         base.StartEvent();
         triggerCompo.OnAnimationEndTrigger += AttackEnd;
         triggerCompo.OnAttackTrigger += TakeDamage;
+        triggerCompo.OnShowEffectTrigger += ShowEffect;
     }
 
     protected override void OnDestroy()
     {
         base.OnDestroy();
-        
         SkillEvent.RemoveListener(AttackAction);
     }
     
@@ -53,6 +55,11 @@ public class BasicAttackSkill : BasicUnitSkill
         
         animtionCompo.PlaySelectAnimation("BAS");
     }
+
+    public void ShowEffect()
+    {
+        vfxCompo.PlayVFX("GroundAtkEffect");
+    }
     
     public void TakeDamage()
     {
@@ -73,6 +80,7 @@ public class BasicAttackSkill : BasicUnitSkill
     protected override void SkillEnd()
     {
         base.SkillEnd();
+        triggerCompo.OnShowEffectTrigger -= ShowEffect;
         triggerCompo.OnAnimationEndTrigger -= AttackEnd;
         triggerCompo.OnAttackTrigger -= TakeDamage;
         Bus<TurnEndUIEvent>.Raise(new TurnEndUIEvent(false));

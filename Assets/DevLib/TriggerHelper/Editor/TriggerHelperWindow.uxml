@@ -1,0 +1,169 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:VisualElement name="Root" style="flex-direction: row; flex-grow: 1; height: 100%;">
+
+        <!-- Left: Settings Panel -->
+        <ui:VisualElement name="SettingsPanel"
+            style="width: 270px; min-width: 200px; padding: 12px;
+                   background-color: rgb(45, 45, 45);
+                   border-right-width: 1px; border-right-color: rgb(22, 22, 22);">
+
+            <ui:Label text="Animation Trigger Helper"
+                style="-unity-font-style: bold; font-size: 13px;
+                       color: rgb(210, 210, 210); margin-bottom: 14px;" />
+
+            <!-- Model -->
+            <ui:Label text="Model Prefab"
+                style="font-size: 11px; color: rgb(160, 160, 160); margin-bottom: 2px;" />
+            <uie:ObjectField name="ModelField" style="margin-bottom: 10px;" />
+
+            <!-- Animation Clip -->
+            <ui:Label text="Animation Clip"
+                style="font-size: 11px; color: rgb(160, 160, 160); margin-bottom: 2px;" />
+            <uie:ObjectField name="ClipField" style="margin-bottom: 10px;" />
+
+            <!-- Particle Prefab -->
+            <ui:Label text="Particle Prefab"
+                style="font-size: 11px; color: rgb(160, 160, 160); margin-bottom: 2px;" />
+            <uie:ObjectField name="ParticleField" style="margin-bottom: 8px;" />
+
+            <!-- Particle Offset -->
+            <ui:Label text="Particle Offset"
+                style="font-size: 11px; color: rgb(160, 160, 160); margin-bottom: 4px;" />
+            <ui:VisualElement style="flex-direction: row; align-items: center; margin-bottom: 3px;">
+                <ui:Label text="X"
+                    style="width: 13px; font-size: 10px; color: rgb(220, 80, 80); -unity-font-style: bold;" />
+                <ui:Slider name="OffsetXSlider" low-value="-3" high-value="3" value="0"
+                    style="flex-grow: 1; margin-left: 3px; margin-right: 3px;" />
+                <ui:Label name="OffsetXLabel" text="0.00"
+                    style="width: 36px; font-size: 10px; color: rgb(155, 155, 155);" />
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-direction: row; align-items: center; margin-bottom: 3px;">
+                <ui:Label text="Y"
+                    style="width: 13px; font-size: 10px; color: rgb(80, 200, 80); -unity-font-style: bold;" />
+                <ui:Slider name="OffsetYSlider" low-value="-3" high-value="3" value="0"
+                    style="flex-grow: 1; margin-left: 3px; margin-right: 3px;" />
+                <ui:Label name="OffsetYLabel" text="0.00"
+                    style="width: 36px; font-size: 10px; color: rgb(155, 155, 155);" />
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-direction: row; align-items: center; margin-bottom: 6px;">
+                <ui:Label text="Z"
+                    style="width: 13px; font-size: 10px; color: rgb(80, 120, 220); -unity-font-style: bold;" />
+                <ui:Slider name="OffsetZSlider" low-value="-3" high-value="3" value="0"
+                    style="flex-grow: 1; margin-left: 3px; margin-right: 3px;" />
+                <ui:Label name="OffsetZLabel" text="0.00"
+                    style="width: 36px; font-size: 10px; color: rgb(155, 155, 155);" />
+            </ui:VisualElement>
+            <ui:Button name="CopyPosBtn" text="Position 복사"
+                style="height: 21px; font-size: 10px; color: rgb(170, 210, 170);
+                       background-color: rgb(40, 58, 40); margin-bottom: 10px;" />
+
+            <!-- Particle Rotation -->
+            <ui:Label text="Particle Rotation"
+                style="font-size: 11px; color: rgb(160, 160, 160); margin-bottom: 4px;" />
+            <ui:VisualElement style="flex-direction: row; align-items: center; margin-bottom: 3px;">
+                <ui:Label text="X"
+                    style="width: 13px; font-size: 10px; color: rgb(220, 80, 80); -unity-font-style: bold;" />
+                <ui:Slider name="RotXSlider" low-value="-180" high-value="180" value="0"
+                    style="flex-grow: 1; margin-left: 3px; margin-right: 3px;" />
+                <ui:Label name="RotXLabel" text="0.0"
+                    style="width: 36px; font-size: 10px; color: rgb(155, 155, 155);" />
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-direction: row; align-items: center; margin-bottom: 3px;">
+                <ui:Label text="Y"
+                    style="width: 13px; font-size: 10px; color: rgb(80, 200, 80); -unity-font-style: bold;" />
+                <ui:Slider name="RotYSlider" low-value="-180" high-value="180" value="0"
+                    style="flex-grow: 1; margin-left: 3px; margin-right: 3px;" />
+                <ui:Label name="RotYLabel" text="0.0"
+                    style="width: 36px; font-size: 10px; color: rgb(155, 155, 155);" />
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-direction: row; align-items: center; margin-bottom: 6px;">
+                <ui:Label text="Z"
+                    style="width: 13px; font-size: 10px; color: rgb(80, 120, 220); -unity-font-style: bold;" />
+                <ui:Slider name="RotZSlider" low-value="-180" high-value="180" value="0"
+                    style="flex-grow: 1; margin-left: 3px; margin-right: 3px;" />
+                <ui:Label name="RotZLabel" text="0.0"
+                    style="width: 36px; font-size: 10px; color: rgb(155, 155, 155);" />
+            </ui:VisualElement>
+            <ui:Button name="CopyRotBtn" text="Rotation 복사"
+                style="height: 21px; font-size: 10px; color: rgb(170, 200, 230);
+                       background-color: rgb(38, 50, 68); margin-bottom: 10px;" />
+
+            <!-- Divider -->
+            <ui:VisualElement style="height: 1px; background-color: rgb(33, 33, 33);
+                                     margin-top: 4px; margin-bottom: 12px;" />
+
+            <!-- Trigger info -->
+            <ui:Label name="TriggerTimeLabel" text="트리거: 클립 미등록"
+                style="-unity-font-style: bold; font-size: 12px;
+                       color: rgb(255, 145, 50); margin-bottom: 10px;" />
+
+            <!-- Playback Speed -->
+            <ui:VisualElement style="flex-direction: row; align-items: center; margin-bottom: 8px;">
+                <ui:Label text="배속"
+                    style="font-size: 11px; color: rgb(160, 160, 160); width: 28px;" />
+                <ui:Slider name="SpeedSlider" low-value="0.1" high-value="2" value="1"
+                    style="flex-grow: 1; margin-left: 3px; margin-right: 3px;" />
+                <ui:Label name="SpeedLabel" text="x1.00"
+                    style="width: 40px; font-size: 10px; color: rgb(200, 200, 200);
+                           -unity-font-style: bold;" />
+            </ui:VisualElement>
+
+            <!-- Play / Stop buttons -->
+            <ui:VisualElement style="flex-direction: row; margin-bottom: 10px;">
+                <ui:Button name="PlayBtn" text="▶  Play"
+                    style="flex-grow: 1; margin-right: 4px; height: 26px;
+                           background-color: rgb(42, 90, 42); color: rgb(190, 240, 190);
+                           -unity-font-style: bold;" />
+                <ui:Button name="StopBtn" text="■  Stop"
+                    style="flex-grow: 1; height: 26px;
+                           background-color: rgb(90, 36, 36); color: rgb(240, 190, 190);
+                           -unity-font-style: bold;" />
+            </ui:VisualElement>
+
+            <!-- Divider -->
+            <ui:VisualElement style="height: 1px; background-color: rgb(33, 33, 33);
+                                     margin-bottom: 10px;" />
+
+            <!-- Help -->
+            <ui:Label text="사용법"
+                style="-unity-font-style: bold; font-size: 11px;
+                       color: rgb(140, 140, 140); margin-bottom: 5px;" />
+            <ui:Label text="• 오렌지 마커 드래그 → 트리거 시점 조정"
+                style="font-size: 10px; color: rgb(115, 115, 115); margin-bottom: 3px;" />
+            <ui:Label text="• 흰색 마커 드래그 → 수동 스크럽"
+                style="font-size: 10px; color: rgb(115, 115, 115); margin-bottom: 3px;" />
+            <ui:Label text="• 트랙 클릭 → 해당 시점으로 점프"
+                style="font-size: 10px; color: rgb(115, 115, 115); margin-bottom: 3px;" />
+            <ui:Label text="• ▶ Play → 처음부터 1회 재생"
+                style="font-size: 10px; color: rgb(115, 115, 115); margin-bottom: 3px;" />
+            <ui:Label text="• X/Y/Z 슬라이더 → 파티클 오프셋 조정"
+                style="font-size: 10px; color: rgb(115, 115, 115);" />
+        </ui:VisualElement>
+
+        <!-- Right: Preview (UIToolkit) + Timeline (IMGUI) -->
+        <ui:VisualElement name="PreviewPanel"
+            style="flex-grow: 1; flex-direction: column; background-color: rgb(28, 28, 28);">
+
+            <!-- Preview area: RenderTexture Image + Gizmo overlay -->
+            <ui:VisualElement name="PreviewArea"
+                style="flex-grow: 1; position: relative; background-color: rgb(36, 36, 36);">
+                <ui:Image name="PreviewImage"
+                    style="position: absolute; left: 0; top: 0; right: 0; bottom: 0;" />
+                <ui:VisualElement name="GizmoOverlay"
+                    style="position: absolute; left: 0; top: 0; right: 0; bottom: 0;" />
+                <ui:Label name="PreviewPlaceholder"
+                    text="Model Prefab을 왼쪽에 등록하면&#10;프리뷰가 여기에 표시됩니다"
+                    style="position: absolute; left: 0; top: 0; right: 0; bottom: 0;
+                           -unity-text-align: middle-center; color: rgb(107, 107, 107);
+                           white-space: normal;" />
+            </ui:VisualElement>
+
+            <!-- Timeline: IMGUI only -->
+            <ui:IMGUIContainer name="TimelineContainer"
+                style="height: 66px; flex-shrink: 0;
+                       border-top-width: 1px; border-top-color: rgb(22, 22, 22);" />
+
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+</ui:UXML>

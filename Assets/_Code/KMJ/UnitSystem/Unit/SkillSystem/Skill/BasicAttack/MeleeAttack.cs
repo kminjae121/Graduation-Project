@@ -50,7 +50,6 @@ public class MeleeAttack : BasicUnitSkill
     {
         yield return new WaitForSeconds(0.4f);
         
-         SkillFeedbackEvent?.Invoke();
          _animationCompo.PlaySelectAnimation("ATTACK");
     }
     
@@ -75,6 +74,8 @@ public class MeleeAttack : BasicUnitSkill
     
     public void TakeDamage()
     {
+        SkillFeedbackEvent?.Invoke();
+        
         if (_characterUnit.unitSO.UnitType == UnitType.Rogue)
             Bus<UseGimicEvent>.Raise(new UseGimicEvent(UnitType.Rogue, _target));
         

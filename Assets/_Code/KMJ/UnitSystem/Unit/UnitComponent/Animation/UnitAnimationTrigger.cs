@@ -9,6 +9,7 @@ namespace Code.UnitSystem
         public Action OnAttackTrigger;
         public Action OnAnimationEndTrigger;
         public Action OnTakeDamageTrigger;
+        public Action OnShowEffectTrigger;
         
         private Unit _entity;
         
@@ -22,5 +23,7 @@ namespace Code.UnitSystem
         private void AnimationEnd() => OnAnimationEndTrigger?.Invoke();
         private void Dead() => OnDeadEvent?.Invoke();
         private void Attack() => OnAttackTrigger?.Invoke();
+
+        private void ShowEffect() => OnShowEffectTrigger?.Invoke();
     }
 }

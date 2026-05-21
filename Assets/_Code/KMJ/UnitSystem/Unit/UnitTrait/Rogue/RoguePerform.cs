@@ -33,12 +33,12 @@ namespace Code.UnitSystem.TraitSystem
 
         private IEnumerator PerformTarget(GameObject target)
         {
-            vfxCompo.PlayVFX("DarkHeal", _unit.transform.position, Quaternion.identity);
             int addDamage = 0;
             Vector3 pos = _unit.transform.position;
             
             foreach (var shadow in shadowCompo.GetShadows())
             {
+                vfxCompo.PlayVFX("DarkDie", Vector3.zero, Quaternion.identity);
                 _unit.transform.position = shadow.gameObject.transform.position;
                 
                 AbstractEnemyUnit enemy = shadow.GetNearEnemy();
