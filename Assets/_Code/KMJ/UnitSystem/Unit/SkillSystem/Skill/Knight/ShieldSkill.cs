@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Code.Core.Events.Bus;
 using Code.Core.Managers;
+using Code.Effects;
 using Code.UnitSystem;
 using Code.SkillSystem;
 using Code.SkillSystem.Skill.Knight;
@@ -9,7 +10,7 @@ using UnityEngine;
 
 public class ShieldSkill : BasicUnitSkill
 {
-    private KnightShieldCompo _shieldCompo;
+    private UnitVFXCompo _vfxCompo;
     private UnitAnimation animtionCompo;
 
     private int _inGameDefensePower = 0;
@@ -17,8 +18,8 @@ public class ShieldSkill : BasicUnitSkill
     protected void Start()
     {
         SkillEvent.AddListener(AddAP);
+        _vfxCompo = _characterUnit.GetComponent<UnitVFXCompo>();
         animtionCompo = _characterUnit.GetUnitCompo<UnitAnimation>();
-        _shieldCompo = _characterUnit.GetComponentInChildren<KnightShieldCompo>();
     }
 
     protected override void StartEvent()
@@ -52,7 +53,7 @@ public class ShieldSkill : BasicUnitSkill
     {
         yield return new WaitForSeconds(0.4f);
         SetShield();
-        SkillFeedbackEvent?.Invoke();
+        _vfxCompo.PlayVFX("ShieldEffect");
         animtionCompo.PlaySelectAnimation("SHELD");
     }
     
