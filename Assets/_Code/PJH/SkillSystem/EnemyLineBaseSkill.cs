@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Code.SkillSystem
 {
-    public abstract class EnemyLineSkillBase : EnemyBaseSkill
+    public abstract class EnemyLineBaseSkill : EnemyAttackBaseSkill
     {
         [SerializeField] private int pierceLength;
         [SerializeField] private bool useMaxRange;
@@ -37,12 +37,19 @@ namespace Code.SkillSystem
 
             var hitTargetSet = new HashSet<GameObject>();
             int length = Mathf.Max(1, pierceLength);
+            var unitManager = UnitManager;
+
+            if (unitManager == null)
+            {
+                UnityLogger.LogError($"[{GetType().Name}] UnitManager is missing.");
+                return targets;
+            }
 
             for (int i = 1; i <= length; ++i)
             {
                 Vector2Int hitPos = origin + forwardDir * i;
 
-                foreach (var unit in UnitManager.GetPlayerUnits())
+                foreach (var unit in unitManager.GetPlayerUnits())
                 {
                     if (unit == null)
                         continue;

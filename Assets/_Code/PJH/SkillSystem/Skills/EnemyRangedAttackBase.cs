@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace Code.SkillSystem
 {
-    public class EnemyRangedAttack : EnemyBaseSkill
+    public class EnemyRangedAttackBase : EnemyAttackBaseSkill
     {
-        protected override void OnAttack(GameObject target)
+        protected override void Attack(GameObject target)
         {
             if (target == null)
                 return;

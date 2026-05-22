@@ -59,7 +59,11 @@ namespace Code.SkillSystem
         {
         }
 
-        protected abstract void OnAttack(GameObject target);
+        protected virtual bool UseAttackEvent => false;
+
+        protected virtual void OnAttack(GameObject target)
+        {
+        }
 
         protected Vector2Int GetCasterGridPos()
         {
@@ -102,7 +106,9 @@ namespace Code.SkillSystem
 
             UnbindAnimationEvents();
 
-            triggerCompo.OnAttackTrigger += HandleAttack;
+            if (UseAttackEvent)
+                triggerCompo.OnAttackTrigger += HandleAttack;
+
             triggerCompo.OnAnimationEndTrigger += FinishSkill;
             _isEventBound = true;
         }
@@ -112,7 +118,9 @@ namespace Code.SkillSystem
             if (!_isEventBound || triggerCompo == null)
                 return;
 
-            triggerCompo.OnAttackTrigger -= HandleAttack;
+            if (UseAttackEvent)
+                triggerCompo.OnAttackTrigger -= HandleAttack;
+
             triggerCompo.OnAnimationEndTrigger -= FinishSkill;
             _isEventBound = false;
         }

@@ -5,22 +5,17 @@ using UnityEngine;
 
 namespace Code.SkillSystem
 {
-    public class FireExplosionSkill : EnemyAreaSkillBase
+    public class DragonBreathBaseSkill : EnemyLineBaseSkill
     {
         [SerializeField] private int burnDuration = 2;
         [SerializeField] private int burnDamage = 5;
 
-        protected override void OnAttack(GameObject target)
+        protected override void Attack(GameObject target)
         {
             if (target == null)
                 return;
 
-            SkillFeedbackEvent?.Invoke();
-
-            if (Owner?.VFXCompo != null)
-                Owner.VFXCompo.PlayVFX("FireExplosion", target.transform.position, Quaternion.identity);
-
-            foreach (var hitTarget in GetAreaTargets(target))
+            foreach (var hitTarget in GetLineTargets(target))
             {
                 Bus<DamageEvent>.Raise(new DamageEvent(DamageData, hitTarget, AddDamage,
                     null, false, false, 0.1f));

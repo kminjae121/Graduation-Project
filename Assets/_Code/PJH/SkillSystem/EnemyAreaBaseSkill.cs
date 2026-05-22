@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Code.SkillSystem
 {
-    public abstract class EnemyAreaSkillBase : EnemyBaseSkill
+    public abstract class EnemyAreaBaseSkill : EnemyAttackBaseSkill
     {
         [SerializeField] private int radius = 1;
 
@@ -32,8 +32,15 @@ namespace Code.SkillSystem
             }
 
             int size = Mathf.Max(0, radius);
+            var unitManager = UnitManager;
 
-            foreach (var unit in UnitManager.GetPlayerUnits())
+            if (unitManager == null)
+            {
+                UnityLogger.LogError($"[{GetType().Name}] UnitManager is missing.");
+                return targets;
+            }
+
+            foreach (var unit in unitManager.GetPlayerUnits())
             {
                 if (unit == null)
                     continue;
