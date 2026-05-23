@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Code.SkillSystem
 {
-    public class EnemyMeleeAttackBase : EnemyAttackBaseSkill
+    public class EnemyMeleeSkill : EnemyAttackBaseSkill
     {
         protected override void Attack(GameObject target)
         {

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Code.SkillSystem
 {
-    public class FireExplosionBaseSkill : EnemyAreaBaseSkill
+    public class DragonBreathSkill : EnemyLineBaseSkill
     {
         [SerializeField] private int burnDuration = 2;
         [SerializeField] private int burnDamage = 5;
@@ -15,12 +15,7 @@ namespace Code.SkillSystem
             if (target == null)
                 return;
 
-            SkillFeedbackEvent?.Invoke();
-
-            if (Owner?.VFXCompo != null)
-                Owner.VFXCompo.PlayVFX("FireExplosion", target.transform.position, Quaternion.identity);
-
-            foreach (var hitTarget in GetAreaTargets(target))
+            foreach (var hitTarget in GetLineTargets(target))
             {
                 Bus<DamageEvent>.Raise(new DamageEvent(DamageData, hitTarget, AddDamage,
                     null, false, false, 0.1f));
