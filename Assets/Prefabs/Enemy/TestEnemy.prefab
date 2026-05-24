@@ -245,7 +245,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.SkillSystem.FrontPierceEnemyAttack
   <SkillSO>k__BackingField: {fileID: 11400000, guid: f7275ff2d092b5845ae225047350a9e4, type: 2}
-  attackData: {fileID: 11400000, guid: ecfa0452123f0c44487796bbeffe5d30, type: 2}
   triggerCompo: {fileID: 2713756273135776808}
   statCompo: {fileID: 4857703127278487287}
   rangeCompo: {fileID: 5799591044095117756}
@@ -266,6 +265,7 @@ MonoBehaviour:
   aiPriority: 0
   needSight: 0
   pierceLength: 3
+  useMaxRange: 0
   burnDuration: 2
   burnDamage: 5
 --- !u!1 &540081009022969164
@@ -2192,7 +2192,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.SkillSystem.MeleeEnemyAttack
   <SkillSO>k__BackingField: {fileID: 11400000, guid: a45cf72c25b0a884fbae08f59cbe47ff, type: 2}
-  attackData: {fileID: 11400000, guid: ecfa0452123f0c44487796bbeffe5d30, type: 2}
   triggerCompo: {fileID: 2713756273135776808}
   statCompo: {fileID: 4857703127278487287}
   rangeCompo: {fileID: 5799591044095117756}
@@ -2415,7 +2414,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.SkillSystem.EnemyRangedAttack
   <SkillSO>k__BackingField: {fileID: 11400000, guid: 4fbb9b81e26a4f8199495c7a3b531611, type: 2}
-  attackData: {fileID: 11400000, guid: ecfa0452123f0c44487796bbeffe5d30, type: 2}
   triggerCompo: {fileID: 2713756273135776808}
   statCompo: {fileID: 4857703127278487287}
   rangeCompo: {fileID: 5799591044095117756}
@@ -2435,7 +2433,8 @@ MonoBehaviour:
   safeRange: 2
   aiPriority: 1
   needSight: 1
-  finishDelay: 0.35
+  projectilePrefab: {fileID: 0}
+  fireTrm: {fileID: 0}
 --- !u!1 &5310390318968203875
 GameObject:
   m_ObjectHideFlags: 0
@@ -3954,8 +3953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89697e88e3fe4b7d8f77ec969dd9a531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.SkillSystem.EnemySkillComponent
-  skillList:
-  - {fileID: 11400000, guid: 4fbb9b81e26a4f8199495c7a3b531611, type: 2}
+  skillList: []
   skillStorage: {fileID: 0}
 --- !u!1 &7853610035896982523
 GameObject:

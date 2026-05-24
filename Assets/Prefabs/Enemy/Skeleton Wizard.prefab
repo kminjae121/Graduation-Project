@@ -5654,7 +5654,7 @@ GameObject:
   - component: {fileID: 3217631902800025504}
   - component: {fileID: 2043553458294813075}
   m_Layer: 8
-  m_Name: Ranged Skill
+  m_Name: Fireball Skill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5687,7 +5687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0c07a9b89204669943aaedcfc011727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.SkillSystem.FireballSkill
-  <SkillSO>k__BackingField: {fileID: 11400000, guid: 4fbb9b81e26a4f8199495c7a3b531611, type: 2}
+  <SkillSO>k__BackingField: {fileID: 11400000, guid: d1a1d53c0bc23b24c80a4cf60873aaa0, type: 2}
   triggerCompo: {fileID: 1940582658058224665}
   statCompo: {fileID: 5194763914588384400}
   rangeCompo: {fileID: 3804150241390799231}
@@ -5703,13 +5703,12 @@ MonoBehaviour:
   isCanUseSkill: 0
   IsActive: 0
   useRange: 1
-  prefRange: 2
-  safeRange: 2
+  prefRange: 4
+  safeRange: 1
   aiPriority: 1
   needSight: 1
-  poolManager: {fileID: 11400000, guid: 7f6b4e67a6cfa2e42bac3f9fb5c4907e, type: 2}
   projectilePrefab: {fileID: 11400000, guid: ad3d00d8ee9fb0c4fb77538548cae313, type: 2}
-  fireTrm: {fileID: 0}
+  fireTrm: {fileID: 737228570246171708}
 --- !u!1 &925196299955123228
 GameObject:
   m_ObjectHideFlags: 0
@@ -9159,7 +9158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.SkillSystem.EnemySkillComponent
   skillList:
-  - {fileID: 11400000, guid: 4fbb9b81e26a4f8199495c7a3b531611, type: 2}
+  - {fileID: 11400000, guid: d1a1d53c0bc23b24c80a4cf60873aaa0, type: 2}
   - {fileID: 11400000, guid: f146fa9fd77a01d499255c82addafc12, type: 2}
   skillStorage: {fileID: 0}
 --- !u!1 &6882120225737397472

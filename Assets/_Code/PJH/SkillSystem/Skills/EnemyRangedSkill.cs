@@ -6,13 +6,17 @@ namespace Code.SkillSystem
 {
     public class EnemyRangedSkill : EnemyAttackBaseSkill
     {
-        [SerializeField] private PoolManagerSO poolManager;
         [SerializeField] private PoolingItemSO projectilePrefab;
         [SerializeField] private Transform fireTrm;
         
+        private PoolManagerMono _poolManager;
+        
         protected override void Attack(GameObject target)
         {
-            var projectile = poolManager.Pop(projectilePrefab) as EnemyProjectile;
+            if (_poolManager == null)
+                _poolManager = FindFirstObjectByType<PoolManagerMono>();
+            
+            var projectile = _poolManager.Pop<EnemyProjectile>(projectilePrefab);
             
             if (projectile == null)
                 return;
