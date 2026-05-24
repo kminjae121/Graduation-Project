@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3a4afc4c03a454f9c1df9a315b2b0bb, type: 3}
-  m_Name: DragonEnemy
+  m_Name: Skeleton Warrior
   m_EditorClassIdentifier: ObjectPoolAssembly::GondrLib.ObjectPool.Runtime.PoolingItemSO
-  poolingName: DragonEnemy
-  prefab: {fileID: 6274815829309555608, guid: 5d78297e1d4f1884eb153d0cb0b4278b, type: 3}
-  initCount: 5
+  poolingName: Skeleton Warrior
+  prefab: {fileID: 5840182255780043958, guid: 082b31998845edd4abc612f644033726, type: 3}
+  initCount: 3

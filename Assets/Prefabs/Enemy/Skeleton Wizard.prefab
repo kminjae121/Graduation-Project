@@ -5652,7 +5652,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3217631902800025504}
-  - component: {fileID: 2417007462576750001}
+  - component: {fileID: 2043553458294813075}
   m_Layer: 8
   m_Name: Ranged Skill
   m_TagString: Untagged
@@ -5675,7 +5675,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8519873720566211667}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2417007462576750001
+--- !u!114 &2043553458294813075
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5684,9 +5684,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 921734584874761654}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f9e17c15ee14bf6a88c318db26a91a4, type: 3}
+  m_Script: {fileID: 11500000, guid: c0c07a9b89204669943aaedcfc011727, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Code.SkillSystem.EnemyRangedAttack
+  m_EditorClassIdentifier: Assembly-CSharp::Code.SkillSystem.FireballSkill
   <SkillSO>k__BackingField: {fileID: 11400000, guid: 4fbb9b81e26a4f8199495c7a3b531611, type: 2}
   triggerCompo: {fileID: 1940582658058224665}
   statCompo: {fileID: 5194763914588384400}
@@ -5707,6 +5707,9 @@ MonoBehaviour:
   safeRange: 2
   aiPriority: 1
   needSight: 1
+  poolManager: {fileID: 11400000, guid: 7f6b4e67a6cfa2e42bac3f9fb5c4907e, type: 2}
+  projectilePrefab: {fileID: 11400000, guid: ad3d00d8ee9fb0c4fb77538548cae313, type: 2}
+  fireTrm: {fileID: 0}
 --- !u!1 &925196299955123228
 GameObject:
   m_ObjectHideFlags: 0
