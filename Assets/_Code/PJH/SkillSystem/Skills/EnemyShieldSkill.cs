@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Code.SkillSystem
 {
-    public class ShieldSkill : EnemyActiveBaseSkill
+    public class EnemyShieldSkill : EnemyActiveBaseSkill
     {
         [SerializeField] private int guardTurns = 2;
         [SerializeField, Range(0f, 1f)] private float frontDamageRate;
@@ -31,7 +31,7 @@ namespace Code.SkillSystem
 
             if (invincibility == null)
             {
-                UnityLogger.LogWarning($"[{nameof(ShieldSkill)}] InvincibilityCompo is missing.");
+                UnityLogger.LogWarning($"[{nameof(EnemyShieldSkill)}] InvincibilityCompo is missing.");
                 return;
             }
 
@@ -47,7 +47,7 @@ namespace Code.SkillSystem
 
             if (gridMap == null)
             {
-                UnityLogger.LogError($"[{nameof(ShieldSkill)}] GridMap is missing.");
+                UnityLogger.LogError($"[{nameof(EnemyShieldSkill)}] GridMap is missing.");
                 return;
             }
 

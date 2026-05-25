@@ -28173,6 +28173,14 @@ PrefabInstance:
       propertyPath: gameClearUI
       value: 
       objectReference: {fileID: 874224671}
+    - target: {fileID: 4215123572567445162, guid: d587fee46528bcb4396971826c10f454, type: 3}
+      propertyPath: enemySpawns.Array.data[0].enemyPrefab
+      value: 
+      objectReference: {fileID: 11400000, guid: dc6302d9335b6114ea7810b1a3d33f76, type: 2}
+    - target: {fileID: 4215123572567445162, guid: d587fee46528bcb4396971826c10f454, type: 3}
+      propertyPath: enemySpawns.Array.data[1].enemyPrefab
+      value: 
+      objectReference: {fileID: 11400000, guid: dc6302d9335b6114ea7810b1a3d33f76, type: 2}
     - target: {fileID: 4264538353261752983, guid: d587fee46528bcb4396971826c10f454, type: 3}
       propertyPath: m_Name
       value: StageSetting
