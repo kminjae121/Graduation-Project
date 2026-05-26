@@ -24,8 +24,7 @@ namespace Code.UnitSystem.Combat
         public delegate void DefenseHandler(ref int Damage);
         public event DefenseHandler OnDefenseEvent;
         
-        private Unit _entity;
-        private ActionData _actionData;
+        private Unit _entity; 
         private UnitStatCompo _statCompo;
         private UnitState _unitStateCompo;
         private UnitShieldCompo _shieldCompo;
@@ -46,7 +45,6 @@ namespace Code.UnitSystem.Combat
         public void Initialize(Unit owner)
         {
             _entity = owner;
-            _actionData = owner.GetUnitCompo<ActionData>();
             _statCompo = owner.GetUnitCompo<UnitStatCompo>();
             if(_entity as CharacterUnit)
                 _shieldCompo = owner.GetUnitCompo<UnitShieldCompo>();
@@ -131,10 +129,6 @@ namespace Code.UnitSystem.Combat
 
             if (IsInvincibility)
                 return;
-            
-            _actionData.HitNormal = hitNormal;      
-            _actionData.HitPoint = hitPoint;
-            _actionData.LastDamageData = damageData;
 
             int damage = damageData.damage;
             
