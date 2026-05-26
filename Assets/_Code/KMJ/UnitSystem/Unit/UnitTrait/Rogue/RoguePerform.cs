@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using _Code.Core.EventBus.Events.Trait;
 using Code.Core.Events.Bus;
 using Code.Effects;
@@ -14,6 +15,8 @@ namespace Code.UnitSystem.TraitSystem
         [SerializeField] private UnitAnimation animCompo;
         [SerializeField] private UnitVFXCompo vfxCompo;
         [SerializeField] private RogueShadowSpawn shadowCompo;
+
+        private List<AbstractEnemyUnit> _abstractEnemies;
 
         private Unit _unit;
         private DamageData _damageData;
@@ -60,6 +63,7 @@ namespace Code.UnitSystem.TraitSystem
                     }    
                 }
                 shadow.gameObject.SetActive(false);
+                _abstractEnemies.Add(enemy);
                 yield return new WaitForSeconds(0.7f);
             }
 
@@ -70,6 +74,14 @@ namespace Code.UnitSystem.TraitSystem
             Bus<DamageEvent>.Raise(new DamageEvent(_damageData,target.gameObject,0, _unit,false,false,0.3f));
             shadowCompo.ResetAllShadow();
             animCompo.ReturnIdleAnimation();
+
+            foreach (var enemy in _abstractEnemies)
+            {
+                vfxCompo.PlayVFX("DarkBoom", enemy.transform.position, Quaternion.identity);
+                yield return new WaitForSeconds(0.2f);
+            }
+            
+            _abstractEnemies.Clear();
         }
     }
 }
