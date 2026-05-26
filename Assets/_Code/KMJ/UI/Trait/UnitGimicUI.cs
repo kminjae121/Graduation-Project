@@ -28,23 +28,23 @@ namespace Code.UI
             foreach (var gimic in gimicUIs)
             {
                 _gimicUIsDict.Add(gimic.UnitType, gimic);
-                //gimic.gameObject.SetActive(false);
+                gimic.gameObject.SetActive(false);
             }
         }
 
         public void ShowGimicUI(WhatUnitTurnEvent evt)
         {
-            //if(_currentGimicUI != null)
-            //    _currentGimicUI.SetActive(false);
-            //
-            //if(_gimicUIsDict.TryGetValue(evt.UnitType, out GimicUI gimicUI));
-            //{
-            //    if (gimicUI != null)
-            //    {
-            //        _currentGimicUI = gimicUI.gameObject;
-            //        _currentGimicUI.SetActive(true);
-            //    }
-            //}
+            if(_currentGimicUI != null)
+                _currentGimicUI.SetActive(false);
+            
+            if(_gimicUIsDict.TryGetValue(evt.UnitType, out GimicUI gimicUI));
+            {
+                if (gimicUI != null)
+                {
+                    _currentGimicUI = gimicUI.gameObject;
+                    _currentGimicUI.SetActive(true);
+                }
+            }
         }
     }
 }
