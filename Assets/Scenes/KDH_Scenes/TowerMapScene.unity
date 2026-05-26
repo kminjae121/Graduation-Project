@@ -168,10 +168,10 @@ MonoBehaviour:
   eliteBattleSceneName: BattleScene
   bossBattleSceneName: BattleScene
   battleTransitionEffect: {fileID: 11400000, guid: 800cf4f007f3e6a4d85d89ee6e2d175c, type: 2}
-  autoCreateRuntimeUI: 1
+  autoCreateRuntimeUI: 0
   canvas: {fileID: 1353177083}
   nodeMapView: {fileID: 20133301}
-  portalChoicePanel: {fileID: 634062612}
+  portalChoicePanel: {fileID: 0}
 --- !u!1 &100010
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +216,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.03, g: 0.035, b: 0.045, a: 1}
+  m_BackGroundColor: {r: 0.5647059, g: 0.5568628, b: 0.50980395, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -362,18 +362,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Code.Tower.UI.TowerNodeMapView
   floorText: {fileID: 439910789}
   nodeRoot: {fileID: 547097829}
-  roomNodePrefab: {fileID: 0}
-  roomTooltip: {fileID: 0}
-  roomSprites: []
-  unknownRoomSprite: {fileID: 0}
-  cellSize: {x: 150, y: 150}
-  nodeSize: {x: 72, y: 72}
-  connectionWidth: 7
-  mapPadding: 120
-  minMapScale: 0.58
-  maxMapScale: 1.08
-  lockedConnectionColor: {r: 0.16, g: 0.17, b: 0.19, a: 0.78}
-  lockedRoomColor: {r: 0.2, g: 0.21, b: 0.23, a: 0.92}
+  roomNodePrefab: {fileID: 2559632625616717133, guid: e7f9647bab790f14e82bf55c588695f7, type: 3}
+  roomTooltip: {fileID: 1285496911304245846, guid: 9810dab8d5c39754a919938b20d6d546, type: 3}
+  roomSprites:
+  - roomType: 0
+    sprite: {fileID: 21300000, guid: 0e8e76f449ca3b040821af5a2d71984a, type: 3}
+  - roomType: 1
+    sprite: {fileID: 21300000, guid: b063527fcd69cf24985fe3ca33dfa755, type: 3}
+  - roomType: 2
+    sprite: {fileID: 21300000, guid: 7059db3d6b054974b903a6c4232279e7, type: 3}
+  - roomType: 3
+    sprite: {fileID: 21300000, guid: a25476fa892473d4493f12066e79cd6b, type: 3}
+  - roomType: 4
+    sprite: {fileID: 21300000, guid: 69c6e3ef828ea7f4f8ba8c787c161f7e, type: 3}
+  - roomType: 5
+    sprite: {fileID: 21300000, guid: e5b6140533789e841915e7010ef45233, type: 3}
+  - roomType: 6
+    sprite: {fileID: 21300000, guid: 04abd4814e7107c44a9301221a34a1dd, type: 3}
+  unknownRoomSprite: {fileID: 21300000, guid: ccd8c31aff09ab64588c21597d4662f6, type: 3}
+  cellSize: {x: 230, y: 170}
+  nodeSize: {x: 118, y: 118}
+  connectionWidth: 5
+  horizontalMapPadding: 120
+  verticalMapPadding: 120
 --- !u!1 &439910787
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,11 +417,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 20133300}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -150}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -300, y: -150}
   m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 1}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &439910789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,112 +522,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 439910787}
   m_CullTransparentMesh: 1
---- !u!1 &484280757
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 484280758}
-  - component: {fileID: 484280759}
-  m_Layer: 5
-  m_Name: TowerRoomTooltip
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &484280758
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 484280757}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1353177084}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &484280759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 484280757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 211d8e453f35f5b449138775f003762b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Code.Tower.UI.TowerRoomTooltip
-  root: {fileID: 0}
-  titleText: {fileID: 0}
-  bodyText: {fileID: 0}
-  screenOffset: {x: 24, y: -18}
-  clampToParent: 1
---- !u!1 &500704133
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 500704134}
-  - component: {fileID: 500704135}
-  m_Layer: 5
-  m_Name: TowerRoomNodeView
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &500704134
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 500704133}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1353177084}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &500704135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 500704133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 255e7054425662e43bdd940d4ba69e44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Code.Tower.UI.TowerRoomNodeView
-  backgroundImage: {fileID: 0}
-  roomIconImage: {fileID: 0}
-  unknownRoomIcon: {fileID: 0}
-  clearedRoomIcon: {fileID: 0}
-  button: {fileID: 0}
 --- !u!1 &547097828
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,59 +557,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &634062610
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 634062611}
-  - component: {fileID: 634062612}
-  m_Layer: 5
-  m_Name: TowerPortalChoicePanel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &634062611
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 634062610}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1353177084}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &634062612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 634062610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf66161cd0e8a8a41bd43f9a482513e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Code.Tower.UI.TowerPortalChoicePanel
-  root: {fileID: 0}
-  titleText: {fileID: 0}
-  descriptionText: {fileID: 0}
-  nextFloorButton: {fileID: 0}
-  returnLobbyButton: {fileID: 0}
 --- !u!1 &920550966
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,11 +589,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 20133300}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -65}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -300, y: -65}
   m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 1}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &920550968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -934,7 +786,7 @@ GameObject:
   - component: {fileID: 1353177082}
   - component: {fileID: 1353177081}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: MainUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1016,9 +868,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 20133300}
-  - {fileID: 634062611}
-  - {fileID: 500704134}
-  - {fileID: 484280758}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1031,6 +880,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 100011}
-  - {fileID: 100001}
   - {fileID: 1353177084}
+  - {fileID: 100001}
   - {fileID: 930370777}

@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Code.Tower.UI
@@ -35,19 +36,11 @@ namespace Code.Tower.UI
         [SerializeField] private Vector2 cellSize = new(230f, 170f);
         [SerializeField] private Vector2 nodeSize = new(118f, 118f);
         [SerializeField] private float connectionWidth = 5f;
-        [SerializeField] private float mapPadding = 120f;
-        [SerializeField] private float minMapScale = 0.58f;
-        [SerializeField] private float maxMapScale = 1.08f;
-
-        [Header("Colors")]
-        [SerializeField] private Color lockedConnectionColor = new(0.16f, 0.17f, 0.19f, 0.78f);
-        [SerializeField] private Color lockedRoomColor = new(0.2f, 0.21f, 0.23f, 0.92f);
-
-        private static readonly Color ActiveConnectionColor = Color.white;
-        private static readonly Color ActiveRoomColor = Color.white;
+        [SerializeField] private float horizontalMapPadding = 120f;
+        [SerializeField] private float verticalMapPadding = 120f;
 
         private readonly Dictionary<int, Vector2> _nodePositions = new();
-        private float _mapScale = 1f;
+        private float _resolvedMapScale = 1f;
 
         public event Action<int> OnRoomSelected;
 
@@ -71,8 +64,8 @@ namespace Code.Tower.UI
             nodeRoot = CreateRect("TowerMapRoot", self);
             nodeRoot.anchorMin = new Vector2(0f, 0f);
             nodeRoot.anchorMax = new Vector2(1f, 1f);
-            nodeRoot.offsetMin = new Vector2(46f, 104f);
-            nodeRoot.offsetMax = new Vector2(-46f, -148f);
+            nodeRoot.offsetMin = new Vector2(0f, 104f);
+            nodeRoot.offsetMax = new Vector2(0f, -148f);
 
             roomTooltip = TowerRoomTooltip.CreateDefault(self);
         }
@@ -122,22 +115,19 @@ namespace Code.Tower.UI
                     if (!drawnConnections.Add(key))
                         continue;
 
-                    DrawConnection(map, currentRoom, room, connectedRoom);
+                    DrawConnection(room, connectedRoom);
                 }
             }
         }
 
-        private void DrawConnection(TowerFloorMap map, TowerRoomNode currentRoom, TowerRoomNode fromRoom, TowerRoomNode toRoom)
+        private void DrawConnection(TowerRoomNode fromRoom, TowerRoomNode toRoom)
         {
             Vector2 from = GetNodePosition(fromRoom);
             Vector2 to = GetNodePosition(toRoom);
-            bool connectsCurrent = fromRoom.Id == currentRoom.Id || toRoom.Id == currentRoom.Id;
-            bool isAvailable = currentRoom.IsCleared && connectsCurrent && (map.CanMoveTo(fromRoom.Id) || map.CanMoveTo(toRoom.Id));
-            bool isClearedPath = fromRoom.IsCleared && toRoom.IsCleared;
-            Color color = isAvailable || isClearedPath ? ActiveConnectionColor : lockedConnectionColor;
+            float scaledConnectionWidth = connectionWidth * GetMapScale();
 
-            CreateConnectionLine("ConnectionShadow", from, to, connectionWidth + 5f, new Color(0f, 0f, 0f, 0.42f));
-            CreateConnectionLine("Connection", from, to, connectionWidth, color);
+            CreateConnectionLine("ConnectionShadow", from, to, scaledConnectionWidth + 5f, new Color(0f, 0f, 0f, 0.42f));
+            CreateConnectionLine("Connection", from, to, scaledConnectionWidth, Color.white);
         }
 
         private void DrawRoomNodes(TowerFloorMap map, TowerRoomNode currentRoom, IReadOnlyList<TowerRoomNode> rooms)
@@ -151,14 +141,13 @@ namespace Code.Tower.UI
             bool isCurrent = room.Id == currentRoom.Id;
             bool isAvailable = !isCurrent && currentRoom.IsCleared && map.CanMoveTo(room.Id);
             bool isRevealed = ShouldRevealRoomType(currentRoom, room);
-            bool useLockedColor = !isRevealed || room.IsCleared || (!isCurrent && !isAvailable);
 
             TowerRoomNodeView nodeView = CreateNodeView(room);
             RectTransform nodeRect = nodeView.transform as RectTransform;
 
             if (nodeRect != null)
             {
-                nodeRect.sizeDelta = nodeSize * Mathf.Clamp(_mapScale, 0.78f, 1.02f);
+                nodeRect.sizeDelta = nodeSize * GetMapScale();
                 nodeRect.anchoredPosition = GetNodePosition(room);
             }
 
@@ -166,14 +155,17 @@ namespace Code.Tower.UI
                 GetRoomSprite(room.RoomType),
                 unknownRoomSprite,
                 isRevealed,
-                room.IsCleared,
                 isAvailable,
-                useLockedColor ? lockedRoomColor : ActiveRoomColor);
+                isCurrent);
 
             if (isAvailable)
             {
                 int roomId = room.Id;
-                nodeView.Clicked += () => OnRoomSelected?.Invoke(roomId);
+                nodeView.Clicked += () =>
+                {
+                    nodeView.PlaySelected();
+                    OnRoomSelected?.Invoke(roomId);
+                };
             }
 
             if (isRevealed)
@@ -196,13 +188,18 @@ namespace Code.Tower.UI
             string body = BuildTooltipBody(map, currentRoom, room, isAvailable);
 
             nodeView.PointerEntered += eventData => ShowTooltip(title, body, eventData);
-            nodeView.PointerMoved += eventData => roomTooltip?.SetPosition(eventData);
+            nodeView.PointerMoved += eventData =>
+            {
+                EnsureTooltip();
+                roomTooltip?.SetPosition(eventData);
+            };
             nodeView.PointerExited += _ => roomTooltip?.Hide();
         }
 
         private void ShowTooltip(string title, string body, PointerEventData eventData)
         {
             EnsureTooltip();
+            roomTooltip?.transform.SetAsLastSibling();
             roomTooltip?.Show(title, body, eventData);
         }
 
@@ -220,9 +217,6 @@ namespace Code.Tower.UI
             int connectedCount = map.GetConnectedRooms(room.Id).Count();
             return $"{TowerRoomTypePresentation.GetDescription(room.RoomType)}\n\n상태: {state}\n연결된 방: {connectedCount}개\n{actionText}";
         }
-
-        private Color GetConnectionColor(TowerRoomNode fromRoom, TowerRoomNode toRoom)
-            => fromRoom.IsCleared && toRoom.IsCleared ? ActiveConnectionColor : lockedConnectionColor;
 
         private Sprite GetRoomSprite(TowerRoomType roomType)
         {
@@ -267,7 +261,7 @@ namespace Code.Tower.UI
 
             if (rooms == null || rooms.Count == 0)
             {
-                _mapScale = 1f;
+                _resolvedMapScale = 1f;
                 return;
             }
 
@@ -277,16 +271,31 @@ namespace Code.Tower.UI
             int maxY = rooms.Max(room => room.GridPosition.y);
 
             Vector2 center = new((minX + maxX) * 0.5f, (minY + maxY) * 0.5f);
-            Vector2 mapSize = new(Mathf.Max(1, maxX - minX + 1) * cellSize.x, Mathf.Max(1, maxY - minY + 1) * cellSize.y);
-            Vector2 rootSize = GetNodeRootSize();
-            Vector2 availableSize = new(Mathf.Max(1f, rootSize.x - mapPadding * 2f), Mathf.Max(1f, rootSize.y - mapPadding * 2f));
-            _mapScale = Mathf.Clamp(Mathf.Min(availableSize.x / mapSize.x, availableSize.y / mapSize.y), minMapScale, maxMapScale);
+            _resolvedMapScale = CalculateAutoMapScale(minX, maxX, minY, maxY);
 
             foreach (TowerRoomNode room in rooms)
             {
                 Vector2 gridDelta = room.GridPosition - center;
-                _nodePositions[room.Id] = new Vector2(gridDelta.x * cellSize.x, gridDelta.y * cellSize.y) * _mapScale;
+                _nodePositions[room.Id] = new Vector2(
+                    gridDelta.y * cellSize.x,
+                    gridDelta.x * cellSize.y) * _resolvedMapScale;
             }
+        }
+
+        private float CalculateAutoMapScale(int minX, int maxX, int minY, int maxY)
+        {
+            float gridWidth = Mathf.Max(0, maxY - minY) * cellSize.x + nodeSize.x;
+            float gridHeight = Mathf.Max(0, maxX - minX) * cellSize.y + nodeSize.y;
+            Vector2 contentSize = new(Mathf.Max(1f, gridWidth), Mathf.Max(1f, gridHeight));
+            Vector2 rootSize = GetNodeRootSize();
+            float horizontalPadding = Mathf.Max(0f, horizontalMapPadding);
+            float verticalPadding = Mathf.Max(0f, verticalMapPadding);
+            Vector2 availableSize = new(
+                Mathf.Max(1f, rootSize.x - horizontalPadding * 2f),
+                Mathf.Max(1f, rootSize.y - verticalPadding * 2f));
+
+            float scale = Mathf.Min(availableSize.x / contentSize.x, availableSize.y / contentSize.y);
+            return float.IsNaN(scale) || float.IsInfinity(scale) ? 1f : Mathf.Max(0.1f, scale);
         }
 
         private Vector2 GetNodePosition(TowerRoomNode room)
@@ -330,51 +339,96 @@ namespace Code.Tower.UI
             nodeRoot = CreateRect("TowerMapRoot", self != null ? self : transform);
             nodeRoot.anchorMin = Vector2.zero;
             nodeRoot.anchorMax = Vector2.one;
-            nodeRoot.offsetMin = new Vector2(46f, 104f);
-            nodeRoot.offsetMax = new Vector2(-46f, -148f);
+            nodeRoot.offsetMin = new Vector2(0f, 104f);
+            nodeRoot.offsetMax = new Vector2(0f, -148f);
         }
+
+        private float GetMapScale()
+            => Mathf.Max(0.1f, _resolvedMapScale);
 
         private void EnsureTooltip()
         {
-            if (roomTooltip != null)
-                return;
+            RectTransform parent = GetTooltipParent();
 
+            if (roomTooltip != null && roomTooltip.gameObject.scene.IsValid())
+            {
+                if (nodeRoot != null && roomTooltip.transform.IsChildOf(nodeRoot))
+                    roomTooltip.transform.SetParent(parent, false);
+
+                roomTooltip.transform.SetAsLastSibling();
+                return;
+            }
+
+            TowerRoomTooltip tooltipPrefab = roomTooltip;
+            roomTooltip = tooltipPrefab != null
+                ? Instantiate(tooltipPrefab, parent)
+                : TowerRoomTooltip.CreateDefault(parent);
+
+            roomTooltip.gameObject.name = tooltipPrefab != null
+                ? tooltipPrefab.gameObject.name
+                : "Room Hover Popup";
+            roomTooltip.transform.SetAsLastSibling();
+            roomTooltip.Hide();
+        }
+
+        private RectTransform GetTooltipParent()
+        {
             RectTransform self = transform as RectTransform;
-            roomTooltip = TowerRoomTooltip.CreateDefault(self != null ? self : nodeRoot);
+
+            if (self != null)
+                return self;
+
+            return nodeRoot;
         }
 
         private void ClearNodeRoot()
         {
             for (int i = nodeRoot.childCount - 1; i >= 0; --i)
-                Destroy(nodeRoot.GetChild(i).gameObject);
+            {
+                Transform child = nodeRoot.GetChild(i);
+
+                if (IsTooltipTransform(child))
+                    continue;
+
+                Destroy(child.gameObject);
+            }
+        }
+
+        private bool IsTooltipTransform(Transform child)
+        {
+            return roomTooltip != null &&
+                   (child == roomTooltip.transform ||
+                    child.IsChildOf(roomTooltip.transform) ||
+                    roomTooltip.transform.IsChildOf(child));
         }
 
         private static TowerRoomNodeView CreateFallbackNodeView(Transform parent)
         {
             RectTransform root = CreateRect("TowerNode", parent);
-            Image background = root.gameObject.AddComponent<Image>();
-            background.color = ActiveRoomColor;
-
-            Button button = root.gameObject.AddComponent<Button>();
-            button.targetGraphic = background;
 
             RectTransform iconRect = CreateRect("Room Icon", root);
             iconRect.anchorMin = Vector2.zero;
             iconRect.anchorMax = Vector2.one;
             iconRect.offsetMin = new Vector2(12f, 12f);
             iconRect.offsetMax = new Vector2(-12f, -12f);
-            iconRect.gameObject.AddComponent<Image>().raycastTarget = false;
+            Image iconImage = iconRect.gameObject.AddComponent<Image>();
+            iconImage.color = Color.white;
 
-            RectTransform clearedRect = CreateRect("Cleared Room Icon", root);
-            clearedRect.anchorMin = new Vector2(1f, 1f);
-            clearedRect.anchorMax = new Vector2(1f, 1f);
-            clearedRect.pivot = new Vector2(1f, 1f);
-            clearedRect.anchoredPosition = new Vector2(-4f, -4f);
-            clearedRect.sizeDelta = new Vector2(28f, 28f);
-            Image clearedImage = clearedRect.gameObject.AddComponent<Image>();
-            clearedImage.raycastTarget = false;
-            clearedImage.color = new Color(0.35f, 1f, 0.72f, 0.95f);
-            clearedRect.gameObject.SetActive(false);
+            Button button = iconRect.gameObject.AddComponent<Button>();
+            button.targetGraphic = iconImage;
+            button.transition = Selectable.Transition.None;
+
+            RectTransform selectedRect = CreateRect("RoomIcon_Selected", root);
+            selectedRect.anchorMin = Vector2.zero;
+            selectedRect.anchorMax = Vector2.one;
+            selectedRect.offsetMin = new Vector2(12f, 12f);
+            selectedRect.offsetMax = new Vector2(-12f, -12f);
+            Image selectedImage = selectedRect.gameObject.AddComponent<Image>();
+            selectedImage.raycastTarget = false;
+            selectedImage.color = Color.black;
+            selectedImage.type = Image.Type.Filled;
+            selectedImage.fillMethod = Image.FillMethod.Radial360;
+            selectedImage.fillAmount = 0f;
 
             return root.gameObject.AddComponent<TowerRoomNodeView>();
         }
