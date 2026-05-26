@@ -1,4 +1,5 @@
-﻿using Code.Core.Events.Bus;
+﻿using _Code.Core.EventBus.Events.Trait;
+using Code.Core.Events.Bus;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,16 +12,16 @@ namespace Code.UI
         
         private void Start()
         {
-            Bus<KnightGimicBarEvent>.Subscribe(SetKnightGimicBar);
+            Bus<MaigicianBarEvent>.Subscribe(SetKnightGimicBar);
         }
 
         private void OnDestroy()
         {
-            Bus<KnightGimicBarEvent>.Unsubscribe(SetKnightGimicBar);
+            Bus<MaigicianBarEvent>.Unsubscribe(SetKnightGimicBar);
         }
-        private void SetKnightGimicBar(KnightGimicBarEvent evt)
+        private void SetKnightGimicBar(MaigicianBarEvent evt)
         {
-            gaugeImg.DOFillAmount(evt.value / 7,0.5f);
+            gaugeImg.DOFillAmount(evt.value / 4,0.5f);
         }
 
         public override void OperationUI()

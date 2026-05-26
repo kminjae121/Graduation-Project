@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using _Code.Core.EventBus.Events.Trait;
+using Code.Core.Events.Bus;
 using UnityEngine;
 
 namespace Code.UnitSystem.TraitSystem
@@ -57,7 +59,9 @@ namespace Code.UnitSystem.TraitSystem
 
             if (_shadowCnt < maxShadowCnt)
                 _shadowCnt++;
-
+            
+            Bus<RogueGimicBarEvent>.Raise(new RogueGimicBarEvent(_shadowCnt));
+            
             _currentIdx++;
             if (_currentIdx >= _maxIdx)
                 _currentIdx = 0;

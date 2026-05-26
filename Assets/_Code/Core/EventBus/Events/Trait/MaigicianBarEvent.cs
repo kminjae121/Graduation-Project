@@ -1,7 +1,14 @@
-﻿namespace _Code.Core.EventBus.Events.Trait
+﻿using Code.Core.Events.Bus;
+
+namespace _Code.Core.EventBus.Events.Trait
 {
-    public struct MaigicianBarEvent
+    public struct MaigicianBarEvent : IEvent
     {
-        
+        public float value;
+
+        public MaigicianBarEvent(float value)
+        {
+            this.value = value;
+        }
     }
 }

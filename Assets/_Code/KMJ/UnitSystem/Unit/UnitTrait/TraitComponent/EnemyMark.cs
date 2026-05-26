@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,7 +36,10 @@ namespace Code.UnitSystem.TraitSystem
                 _isMarked = true;
         }
         
-        public void ResetMark(bool hide = true)
+        public int GetCurrentMark() => _markCnt;
+        
+        
+        public void ResetMark()
         {
             _markCnt = 0;
             _isMarked = false;
@@ -44,7 +48,6 @@ namespace Code.UnitSystem.TraitSystem
 
             targetMark.DOKill();
             targetMark.fillAmount = 0f;
-            if (hide) targetMark.gameObject.SetActive(false);
         }
     }
 }
