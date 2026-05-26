@@ -130,7 +130,7 @@ namespace Code.SkillSystem
             OnAttack(Target);
         }
 
-        private void FinishSkill()
+        protected virtual void FinishSkill()
         {
             if (_isFinished)
                 return;

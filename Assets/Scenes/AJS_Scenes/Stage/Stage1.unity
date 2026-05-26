@@ -28157,6 +28157,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2033115106016720038, guid: d587fee46528bcb4396971826c10f454, type: 3}
+      propertyPath: unitInfos.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2664994462111901245, guid: d587fee46528bcb4396971826c10f454, type: 3}
       propertyPath: thisBtn
       value: 
