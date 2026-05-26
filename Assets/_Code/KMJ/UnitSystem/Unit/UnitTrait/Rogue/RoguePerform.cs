@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using _Code.Core.EventBus.Events.Trait;
 using Code.Core.Events.Bus;
 using Code.Effects;
 using Code.UnitSystem.Combat;
@@ -65,6 +66,7 @@ namespace Code.UnitSystem.TraitSystem
             _unit.transform.position = pos;
             _damageData.damage = addDamage * 2;
             
+            Bus<RogueGimicBarEvent>.Raise(new RogueGimicBarEvent(0));
             Bus<DamageEvent>.Raise(new DamageEvent(_damageData,target.gameObject,0, _unit,false,false,0.3f));
             shadowCompo.ResetAllShadow();
             animCompo.ReturnIdleAnimation();
