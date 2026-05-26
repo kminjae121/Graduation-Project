@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30d98c8b387f46ffb69465c140c8415f, type: 3}
-  m_Name: FireExplosionSkill
+  m_Name: EnemyFireballSkill
   m_EditorClassIdentifier: Assembly-CSharp::Code.SkillSystem.SkillSO
   unitType: 0
-  skillName: "\uB9C8\uBC95\uC0AC \uD3ED\uBC1C \uBC94\uC704 \uACF5\uACA9"
+  skillName: "\uC801 \uD30C\uC774\uC5B4\uBCFC \uC2A4\uD0AC"
   skillAnimationKey: ATTACK01
-  SkillDescription: "\uB9C8\uBC95\uC0AC \uC801\uC758 \uD3ED\uBC1C \uBC94\uC704 \uACF5\uACA9\uC785\uB2C8\uB2E4."
+  SkillDescription: "\uB2E8\uC77C \uB300\uC0C1\uC5D0\uAC8C \uD654\uC0C1\uC744 \uC785\uD799\uB2C8\uB2E4."
   SkillValue: 0
   SkillCost: 0
   skillUIImage: {fileID: 0}
-  className: Code.SkillSystem.FireExplosionSkill
+  className: Code.SkillSystem.EnemyFireballSkill
   skillPrice: 0
-  SkillDamage: 100
-  SkillRange: 4
+  SkillDamage: 500
+  SkillRange: 3
   MinRange: 1
   IsOwnSkill: 0
   SkillType: 0

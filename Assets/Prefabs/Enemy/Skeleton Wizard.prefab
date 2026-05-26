@@ -5703,7 +5703,7 @@ MonoBehaviour:
   isCanUseSkill: 0
   IsActive: 0
   useRange: 1
-  prefRange: 4
+  prefRange: 3
   safeRange: 1
   aiPriority: 1
   needSight: 1
@@ -8580,7 +8580,7 @@ MonoBehaviour:
   isCanUseSkill: 0
   IsActive: 0
   useRange: 1
-  prefRange: 2
+  prefRange: 4
   safeRange: 2
   aiPriority: 1
   needSight: 1
