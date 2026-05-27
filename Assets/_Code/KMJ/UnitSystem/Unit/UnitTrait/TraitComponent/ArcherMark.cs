@@ -1,3 +1,5 @@
+using _Code.Core.EventBus.Events.Trait;
+using Code.Core.Events.Bus;
 using UnityEditor;
 using UnityEngine;
 
@@ -5,7 +7,7 @@ namespace Code.UnitSystem.TraitSystem
 {
     public class ArcherMark : MonoBehaviour
     {
-        [SerializeField] private int maxValue = 3;
+        [SerializeField] private int maxValue = 8;
         
         private int _currentValue = 0;
 
@@ -15,6 +17,8 @@ namespace Code.UnitSystem.TraitSystem
             enemyMark.SetMark();
 
             _currentValue += 1;
+            
+            Bus<ArcherGimicEvent>.Raise(new ArcherGimicEvent(_currentValue));
             
             if (_currentValue >= maxValue)
             {

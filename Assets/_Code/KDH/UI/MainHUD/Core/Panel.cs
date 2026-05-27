@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Code.UI
 {
@@ -7,6 +8,7 @@ namespace Code.UI
     {
         [SerializeField] private string id = "";
         [SerializeField] private RectTransform container = null;
+        [SerializeField] private Button closeButton = null;
 
         public string ID => id;
         public bool IsInitialized { get; private set; }
@@ -17,11 +19,13 @@ namespace Code.UI
         public virtual void Awake()
         {
             Initialize();
+            WireCloseButton();
             PanelManager.Register(this);
         }
 
         protected virtual void OnDestroy()
         {
+            UnwireCloseButton();
             PanelManager.Unregister(this);
         }
 
@@ -56,6 +60,48 @@ namespace Code.UI
                 container.gameObject.SetActive(false);
 
             IsOpen = false;
+        }
+
+        protected void WireCloseButton()
+        {
+            if (closeButton == null)
+                closeButton = FindCloseButton();
+
+            if (closeButton == null)
+                return;
+
+            closeButton.onClick.RemoveListener(Close);
+            closeButton.onClick.AddListener(Close);
+        }
+
+        protected void UnwireCloseButton()
+        {
+            if (closeButton != null)
+                closeButton.onClick.RemoveListener(Close);
+        }
+
+        private Button FindCloseButton()
+        {
+            Transform searchRoot = container != null ? container : transform;
+            return FindChildButtonByName(searchRoot, "CloseButton");
+        }
+
+        private static Button FindChildButtonByName(Transform parent, string childName)
+        {
+            if (parent == null || string.IsNullOrWhiteSpace(childName))
+                return null;
+
+            foreach (Transform child in parent)
+            {
+                if (child.name == childName && child.TryGetComponent(out Button button))
+                    return button;
+
+                Button found = FindChildButtonByName(child, childName);
+                if (found != null)
+                    return found;
+            }
+
+            return null;
         }
     }
 }

@@ -19,6 +19,7 @@ namespace Code.UI
         [Header("Legacy Panel Binding")]
         [SerializeField] private string id = "StatPanel";
         [SerializeField] private RectTransform container;
+        [SerializeField] private Button closeButton;
 
         [Header("Pool Settings")]
         [SerializeField] private PoolingItemSO artifactButtonPoolingSO;
@@ -70,10 +71,14 @@ namespace Code.UI
 
             Bus<SkillEquipEvent>.Subscribe(HandleSkillEquipped);
             Bus<SkillUnequipEvent>.Subscribe(HandleSkillUnequipped);
+
+            WireCloseButton();
         }
 
         private void OnDestroy()
         {
+            UnwireCloseButton();
+
             Bus<SkillEquipEvent>.Unsubscribe(HandleSkillEquipped);
             Bus<SkillUnequipEvent>.Unsubscribe(HandleSkillUnequipped);
 
@@ -86,6 +91,7 @@ namespace Code.UI
             _owner = owner;
             ResolvePoolManager();
             SetupArtifactSlotTriggers();
+            WireCloseButton();
             Hide();
         }
 
@@ -497,6 +503,48 @@ namespace Code.UI
                 container = transform as RectTransform;
 
             return container;
+        }
+
+        private void WireCloseButton()
+        {
+            if (closeButton == null)
+                closeButton = FindCloseButton();
+
+            if (closeButton == null)
+                return;
+
+            closeButton.onClick.RemoveListener(Hide);
+            closeButton.onClick.AddListener(Hide);
+        }
+
+        private void UnwireCloseButton()
+        {
+            if (closeButton != null)
+                closeButton.onClick.RemoveListener(Hide);
+        }
+
+        private Button FindCloseButton()
+        {
+            Transform searchRoot = container != null ? container : transform;
+            return FindChildButtonByName(searchRoot, "CloseButton");
+        }
+
+        private static Button FindChildButtonByName(Transform parent, string childName)
+        {
+            if (parent == null || string.IsNullOrWhiteSpace(childName))
+                return null;
+
+            foreach (Transform child in parent)
+            {
+                if (child.name == childName && child.TryGetComponent(out Button button))
+                    return button;
+
+                Button found = FindChildButtonByName(child, childName);
+                if (found != null)
+                    return found;
+            }
+
+            return null;
         }
 
         private void UnsubscribeHpEvent()

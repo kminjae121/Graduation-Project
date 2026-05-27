@@ -2660,8 +2660,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1853425371266342684}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.157, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2669,7 +2669,7 @@ Transform:
   - {fileID: 8464975889762732989}
   - {fileID: 946805384858054316}
   m_Father: {fileID: 2773054132212776123}
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &602316348432522159
 Animator:
   serializedVersion: 7
@@ -2878,6 +2878,7 @@ Transform:
   - {fileID: 5251955652989337504}
   - {fileID: 8565863129610173141}
   - {fileID: 3069327487847749708}
+  - {fileID: 6916679769096352567}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3173451793327125779
@@ -11111,6 +11112,7 @@ MonoBehaviour:
   IsActive: 0
   <CriticalSpot>k__BackingField: {fileID: 7918537313758781247}
   _characterUnit: {fileID: 3173451793327125779}
+  shootTrm: {fileID: 0}
 --- !u!1 &5423423057089265991
 GameObject:
   m_ObjectHideFlags: 0
@@ -12871,8 +12873,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 84901222180032863}
-        m_TargetAssemblyTypeName: _Code.UnitSystem.UnitEffectCompo, Assembly-CSharp
-        m_MethodName: PlayTargetEffect
+        m_TargetAssemblyTypeName: Code.Effects.UnitVFXCompo, Assembly-CSharp
+        m_MethodName: PlayVFX
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12889,6 +12891,7 @@ MonoBehaviour:
   IsActive: 0
   <CriticalSpot>k__BackingField: {fileID: 7918537313758781247}
   _characterUnit: {fileID: 3173451793327125779}
+  shootTrm: {fileID: 6916679769096352567}
   atkMoveSpeed: 0
   animator: {fileID: 602316348432522159}
 --- !u!114 &7892059421470948934
@@ -12914,8 +12917,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 84901222180032863}
-        m_TargetAssemblyTypeName: _Code.UnitSystem.UnitEffectCompo, Assembly-CSharp
-        m_MethodName: PlayTargetEffect
+        m_TargetAssemblyTypeName: Code.Effects.UnitVFXCompo, Assembly-CSharp
+        m_MethodName: PlayVFX
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12932,6 +12935,7 @@ MonoBehaviour:
   IsActive: 0
   <CriticalSpot>k__BackingField: {fileID: 7918537313758781247}
   _characterUnit: {fileID: 3173451793327125779}
+  shootTrm: {fileID: 6916679769096352567}
 --- !u!114 &3464784944789967168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12955,8 +12959,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 84901222180032863}
-        m_TargetAssemblyTypeName: _Code.UnitSystem.UnitEffectCompo, Assembly-CSharp
-        m_MethodName: PlayTargetEffect
+        m_TargetAssemblyTypeName: Code.Effects.UnitVFXCompo, Assembly-CSharp
+        m_MethodName: PlayVFX
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12973,6 +12977,7 @@ MonoBehaviour:
   IsActive: 0
   <CriticalSpot>k__BackingField: {fileID: 7918537313758781247}
   _characterUnit: {fileID: 3173451793327125779}
+  shootTrm: {fileID: 6916679769096352567}
 --- !u!114 &2442742964246998859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12996,8 +13001,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 84901222180032863}
-        m_TargetAssemblyTypeName: _Code.UnitSystem.UnitEffectCompo, Assembly-CSharp
-        m_MethodName: PlayTargetEffect
+        m_TargetAssemblyTypeName: Code.Effects.UnitVFXCompo, Assembly-CSharp
+        m_MethodName: PlayVFX
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13014,6 +13019,7 @@ MonoBehaviour:
   IsActive: 0
   <CriticalSpot>k__BackingField: {fileID: 7918537313758781247}
   _characterUnit: {fileID: 3173451793327125779}
+  shootTrm: {fileID: 6916679769096352567}
   burnDuration: 2
   burnDamage: 5
 --- !u!114 &3955095407124982196
@@ -16541,6 +16547,37 @@ Transform:
   - {fileID: 146947180309004368}
   m_Father: {fileID: 8385725731182462065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8834768747144691642
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6916679769096352567}
+  m_Layer: 0
+  m_Name: ShootTrm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6916679769096352567
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8834768747144691642}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.186, y: 1.164, z: 0.748}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2773054132212776123}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8838374768883949287
 GameObject:
   m_ObjectHideFlags: 0
@@ -17337,11 +17374,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 608833437507470808, guid: 841004c4c6a39e244abe2257394de913, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.57629997
+      value: 0.892
       objectReference: {fileID: 0}
     - target: {fileID: 608833437507470808, guid: 841004c4c6a39e244abe2257394de913, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.512
+      value: 1.019
       objectReference: {fileID: 0}
     - target: {fileID: 608833437507470808, guid: 841004c4c6a39e244abe2257394de913, type: 3}
       propertyPath: m_LocalPosition.z

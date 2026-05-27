@@ -8,6 +8,7 @@ using UnityEngine;
 
 public class FireArrow : BasicUnitSkill
     {
+        [SerializeField] private Transform shootTrm;
         private UnitAnimation animtionCompo;
 
         private GameObject _target;
@@ -63,8 +64,8 @@ public class FireArrow : BasicUnitSkill
         
         public void MakeArrow()
         {
-            Vector3 pos = _characterUnit.GetComponentInChildren<UnitAnimation>().transform.position;
-            pos.y += 0.3f;
+            Vector3 pos = shootTrm.position;
+            
             Vector3 slashRot = transform.rotation.eulerAngles;
             
             _shootItemManager.SetTarget(_target);

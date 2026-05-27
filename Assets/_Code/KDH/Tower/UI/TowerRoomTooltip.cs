@@ -32,7 +32,9 @@ namespace Code.Tower.UI
             if (bodyText != null)
                 bodyText.text = body;
 
+            gameObject.SetActive(true);
             GetRoot().gameObject.SetActive(true);
+            transform.SetAsLastSibling();
             SetPosition(eventData);
         }
 
@@ -41,8 +43,10 @@ namespace Code.Tower.UI
             if (eventData == null)
                 return;
 
-            RectTransform targetRoot = GetRoot();
-            RectTransform parentRect = targetRoot.parent as RectTransform;
+            ResolveBindings();
+
+            RectTransform positionTarget = GetPositionTarget();
+            RectTransform parentRect = positionTarget.parent as RectTransform;
 
             if (parentRect == null)
                 return;
@@ -60,19 +64,19 @@ namespace Code.Tower.UI
                 return;
 
             if (clampToParent)
-                localPosition = ClampToParent(parentRect, targetRoot, localPosition);
+                localPosition = ClampToParent(parentRect, positionTarget, localPosition);
 
-            targetRoot.anchoredPosition = localPosition;
+            positionTarget.anchoredPosition = localPosition;
         }
 
         public void Hide()
             => GetRoot().gameObject.SetActive(false);
 
-        private Vector2 ClampToParent(RectTransform parentRect, RectTransform targetRoot, Vector2 localPosition)
+        private Vector2 ClampToParent(RectTransform parentRect, RectTransform positionTarget, Vector2 localPosition)
         {
             Vector2 parentSize = parentRect.rect.size;
-            Vector2 tooltipSize = targetRoot.rect.size;
-            Vector2 pivot = targetRoot.pivot;
+            Vector2 tooltipSize = GetTooltipSize(positionTarget);
+            Vector2 pivot = positionTarget.pivot;
 
             float minX = -parentSize.x * 0.5f + tooltipSize.x * pivot.x;
             float maxX = parentSize.x * 0.5f - tooltipSize.x * (1f - pivot.x);
@@ -90,6 +94,25 @@ namespace Code.Tower.UI
                 root = transform as RectTransform;
 
             return root;
+        }
+
+        private RectTransform GetPositionTarget()
+        {
+            if (_rectTransform == null)
+                _rectTransform = transform as RectTransform;
+
+            return _rectTransform != null ? _rectTransform : GetRoot();
+        }
+
+        private Vector2 GetTooltipSize(RectTransform positionTarget)
+        {
+            RectTransform visualRoot = GetRoot();
+            Vector2 visualSize = visualRoot != null ? visualRoot.rect.size : Vector2.zero;
+
+            if (visualSize.x > 1f && visualSize.y > 1f)
+                return visualSize;
+
+            return positionTarget.rect.size;
         }
 
         private void ResolveBindings()
@@ -110,6 +133,17 @@ namespace Code.Tower.UI
                 if (bodyText == null && texts.Length > 1)
                     bodyText = texts[1];
             }
+
+            DisableRaycastTargets();
+        }
+
+        private void DisableRaycastTargets()
+        {
+            Graphic[] graphics = GetComponentsInChildren<Graphic>(true);
+
+            foreach (Graphic graphic in graphics)
+                if (graphic != null)
+                    graphic.raycastTarget = false;
         }
 
         public static TowerRoomTooltip CreateDefault(RectTransform parent)

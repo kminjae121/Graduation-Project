@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
+using _Code.Core.EventBus.Events.Trait;
 using Code.Core.Events.Bus;
+using Code.UI;
 using Code.UnitSystem.Combat;
 using UnityEngine;
 
@@ -39,13 +41,33 @@ namespace Code.UnitSystem.TraitSystem
                 pos.y += 0.3f;
             
                 Vector3 slashRot = _unit.transform.rotation.eulerAngles;
-            
+
+                EnemyMark mark = enemy.GetComponentInChildren<EnemyMark>();
+
+                switch (mark.GetCurrentMark())
+                {
+                    case 1:
+                        _damageData.damage = _atkDamage;
+                        break;
+                    case 2:
+                        _damageData.damage = _atkDamage * 2;
+                        break;
+                    case 3:
+                        _damageData.damage = (_atkDamage * 2) + 5;
+                        break;
+                    case 4:
+                        _damageData.damage = _atkDamage * 3;
+                        break;
+                }
+                
                 _shootItemManager.SetTarget(enemy.gameObject);
                 _shootItemManager.SetDamageData(_damageData,0);
                 _shootItemManager.CreateShootItem("CriticalArrow",pos, slashRot);   
+                
+                mark.ResetMark();
             }
             Bus<CamShakeEvent>.Raise(new CamShakeEvent(0.15f));
-            
+            Bus<ArcherGimicEvent>.Raise(new ArcherGimicEvent(0));
             triggerCompo.OnAttackTrigger -= AtkAllEnemies; 
         }
 

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Code.Campaign;
 using Code.UnitManaging;
 using Code.UnitSystem;
 using UnityEngine;
@@ -87,17 +88,27 @@ namespace Code.Tower
 
         public static void FailRun()
         {
-            EndRun();
+            EndRun(CampaignDateAdvanceReason.ExpeditionFailed);
         }
 
         public static void EndRun()
         {
+            EndRun(CampaignDateAdvanceReason.ExpeditionReturned);
+        }
+
+        private static void EndRun(CampaignDateAdvanceReason advanceReason)
+        {
+            bool shouldAdvanceDate = IsActive;
+
             IsActive = false;
             CurrentMap = null;
             _mapDatabase = null;
             _selectedUnits.Clear();
             TowerSceneName = DefaultTowerMapSceneName;
             LobbySceneName = DefaultLobbySceneName;
+
+            if (shouldAdvanceDate)
+                CampaignDateSystem.AdvanceWeek(advanceReason);
         }
 
         public static void WritePartyToStorage(UnitStorageSO unitStorage)
