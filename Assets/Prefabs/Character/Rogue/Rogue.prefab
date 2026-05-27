@@ -92822,7 +92822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6def4c91579446b78d2967afea8c3dcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.UnitAttributes.RogueCondition
-  vfxCompo: {fileID: 0}
+  vfxCompo: {fileID: 1833704724224680145}
   rogueShadowCompo: {fileID: 7705309472019083824}
 --- !u!1 &6299319827168637879
 GameObject:
@@ -135239,7 +135239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.UnitAttributes.RoguePerform
   rotatorCompo: {fileID: 3966720720610224676}
   animCompo: {fileID: 863524086381707930}
-  vfxCompo: {fileID: 0}
+  vfxCompo: {fileID: 1833704724224680145}
   shadowCompo: {fileID: 7705309472019083824}
 --- !u!1 &9181647810041652551
 GameObject:

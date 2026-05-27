@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using _Code.Core.EventBus.Events.Trait;
 using Code.Core.Events.Bus;
 using Code.UI;
 using Code.UnitSystem.Combat;
@@ -66,7 +67,7 @@ namespace Code.UnitSystem.TraitSystem
                 mark.ResetMark();
             }
             Bus<CamShakeEvent>.Raise(new CamShakeEvent(0.15f));
-            
+            Bus<ArcherGimicEvent>.Raise(new ArcherGimicEvent(0));
             triggerCompo.OnAttackTrigger -= AtkAllEnemies; 
         }
 

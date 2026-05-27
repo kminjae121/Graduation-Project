@@ -7,7 +7,8 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class ShooterAttack : BasicUnitSkill
-    {
+{
+        [SerializeField] private Transform shootTrm;
         [SerializeField] private float atkMoveSpeed;
         [SerializeField] private Animator animator;
         
@@ -55,8 +56,7 @@ public class ShooterAttack : BasicUnitSkill
 
         private void Shoot()
         {
-            Vector3 pos = _characterUnit.GetComponentInChildren<UnitAnimation>().transform.position;
-            pos.y += 0.3f;
+            Vector3 pos = shootTrm.transform.position;
             
             Vector3 slashRot = _characterUnit.transform.rotation.eulerAngles;
             
