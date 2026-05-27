@@ -40,11 +40,7 @@ namespace Code.UI
 
         public override void Open()
         {
-            base.Open();
-
-            ResolveViews();
-            InitializeViews();
-            ApplyCurrentUnitToViews();
+            OpenPanelShell();
             ShowTab(GetDefaultTab());
         }
 
@@ -69,13 +65,11 @@ namespace Code.UI
 
             if (tab == UnitPanelTab.Stat)
             {
-                inventoryPanel?.Hide();
                 BringViewToFront(statPanel);
                 statPanel?.Show();
                 return;
             }
 
-            statPanel?.Hide();
             BringViewToFront(inventoryPanel);
             inventoryPanel?.Show();
         }
@@ -107,7 +101,7 @@ namespace Code.UI
         {
             statPanel?.RefreshView();
 
-            if (_currentTab == UnitPanelTab.Inventory)
+            if (inventoryPanel != null && inventoryPanel.IsVisible)
                 inventoryPanel?.RefreshView();
         }
 
@@ -130,7 +124,7 @@ namespace Code.UI
                 return false;
 
             if (!mainPanel.IsOpen)
-                mainPanel.Open();
+                mainPanel.OpenPanelShell();
 
             mainPanel.ShowTab(tab);
             return true;
@@ -159,6 +153,15 @@ namespace Code.UI
             }
 
             return false;
+        }
+
+        private void OpenPanelShell()
+        {
+            base.Open();
+
+            ResolveViews();
+            InitializeViews();
+            ApplyCurrentUnitToViews();
         }
 
         private void ResolveViews()

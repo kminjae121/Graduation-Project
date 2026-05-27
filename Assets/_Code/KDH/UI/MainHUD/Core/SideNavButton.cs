@@ -1,5 +1,4 @@
 ﻿using DG.Tweening;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +9,6 @@ namespace Code.UI
     {
         [Header("Panel Settings")]
         [SerializeField] private string targetPanelId;
-        [SerializeField] private List<string> panelsToClose;
 
         [Header("Animation Targets")]
         [SerializeField] private Transform scaleTarget;
@@ -80,15 +78,6 @@ namespace Code.UI
                 return;
             }
 
-            if (panelsToClose != null)
-            {
-                foreach (var id in panelsToClose)
-                {
-                    if (string.IsNullOrEmpty(id) == false)
-                        TryClosePanelOrTab(id);
-                }
-            }
-
             TryOpenPanelOrTab(targetPanelId);
         }
 
@@ -97,9 +86,5 @@ namespace Code.UI
             return MainPanel.TryOpenTab(id) || PanelManager.TryOpen(id);
         }
 
-        private static bool TryClosePanelOrTab(string id)
-        {
-            return MainPanel.TryCloseTab(id) || PanelManager.TryClose(id);
-        }
     }
 }
