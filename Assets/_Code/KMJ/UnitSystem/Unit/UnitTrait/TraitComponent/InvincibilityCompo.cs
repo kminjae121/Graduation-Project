@@ -26,6 +26,8 @@ namespace Code.UnitSystem.TraitSystem
         private float _frontGuardDot;
         private Transform _frontGuardTrm;
         private AttackApplyCompo _attackApplyCompo;
+
+        public bool IsFrontGuard => _isFrontGuard;
         
         public void Initialize(Unit owner)
         {
