@@ -16,7 +16,7 @@ namespace Code.UnitSystem.TraitSystem
         [SerializeField] private UnitVFXCompo vfxCompo;
         [SerializeField] private RogueShadowSpawn shadowCompo;
 
-        private List<AbstractEnemyUnit> _abstractEnemies;
+        private List<AbstractEnemyUnit> _abstractEnemies = new List<AbstractEnemyUnit>();
 
         private Unit _unit;
         private DamageData _damageData;

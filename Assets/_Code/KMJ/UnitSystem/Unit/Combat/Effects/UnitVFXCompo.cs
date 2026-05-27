@@ -26,18 +26,31 @@ namespace Code.Effects
 
         public void PlayVFX(string vfxName)
         {
+            if (CheckExistVFX(vfxName))
+            {
+                IPlayableVFX vfx = _vfxDict.GetValueOrDefault(vfxName);
+                vfx.PlayVFX(Vector3.zero , Quaternion.identity);
+            }   
+        }
+
+        public bool CheckExistVFX(string vfxName)
+        {
             IPlayableVFX vfx = _vfxDict.GetValueOrDefault(vfxName);
-            Debug.Assert(vfx != null, $"{vfxName} is not exists in dictionary");
+
+            if (vfx != null)
+                return true;
             
-            vfx.PlayVFX(Vector3.zero , Quaternion.identity);
+            Debug.LogWarning($"{vfxName} is not exists in dictionary");
+            return false;
         }
         
         public void StopVFX(string vfxName)
         {
-            IPlayableVFX vfx = _vfxDict.GetValueOrDefault(vfxName);
-            Debug.Assert(vfx != null, $"{vfxName} is not exists in dictionary");
-            
-            vfx.StopVFX();
+            if (CheckExistVFX(vfxName))
+            {
+                IPlayableVFX vfx = _vfxDict.GetValueOrDefault(vfxName);
+                vfx.StopVFX();
+            }
         }
     }
 }
