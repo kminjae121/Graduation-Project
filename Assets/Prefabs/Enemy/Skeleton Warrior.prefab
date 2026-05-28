@@ -635,6 +635,10 @@ MonoBehaviour:
   frontDamageRate: 0
   frontAngle: 120
   adjacentRange: 1
+  guardBaseScore: 20
+  adjacentEnemyScore: 25
+  frontThreatScore: 40
+  lowHealthScore: 100
 --- !u!1 &5217988885818518192
 GameObject:
   m_ObjectHideFlags: 0
