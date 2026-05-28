@@ -26,6 +26,7 @@ namespace Code.UnitSystem.TraitSystem
         private float _frontGuardDot;
         private Transform _frontGuardTrm;
         private AttackApplyCompo _attackApplyCompo;
+        private bool _skipCurrentOwnerTurnEnd;
 
         public bool IsFrontGuard => _isFrontGuard;
         
@@ -68,6 +69,7 @@ namespace Code.UnitSystem.TraitSystem
             _frontGuardDamageRate = Mathf.Clamp01(damageRate);
             _frontGuardDot = Mathf.Cos(Mathf.Clamp(frontAngle, 0f, 180f) * 0.5f * Mathf.Deg2Rad);
             _isFrontGuard = true;
+            _skipCurrentOwnerTurnEnd = true;
 
             _vfxCompo?.PlayVFX(effectName, _owner.transform.position, Quaternion.identity);
 
@@ -79,11 +81,8 @@ namespace Code.UnitSystem.TraitSystem
                 _attackApplyCompo.AttackStartEvent += GuardFrontDamage;
             }
 
-            if (_turnManager == null)
-                return;
-
-            _turnManager.OnTurnStart -= CheckFrontGuard;
-            _turnManager.OnTurnStart += CheckFrontGuard;
+            Bus<UnitTurnEndEvent>.Unsubscribe(CheckFrontGuard);
+            Bus<UnitTurnEndEvent>.Subscribe(CheckFrontGuard);
         }
 
         private void CheckInvincibility()
@@ -101,15 +100,24 @@ namespace Code.UnitSystem.TraitSystem
             _curTurnCnt += 1;
         }
 
-        private void CheckFrontGuard()
+        private void CheckFrontGuard(UnitTurnEndEvent evt)
         {
-            if (_frontGuardMaxTurnCnt <= _frontGuardTurnCnt)
+            if (!_isFrontGuard || !ReferenceEquals(evt.Unit, _owner))
+                return;
+
+            if (_skipCurrentOwnerTurnEnd)
             {
-                ClearFrontGuard();
+                _skipCurrentOwnerTurnEnd = false;
                 return;
             }
 
             _frontGuardTurnCnt += 1;
+
+            if (_frontGuardTurnCnt >= _frontGuardMaxTurnCnt)
+            {
+                ClearFrontGuard();
+                return;
+            }
         }
 
         private void GuardFrontDamage(ref DamageEvent evt, ref bool isCritical, ref bool isPenetrate)
@@ -147,14 +155,14 @@ namespace Code.UnitSystem.TraitSystem
             _frontGuardTurnCnt = 0;
             _frontGuardMaxTurnCnt = 0;
             _frontGuardTrm = null;
+            _skipCurrentOwnerTurnEnd = false;
 
             if (_attackApplyCompo != null)
                 _attackApplyCompo.AttackStartEvent -= GuardFrontDamage;
 
             _attackApplyCompo = null;
 
-            if (_turnManager != null)
-                _turnManager.OnTurnStart -= CheckFrontGuard;
+            Bus<UnitTurnEndEvent>.Unsubscribe(CheckFrontGuard);
 
             _vfxCompo?.StopVFX(effectName);
         }

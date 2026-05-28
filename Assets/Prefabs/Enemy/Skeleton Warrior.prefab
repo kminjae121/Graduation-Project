@@ -212,6 +212,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitSO: {fileID: 11400000, guid: 32ce4e1858963fe44b740451ca0d6f12, type: 2}
+--- !u!1 &3224735298537569491
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5195718802136693327}
+  - component: {fileID: 584716196136748610}
+  m_Layer: 8
+  m_Name: Invincibility Compo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5195718802136693327
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3224735298537569491}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2693278724834728843}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &584716196136748610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3224735298537569491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60cbc5c34c6f42c0b0ffb8b8cd797c78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.TraitSystem.InvincibilityCompo
+  effectName: Sword Slash 1
 --- !u!1 &3272770753799775191
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,9 +679,7 @@ MonoBehaviour:
   guardTurns: 2
   frontDamageRate: 0
   frontAngle: 120
-  adjacentRange: 1
   guardBaseScore: 20
-  adjacentEnemyScore: 25
   frontThreatScore: 40
   lowHealthScore: 100
 --- !u!1 &5217988885818518192
@@ -876,6 +919,7 @@ Transform:
   - {fileID: 6264946609523882788}
   - {fileID: 211548178003538045}
   - {fileID: 4839609453137307834}
+  - {fileID: 5195718802136693327}
   - {fileID: 4859916535404700777}
   - {fileID: 8364960892971793700}
   - {fileID: 1343737021959190316}
@@ -11058,6 +11102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Code.SkillSystem.EnemySkillComponent
   skillList:
   - {fileID: 11400000, guid: 3be8d1bb603370349b8f3606836dba69, type: 2}
+  - {fileID: 11400000, guid: 02f6f357e96fff44a8c0018b0a964adf, type: 2}
   skillStorage: {fileID: 0}
 --- !u!1 &8785197533842760974
 GameObject:
