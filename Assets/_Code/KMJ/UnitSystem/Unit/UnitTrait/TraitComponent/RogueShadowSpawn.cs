@@ -45,6 +45,11 @@ namespace Code.UnitSystem.TraitSystem
             {
                 if(shadowInfo == shadow)
                         shadowInfo.gameObject.SetActive(active);
+
+                if (active == false)
+                {
+                    _currentIdx -= 1;
+                }
             }
         }
 
