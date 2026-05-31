@@ -52,7 +52,6 @@ namespace Code.SkillSystem
         protected override void OnSkillStarted()
         {
             ApplyFrontGuard();
-            DamageAdjacentTargets();
             SkillFeedbackEvent?.Invoke();
             //Owner.VFXCompo.PlayVFX();
         }
@@ -70,7 +69,8 @@ namespace Code.SkillSystem
                 return;
             }
 
-            invincibility.SetFrontGuard(guardTurns, Owner.transform, frontDamageRate, frontAngle);
+            invincibility.SetFrontGuard(guardTurns, Owner.transform, frontDamageRate, frontAngle,
+                CounterAttack);
         }
 
         private bool HasFrontGuard()
@@ -82,9 +82,9 @@ namespace Code.SkillSystem
             return invincibility != null && invincibility.IsFrontGuard;
         }
 
-        private void DamageAdjacentTargets()
+        private void CounterAttack(Unit attacker)
         {
-            if (Owner == null || UnitManager == null)
+            if (Owner == null || UnitManager == null || attacker == null)
                 return;
 
             var gridMap = GridMap.Instance;
@@ -95,8 +95,9 @@ namespace Code.SkillSystem
                 return;
             }
 
-            Vector2Int origin = gridMap.WorldToGridPos(Owner.transform.position);
-            Vector2Int hitPos = origin + GetForwardGridDir();
+            Vector2Int originPos = gridMap.WorldToGridPos(Owner.transform.position);
+            Vector2Int attackerPos = gridMap.WorldToGridPos(attacker.transform.position);
+            Vector2Int hitPos = originPos + GetCounterDirection(originPos, attackerPos);
 
             foreach (var unit in UnitManager.GetAllUnits())
             {
@@ -121,21 +122,17 @@ namespace Code.SkillSystem
             return GridMap.Instance.WorldToGridPos(Owner.transform.position) == from;
         }
 
-        private Vector2Int GetForwardGridDir()
+        private static Vector2Int GetCounterDirection(Vector2Int origin, Vector2Int attackerPos)
         {
-            if (Owner == null)
+            Vector2Int delta = attackerPos - origin;
+
+            if (delta == Vector2Int.zero)
                 return Vector2Int.up;
 
-            Vector3 forward = Owner.transform.forward;
-            forward.y = 0f;
+            if (Mathf.Abs(delta.x) >= Mathf.Abs(delta.y))
+                return delta.x >= 0 ? Vector2Int.right : Vector2Int.left;
 
-            if (forward.sqrMagnitude <= 0.001f)
-                return Vector2Int.up;
-
-            if (Mathf.Abs(forward.x) >= Mathf.Abs(forward.z))
-                return forward.x >= 0f ? Vector2Int.right : Vector2Int.left;
-
-            return forward.z >= 0f ? Vector2Int.up : Vector2Int.down;
+            return delta.y >= 0 ? Vector2Int.up : Vector2Int.down;
         }
 
         private int CountFrontThreats(Vector2Int from)

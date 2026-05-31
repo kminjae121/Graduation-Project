@@ -1,3 +1,4 @@
+using System;
 using Code.Core.Events.Bus;
 using Code.Core.Managers;
 using Code.Effects;
@@ -27,6 +28,7 @@ namespace Code.UnitSystem.TraitSystem
         private Transform _frontGuardTrm;
         private AttackApplyCompo _attackApplyCompo;
         private bool _skipCurrentOwnerTurnEnd;
+        private Action<Unit> _frontGuardHitAction;
 
         public bool IsFrontGuard => _isFrontGuard;
         
@@ -61,7 +63,8 @@ namespace Code.UnitSystem.TraitSystem
             _turnManager.OnTurnStart += CheckInvincibility;
         }
 
-        public void SetFrontGuard(int maxTurn, Transform guardTrm, float damageRate = 0f, float frontAngle = 120f)
+        public void SetFrontGuard(int maxTurn, Transform guardTrm, float damageRate = 0f,
+            float frontAngle = 120f, Action<Unit> frontGuardHitAction = null)
         {
             _frontGuardMaxTurnCnt = Mathf.Max(1, maxTurn);
             _frontGuardTurnCnt = 0;
@@ -70,6 +73,7 @@ namespace Code.UnitSystem.TraitSystem
             _frontGuardDot = Mathf.Cos(Mathf.Clamp(frontAngle, 0f, 180f) * 0.5f * Mathf.Deg2Rad);
             _isFrontGuard = true;
             _skipCurrentOwnerTurnEnd = true;
+            _frontGuardHitAction = frontGuardHitAction;
 
             _vfxCompo?.PlayVFX(effectName, _owner.transform.position, Quaternion.identity);
 
@@ -130,6 +134,7 @@ namespace Code.UnitSystem.TraitSystem
 
             evt.DamageData.damage = Mathf.RoundToInt(evt.DamageData.damage * _frontGuardDamageRate);
             isCritical = false;
+            _frontGuardHitAction?.Invoke(evt.Owner);
         }
 
         private bool IsFrontAttack(Vector3 attackerPos)
@@ -156,6 +161,7 @@ namespace Code.UnitSystem.TraitSystem
             _frontGuardMaxTurnCnt = 0;
             _frontGuardTrm = null;
             _skipCurrentOwnerTurnEnd = false;
+            _frontGuardHitAction = null;
 
             if (_attackApplyCompo != null)
                 _attackApplyCompo.AttackStartEvent -= GuardFrontDamage;
