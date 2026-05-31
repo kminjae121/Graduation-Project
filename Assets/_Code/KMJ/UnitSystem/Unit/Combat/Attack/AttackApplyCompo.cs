@@ -1,6 +1,7 @@
 ﻿using System;
 using Code.Core;
 using Code.Core.Events.Bus;
+using Code.UnitSystem.TraitSystem;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
@@ -48,6 +49,14 @@ namespace Code.UnitSystem.Combat
                 
                 damageable.ApplyDamage(evt.DamageData, evt.target.transform.position, evt.target.transform.position
                     , evt.Owner, isCritical, isPenetrate);
+
+                if (evt.Owner as CharacterUnit)
+                {
+                    if (evt.target.GetComponentInChildren<EnemyMark>())
+                    {
+                        Bus<UseGimicEvent>.Raise(new UseGimicEvent(UnitType.Archer, evt.target));
+                    }
+                }
 
                 var anim = evt.target.GetComponentInChildren<UnitAnimation>();
                 if (anim != null)
