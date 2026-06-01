@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using _Code.Core.EventBus.Events.Trait;
 using Code.Core.Debugs;
 using Code.Core.Events.Bus;
 using Code.Core.Interfaces;
 using Code.Core.Managers;
+using Code.Effects;
 using Code.Map;
 using Code.UnitSystem.Combat;
 using Code.UnitSystem.Enemies;
@@ -15,7 +17,6 @@ namespace Code.UnitSystem.TraitSystem
     public class KnightDefenseRange : MonoBehaviour, IUnitComponent
     {
         [SerializeField] private int rangeSize;
-        [Inject] protected TurnManager _turnManager;
 
         private CharacterUnit _unit;
         private UnitHealth _unitHealthCompo;
@@ -44,10 +45,7 @@ namespace Code.UnitSystem.TraitSystem
             
             Injector.InjectInto(this);
             
-            if (_turnManager != null)
-            {
-                _turnManager.OnTurnStart += FindUnitInDefenseRange;
-            }
+            Bus<KnightSunEvent>.Subscribe(FindUnitInDefenseRange);
         }
 
         private void OnDestroy()
@@ -67,27 +65,27 @@ namespace Code.UnitSystem.TraitSystem
             
             Targets.Clear();
             Enemies.Clear();
-            
-            
-            if(_turnManager != null)
-                _turnManager.OnTurnStart -= FindUnitInDefenseRange;
+            Bus<KnightSunEvent>.Unsubscribe(FindUnitInDefenseRange);
         }
         
         /// <summary>
         /// 방어할 수 있는 유닛을 구하는 코드
         /// </summary>
-        public void FindUnitInDefenseRange()
+        public void FindUnitInDefenseRange(KnightSunEvent evt)
         {
             foreach (var target in Targets)
             {
                 if (target != null && target.HealthCompo != null)
+                {
                     target.HealthCompo.OnDefenseEvent -= ReduceDamage;
+                    target.GetUnitCompo<UnitVFXCompo>().StopVFX("SunEffect");
+                }
             }
 
             Targets.Clear();
 
             if (_unit?.MoveCompo?.CurrentMapTile == null) return;
-
+    
             CalculateRange();
         }
 
@@ -117,6 +115,7 @@ namespace Code.UnitSystem.TraitSystem
                         if (Targets.Add(characterUnit))
                         {
                             characterUnit.HealthCompo.OnDefenseEvent += ReduceDamage;
+                            characterUnit.GetUnitCompo<UnitVFXCompo>().PlayVFX("SunEffect");
                         }   
                     }
                     
