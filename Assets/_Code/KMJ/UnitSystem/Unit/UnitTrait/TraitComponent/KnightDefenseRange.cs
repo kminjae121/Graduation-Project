@@ -77,6 +77,7 @@ namespace Code.UnitSystem.TraitSystem
             {
                 if (target != null && target.HealthCompo != null)
                 {
+                    Debug.Log(target.unitSO.UnitName);
                     target.HealthCompo.OnDefenseEvent -= ReduceDamage;
                     target.GetUnitCompo<UnitVFXCompo>().StopVFX("SunEffect");
                 }
@@ -114,6 +115,7 @@ namespace Code.UnitSystem.TraitSystem
     
                         if (Targets.Add(characterUnit))
                         {
+                            Debug.Log(characterUnit.unitSO.UnitName);
                             characterUnit.HealthCompo.OnDefenseEvent += ReduceDamage;
                             characterUnit.GetUnitCompo<UnitVFXCompo>().PlayVFX("SunEffect");
                         }   
