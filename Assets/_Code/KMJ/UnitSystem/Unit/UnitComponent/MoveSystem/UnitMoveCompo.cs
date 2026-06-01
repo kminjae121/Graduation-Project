@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using _Code.Core.EventBus.Events.Trait;
 using Code.Core.Events.Bus;
 using Code.Core.Interfaces;
 using Code.Map;
@@ -178,6 +179,7 @@ namespace Code.UnitSystem
             Bus<UnitCamSettingEvent>.Raise(new UnitCamSettingEvent(null,
                 false, new Vector3(0.1f, 0.1f, 0.1f)));
             Bus<SetAtkUIEvent>.Raise(new SetAtkUIEvent(true));
+            Bus<KnightSunEvent>.Raise(new KnightSunEvent(true));
             
             animationCompo.PlaySelectAnimation("IDLE");
             UnitRangeCompo.RemoveAllRange();
