@@ -1770,7 +1770,7 @@ MonoBehaviour:
   scaleTarget: {fileID: 443963428}
   hoverArea: {fileID: 443963427}
   selectionImage: {fileID: 251167093}
-  selectedColor: {r: 1, g: 0.7411765, b: 0.15, a: 1}
+  selectedColor: {r: 1, g: 0.7411765, b: 0.1490196, a: 1}
   animationDuration: 0.3
   hoverScale: {x: 1.1, y: 1.1, z: 1.1}
   animationEase: 9
@@ -11753,7 +11753,7 @@ MonoBehaviour:
   scaleTarget: {fileID: 2068666069}
   hoverArea: {fileID: 751045823}
   selectionImage: {fileID: 751045825}
-  selectedColor: {r: 1, g: 0.7411765, b: 0.15, a: 1}
+  selectedColor: {r: 1, g: 0.7411765, b: 0.1490196, a: 1}
   animationDuration: 0.3
   hoverScale: {x: 1.1, y: 1.1, z: 1.1}
   animationEase: 9

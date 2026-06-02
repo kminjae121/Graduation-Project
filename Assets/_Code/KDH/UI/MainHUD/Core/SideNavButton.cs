@@ -17,7 +17,7 @@ namespace Code.UI
 
         [Header("Selection")]
         [SerializeField] private Image selectionImage;
-        [SerializeField] private Color selectedColor = new(1f, 0.86f, 0.15f, 1f);
+        [SerializeField] private Color selectedColor = new(1f, 0.7411765f, 0.1490196f, 1f);
 
         [Header("Hover Animation Settings")]
         [SerializeField] private float animationDuration = 0.3f;
@@ -30,6 +30,7 @@ namespace Code.UI
         private Vector3 _originalScale;
         private Color _originalSelectionColor = Color.white;
         private Tween _scaleTween;
+        private Tween _colorTween;
         private HoverDetector _detector;
         private bool _isSelected;
 
@@ -72,11 +73,12 @@ namespace Code.UI
             }
 
             _scaleTween?.Kill();
+            _colorTween?.Kill();
         }
 
         private void LateUpdate()
         {
-            if (_isSelected && selectionImage != null)
+            if (_isSelected && selectionImage != null && (_colorTween == null || !_colorTween.IsActive()))
                 selectionImage.color = GetSelectedColor();
         }
 
@@ -84,12 +86,14 @@ namespace Code.UI
         {
             _scaleTween?.Kill();
             _scaleTween = scaleTarget.DOScale(hoverScale, animationDuration).SetEase(animationEase);
+            TweenSelectionColor(GetSelectedColor());
         }
 
         private void PlayHoverExit()
         {
             _scaleTween?.Kill();
             _scaleTween = scaleTarget.DOScale(_originalScale, animationDuration).SetEase(animationEase);
+            TweenSelectionColor(_isSelected ? GetSelectedColor() : _originalSelectionColor);
         }
 
         private void HandleNavButtonClick()
@@ -135,7 +139,18 @@ namespace Code.UI
             if (selectionImage == null)
                 return;
 
-            selectionImage.color = isSelected ? GetSelectedColor() : _originalSelectionColor;
+            TweenSelectionColor(isSelected ? GetSelectedColor() : _originalSelectionColor);
+        }
+
+        private void TweenSelectionColor(Color targetColor)
+        {
+            if (selectionImage == null)
+                return;
+
+            _colorTween?.Kill();
+            _colorTween = selectionImage
+                .DOColor(targetColor, animationDuration)
+                .SetEase(animationEase);
         }
 
         private void ResolveSelectionImage()
@@ -160,7 +175,7 @@ namespace Code.UI
 
         private Color GetSelectedColor()
         {
-            return selectedColor.a > 0f ? selectedColor : new Color(1f, 0.86f, 0.15f, 1f);
+            return selectedColor.a > 0f ? selectedColor : new Color(1f, 0.7411765f, 0.1490196f, 1f);
         }
     }
 }
