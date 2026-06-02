@@ -677,7 +677,7 @@ MonoBehaviour:
   safeRange: 0
   aiPriority: 0
   needSight: 0
-  animName: Shield Effect
+  shieldEffectName: Shield Effect
   guardTurns: 2
   frontDamageRate: 0
   frontAngle: 120

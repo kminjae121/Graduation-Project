@@ -4,14 +4,15 @@ using Code.Map;
 using Code.UnitSystem;
 using Code.UnitSystem.Enemies.AI;
 using Code.UnitSystem.TraitSystem;
-using Code.Utils;
 using UnityEngine;
 
 namespace Code.SkillSystem
 {
     public class EnemyShieldSkill : EnemyActiveBaseSkill
     {
-        [SerializeField] private string animName;
+        private const string CounterAttackAnimationKey = "SHIELD ATTACK";
+
+        [SerializeField] private string shieldEffectName;
         [SerializeField] private int guardTurns = 2;
         [SerializeField, Range(0f, 1f)] private float frontDamageRate;
         [SerializeField] private float frontAngle = 120f;
@@ -50,11 +51,16 @@ namespace Code.SkillSystem
         public override float PosScore(Vector2Int from, GameObject target)
             => 0f;
 
+        protected override bool UseShowEffectEvent => true;
+
         protected override void OnSkillStarted()
         {
-            ApplyFrontGuard();
             SkillFeedbackEvent?.Invoke();
-            Owner.VFXCompo.PlayVFX(animName);
+        }
+
+        protected override void OnShowEffect()
+        {
+            ApplyFrontGuard();
         }
 
         private void ApplyFrontGuard()
@@ -72,6 +78,7 @@ namespace Code.SkillSystem
 
             invincibility.SetFrontGuard(guardTurns, Owner.transform, frontDamageRate, frontAngle,
                 CounterAttack);
+            Owner.VFXCompo.PlayVFX(shieldEffectName);
         }
 
         private bool HasFrontGuard()
@@ -87,6 +94,8 @@ namespace Code.SkillSystem
         {
             if (Owner == null || UnitManager == null || attacker == null)
                 return;
+
+            PlayCounterAttackAnimation();
 
             var gridMap = GridMap.Instance;
 
@@ -180,5 +189,14 @@ namespace Code.SkillSystem
 
         private bool IsEnemyUnit(Unit unit)
             => unit != null && unit != Owner && unit.IsPlayerUnit != Owner.IsPlayerUnit;
+
+        private void PlayCounterAttackAnimation()
+        {
+            if (Owner.UnitAnimator == null)
+                return;
+
+            Owner.UnitAnimator.RestartFromEntry();
+            Owner.UnitAnimator.PlaySelectAnimation(CounterAttackAnimationKey);
+        }
     }
 }

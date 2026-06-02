@@ -60,8 +60,13 @@ namespace Code.SkillSystem
         }
 
         protected virtual bool UseAttackEvent => false;
+        protected virtual bool UseShowEffectEvent => false;
 
         protected virtual void OnAttack(GameObject target)
+        {
+        }
+
+        protected virtual void OnShowEffect()
         {
         }
 
@@ -109,6 +114,9 @@ namespace Code.SkillSystem
             if (UseAttackEvent)
                 triggerCompo.OnAttackTrigger += HandleAttack;
 
+            if (UseShowEffectEvent)
+                triggerCompo.OnShowEffectTrigger += HandleShowEffect;
+
             triggerCompo.OnAnimationEndTrigger += FinishSkill;
             _isEventBound = true;
         }
@@ -121,6 +129,9 @@ namespace Code.SkillSystem
             if (UseAttackEvent)
                 triggerCompo.OnAttackTrigger -= HandleAttack;
 
+            if (UseShowEffectEvent)
+                triggerCompo.OnShowEffectTrigger -= HandleShowEffect;
+
             triggerCompo.OnAnimationEndTrigger -= FinishSkill;
             _isEventBound = false;
         }
@@ -128,6 +139,11 @@ namespace Code.SkillSystem
         private void HandleAttack()
         {
             OnAttack(Target);
+        }
+
+        private void HandleShowEffect()
+        {
+            OnShowEffect();
         }
 
         protected virtual void FinishSkill()
