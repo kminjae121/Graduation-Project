@@ -76,8 +76,7 @@ namespace Code.UnitSystem.TraitSystem
             foreach (var target in Targets)
             {
                 if (target != null && target.HealthCompo != null)
-                {
-                    Debug.Log(target.unitSO.UnitName);
+                {   
                     target.HealthCompo.OnDefenseEvent -= ReduceDamage;
                     target.GetUnitCompo<UnitVFXCompo>().StopVFX("SunEffect");
                 }
@@ -99,6 +98,8 @@ namespace Code.UnitSystem.TraitSystem
             
             int result = -(rangeSize - 1) / 2;
 
+            Debug.Log(center);
+            
             for (int x = result; x <= -result; x++)
             {
                 for (int y = result; y <= -result; y++)
@@ -114,8 +115,7 @@ namespace Code.UnitSystem.TraitSystem
                         if (characterUnit.HealthCompo == null) continue;
     
                         if (Targets.Add(characterUnit))
-                        {
-                            Debug.Log(characterUnit.unitSO.UnitName);
+                        {;
                             characterUnit.HealthCompo.OnDefenseEvent += ReduceDamage;
                             characterUnit.GetUnitCompo<UnitVFXCompo>().PlayVFX("SunEffect");
                         }   

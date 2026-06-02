@@ -75,8 +75,6 @@ namespace Code.UnitSystem.TraitSystem
             _skipCurrentOwnerTurnEnd = true;
             _frontGuardHitAction = frontGuardHitAction;
 
-            _vfxCompo?.PlayVFX(effectName, _owner.transform.position, Quaternion.identity);
-
             _attackApplyCompo = AttackApplyCompo.Instance;
 
             if (_attackApplyCompo != null)

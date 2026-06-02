@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SetMark
   m_EditorClassIdentifier: 
   unitType: 2
-  skillName: "\uD45C\uC2DD"
+  skillName: "\uB3CC\uC544\uAC00\uAE30"
   skillAnimationKey: 
-  SkillDescription: "\uB79C\uB364\uD55C \uC801\uC5D0\uAC8C \uD45C\uC2DD\uC744 \uBD99\uC785\uB2C8\uB2E4."
+  SkillDescription: "\uC804\uC5D0 \uC124\uCE58\uD55C \uADF8\uB9BC\uC790\uB85C \uB3CC\uC544\uAC11\uB2C8\uB2E4."
   SkillValue: 6
   SkillCost: 6
   skillUIImage: {fileID: 21300000, guid: 90d648f1624836d4396ecd9d2c45612a, type: 3}
@@ -23,5 +23,6 @@ MonoBehaviour:
   skillPrice: 0
   SkillDamage: 0
   SkillRange: 3
+  MinRange: 0
   IsOwnSkill: 1
   SkillType: 1

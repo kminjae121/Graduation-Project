@@ -162,7 +162,7 @@ namespace Code.UnitSystem
             _isMoving = true;
 
             rotatorCompo.SetDir(tile.WorldPos);
-            
+            CurrentMapTile.SetTileUnit(null);
             animationCompo.PlaySelectAnimation("MOVE");
         }
 
