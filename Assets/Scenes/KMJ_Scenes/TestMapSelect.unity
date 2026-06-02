@@ -2794,7 +2794,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Code.UI.SideNavButton
   targetPanelId: SettingsPanel
   panelsToClose:
-  - StatPanel
+  - AttributePanel
   - InventoryPanel
   - UpgradePanel
   scaleTarget: {fileID: 122439873}
@@ -3220,7 +3220,7 @@ GameObject:
   - component: {fileID: 137642838}
   - component: {fileID: 137642837}
   m_Layer: 5
-  m_Name: UnitStatMaxSkillCost_Cnt
+  m_Name: UnitAttributeMaxSkillCost_Cnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3807,7 +3807,7 @@ GameObject:
   - component: {fileID: 151671367}
   - component: {fileID: 151671366}
   m_Layer: 5
-  m_Name: UnitStatRcvSkillCost_Cnt
+  m_Name: UnitAttributeRcvSkillCost_Cnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4379,7 +4379,7 @@ GameObject:
   - component: {fileID: 161663450}
   - component: {fileID: 161663449}
   m_Layer: 5
-  m_Name: UnitStatAtk
+  m_Name: UnitAttributeAtk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10634,7 +10634,7 @@ GameObject:
   - component: {fileID: 447822317}
   - component: {fileID: 447822316}
   m_Layer: 5
-  m_Name: UnitStatMoveSpd_Cnt
+  m_Name: UnitAttributeMoveSpd_Cnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11491,7 +11491,7 @@ GameObject:
   - component: {fileID: 466427118}
   - component: {fileID: 466427117}
   m_Layer: 5
-  m_Name: UnitStatMoveSpd
+  m_Name: UnitAttributeMoveSpd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15177,7 +15177,7 @@ GameObject:
   - component: {fileID: 625721269}
   - component: {fileID: 625721268}
   m_Layer: 5
-  m_Name: UnitStatCritDmgInc_Cnt
+  m_Name: UnitAttributeCritDmgInc_Cnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15404,7 +15404,7 @@ GameObject:
   - component: {fileID: 626904589}
   - component: {fileID: 626904588}
   m_Layer: 5
-  m_Name: UnitStatTurnSpd
+  m_Name: UnitAttributeTurnSpd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15811,7 +15811,7 @@ GameObject:
   - component: {fileID: 641889817}
   - component: {fileID: 641889816}
   m_Layer: 5
-  m_Name: UnitStatMaxHp_Cnt
+  m_Name: UnitAttributeMaxHp_Cnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16623,7 +16623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Code.UI.SideNavButton
   targetPanelId: UpgradePanel
   panelsToClose:
-  - StatPanel
+  - AttributePanel
   - InventoryPanel
   - SettingsPanel
   scaleTarget: {fileID: 692188996}
@@ -16696,7 +16696,7 @@ GameObject:
   - component: {fileID: 695548276}
   - component: {fileID: 695548275}
   m_Layer: 5
-  m_Name: UnitStatDef
+  m_Name: UnitAttributeDef
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17043,7 +17043,7 @@ GameObject:
   - component: {fileID: 718683749}
   - component: {fileID: 718683748}
   m_Layer: 5
-  m_Name: UnitStatRcvSkillCost
+  m_Name: UnitAttributeRcvSkillCost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19292,7 +19292,7 @@ GameObject:
   - component: {fileID: 808831591}
   - component: {fileID: 808831590}
   m_Layer: 5
-  m_Name: UnitStatTurnSpd_Cnt
+  m_Name: UnitAttributeTurnSpd_Cnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19788,7 +19788,7 @@ GameObject:
   - component: {fileID: 823991681}
   - component: {fileID: 823991682}
   m_Layer: 5
-  m_Name: UnitStatName_VGroup
+  m_Name: UnitAttributeName_VGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21009,7 +21009,7 @@ GameObject:
   - component: {fileID: 883071574}
   - component: {fileID: 883071573}
   m_Layer: 5
-  m_Name: StatPanel
+  m_Name: AttributePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21048,7 +21048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d4a02600ec44e2bc4151b1ece7e93a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.UI.SideNavButton
-  targetPanelId: StatPanel
+  targetPanelId: AttributePanel
   panelsToClose:
   - InventoryPanel
   - UpgradePanel
@@ -21314,7 +21314,7 @@ GameObject:
   - component: {fileID: 892298590}
   - component: {fileID: 892298591}
   m_Layer: 5
-  m_Name: UnitStatCount_VGroup
+  m_Name: UnitAttributeCount_VGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22758,7 +22758,7 @@ GameObject:
   - component: {fileID: 951774610}
   - component: {fileID: 951774609}
   m_Layer: 5
-  m_Name: UnitStatAtk_Cnt
+  m_Name: UnitAttributeAtk_Cnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25083,7 +25083,7 @@ GameObject:
   - component: {fileID: 1055113885}
   - component: {fileID: 1055113884}
   m_Layer: 5
-  m_Name: UnitStatCritProb
+  m_Name: UnitAttributeCritProb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26726,7 +26726,7 @@ GameObject:
   - component: {fileID: 1120168826}
   - component: {fileID: 1120168825}
   m_Layer: 5
-  m_Name: UnitStatMaxHp
+  m_Name: UnitAttributeMaxHp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27501,7 +27501,7 @@ GameObject:
   - component: {fileID: 1164933157}
   - component: {fileID: 1164933156}
   m_Layer: 5
-  m_Name: UnitStatMaxSkillCost
+  m_Name: UnitAttributeMaxSkillCost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32364,7 +32364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Code.UI.MainPanel
   id: MainUnitInfoPanel
   container: {fileID: 1555308881}
-  defaultOpenPanelId: StatPanel
+  defaultOpenPanelId: AttributePanel
 --- !u!222 &1351242212
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -35943,7 +35943,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Code.UI.SideNavButton
   targetPanelId: InventoryPanel
   panelsToClose:
-  - StatPanel
+  - AttributePanel
   - UpgradePanel
   - SettingsPanel
   scaleTarget: {fileID: 1477787632}
@@ -38933,7 +38933,7 @@ GameObject:
   - component: {fileID: 1614540575}
   - component: {fileID: 1614540574}
   m_Layer: 5
-  m_Name: UnitStat_Panel
+  m_Name: UnitAttribute_Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38970,8 +38970,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb6fe3a8cf7649c5b87db699af745cae, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Code.UI.StatPanel
-  id: StatPanel
+  m_EditorClassIdentifier: Assembly-CSharp::Code.UI.AttributePanel
+  id: AttributePanel
   container: {fileID: 1416004220}
   artifactButtonPoolingSO: {fileID: 11400000, guid: 2af3ed30fd75dec40b638ebb0afe9476, type: 2}
   skillButtonPoolingSO: {fileID: 11400000, guid: a9b7d0dad62b8e94185ce27528b07eca, type: 2}
@@ -38986,7 +38986,6 @@ MonoBehaviour:
   skillLoadoutFillImage: {fileID: 1236021678}
   skillLoadoutText: {fileID: 1352930109}
   fillAnimationDuration: 0.3
-  hpBarFill: {fileID: 196555700}
   hpText: {fileID: 738800865}
   nameText: {fileID: 1068445018}
   classText: {fileID: 377893865}
@@ -39735,7 +39734,7 @@ GameObject:
   - component: {fileID: 1652536100}
   - component: {fileID: 1652536099}
   m_Layer: 5
-  m_Name: UnitStatDef_Cnt
+  m_Name: UnitAttributeDef_Cnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42469,7 +42468,7 @@ GameObject:
   - component: {fileID: 1802911039}
   - component: {fileID: 1802911038}
   m_Layer: 5
-  m_Name: UnitStatCritProb_Cnt
+  m_Name: UnitAttributeCritProb_Cnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45169,7 +45168,7 @@ GameObject:
   - component: {fileID: 1890075746}
   - component: {fileID: 1890075745}
   m_Layer: 5
-  m_Name: UnitStatCritDmgInc
+  m_Name: UnitAttributeCritDmgInc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

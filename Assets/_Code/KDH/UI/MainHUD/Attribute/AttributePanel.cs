@@ -14,12 +14,11 @@ using UnityEngine.UI;
 
 namespace Code.UI
 {
-    public class StatPanel : MonoBehaviour
+    public class AttributePanel : MonoBehaviour
     {
         [Header("Legacy Panel Binding")]
-        [SerializeField] private string id = "StatPanel";
+        [SerializeField] private string id = "AttributePanel";
         [SerializeField] private RectTransform container;
-        [SerializeField] private Button closeButton;
 
         [Header("Pool Settings")]
         [SerializeField] private PoolingItemSO artifactButtonPoolingSO;
@@ -36,11 +35,11 @@ namespace Code.UI
         [SerializeField] private TextMeshProUGUI skillLoadoutText;
         [SerializeField] private float fillAnimationDuration = 0.3f;
 
-        [Header("HP Bar")]
-        [SerializeField] private Image hpBarFill;
+        [Header("KeyStats")]
         [SerializeField] private TextMeshProUGUI hpText;
+        [SerializeField] private TextMeshProUGUI turnSpeedText;
 
-        [Header("Stat & Info")]
+        [Header("Stats & Info")]
         [SerializeField] private TextMeshProUGUI nameText;
         [SerializeField] private TextMeshProUGUI classText;
 
@@ -48,7 +47,6 @@ namespace Code.UI
         [SerializeField] private TextMeshProUGUI atkText;
         [SerializeField] private TextMeshProUGUI defText;
         [SerializeField] private TextMeshProUGUI moveSpeedText;
-        [SerializeField] private TextMeshProUGUI turnSpeedText;
         [SerializeField] private TextMeshProUGUI criticalProbabilityText;
         [SerializeField] private TextMeshProUGUI criticalDamageIncreaseText;
         [SerializeField] private TextMeshProUGUI maxSkillCostText;
@@ -71,14 +69,10 @@ namespace Code.UI
 
             Bus<SkillEquipEvent>.Subscribe(HandleSkillEquipped);
             Bus<SkillUnequipEvent>.Subscribe(HandleSkillUnequipped);
-
-            WireCloseButton();
         }
 
         private void OnDestroy()
         {
-            UnwireCloseButton();
-
             Bus<SkillEquipEvent>.Unsubscribe(HandleSkillEquipped);
             Bus<SkillUnequipEvent>.Unsubscribe(HandleSkillUnequipped);
 
@@ -91,7 +85,6 @@ namespace Code.UI
             _owner = owner;
             ResolvePoolManager();
             SetupArtifactSlotTriggers();
-            WireCloseButton();
             Hide();
         }
 
@@ -256,9 +249,6 @@ namespace Code.UI
 
             if (hpText != null)
                 hpText.text = $"{nextValue:F0} / {maxHp:F0}";
-
-            if (hpBarFill != null)
-                hpBarFill.fillAmount = maxHp > 0 ? nextValue / maxHp : 0f;
         }
 
         private void RefreshArtifactSlots()
@@ -503,48 +493,6 @@ namespace Code.UI
                 container = transform as RectTransform;
 
             return container;
-        }
-
-        private void WireCloseButton()
-        {
-            if (closeButton == null)
-                closeButton = FindCloseButton();
-
-            if (closeButton == null)
-                return;
-
-            closeButton.onClick.RemoveListener(Hide);
-            closeButton.onClick.AddListener(Hide);
-        }
-
-        private void UnwireCloseButton()
-        {
-            if (closeButton != null)
-                closeButton.onClick.RemoveListener(Hide);
-        }
-
-        private Button FindCloseButton()
-        {
-            Transform searchRoot = container != null ? container : transform;
-            return FindChildButtonByName(searchRoot, "CloseButton");
-        }
-
-        private static Button FindChildButtonByName(Transform parent, string childName)
-        {
-            if (parent == null || string.IsNullOrWhiteSpace(childName))
-                return null;
-
-            foreach (Transform child in parent)
-            {
-                if (child.name == childName && child.TryGetComponent(out Button button))
-                    return button;
-
-                Button found = FindChildButtonByName(child, childName);
-                if (found != null)
-                    return found;
-            }
-
-            return null;
         }
 
         private void UnsubscribeHpEvent()

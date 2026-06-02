@@ -483,7 +483,7 @@ GameObject:
   - component: {fileID: 197823662}
   - component: {fileID: 197823661}
   m_Layer: 5
-  m_Name: UnitStat_Panel
+  m_Name: UnitAttribute_Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -528,15 +528,14 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb6fe3a8cf7649c5b87db699af745cae, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Code.UI.StatPanel
-  id: StatPanel
+  m_EditorClassIdentifier: Assembly-CSharp::Code.UI.AttributePanel
+  id: AttributePanel
   container: {fileID: 972823833}
   artifactIcons:
   - {fileID: 1180578039}
   - {fileID: 1071395994}
   emptyArtifactSlotSprite: {fileID: 21300000, guid: 9a38d34966735d24e9cda5ecb0a183bc, type: 3}
   modelSpawnPoint: {fileID: 1823183513}
-  hpBarFill: {fileID: 286548512}
   hpText: {fileID: 769358968}
   hpTweenDuration: 0.3
   nameText: {fileID: 1941068034}
@@ -1500,7 +1499,7 @@ GameObject:
   - component: {fileID: 508211849}
   - component: {fileID: 508211848}
   m_Layer: 5
-  m_Name: UnitStatAtk
+  m_Name: UnitAttributeAtk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2717,7 +2716,7 @@ GameObject:
   - component: {fileID: 942837607}
   - component: {fileID: 942837606}
   m_Layer: 5
-  m_Name: StatPanel
+  m_Name: AttributePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2756,10 +2755,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d4a02600ec44e2bc4151b1ece7e93a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.UI.SideNavButton
-  targetPanelId: StatPanel
+  targetPanelId: AttributePanel
   panelsToClose:
   - MainUnitInfoPanel
-  - StatPanel
+  - AttributePanel
   scaleTarget: {fileID: 942837605}
   panelNameCanvasGroup: {fileID: 492503169}
   hoverArea: {fileID: 624044330}
@@ -4045,7 +4044,7 @@ GameObject:
   - component: {fileID: 1391704126}
   - component: {fileID: 1391704125}
   m_Layer: 5
-  m_Name: UnitStatSpd
+  m_Name: UnitAttributeSpd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5031,7 +5030,7 @@ GameObject:
   - component: {fileID: 1759992352}
   - component: {fileID: 1759992351}
   m_Layer: 5
-  m_Name: UnitStatDef
+  m_Name: UnitAttributeDef
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5531,7 +5530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Code.UI.MainPanel
   id: MainUnitInfoPanel
   container: {fileID: 703553655}
-  defaultOpenPanelId: StatPanel
+  defaultOpenPanelId: AttributePanel
 --- !u!222 &1849887563
 CanvasRenderer:
   m_ObjectHideFlags: 0

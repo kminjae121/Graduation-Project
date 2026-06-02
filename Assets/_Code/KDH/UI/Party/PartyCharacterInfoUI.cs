@@ -16,7 +16,7 @@ namespace Code.UI
     public class PartyCharacterInfoUI : MonoBehaviour
     {
         [Header("UI Elements")]
-        [SerializeField] private GameObject lobbyStatPanel;
+        [SerializeField] private GameObject lobbyAttributePanel;
         [SerializeField] private TextMeshProUGUI characterNameText;
         [SerializeField] private TextMeshProUGUI characterClassText;
 
@@ -24,7 +24,7 @@ namespace Code.UI
         [SerializeField] private Transform[] modelSpawnPoints;
         [SerializeField] private List<UnitModelMapping> unitModelMappings;
 
-        [Header("Stat TMPs")]
+        [Header("Attribute TMPs")]
         [SerializeField] private TextMeshProUGUI maxHealthText;
         [SerializeField] private TextMeshProUGUI atkText;
         [SerializeField] private TextMeshProUGUI defText;
@@ -45,7 +45,7 @@ namespace Code.UI
             Bus<PartyCharacterSelectEvent>.Subscribe(HandleSelect);
             Bus<PartyCharacterDeselectEvent>.Subscribe(HandleDeselect);
 
-            if (lobbyStatPanel != null) lobbyStatPanel.SetActive(false);
+            if (lobbyAttributePanel != null) lobbyAttributePanel.SetActive(false);
         }
 
         private void OnDestroy()
@@ -62,7 +62,7 @@ namespace Code.UI
             CleanupPreviewModel();
 
             bool isHovering = evt.Unit != null;
-            if (lobbyStatPanel != null) lobbyStatPanel.SetActive(isHovering);
+            if (lobbyAttributePanel != null) lobbyAttributePanel.SetActive(isHovering);
             
             if (isHovering)
             {

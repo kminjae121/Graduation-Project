@@ -6,17 +6,17 @@ namespace Code.UI
 {
     public enum UnitPanelTab
     {
-        Stat,
+        Attribute,
         Inventory
     }
 
     public class MainPanel : Panel
     {
         [Header("Default Settings")]
-        [SerializeField] private string defaultOpenPanelId = "StatPanel";
+        [SerializeField] private string defaultOpenPanelId = "AttributePanel";
 
         [Header("Views")]
-        [SerializeField] private StatPanel statPanel;
+        [SerializeField] private AttributePanel attributePanel;
         [SerializeField] private InventoryPanel inventoryPanel;
 
         private UnitState _currentUnit;
@@ -48,11 +48,12 @@ namespace Code.UI
         {
             if (_viewsInitialized)
             {
-                statPanel?.Hide();
+                attributePanel?.Hide();
                 inventoryPanel?.Hide();
                 ClearTransientPopups();
             }
 
+            SideNavButton.ClearSelection();
             base.Close();
         }
 
@@ -63,15 +64,17 @@ namespace Code.UI
 
             _currentTab = tab;
 
-            if (tab == UnitPanelTab.Stat)
+            if (tab == UnitPanelTab.Attribute)
             {
-                BringViewToFront(statPanel);
-                statPanel?.Show();
+                BringViewToFront(attributePanel);
+                attributePanel?.Show();
+                SideNavButton.SetSelectedPanel("AttributePanel");
                 return;
             }
 
             BringViewToFront(inventoryPanel);
             inventoryPanel?.Show();
+            SideNavButton.SetSelectedPanel("InventoryPanel");
         }
 
         public bool TryShowTabByPanelId(string panelId)
@@ -82,9 +85,9 @@ namespace Code.UI
             ResolveViews();
             InitializeViews();
 
-            if (statPanel != null && statPanel.MatchesPanelId(panelId))
+            if (attributePanel != null && attributePanel.MatchesPanelId(panelId))
             {
-                ShowTab(UnitPanelTab.Stat);
+                ShowTab(UnitPanelTab.Attribute);
                 return true;
             }
 
@@ -99,7 +102,7 @@ namespace Code.UI
 
         public void RefreshViewsAfterInventoryChanged()
         {
-            statPanel?.RefreshView();
+            attributePanel?.RefreshView();
 
             if (inventoryPanel != null && inventoryPanel.IsVisible)
                 inventoryPanel?.RefreshView();
@@ -116,8 +119,8 @@ namespace Code.UI
             mainPanel.InitializeViews();
 
             UnitPanelTab tab;
-            if (mainPanel.statPanel != null && mainPanel.statPanel.MatchesPanelId(panelId))
-                tab = UnitPanelTab.Stat;
+            if (mainPanel.attributePanel != null && mainPanel.attributePanel.MatchesPanelId(panelId))
+                tab = UnitPanelTab.Attribute;
             else if (mainPanel.inventoryPanel != null && mainPanel.inventoryPanel.MatchesPanelId(panelId))
                 tab = UnitPanelTab.Inventory;
             else
@@ -140,9 +143,9 @@ namespace Code.UI
             mainPanel.ResolveViews();
             mainPanel.InitializeViews();
 
-            if (mainPanel.statPanel != null && mainPanel.statPanel.MatchesPanelId(panelId))
+            if (mainPanel.attributePanel != null && mainPanel.attributePanel.MatchesPanelId(panelId))
             {
-                mainPanel.statPanel.Hide();
+                mainPanel.attributePanel.Hide();
                 return true;
             }
 
@@ -166,8 +169,8 @@ namespace Code.UI
 
         private void ResolveViews()
         {
-            if (statPanel == null)
-                statPanel = FindViewInCurrentScene<StatPanel>();
+            if (attributePanel == null)
+                attributePanel = FindViewInCurrentScene<AttributePanel>();
 
             if (inventoryPanel == null)
                 inventoryPanel = FindViewInCurrentScene<InventoryPanel>();
@@ -191,7 +194,7 @@ namespace Code.UI
             if (_viewsInitialized)
                 return;
 
-            statPanel?.Initialize(this);
+            attributePanel?.Initialize(this);
             inventoryPanel?.Initialize(this);
             _viewsInitialized = true;
         }
@@ -207,7 +210,7 @@ namespace Code.UI
 
         private void ApplyCurrentUnitToViews()
         {
-            statPanel?.SetUnit(_currentUnit);
+            attributePanel?.SetUnit(_currentUnit);
             inventoryPanel?.SetUnit(_currentUnit);
         }
 
@@ -218,7 +221,7 @@ namespace Code.UI
             if (inventoryPanel != null && inventoryPanel.MatchesPanelId(defaultOpenPanelId))
                 return UnitPanelTab.Inventory;
 
-            return UnitPanelTab.Stat;
+            return UnitPanelTab.Attribute;
         }
 
         private static void BringViewToFront(MonoBehaviour view)
