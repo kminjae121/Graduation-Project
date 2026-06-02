@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,20 +23,15 @@ namespace Code.UI
         [SerializeField] private Vector3 hoverScale = new(1.1f, 1.1f, 1.1f);
         [SerializeField] private Ease animationEase = Ease.OutCubic;
 
-        private static readonly List<SideNavButton> Instances = new();
-
         private Button _navButton;
         private Vector3 _originalScale;
         private Color _originalSelectionColor = Color.white;
         private Tween _scaleTween;
-        private Tween _colorTween;
         private HoverDetector _detector;
-        private bool _isSelected;
 
         private void Awake()
         {
             _navButton = GetComponent<Button>();
-            Instances.Add(this);
 
             if (scaleTarget == null)
                 scaleTarget = transform;
@@ -61,9 +55,6 @@ namespace Code.UI
 
         private void OnDestroy()
         {
-            SetSelected(false);
-            Instances.Remove(this);
-
             _navButton.onClick.RemoveListener(HandleNavButtonClick);
 
             if (_detector != null)
@@ -73,27 +64,23 @@ namespace Code.UI
             }
 
             _scaleTween?.Kill();
-            _colorTween?.Kill();
         }
 
         private void LateUpdate()
         {
-            if (_isSelected && selectionImage != null && (_colorTween == null || !_colorTween.IsActive()))
-                selectionImage.color = GetSelectedColor();
+            RefreshSelectionColor();
         }
 
         private void PlayHoverEnter()
         {
             _scaleTween?.Kill();
             _scaleTween = scaleTarget.DOScale(hoverScale, animationDuration).SetEase(animationEase);
-            TweenSelectionColor(GetSelectedColor());
         }
 
         private void PlayHoverExit()
         {
             _scaleTween?.Kill();
             _scaleTween = scaleTarget.DOScale(_originalScale, animationDuration).SetEase(animationEase);
-            TweenSelectionColor(_isSelected ? GetSelectedColor() : _originalSelectionColor);
         }
 
         private void HandleNavButtonClick()
@@ -104,8 +91,7 @@ namespace Code.UI
                 return;
             }
 
-            if (TryOpenPanelOrTab(targetPanelId))
-                SetSelectedPanel(targetPanelId);
+            TryOpenPanelOrTab(targetPanelId);
         }
 
         private static bool TryOpenPanelOrTab(string id)
@@ -113,44 +99,12 @@ namespace Code.UI
             return MainPanel.TryOpenTab(id) || PanelManager.TryOpen(id);
         }
 
-        public static void SetSelectedPanel(string panelId)
-        {
-            foreach (SideNavButton button in Instances)
-            {
-                if (button == null)
-                    continue;
-
-                bool shouldSelect = string.Equals(button.targetPanelId, panelId, System.StringComparison.OrdinalIgnoreCase);
-                button.SetSelected(shouldSelect);
-            }
-        }
-
-        public static void ClearSelection()
-        {
-            foreach (SideNavButton button in Instances)
-                if (button != null)
-                    button.SetSelected(false);
-        }
-
-        private void SetSelected(bool isSelected)
-        {
-            _isSelected = isSelected;
-
-            if (selectionImage == null)
-                return;
-
-            TweenSelectionColor(isSelected ? GetSelectedColor() : _originalSelectionColor);
-        }
-
-        private void TweenSelectionColor(Color targetColor)
+        private void RefreshSelectionColor()
         {
             if (selectionImage == null)
                 return;
 
-            _colorTween?.Kill();
-            _colorTween = selectionImage
-                .DOColor(targetColor, animationDuration)
-                .SetEase(animationEase);
+            selectionImage.color = IsTargetPanelVisible() ? GetSelectedColor() : _originalSelectionColor;
         }
 
         private void ResolveSelectionImage()
@@ -176,6 +130,11 @@ namespace Code.UI
         private Color GetSelectedColor()
         {
             return selectedColor.a > 0f ? selectedColor : new Color(1f, 0.7411765f, 0.1490196f, 1f);
+        }
+
+        private bool IsTargetPanelVisible()
+        {
+            return MainPanel.IsTabVisible(targetPanelId) || PanelManager.IsOpen(targetPanelId);
         }
     }
 }

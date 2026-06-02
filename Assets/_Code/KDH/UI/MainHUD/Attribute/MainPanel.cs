@@ -53,7 +53,6 @@ namespace Code.UI
                 ClearTransientPopups();
             }
 
-            SideNavButton.ClearSelection();
             base.Close();
         }
 
@@ -68,13 +67,11 @@ namespace Code.UI
             {
                 BringViewToFront(attributePanel);
                 attributePanel?.Show();
-                SideNavButton.SetSelectedPanel("AttributePanel");
                 return;
             }
 
             BringViewToFront(inventoryPanel);
             inventoryPanel?.Show();
-            SideNavButton.SetSelectedPanel("InventoryPanel");
         }
 
         public bool TryShowTabByPanelId(string panelId)
@@ -154,6 +151,27 @@ namespace Code.UI
                 mainPanel.inventoryPanel.Hide();
                 return true;
             }
+
+            return false;
+        }
+
+        public static bool IsTabVisible(string panelId)
+        {
+            if (string.IsNullOrWhiteSpace(panelId))
+                return false;
+
+            MainPanel mainPanel = FindFirstObjectByType<MainPanel>(FindObjectsInactive.Include);
+
+            if (mainPanel == null)
+                return false;
+
+            mainPanel.ResolveViews();
+
+            if (mainPanel.attributePanel != null && mainPanel.attributePanel.MatchesPanelId(panelId))
+                return mainPanel.attributePanel.IsVisible;
+
+            if (mainPanel.inventoryPanel != null && mainPanel.inventoryPanel.MatchesPanelId(panelId))
+                return mainPanel.inventoryPanel.IsVisible;
 
             return false;
         }
