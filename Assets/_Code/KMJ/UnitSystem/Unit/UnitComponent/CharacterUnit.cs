@@ -1,4 +1,5 @@
 using System.Collections;
+using _Code.Core.EventBus.Events.Trait;
 using Code.Passive;
 using Code.Core.Managers;
 using Code.Core.Events.Bus;
@@ -94,6 +95,7 @@ namespace Code.UnitSystem
             SkillCostCompo.AddSkillCost();
             SkillCompo.UpdateSkillUI();
             PassiveCompo.StartAllTurnPassives();
+            Bus<KnightSunEvent>.Raise(new KnightSunEvent(true));
 
             if (MoveCompo != null)
             {
@@ -132,6 +134,7 @@ namespace Code.UnitSystem
                 Bus<UnitMoveControlEvent>.Raise(new UnitMoveControlEvent(true));
                 Bus<UnitAttackControlEvent>.Raise(new UnitAttackControlEvent(true));      
                 Bus<UnitPerformEvent>.Raise(new UnitPerformEvent(UnitType.None, null)); 
+                Bus<KnightSunEvent>.Raise(new KnightSunEvent(true));
             }
         }
 
@@ -157,6 +160,7 @@ namespace Code.UnitSystem
             HealthCompo.StorageSO.units.Remove(unitSpawnSO);
             
             gameObject.SetActive(false);
+            Bus<KnightSunEvent>.Raise(new KnightSunEvent(true));
         }
 
         public void Die()

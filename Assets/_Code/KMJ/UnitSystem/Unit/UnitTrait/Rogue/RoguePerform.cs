@@ -75,11 +75,10 @@ namespace Code.UnitSystem.TraitSystem
             shadowCompo.ResetAllShadow();
             animCompo.ReturnIdleAnimation();
 
-            foreach (var enemy in _abstractEnemies)
-            {
-                vfxCompo.PlayVFX("DarkBoom", enemy.transform.position, Quaternion.identity);
-                yield return new WaitForSeconds(0.2f);
-            }
+            Vector3 trm = target.transform.position;
+
+            trm.y += 0.2f;
+             vfxCompo.PlayVFX("DarkBoom", trm, Quaternion.identity);
             
             _abstractEnemies.Clear();
         }

@@ -11,12 +11,11 @@ namespace Code.SkillSystem
 {
     public class EnemyShieldSkill : EnemyActiveBaseSkill
     {
+        [SerializeField] private string animName;
         [SerializeField] private int guardTurns = 2;
         [SerializeField, Range(0f, 1f)] private float frontDamageRate;
         [SerializeField] private float frontAngle = 120f;
-        [SerializeField] private int adjacentRange = 1;
         [SerializeField] private float guardBaseScore = 20f;
-        [SerializeField] private float adjacentEnemyScore = 25f;
         [SerializeField] private float frontThreatScore = 40f;
         [SerializeField] private float lowHealthScore = 100f;
 
@@ -28,7 +27,7 @@ namespace Code.SkillSystem
             if (HasFrontGuard() || !IsCurrentTile(from))
                 return false;
 
-            return CountAdjacentEnemies(from) > 0;
+            return true;
         }
 
         public override float ScoreAt(Vector2Int from, GameObject target, EnemyAIProfileSO ai)
@@ -36,11 +35,9 @@ namespace Code.SkillSystem
             if (!CanUseAt(from, target))
                 return float.MinValue;
 
-            int adjacentCount = CountAdjacentEnemies(from);
             int frontThreatCount = CountFrontThreats(from);
 
             float score = guardBaseScore;
-            score += adjacentCount * (SkillSO.SkillDamage + adjacentEnemyScore);
             score += frontThreatCount * frontThreatScore;
             score += MissingHealthRatio() * lowHealthScore;
 
@@ -56,9 +53,8 @@ namespace Code.SkillSystem
         protected override void OnSkillStarted()
         {
             ApplyFrontGuard();
-            DamageAdjacentTargets();
             SkillFeedbackEvent?.Invoke();
-            //Owner.VFXCompo.PlayVFX();
+            Owner.VFXCompo.PlayVFX(animName);
         }
 
         private void ApplyFrontGuard()
@@ -74,7 +70,8 @@ namespace Code.SkillSystem
                 return;
             }
 
-            invincibility.SetFrontGuard(guardTurns, Owner.transform, frontDamageRate, frontAngle);
+            invincibility.SetFrontGuard(guardTurns, Owner.transform, frontDamageRate, frontAngle,
+                CounterAttack);
         }
 
         private bool HasFrontGuard()
@@ -86,9 +83,9 @@ namespace Code.SkillSystem
             return invincibility != null && invincibility.IsFrontGuard;
         }
 
-        private void DamageAdjacentTargets()
+        private void CounterAttack(Unit attacker)
         {
-            if (Owner == null || UnitManager == null)
+            if (Owner == null || UnitManager == null || attacker == null)
                 return;
 
             var gridMap = GridMap.Instance;
@@ -99,8 +96,9 @@ namespace Code.SkillSystem
                 return;
             }
 
-            Vector2Int origin = gridMap.WorldToGridPos(Owner.transform.position);
-            int range = Mathf.Max(1, adjacentRange);
+            Vector2Int originPos = gridMap.WorldToGridPos(Owner.transform.position);
+            Vector2Int attackerPos = gridMap.WorldToGridPos(attacker.transform.position);
+            Vector2Int hitPos = originPos + GetCounterDirection(originPos, attackerPos);
 
             foreach (var unit in UnitManager.GetAllUnits())
             {
@@ -108,9 +106,8 @@ namespace Code.SkillSystem
                     continue;
 
                 Vector2Int targetPos = gridMap.WorldToGridPos(unit.transform.position);
-                int distance = Mathf.Abs(targetPos.x - origin.x) + Mathf.Abs(targetPos.y - origin.y);
 
-                if (distance <= 0 || distance > range)
+                if (targetPos != hitPos)
                     continue;
 
                 Bus<DamageEvent>.Raise(new DamageEvent(DamageData, unit.gameObject, AddDamage,
@@ -126,27 +123,17 @@ namespace Code.SkillSystem
             return GridMap.Instance.WorldToGridPos(Owner.transform.position) == from;
         }
 
-        private int CountAdjacentEnemies(Vector2Int from)
+        private static Vector2Int GetCounterDirection(Vector2Int origin, Vector2Int attackerPos)
         {
-            if (Owner == null || UnitManager == null || GridMap.Instance == null)
-                return 0;
+            Vector2Int delta = attackerPos - origin;
 
-            int count = 0;
-            int range = Mathf.Max(1, adjacentRange);
+            if (delta == Vector2Int.zero)
+                return Vector2Int.up;
 
-            foreach (var unit in UnitManager.GetAllUnits())
-            {
-                if (!IsEnemyUnit(unit))
-                    continue;
+            if (Mathf.Abs(delta.x) >= Mathf.Abs(delta.y))
+                return delta.x >= 0 ? Vector2Int.right : Vector2Int.left;
 
-                Vector2Int targetPos = GridMap.Instance.WorldToGridPos(unit.transform.position);
-                int distance = DistanceUtils.GetManhattanDistance(from, targetPos);
-
-                if (distance > 0 && distance <= range)
-                    ++count;
-            }
-
-            return count;
+            return delta.y >= 0 ? Vector2Int.up : Vector2Int.down;
         }
 
         private int CountFrontThreats(Vector2Int from)

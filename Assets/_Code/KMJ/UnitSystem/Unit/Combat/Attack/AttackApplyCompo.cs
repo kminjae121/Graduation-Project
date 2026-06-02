@@ -1,6 +1,8 @@
 ﻿using System;
 using Code.Core;
 using Code.Core.Events.Bus;
+using Code.UnitSystem.TraitSystem;
+using EnemySystem;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
@@ -49,16 +51,44 @@ namespace Code.UnitSystem.Combat
                 damageable.ApplyDamage(evt.DamageData, evt.target.transform.position, evt.target.transform.position
                     , evt.Owner, isCritical, isPenetrate);
 
-                var anim = evt.target.GetComponentInChildren<UnitAnimation>();
-                if (anim != null)
+                EnemyMarking(evt);
+                TargetPos(evt);
+            }
+        }
+
+        private void TargetPos(DamageEvent evt)
+        {
+            var anim = evt.target.GetComponentInChildren<UnitAnimation>();
+            if (anim != null)
+            {
+                Vector3 targetPos = anim.transform.position;
+                targetPos.y += 1f;
+                AttackEndEvent?.Invoke(targetPos);
+            }
+        }
+
+        private static void EnemyMarking(DamageEvent evt)
+        {
+            if (evt.Owner as CharacterUnit)
+            {
+                EnemyMark markCompo = evt.target.GetComponentInChildren<EnemyMark>();
+                    
+                if (markCompo != null)
                 {
-                    Vector3 targetPos = anim.transform.position;
-                    targetPos.y += 1f;
-                    AttackEndEvent?.Invoke(targetPos);
+                    if (evt.Owner.unitSO.UnitType == UnitType.Archer && markCompo.GetCurrentMark() == 0)
+                    {   
+                        Bus<UseGimicEvent>.Raise(new UseGimicEvent(UnitType.Archer, evt.target));   
+                    }
+                    else if (evt.Owner.unitSO.UnitType != UnitType.Archer && markCompo.GetCurrentMark() > 0)
+                    {
+                        Bus<UseGimicEvent>.Raise(new UseGimicEvent(UnitType.Archer, evt.target));
+                    }
+                    else
+                        return;
                 }
             }
         }
-        
+
         private void CalculateCritical(ref DamageEvent evt, ref bool isCritical, ref bool isPenetrate)
         {
             float damage = evt.DamageData.damage;
