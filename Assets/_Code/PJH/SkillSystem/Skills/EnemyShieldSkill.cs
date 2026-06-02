@@ -11,6 +11,7 @@ namespace Code.SkillSystem
 {
     public class EnemyShieldSkill : EnemyActiveBaseSkill
     {
+        [SerializeField] private string animName;
         [SerializeField] private int guardTurns = 2;
         [SerializeField, Range(0f, 1f)] private float frontDamageRate;
         [SerializeField] private float frontAngle = 120f;
@@ -53,7 +54,7 @@ namespace Code.SkillSystem
         {
             ApplyFrontGuard();
             SkillFeedbackEvent?.Invoke();
-            //Owner.VFXCompo.PlayVFX();
+            Owner.VFXCompo.PlayVFX(animName);
         }
 
         private void ApplyFrontGuard()

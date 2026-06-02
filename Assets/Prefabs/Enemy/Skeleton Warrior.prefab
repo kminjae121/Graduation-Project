@@ -677,6 +677,7 @@ MonoBehaviour:
   safeRange: 0
   aiPriority: 0
   needSight: 0
+  animName: Shield Effect
   guardTurns: 2
   frontDamageRate: 0
   frontAngle: 120
@@ -11304,6 +11305,18 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 198407556850757824, guid: 3e914ef784028124db1daf7002a87cc8, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198407556850757824, guid: 3e914ef784028124db1daf7002a87cc8, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.27900457
+      objectReference: {fileID: 0}
+    - target: {fileID: 198407556850757824, guid: 3e914ef784028124db1daf7002a87cc8, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.26226407
+      objectReference: {fileID: 0}
     - target: {fileID: 198585219588016010, guid: 3e914ef784028124db1daf7002a87cc8, type: 3}
       propertyPath: looping
       value: 0
@@ -11581,6 +11594,14 @@ PrefabInstance:
     - target: {fileID: 198407556850757824, guid: 3e914ef784028124db1daf7002a87cc8, type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198407556850757824, guid: 3e914ef784028124db1daf7002a87cc8, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.2784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 198407556850757824, guid: 3e914ef784028124db1daf7002a87cc8, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.2627451
       objectReference: {fileID: 0}
     - target: {fileID: 198585219588016010, guid: 3e914ef784028124db1daf7002a87cc8, type: 3}
       propertyPath: looping
