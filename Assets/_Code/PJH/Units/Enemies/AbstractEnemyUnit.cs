@@ -145,7 +145,7 @@ namespace Code.UnitSystem.Enemies
                 return;
             }
 
-            UnitAnimator.PlaySelectAnimation("DIE");
+            UnitAnimator.PlaySelectAnimation("DEAD");
         }
 
         protected override void Hit()
@@ -182,8 +182,8 @@ namespace Code.UnitSystem.Enemies
             _isDead = false;
             ClearCurrentTile();
 
-            if (Core.Managers.StageManager.Instance != null)
-                Core.Managers.StageManager.Instance.RemoveEnemy(gameObject);
+            if (StageManager.Instance != null)
+                StageManager.Instance.RemoveEnemy(gameObject);
 
             gameObject.SetActive(false);
         }

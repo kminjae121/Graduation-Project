@@ -2889,7 +2889,7 @@ GameObject:
   - component: {fileID: 692832107}
   - component: {fileID: 692832106}
   m_Layer: 5
-  m_Name: Lobby_StatPanel
+  m_Name: Lobby_AttributePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4740,7 +4740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec5b91c84d5949b3ba48577e3191db54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lobbyStatPanel: {fileID: 692832104}
+  lobbyAttributePanel: {fileID: 692832104}
   characterNameText: {fileID: 698708447}
   characterClassText: {fileID: 2001077389}
   modelSpawnPoints:

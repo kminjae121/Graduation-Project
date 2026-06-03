@@ -153,6 +153,7 @@ Transform:
   m_Children:
   - {fileID: 417613172601844813}
   - {fileID: 2426735603883992340}
+  - {fileID: 6961580200365253835}
   m_Father: {fileID: 2693278724834728843}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3628298015919965506
@@ -256,7 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60cbc5c34c6f42c0b0ffb8b8cd797c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.TraitSystem.InvincibilityCompo
-  effectName: Sword Slash 1
+  effectName: Shield Effect
 --- !u!1 &3272770753799775191
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,6 +677,7 @@ MonoBehaviour:
   safeRange: 0
   aiPriority: 0
   needSight: 0
+  shieldEffectName: Shield Effect
   guardTurns: 2
   frontDamageRate: 0
   frontAngle: 120
@@ -11303,6 +11305,18 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 198407556850757824, guid: 3e914ef784028124db1daf7002a87cc8, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198407556850757824, guid: 3e914ef784028124db1daf7002a87cc8, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.27900457
+      objectReference: {fileID: 0}
+    - target: {fileID: 198407556850757824, guid: 3e914ef784028124db1daf7002a87cc8, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.26226407
+      objectReference: {fileID: 0}
     - target: {fileID: 198585219588016010, guid: 3e914ef784028124db1daf7002a87cc8, type: 3}
       propertyPath: looping
       value: 0
@@ -11580,6 +11594,14 @@ PrefabInstance:
     - target: {fileID: 198407556850757824, guid: 3e914ef784028124db1daf7002a87cc8, type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198407556850757824, guid: 3e914ef784028124db1daf7002a87cc8, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.2784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 198407556850757824, guid: 3e914ef784028124db1daf7002a87cc8, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.2627451
       objectReference: {fileID: 0}
     - target: {fileID: 198585219588016010, guid: 3e914ef784028124db1daf7002a87cc8, type: 3}
       propertyPath: looping
@@ -12050,3 +12072,145 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: EPO::EPOOutline.TargetStateListener
+--- !u!1001 &8908366968101996004
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1343737021959190316}
+    m_Modifications:
+    - target: {fileID: 1802282072388428623, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962549923708854575, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962549923708854575, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962549923708854575, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962549923708854575, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962549923708854575, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962549923708854575, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962549923708854575, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962549923708854575, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962549923708854575, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962549923708854575, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962549923708854575, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962549923708854575, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962549923708854575, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962549923708854575, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962549923709142013, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+      propertyPath: m_Name
+      value: Shield Effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962549923724057393, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962549923724057393, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962549923724075599, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962549923724075599, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+      propertyPath: prewarm
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962549923724075599, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7312670881902391780, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7312670881902391780, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+      propertyPath: prewarm
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7312670881902391780, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1962549923709142013, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5702200574456394810}
+  m_SourcePrefab: {fileID: 100100000, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+--- !u!4 &6961580200365253835 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1962549923708854575, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+  m_PrefabInstance: {fileID: 8908366968101996004}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6961580200365409817 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1962549923709142013, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+  m_PrefabInstance: {fileID: 8908366968101996004}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5702200574456394810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6961580200365409817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38c9176e4568430883ed42f9b467e0d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Code.Effects.PlayParticleVFX
+  <VFXName>k__BackingField: Shield Effect
+  isOnPosition: 1
+  particle: {fileID: 6961580200379295659}
+--- !u!198 &6961580200379295659 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1962549923724075599, guid: bae37edfdce922e49aed80d6a19faefb, type: 3}
+  m_PrefabInstance: {fileID: 8908366968101996004}
+  m_PrefabAsset: {fileID: 0}
