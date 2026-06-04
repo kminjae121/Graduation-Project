@@ -77,12 +77,29 @@ namespace Code.UnitSystem.Combat
         {
             maxHealth = value;
 
-            if (currentHealth >= MaxHealth)
-                currentHealth = MaxHealth;
+            if (currentHealth >= maxHealth)
+                currentHealth = maxHealth;
             
             if (_entity as CharacterUnit)
             {
                 CharacterUnit characterUnit = _entity as CharacterUnit;
+               
+                Bus<SetUpUnitHealthBar>.Raise(new SetUpUnitHealthBar(characterUnit.PlayableUnitID,CurrentHealth,
+                    MaxHealth, characterUnit.UnitImage));
+            }
+        }
+
+        public void ResetMaxHp()
+        {
+            maxHealth = _unitStateCompo.MaxHealth;
+            currentHealth = _unitStateCompo.CurrentHp.Value;  
+            
+            if (_entity as CharacterUnit)
+            {
+                CharacterUnit characterUnit = _entity as CharacterUnit;
+                
+                Debug.Log(CurrentHealth);
+                Debug.Log(MaxHealth);
                
                 Bus<SetUpUnitHealthBar>.Raise(new SetUpUnitHealthBar(characterUnit.PlayableUnitID,CurrentHealth,
                     MaxHealth, characterUnit.UnitImage));
