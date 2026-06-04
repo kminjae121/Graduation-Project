@@ -15,10 +15,8 @@ namespace Code.UI
         [SerializeField] private RectTransform skillArea;
         [SerializeField] private PoolingItemSO skillButtonPoolingSO;
 
-        [Header("Slots & Buttons")]
-        [SerializeField] private List<RectTransform> skillSlotPositions;
-        [SerializeField] private Button nextPageButton;
-        [SerializeField] private Button prevPageButton;
+        [Header("Skill Button Layout")]
+        [SerializeField] private HorizontalLayoutGroup skillButtonLayoutGroup;
 
         [Header("Slide Animation")]
         [SerializeField] private float slideDuration = 0.3f;
@@ -30,8 +28,6 @@ namespace Code.UI
         private List<SkillSO> _equippedSkills = new List<SkillSO>();
         private SkillComponent _currentSkillCompo;
         private CharacterUnit _currentUnit;
-        private int _currentPage = 0;
-        private const int MaxSkillsPerPage = 3;
         
         private bool _isSkillSelected = false;
         private bool _isCurrentlyVisible = false;
@@ -55,8 +51,10 @@ namespace Code.UI
                 skillArea.gameObject.SetActive(true);
             }
 
-            if (nextPageButton != null) nextPageButton.onClick.AddListener(GoToNextPage);
-            if (prevPageButton != null) prevPageButton.onClick.AddListener(GoToPrevPage);
+            if (skillButtonLayoutGroup == null && skillArea != null)
+            {
+                skillButtonLayoutGroup = skillArea.GetComponentInChildren<HorizontalLayoutGroup>(true);
+            }
 
             Bus<SkillUIEvent>.Subscribe(HandleSkillReceived);
             Bus<CombatSkillSelectEvent>.Subscribe(HandleSkillSelected);
@@ -69,9 +67,6 @@ namespace Code.UI
 
         private void OnDestroy()
         {
-            if (nextPageButton != null) nextPageButton.onClick.RemoveListener(GoToNextPage);
-            if (prevPageButton != null) prevPageButton.onClick.RemoveListener(GoToPrevPage);
-
             Bus<SkillUIEvent>.Unsubscribe(HandleSkillReceived);
             Bus<CombatSkillSelectEvent>.Unsubscribe(HandleSkillSelected);
             Bus<UnitTurnEndEvent>.Unsubscribe(HandleTurnEnd);
@@ -156,19 +151,6 @@ namespace Code.UI
                 _currentUnit.SkillCostCompo.skillCostChanged.AddListener(HandleCostChanged);
             }
 
-            _currentPage = 0;
-
-            if (_equippedSkills != null && _equippedSkills.Count > MaxSkillsPerPage)
-            {
-                if (nextPageButton != null) nextPageButton.gameObject.SetActive(true);
-                if (prevPageButton != null) prevPageButton.gameObject.SetActive(false);
-            }
-            else
-            {
-                if (nextPageButton != null) nextPageButton.gameObject.SetActive(false);
-                if (prevPageButton != null) prevPageButton.gameObject.SetActive(false);
-            }
-
             RefreshSkillSlots();
             EvaluateVisibility();
         }
@@ -239,48 +221,33 @@ namespace Code.UI
             _activeSkillButtons.Clear();
 
             if (_equippedSkills == null || _equippedSkills.Count == 0) return;
-
-            int startIndex = _currentPage * MaxSkillsPerPage;
-            int currentTurnCost = GetCurrentUnitCost();
-
-            for (int i = 0; i < MaxSkillsPerPage; i++)
+            if (skillButtonLayoutGroup == null)
             {
-                int skillIndex = startIndex + i;
-                if (skillIndex < _equippedSkills.Count && _equippedSkills[skillIndex] != null)
+                Debug.LogWarning("[CombatSkillUIManager] 스킬 버튼을 배치할 Horizontal Layout Group이 비어있습니다.");
+                return;
+            }
+            if (_poolManager == null || skillButtonPoolingSO == null) return;
+
+            int currentTurnCost = GetCurrentUnitCost();
+            Transform buttonParent = skillButtonLayoutGroup.transform;
+
+            for (int i = 0; i < _equippedSkills.Count; i++)
+            {
+                SkillSO skill = _equippedSkills[i];
+                if (skill == null) continue;
+
+                var btn = _poolManager.Pop<CombatSkillButtonUI>(skillButtonPoolingSO);
+                if (btn != null)
                 {
-                    if (i < skillSlotPositions.Count && skillSlotPositions[i] != null)
-                    {
-                        var btn = _poolManager.Pop<CombatSkillButtonUI>(skillButtonPoolingSO);
-                        if (btn != null)
-                        {
-                            btn.transform.SetParent(skillSlotPositions[i]);
-                            btn.transform.localPosition = Vector3.zero;
-                            btn.transform.localScale = Vector3.one;
-                            
-                            btn.SetupSkill(_equippedSkills[skillIndex], _currentSkillCompo, currentTurnCost);
-                            _activeSkillButtons.Add(btn);
-                        }
-                    }
+                    btn.transform.SetParent(buttonParent, false);
+                    btn.transform.localScale = Vector3.one;
+                    btn.transform.localPosition = Vector3.zero;
+                    btn.transform.SetAsLastSibling();
+
+                    btn.SetupSkill(skill, _currentSkillCompo, currentTurnCost);
+                    _activeSkillButtons.Add(btn);
                 }
             }
-        }
-
-        private void GoToNextPage()
-        {
-            _currentPage = 1;
-            RefreshSkillSlots();
-
-            if (nextPageButton != null) nextPageButton.gameObject.SetActive(false);
-            if (prevPageButton != null) prevPageButton.gameObject.SetActive(true);
-        }
-
-        private void GoToPrevPage()
-        {
-            _currentPage = 0;
-            RefreshSkillSlots();
-
-            if (nextPageButton != null) nextPageButton.gameObject.SetActive(true);
-            if (prevPageButton != null) prevPageButton.gameObject.SetActive(false);
         }
 
         private void HandleSkillSelected(CombatSkillSelectEvent evt)
