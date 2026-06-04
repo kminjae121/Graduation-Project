@@ -31,7 +31,7 @@ namespace Code.UnitSystem.TraitSystem
             
             _unit.GetUnitCompo<InvincibilityCompo>().SetUnitInvincibility(4);
 
-            _healthCompo.SetMaxHp(_unit.unitSO.Maxhealth);
+            _healthCompo.ResetMaxHp();
             circleParticle.Play();
         }
     }

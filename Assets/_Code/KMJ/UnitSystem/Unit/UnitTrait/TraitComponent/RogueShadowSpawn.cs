@@ -55,7 +55,9 @@ namespace Code.UnitSystem.TraitSystem
 
         public void SetShadow(Transform trm)
         {
-            if (_maxIdx <= 0) return; 
+            if (_maxIdx <= 0) return;
+
+            if (_currentIdx < 0) _currentIdx = 0;
 
             var shadow = shadows[_currentIdx];
             shadow.gameObject.SetActive(true);
