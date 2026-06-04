@@ -24275,6 +24275,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5046252359462132440, guid: 95ce46339f81fcd4b8e9ec6d904fa534, type: 3}
+      propertyPath: turnManager
+      value: 
+      objectReference: {fileID: 2140617884}
     - target: {fileID: 5117973992207717929, guid: 95ce46339f81fcd4b8e9ec6d904fa534, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -71675,6 +71679,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d587fee46528bcb4396971826c10f454, type: 3}
+--- !u!114 &2140617884 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4867726575622261700, guid: d587fee46528bcb4396971826c10f454, type: 3}
+  m_PrefabInstance: {fileID: 2140617883}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7d0df37e6e24998ac89443ee3b36ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2142026712
 GameObject:
   m_ObjectHideFlags: 0
