@@ -128,7 +128,6 @@ MonoBehaviour:
   showTurnOrderCount: 5
   slotContainer: {fileID: 5111640897156143509}
   unitSlotPoolingSO: {fileID: 11400000, guid: 953b3b464206a9845a893f428ca9eca9, type: 2}
-  roundSlotPoolingSO: {fileID: 11400000, guid: 4fd866534a9ce3c44a490456f3c825f6, type: 2}
 --- !u!1 &196307852846015873
 GameObject:
   m_ObjectHideFlags: 0
@@ -2017,7 +2016,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7857973735020374065
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2342,8 +2341,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.UI.CombatProfileUI
   panelRect: {fileID: 4762604261847485628}
-  hiddenPosition: {x: -250, y: -25}
-  visiblePosition: {x: 25, y: -25}
+  hiddenPosition: {x: 0, y: 250}
+  visiblePosition: {x: 0, y: -60}
   slideDuration: 0.3
   slideEase: 27
   profileIconImage: {fileID: 5953838186694896351}

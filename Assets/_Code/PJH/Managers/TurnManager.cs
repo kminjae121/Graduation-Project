@@ -22,6 +22,7 @@ namespace Code.Core.Managers
         [SerializeField] private UnitManager unitManager;
 
         public int CurrentRound { get; private set; }
+        public ITurnable CurrentTurnUnit => _currentTurnUnit;
 
         public event Action OnTurnStart;
 
