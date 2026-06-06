@@ -76,8 +76,7 @@ namespace Code.SkillSystem
                 return;
             }
 
-            invincibility.SetFrontGuard(guardTurns, Owner.transform, frontDamageRate, frontAngle,
-                CounterAttack);
+            invincibility.SetFrontGuard(guardTurns, Owner.transform, frontDamageRate, frontAngle, CounterAttack);
             Owner.VFXCompo.PlayVFX(shieldEffectName);
         }
 

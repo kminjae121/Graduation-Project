@@ -60,6 +60,7 @@ namespace Code.SkillSystem
         }
 
         protected virtual bool UseAttackEvent => false;
+        
         protected virtual bool UseShowEffectEvent => false;
 
         protected virtual void OnAttack(GameObject target)
