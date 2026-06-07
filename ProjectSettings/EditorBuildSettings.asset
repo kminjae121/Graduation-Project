@@ -30,7 +30,7 @@ EditorBuildSettings:
     path: Assets/Scenes/AJS_Scenes/Stage/Stage2.unity
     guid: 560b1fb7d0f01e842b6ca7bc5bc00582
   - enabled: 1
-    path: Assets/Scenes/AJS_Scenes/Stage/Stage3.unity
+    path: Assets/Scenes/AJS_Scenes/Stage/BossMap.unity
     guid: 590f5c5dd1f7fee44ad3e1ea8e56af0d
   - enabled: 1
     path: Assets/Scenes/AJS_Scenes/Stage/Stage4.unity
