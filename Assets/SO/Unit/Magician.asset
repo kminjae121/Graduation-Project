@@ -26,7 +26,7 @@ MonoBehaviour:
   isPlayerUnit: 1
   MoveRange: 4
   Maxhealth: 85
-  AttackDamage: 25
+  AttackDamage: 10
   DefensivePower: 5
   ShieldValue: 0
   AvoidProbability: 0

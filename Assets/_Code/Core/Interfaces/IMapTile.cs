@@ -10,7 +10,7 @@ namespace Code.Core.Interfaces
         Vector3 WorldPos { get; }
 
         Unit GetTileUnit();
-        void SetTileUnit(Unit unit);
+        void                         SetTileUnit(Unit unit);
         
         bool HasState(TileState state);
         bool HasAnyState(TileState state);
