@@ -52,8 +52,10 @@ using UnityEngine.UI;
             if (_shadowSpawn.GetCurrentShadow() == null)
                 return;
              
+            _shadowSpawn.GetShadowMapTile().SetTileUnit(_characterUnit);
             _characterUnit.transform.position = _shadowSpawn.GetCurrentShadow().transform.position;
             _shadowSpawn.SetShadowInfo(_shadowSpawn.GetCurrentShadow(), false);
+            
         }
         
         protected override void SkillEnd()

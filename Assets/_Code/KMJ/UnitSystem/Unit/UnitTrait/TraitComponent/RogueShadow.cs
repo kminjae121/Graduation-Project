@@ -1,4 +1,5 @@
-﻿using Code.UnitSystem.Enemies;
+﻿using Code.Core.Interfaces;
+using Code.UnitSystem.Enemies;
 using UnityEngine;
 
 namespace Code.UnitSystem.TraitSystem
@@ -9,6 +10,7 @@ namespace Code.UnitSystem.TraitSystem
 
         public AbstractEnemyUnit NearestEnemy { get; private set; }
 
+        private IMapTile mapTile;
         private Vector3 _worldPosition;
         private Quaternion _worldRotation;
         private Vector3 _worldScale;
@@ -40,6 +42,13 @@ namespace Code.UnitSystem.TraitSystem
             );
         }
 
+        public IMapTile GetMapTile()
+            => mapTile;
+
+        public void SetTile(IMapTile tile)
+        {
+            mapTile = tile;
+        }
         public void SetPos(Vector3 pos)
         {
             _worldPosition = pos;

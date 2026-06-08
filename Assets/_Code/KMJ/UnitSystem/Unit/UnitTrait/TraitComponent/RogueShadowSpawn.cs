@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using _Code.Core.EventBus.Events.Trait;
 using Code.Core.Events.Bus;
+using Code.Core.Interfaces;
+using Unity.Cinemachine;
 using UnityEngine;
 
 namespace Code.UnitSystem.TraitSystem
@@ -10,7 +12,7 @@ namespace Code.UnitSystem.TraitSystem
         [SerializeField] private List<RogueShadow> shadows = new List<RogueShadow>();
         [SerializeField] private int maxShadowCnt = 3;
         private RogueShadow _currentShadowObj;
-
+        
         private int _shadowCnt = 0;
         private int _currentIdx = 0;
         private int _maxIdx = 0;
@@ -35,6 +37,8 @@ namespace Code.UnitSystem.TraitSystem
 
         public int GetCurrentShadowIdx() => _currentIdx;
 
+        public IMapTile GetShadowMapTile() => _currentShadowObj.GetMapTile();
+
         public List<RogueShadow> GetShadows() => shadows;
         
         public RogueShadow GetCurrentShadow() => _currentShadowObj;
@@ -53,7 +57,7 @@ namespace Code.UnitSystem.TraitSystem
             }
         }
 
-        public void SetShadow(Transform trm)
+        public void SetShadow(IMapTile trm)
         {
             if (_maxIdx <= 0) return;
 
@@ -61,7 +65,8 @@ namespace Code.UnitSystem.TraitSystem
 
             var shadow = shadows[_currentIdx];
             shadow.gameObject.SetActive(true);
-            shadow.SetPos(_unit.transform.position);
+            shadow.SetPos(trm.WorldPos);
+            shadow.SetTile(trm);
             _currentShadowObj = shadow;
 
             if (_shadowCnt < maxShadowCnt)
@@ -77,7 +82,9 @@ namespace Code.UnitSystem.TraitSystem
         public void ResetAllShadow()
         {
             foreach (var shadow in shadows)
+            {
                 shadow.gameObject.SetActive(false);
+            }
 
             _currentIdx = 0;
             _shadowCnt = 0;
