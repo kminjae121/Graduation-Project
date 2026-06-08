@@ -20,7 +20,8 @@ namespace Code.UI
         [Header("Profile Elements")]
         [SerializeField] private Image profileIconImage;
         [SerializeField] private TextMeshProUGUI unitNameText;
-        [SerializeField] private TextMeshProUGUI hpText;
+        [SerializeField] private TextMeshProUGUI currentHpText;
+        [SerializeField] private TextMeshProUGUI maxHpText;
         [SerializeField] private Image hpFillImage;
 
         private Tween _slideTween;
@@ -116,7 +117,8 @@ namespace Code.UI
 
         private void UpdateHealthUI(float currentHp, float maxHp)
         {
-            if (hpText != null) hpText.text = $"{Mathf.CeilToInt(currentHp)}";
+            if (currentHpText != null) currentHpText.text = $"{Mathf.CeilToInt(currentHp)}";
+            if (maxHpText != null) maxHpText.text = $"{Mathf.CeilToInt(maxHp)}";
             if (hpFillImage != null) hpFillImage.fillAmount = maxHp > 0 ? (currentHp / maxHp) : 0f;
         }
 

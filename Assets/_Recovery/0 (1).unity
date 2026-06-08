@@ -5726,63 +5726,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!1 &1439345331
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1439345333}
-  - component: {fileID: 1439345332}
-  m_Layer: 0
-  m_Name: '@GridMap'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1439345332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1439345331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35130749a760484286e5d7056a998620, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Code.Map.GridMap
-  isDontDestroyOnLoad: 1
-  width: 10
-  height: 10
-  tileSize: 30
-  tilePrefab: {fileID: 0}
-  walkableMaterial: {fileID: 0}
-  nonWalkableMaterial: {fileID: 0}
-  enemyMaterial: {fileID: 0}
-  obstacleMaterial: {fileID: 0}
-  decalHeight: 1
-  projectionDepth: 1
-  decalRenderingLayerMask: 6
-  serializedTiles: []
---- !u!4 &1439345333
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1439345331}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1499049812
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8702,4 +8645,3 @@ SceneRoots:
   - {fileID: 12333451}
   - {fileID: 316693978}
   - {fileID: 1871412702}
-  - {fileID: 1439345333}

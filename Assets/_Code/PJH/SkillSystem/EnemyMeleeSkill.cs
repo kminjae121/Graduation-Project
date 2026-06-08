@@ -10,7 +10,14 @@ namespace Code.SkillSystem
             if (target == null)
                 return;
 
-            Bus<DamageEvent>.Raise(new DamageEvent(DamageData, target, AddDamage, null, false, false, 0.1f));
+            Bus<DamageEvent>.Raise(new DamageEvent(
+                DamageData,
+                target,
+                AddDamage,
+                null,
+                false,
+                false,
+                0.1f));
         }
     }
 }
