@@ -97,8 +97,6 @@ namespace Code.UnitSystem.TraitSystem
             Vector2Int center = _unit.MoveCompo.CurrentMapTile.GridPos;
             
             int result = -(rangeSize - 1) / 2;
-
-            Debug.Log(center);
             
             for (int x = result; x <= -result; x++)
             {
