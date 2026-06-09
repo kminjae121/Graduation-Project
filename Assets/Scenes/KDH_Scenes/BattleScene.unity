@@ -7551,7 +7551,7 @@ GameObject:
   - component: {fileID: 207265108}
   - component: {fileID: 207265107}
   m_Layer: 5
-  m_Name: Button
+  m_Name: PerformButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7564,17 +7564,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 207265105}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 541309016}
-  m_Father: {fileID: 1902352356}
+  m_Father: {fileID: 723661785}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 729, y: -175}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &207265107
@@ -24275,6 +24275,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5032562751741363933, guid: 95ce46339f81fcd4b8e9ec6d904fa534, type: 3}
+      propertyPath: turnManager
+      value: 
+      objectReference: {fileID: 2140617884}
     - target: {fileID: 5046252359462132440, guid: 95ce46339f81fcd4b8e9ec6d904fa534, type: 3}
       propertyPath: turnManager
       value: 
@@ -24520,7 +24524,7 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5593857405829586872, guid: 95ce46339f81fcd4b8e9ec6d904fa534, type: 3}
       insertIndex: 6
-      addedObject: {fileID: 1902352356}
+      addedObject: {fileID: 207265106}
     - targetCorrespondingSourceObject: {fileID: 3250294231173143083, guid: 95ce46339f81fcd4b8e9ec6d904fa534, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1521461054}
@@ -63620,51 +63624,6 @@ MonoBehaviour:
   m_FadeFactor: 1
   version: 1
   m_DecalLayerMask: 1
---- !u!1 &1902352355
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1902352356}
-  - component: {fileID: 1902352357}
-  m_Layer: 5
-  m_Name: ImSiButton
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1902352356
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1902352355}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 207265106}
-  m_Father: {fileID: 723661785}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 825, y: 403}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &1902352357
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1902352355}
-  m_CullTransparentMesh: 1
 --- !u!1 &1915076248
 GameObject:
   m_ObjectHideFlags: 0

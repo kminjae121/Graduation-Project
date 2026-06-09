@@ -6,139 +6,333 @@ namespace Code.Tower
 {
     public static class TowerMapGenerator
     {
+        private const int LaneCount = 7;
+        private const int PathCount = 6;
+        private const int NormalStageRows = 7;
+        private const int BossStageRows = 6;
+        private const int MinimumDistinctStartLanes = 2;
+        private const int EliteMinimumRow = 3;
+
+        private const float EventWeight = 0.22f;
+        private const float EliteWeight = 0.10f;
+        private const float RewardWeight = 0.12f;
+
+        private readonly struct PathEdge
+        {
+            public readonly Vector2Int From;
+            public readonly Vector2Int To;
+
+            public PathEdge(Vector2Int from, Vector2Int to)
+            {
+                From = from;
+                To = to;
+            }
+        }
+
         public static TowerFloorMap Generate(TowerFloorKey floorKey, int seed = 0)
         {
-            int actualSeed = seed != 0 ? seed : Random.Range(int.MinValue, int.MaxValue);
+            int actualSeed = seed != 0 ? MixSeed(seed, floorKey) : UnityEngine.Random.Range(int.MinValue, int.MaxValue);
             System.Random rng = new(actualSeed);
 
-            int middleLayerCount = floorKey.IsBossStage ? 2 : 3;
-            int targetRoomCount = floorKey.IsBossStage ? rng.Next(6, 9) : rng.Next(9, 13);
+            int generatedRows = floorKey.IsBossStage ? BossStageRows : NormalStageRows;
+            Dictionary<Vector2Int, TowerRoomNode> nodesByCell = new();
+            HashSet<Vector2Int> activeCells = new();
+            List<PathEdge> pathEdges = new();
+
+            GenerateSlayStylePaths(generatedRows, rng, activeCells, pathEdges);
 
             TowerFloorMap map = new(floorKey);
-            List<TowerRoomNode> rooms = new();
-            List<List<TowerRoomNode>> layers = new();
-
-            TowerRoomNode startRoom = new(0, Vector2Int.zero, TowerRoomType.Start);
-            AddRoom(map, rooms, startRoom);
+            TowerRoomNode startRoom = new(0, new Vector2Int(0, 0), TowerRoomType.Start);
+            map.AddRoom(startRoom);
             startRoom.Clear();
-            layers.Add(new List<TowerRoomNode> { startRoom });
 
             int nextId = 1;
-            int remainingMiddleRooms = Mathf.Max(1, targetRoomCount - 2);
-
-            for (int layerIndex = 1; layerIndex <= middleLayerCount; layerIndex++)
+            foreach (Vector2Int cell in activeCells.OrderBy(cell => cell.x).ThenBy(cell => cell.y))
             {
-                int layersLeft = middleLayerCount - layerIndex;
-                int maxForLayer = Mathf.Min(floorKey.IsBossStage ? 2 : 3, remainingMiddleRooms - layersLeft);
-                int minForLayer = Mathf.Min(layerIndex == 1 ? 2 : 1, maxForLayer);
-                int roomCount = rng.Next(minForLayer, maxForLayer + 1);
-
-                List<TowerRoomNode> layer = new();
-                foreach (int y in GetLayerYPositions(roomCount))
-                {
-                    TowerRoomNode room = new(nextId++, new Vector2Int(layerIndex, y), TowerRoomType.Combat);
-                    AddRoom(map, rooms, room);
-                    layer.Add(room);
-                }
-
-                layers.Add(layer);
-                remainingMiddleRooms -= roomCount;
+                TowerRoomNode room = new(nextId++, ToRoomGridPosition(cell), TowerRoomType.Combat);
+                nodesByCell[cell] = room;
+                map.AddRoom(room);
             }
 
             TowerRoomNode finalRoom = new(
                 nextId,
-                new Vector2Int(middleLayerCount + 1, 0),
+                new Vector2Int(generatedRows + 1, 0),
                 floorKey.IsBossStage ? TowerRoomType.Boss : TowerRoomType.Portal);
 
-            AddRoom(map, rooms, finalRoom);
-            layers.Add(new List<TowerRoomNode> { finalRoom });
+            map.AddRoom(finalRoom);
 
-            for (int i = 0; i < layers.Count - 1; i++)
-                ConnectLayer(layers[i], layers[i + 1], rng);
+            ConnectStartToFirstRow(startRoom, nodesByCell);
+            ConnectPathEdges(nodesByCell, pathEdges);
+            ConnectLastRowToFinal(nodesByCell, finalRoom, generatedRows);
 
-            AssignRoomTypes(floorKey, rooms, finalRoom, rng);
+            AssignRoomTypes(floorKey, nodesByCell.Values.ToList(), generatedRows, rng);
             map.RevealFromCurrentRoom();
             return map;
         }
 
-        private static void AddRoom(TowerFloorMap map, List<TowerRoomNode> rooms, TowerRoomNode room)
+        private static void GenerateSlayStylePaths(
+            int generatedRows,
+            System.Random rng,
+            HashSet<Vector2Int> activeCells,
+            List<PathEdge> pathEdges)
         {
-            rooms.Add(room);
-            map.AddRoom(room);
-        }
+            HashSet<int> startLanes = new();
 
-        private static IEnumerable<int> GetLayerYPositions(int count)
-        {
-            return count switch
+            for (int pathIndex = 0; pathIndex < PathCount; ++pathIndex)
             {
-                1 => new[] { 0 },
-                2 => new[] { 1, -1 },
-                3 => new[] { 1, 0, -1 },
-                _ => Enumerable.Range(0, count).Select(index => index - count / 2)
-            };
-        }
+                int lane = PickStartLane(pathIndex, rng, startLanes);
+                startLanes.Add(lane);
 
-        private static void ConnectLayer(IReadOnlyList<TowerRoomNode> previousLayer, IReadOnlyList<TowerRoomNode> nextLayer, System.Random rng)
-        {
-            if (previousLayer == null || nextLayer == null || previousLayer.Count == 0 || nextLayer.Count == 0)
-                return;
+                Vector2Int currentCell = new(1, lane);
+                activeCells.Add(currentCell);
 
-            foreach (TowerRoomNode nextRoom in nextLayer)
-            {
-                TowerRoomNode previousRoom = previousLayer[rng.Next(previousLayer.Count)];
-                Connect(previousRoom, nextRoom);
-            }
-
-            foreach (TowerRoomNode previousRoom in previousLayer)
-            {
-                TowerRoomNode nextRoom = nextLayer[rng.Next(nextLayer.Count)];
-                Connect(previousRoom, nextRoom);
-
-                if (nextLayer.Count > 1 && rng.NextDouble() < 0.42f)
+                for (int row = 1; row < generatedRows; ++row)
                 {
-                    TowerRoomNode extraRoom = nextLayer[rng.Next(nextLayer.Count)];
-                    Connect(previousRoom, extraRoom);
+                    int nextLane = PickNextLane(row, lane, rng, pathEdges);
+                    Vector2Int nextCell = new(row + 1, nextLane);
+
+                    PathEdge edge = new(currentCell, nextCell);
+                    if (!pathEdges.Contains(edge))
+                        pathEdges.Add(edge);
+
+                    activeCells.Add(nextCell);
+                    currentCell = nextCell;
+                    lane = nextLane;
                 }
             }
+        }
+
+        private static int PickStartLane(int pathIndex, System.Random rng, HashSet<int> usedStartLanes)
+        {
+            if (pathIndex >= MinimumDistinctStartLanes)
+                return rng.Next(LaneCount);
+
+            List<int> candidates = Enumerable.Range(0, LaneCount).ToList();
+            Shuffle(candidates, rng);
+
+            foreach (int lane in candidates)
+                if (!usedStartLanes.Contains(lane))
+                    return lane;
+
+            return rng.Next(LaneCount);
+        }
+
+        private static int PickNextLane(int row, int currentLane, System.Random rng, IReadOnlyList<PathEdge> existingEdges)
+        {
+            List<int> candidates = new();
+
+            for (int delta = -1; delta <= 1; ++delta)
+            {
+                int lane = currentLane + delta;
+                if (lane >= 0 && lane < LaneCount)
+                    candidates.Add(lane);
+            }
+
+            Shuffle(candidates, rng);
+
+            foreach (int candidate in candidates)
+                if (!WouldCrossExistingEdge(row, currentLane, candidate, existingEdges))
+                    return candidate;
+
+            return currentLane;
+        }
+
+        private static bool WouldCrossExistingEdge(int row, int fromLane, int toLane, IReadOnlyList<PathEdge> existingEdges)
+        {
+            foreach (PathEdge edge in existingEdges)
+            {
+                if (edge.From.x != row)
+                    continue;
+
+                int otherFromLane = edge.From.y;
+                int otherToLane = edge.To.y;
+
+                if (fromLane < otherFromLane && toLane > otherToLane)
+                    return true;
+
+                if (fromLane > otherFromLane && toLane < otherToLane)
+                    return true;
+            }
+
+            return false;
+        }
+
+        private static Vector2Int ToRoomGridPosition(Vector2Int cell)
+        {
+            int centerLane = LaneCount / 2;
+            return new Vector2Int(cell.x, cell.y - centerLane);
+        }
+
+        private static void ConnectStartToFirstRow(TowerRoomNode startRoom, Dictionary<Vector2Int, TowerRoomNode> nodesByCell)
+        {
+            foreach (TowerRoomNode room in GetRoomsInRow(nodesByCell, 1))
+                ConnectForward(startRoom, room);
+        }
+
+        private static void ConnectPathEdges(Dictionary<Vector2Int, TowerRoomNode> nodesByCell, IEnumerable<PathEdge> pathEdges)
+        {
+            foreach (PathEdge edge in pathEdges)
+            {
+                if (!nodesByCell.TryGetValue(edge.From, out TowerRoomNode fromRoom))
+                    continue;
+
+                if (!nodesByCell.TryGetValue(edge.To, out TowerRoomNode toRoom))
+                    continue;
+
+                ConnectForward(fromRoom, toRoom);
+            }
+        }
+
+        private static void ConnectLastRowToFinal(Dictionary<Vector2Int, TowerRoomNode> nodesByCell, TowerRoomNode finalRoom, int generatedRows)
+        {
+            foreach (TowerRoomNode room in GetRoomsInRow(nodesByCell, generatedRows))
+                ConnectForward(room, finalRoom);
+        }
+
+        private static IEnumerable<TowerRoomNode> GetRoomsInRow(Dictionary<Vector2Int, TowerRoomNode> nodesByCell, int row)
+        {
+            return nodesByCell
+                .Where(pair => pair.Key.x == row)
+                .OrderBy(pair => pair.Key.y)
+                .Select(pair => pair.Value);
         }
 
         private static void AssignRoomTypes(
             TowerFloorKey floorKey,
             IReadOnlyList<TowerRoomNode> rooms,
-            TowerRoomNode finalRoom,
+            int generatedRows,
             System.Random rng)
         {
-            List<TowerRoomNode> normalRooms = rooms
-                .Where(room => room.RoomType == TowerRoomType.Combat && room.Id != finalRoom.Id)
-                .OrderBy(_ => rng.Next())
+            if (rooms == null || rooms.Count == 0)
+                return;
+
+            int rewardRow = Mathf.Clamp((generatedRows + 1) / 2, 2, generatedRows - 1);
+
+            foreach (TowerRoomNode room in rooms)
+            {
+                if (room.GridPosition.x == 1)
+                    room.RoomType = TowerRoomType.Combat;
+                else if (room.GridPosition.x == rewardRow)
+                    room.RoomType = TowerRoomType.Reward;
+            }
+
+            List<TowerRoomNode> assignableRooms = rooms
+                .Where(room => room.RoomType == TowerRoomType.Combat && room.GridPosition.x != 1)
+                .OrderBy(room => room.GridPosition.x)
+                .ThenBy(_ => rng.Next())
                 .ToList();
 
-            int rewardCount = Mathf.Clamp(rooms.Count / 5, 1, 2);
-            int eventCount = Mathf.Clamp(rooms.Count / 4, 1, 2);
-            int eliteCount = floorKey.IsBossStage ? 1 : Mathf.Clamp(rooms.Count / 6, 1, 2);
+            List<TowerRoomType> bucket = BuildRoomTypeBucket(assignableRooms.Count, floorKey, rng);
 
-            AssignType(normalRooms, TowerRoomType.Reward, rewardCount);
-            AssignType(normalRooms, TowerRoomType.Event, eventCount);
-            AssignType(normalRooms, TowerRoomType.EliteCombat, eliteCount);
-
-            foreach (TowerRoomNode room in normalRooms)
-                room.RoomType = TowerRoomType.Combat;
-        }
-
-        private static void AssignType(List<TowerRoomNode> rooms, TowerRoomType type, int count)
-        {
-            for (int i = 0; i < count && rooms.Count > 0; ++i)
+            foreach (TowerRoomNode room in assignableRooms)
             {
-                TowerRoomNode room = rooms[0];
-                rooms.RemoveAt(0);
-                room.RoomType = type;
+                int typeIndex = bucket.FindIndex(type => CanAssignRoomType(room, type, rooms));
+
+                if (typeIndex < 0)
+                {
+                    room.RoomType = TowerRoomType.Combat;
+                    continue;
+                }
+
+                room.RoomType = bucket[typeIndex];
+                bucket.RemoveAt(typeIndex);
             }
         }
 
-        private static void Connect(TowerRoomNode a, TowerRoomNode b)
+        private static List<TowerRoomType> BuildRoomTypeBucket(int roomCount, TowerFloorKey floorKey, System.Random rng)
         {
-            a.AddConnection(b.Id);
-            b.AddConnection(a.Id);
+            int eliteCount = Mathf.RoundToInt(roomCount * (floorKey.IsBossStage ? EliteWeight * 1.25f : EliteWeight));
+            int eventCount = Mathf.RoundToInt(roomCount * EventWeight);
+            int rewardCount = Mathf.RoundToInt(roomCount * RewardWeight);
+
+            List<TowerRoomType> bucket = new();
+            AddTypes(bucket, TowerRoomType.EliteCombat, eliteCount);
+            AddTypes(bucket, TowerRoomType.Event, eventCount);
+            AddTypes(bucket, TowerRoomType.Reward, rewardCount);
+
+            while (bucket.Count < roomCount)
+                bucket.Add(TowerRoomType.Combat);
+
+            Shuffle(bucket, rng);
+            return bucket;
+        }
+
+        private static void AddTypes(List<TowerRoomType> bucket, TowerRoomType type, int count)
+        {
+            for (int i = 0; i < count; ++i)
+                bucket.Add(type);
+        }
+
+        private static bool CanAssignRoomType(TowerRoomNode room, TowerRoomType type, IReadOnlyList<TowerRoomNode> allRooms)
+        {
+            if (type == TowerRoomType.EliteCombat && room.GridPosition.x < EliteMinimumRow)
+                return false;
+
+            if (HasSameSpecialParent(room, type, allRooms))
+                return false;
+
+            if (HasSameTypeSibling(room, type, allRooms))
+                return false;
+
+            return true;
+        }
+
+        private static bool HasSameSpecialParent(TowerRoomNode room, TowerRoomType type, IReadOnlyList<TowerRoomNode> allRooms)
+        {
+            if (type is not (TowerRoomType.EliteCombat or TowerRoomType.Reward))
+                return false;
+
+            foreach (TowerRoomNode parent in allRooms)
+                if (parent.RoomType == type && parent.IsConnectedTo(room.Id))
+                    return true;
+
+            return false;
+        }
+
+        private static bool HasSameTypeSibling(TowerRoomNode room, TowerRoomType type, IReadOnlyList<TowerRoomNode> allRooms)
+        {
+            foreach (TowerRoomNode parent in allRooms)
+            {
+                if (!parent.IsConnectedTo(room.Id))
+                    continue;
+
+                foreach (int siblingId in parent.ConnectedRoomIds)
+                {
+                    if (siblingId == room.Id)
+                        continue;
+
+                    TowerRoomNode sibling = allRooms.FirstOrDefault(candidate => candidate.Id == siblingId);
+                    if (sibling != null && sibling.RoomType == type)
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static void ConnectForward(TowerRoomNode fromRoom, TowerRoomNode toRoom)
+        {
+            fromRoom.AddConnection(toRoom.Id);
+        }
+
+        private static void Shuffle<T>(IList<T> list, System.Random rng)
+        {
+            for (int i = list.Count - 1; i > 0; --i)
+            {
+                int j = rng.Next(i + 1);
+                (list[i], list[j]) = (list[j], list[i]);
+            }
+        }
+
+        private static int MixSeed(int seed, TowerFloorKey floorKey)
+        {
+            unchecked
+            {
+                int hash = seed;
+                hash = hash * 397 ^ floorKey.TowerFloor;
+                hash = hash * 397 ^ floorKey.StageFloor;
+                return hash;
+            }
         }
     }
 }

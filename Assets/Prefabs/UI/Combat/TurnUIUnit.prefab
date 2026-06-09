@@ -309,7 +309,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 750471528652848425}
-  - component: {fileID: 2184372423749150032}
   - component: {fileID: 4405876524776599331}
   m_Layer: 5
   m_Name: TurnUIUnit
@@ -342,14 +341,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 85, y: 85}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &2184372423749150032
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5780426796250765288}
-  m_CullTransparentMesh: 1
 --- !u!114 &4405876524776599331
 MonoBehaviour:
   m_ObjectHideFlags: 0
