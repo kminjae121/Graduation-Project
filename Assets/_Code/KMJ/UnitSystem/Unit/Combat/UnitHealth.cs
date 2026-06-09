@@ -80,13 +80,7 @@ namespace Code.UnitSystem.Combat
             if (currentHealth >= maxHealth)
                 currentHealth = maxHealth;
             
-            if (_entity as CharacterUnit)
-            {
-                CharacterUnit characterUnit = _entity as CharacterUnit;
-               
-                Bus<SetUpUnitHealthBar>.Raise(new SetUpUnitHealthBar(characterUnit.PlayableUnitID,CurrentHealth,
-                    MaxHealth, characterUnit.UnitImage));
-            }
+            OnHealthChangedEvent?.Invoke(currentHealth, maxHealth);
         }
 
         public void ResetMaxHp()
@@ -94,16 +88,7 @@ namespace Code.UnitSystem.Combat
             maxHealth = _unitStateCompo.MaxHealth;
             currentHealth = _unitStateCompo.CurrentHp.Value;  
             
-            if (_entity as CharacterUnit)
-            {
-                CharacterUnit characterUnit = _entity as CharacterUnit;
-                
-                Debug.Log(CurrentHealth);
-                Debug.Log(MaxHealth);
-               
-                Bus<SetUpUnitHealthBar>.Raise(new SetUpUnitHealthBar(characterUnit.PlayableUnitID,CurrentHealth,
-                    MaxHealth, characterUnit.UnitImage));
-            }
+            OnHealthChangedEvent?.Invoke(currentHealth, maxHealth);
         }
 
         public void HealHp(float amount)
@@ -142,7 +127,6 @@ namespace Code.UnitSystem.Combat
             if (IsDead)
                 return;
             
-            Debug.Log(isCritical);
 
             if (IsInvincibility)
                 return;

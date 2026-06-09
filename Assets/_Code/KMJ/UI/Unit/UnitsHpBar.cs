@@ -17,14 +17,14 @@ namespace Code.UI
             Bus<SetUpUnitHealthBar>.Subscribe(HandleUnitHealthBar);
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             Bus<SetUpUnitHealthBar>.Unsubscribe(HandleUnitHealthBar);
-            
         }
 
         private void HandleUnitHealthBar(SetUpUnitHealthBar evt)
         {
+            healthSliders[evt.unitCount].maxValue = evt.finalValue;
             healthSliders[evt.unitCount].value = evt.finalValue;
             unitCharacterImages[evt.unitCount].sprite = evt.unitImage;
         }

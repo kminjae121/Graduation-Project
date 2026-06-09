@@ -27,7 +27,7 @@ namespace Code.Core.Events.Bus
             }
             
             float clampedCurrent = Mathf.Clamp(currentValue, 0f, maxValue);
-            finalValue = clampedCurrent / maxValue; 
+            finalValue = clampedCurrent / maxValue;
         }
     }
 }
