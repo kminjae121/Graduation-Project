@@ -50,6 +50,9 @@ namespace Code.Core.Managers
                 GetRouteWatch(currentPos, tiles));
 
             _planner.Build(plan, enemy, currentPos, targets, tiles, _routeMap);
+
+            if (enemy.TryGetComponent(out BossPatternController bossPattern))
+                bossPattern.TryApplyToPlan(plan, currentPos, targets);
         }
 
         public bool TryGetPlan(AbstractEnemyUnit enemy, out EnemyPlan plan)
