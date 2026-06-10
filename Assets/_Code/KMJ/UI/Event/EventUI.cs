@@ -8,10 +8,11 @@ using UnityEngine.UI;
 using Random = UnityEngine.Random;
 using Code.Core.Events.Bus;
 using Code.UnitManaging;
+using VHierarchy.Libs;
 
 namespace Code.UI
 {
-    public class EventUI : MonoBehaviour
+    public abstract class EventUI : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI mainTxt;
         [SerializeField] private TextMeshProUGUI selectBtnTxt;
@@ -26,16 +27,18 @@ namespace Code.UI
 
         [SerializeField] private float activeTime = 1;
 
-        [SerializeField] private List<EventTextSO> eventTexts;
+        [SerializeField] protected List<EventTextSO> eventTexts;
 
         [SerializeField] private Image thisObjectImg;
 
-        [SerializeField] private UnitStorageSO storageSO;
+        [SerializeField] protected UnitStorageSO storageSO;
         
         private void OnEnable()
         {
             int randValue = Random.Range(0, eventTexts.Count);
             thisObjectImg = GetComponent<Image>();
+            selectBtn.gameObject.SetActive(true);
+            skipBtn.gameObject.SetActive(true);
             
             selectBtnTxt.text = eventTexts[randValue].ApplyTxt;
             skipBtnTxt.text = eventTexts[randValue].CancelTxt;
@@ -82,15 +85,18 @@ namespace Code.UI
             selectBtn.onClick.RemoveAllListeners();
         }
 
-        public void HandleSelectBtn(int value, int randomValue)
+        protected abstract void Buff(int randValue);
+
+        protected abstract void DeBuff(int randValue);
+        
+        
+
+        private void HandleSelectBtn(int value, int randomValue)
         {
             if (value == 1)
             {
-                storageSO.unitStates.ForEach(state =>
-                {
-                    state.TakeDamage(eventTexts[randomValue].value);
-                });
-                
+
+                DeBuff(randomValue);
                 mainTxt.text = eventTexts[randomValue].FailTxt;
                 
                 skipBtn.gameObject.SetActive(false);
@@ -114,11 +120,7 @@ namespace Code.UI
             else
             {
                 mainTxt.text = eventTexts[randomValue].SuccessTxt;
-                
-                storageSO.unitStates.ForEach(state =>
-                {
-                    state.Heal(eventTexts[randomValue].value);
-                });
+                Buff(randomValue);
                 skipBtn.gameObject.SetActive(false);
                 selectBtn.gameObject.SetActive(false);
                 DOTween.Sequence()
