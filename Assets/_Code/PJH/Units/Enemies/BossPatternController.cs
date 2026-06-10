@@ -1,13 +1,13 @@
-using System.Collections.Generic;
 using Code.Core.Events.Bus;
 using Code.SkillSystem;
 using Code.UnitSystem.Enemies.AI;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace Code.UnitSystem.Enemies
 {
-    public class BossPatternController : MonoBehaviour
+    public class BossPatternController : EnemyPlannerProvider
     {
         private enum PatternStep
         {
@@ -20,39 +20,85 @@ namespace Code.UnitSystem.Enemies
 
         [Header("Pattern")]
         [SerializeField] private SkillSO basicSkill;
-        [SerializeField] private SkillSO gimmickStartSkill;
+        [SerializeField] private SkillSO gimmickSkill;
         [SerializeField] private SkillSO punishSkill;
-        [SerializeField] private SkillSO weakenedSkill;
+        [SerializeField] private SkillSO weakSkill;
+
+        [Header("Movement")]
+        [SerializeField] private bool canMove = true;
+        [SerializeField] private bool moveForSkill = true;
+        [SerializeField] private bool moveInGimmick = true;
+        [SerializeField] private bool moveInWeak;
+
+        [Header("Fallback")]
+        [SerializeField] private bool useDefaultBasic = true;
+        [SerializeField] private bool fallbackToDefault;
 
         [Header("Phase")]
         [SerializeField, Min(1)] private int basicCount = 2;
-        [SerializeField, Min(1)] private int lowHealthBasicCount = 3;
-        [SerializeField, Range(0f, 1f)] private float lowHealthThreshold = 0.25f;
+        [SerializeField, Min(1)] private int lowHpBasicCount = 3;
+        [SerializeField, Range(0f, 1f)] private float lowHpThreshold = 0.25f;
 
         [Header("Weaken")]
-        [SerializeField, Min(1)] private int weakenTurnsOnSuccess = 1;
-        [SerializeField] private float weakenedDamageTakenMultiplier = 1.5f;
+        [SerializeField, Min(1)] private int weakTurns = 1;
+        [SerializeField] private bool skipInWeak = true;
+        [SerializeField] private float weakDamageTakenRate = 1.5f;
 
         [Header("Events")]
-        [SerializeField] private UnityEvent gimmickStartedEvent;
-        [SerializeField] private UnityEvent gimmickSucceededEvent;
-        [SerializeField] private UnityEvent gimmickFailedEvent;
-        [SerializeField] private UnityEvent weakenedStartedEvent;
-        [SerializeField] private UnityEvent weakenedEndedEvent;
+        [SerializeField] private UnityEvent onGimmickStart;
+        [SerializeField] private UnityEvent onGimmickSuccess;
+        [SerializeField] private UnityEvent onGimmickFail;
+        [SerializeField] private UnityEvent onWeakStart;
+        [SerializeField] private UnityEvent onWeakEnd;
 
         private AbstractEnemyUnit _owner;
-        private BaseSkill _boundSkill;
+        private BossPlanner _planner;
         private PatternStep _step = PatternStep.Basic;
 
-        private int _basicUseCount;
-        private int _weakenTurnCount;
-        private bool _isGimmickActive;
-        private bool _isGimmickResolved;
-        private bool _isGimmickSuccess;
+        private int _basicUses;
+        private int _weakTurnsLeft;
+        private bool _gimmickActive;
+        private bool _gimmickResolved;
+        private bool _gimmickSuccess;
 
-        public bool IsGimmickActive => _isGimmickActive;
+        public override EnemyPlannerBase Planner => _planner ??= new BossPlanner(this);
+
+        public bool IsGimmickActive => _gimmickActive;
         public bool IsWeakened => _step == PatternStep.Weakened;
-        public float DamageTakenMultiplier => IsWeakened ? weakenedDamageTakenMultiplier : 1f;
+        public float DamageTakenMultiplier => IsWeakened ? weakDamageTakenRate : 1f;
+
+        internal SkillSO PatternSkill => _step switch
+        {
+            PatternStep.Basic => basicSkill,
+            PatternStep.GimmickStart => gimmickSkill,
+            PatternStep.Punish => punishSkill,
+            PatternStep.Weakened => weakSkill,
+            _ => null
+        };
+
+        internal bool UseDefaultPlan
+            => _step == PatternStep.Basic && basicSkill == null && useDefaultBasic;
+
+        internal bool FallbackToDefault => fallbackToDefault;
+
+        internal bool SkipTurn
+            => _step == PatternStep.Weakened && weakSkill == null && skipInWeak;
+
+        internal bool CanMoveNow
+        {
+            get
+            {
+                if (!canMove || !moveForSkill)
+                    return false;
+
+                return _step switch
+                {
+                    PatternStep.GimmickStart or PatternStep.GimmickResolve => moveInGimmick,
+                    PatternStep.Weakened => moveInWeak,
+                    _ => true
+                };
+            }
+        }
 
         private void Awake()
         {
@@ -67,129 +113,12 @@ namespace Code.UnitSystem.Enemies
         private void OnDisable()
         {
             Bus<UnitTurnEndEvent>.Unsubscribe(HandleUnitTurnEnd);
-            UnbindSkillEnd();
         }
 
-        public bool TryApplyToPlan(EnemyPlan plan, Vector2Int from, IReadOnlyList<Unit> targets)
+        public override void OnSkillFinished(SkillSO skillSO, Unit target)
         {
-            if (_owner == null || plan == null)
-                return false;
-
-            Unit target = ResolveTarget(plan, targets);
-
-            if (target == null)
-                return false;
-
-            if (_step == PatternStep.GimmickResolve)
-                ResolveGimmickStep();
-
-            SkillSO skillSO = GetStepSkill(plan);
-
-            if (_step == PatternStep.Weakened && skillSO == null)
-            {
-                plan.Clear();
-                return true;
-            }
-
-            if (!TryGetUsableSkill(skillSO, from, target, out BaseSkill skill))
-                return false;
-
-            plan.SetCombatDecision(target, skillSO);
-            BindSkillEnd(skill);
-            return true;
-        }
-
-        public void CompleteGimmick(bool success)
-        {
-            if (!_isGimmickActive)
+            if (!ShouldAdvanceBySkill(skillSO))
                 return;
-
-            _isGimmickActive = false;
-            _isGimmickResolved = true;
-            _isGimmickSuccess = success;
-
-            if (success)
-                gimmickSucceededEvent?.Invoke();
-            else
-                gimmickFailedEvent?.Invoke();
-        }
-
-        public void ResetPattern()
-        {
-            _step = PatternStep.Basic;
-            _basicUseCount = 0;
-            _weakenTurnCount = 0;
-            _isGimmickActive = false;
-            _isGimmickResolved = false;
-            _isGimmickSuccess = false;
-            UnbindSkillEnd();
-        }
-
-        private void ResolveGimmickStep()
-        {
-            if (!_isGimmickResolved)
-                CompleteGimmick(false);
-
-            if (_isGimmickSuccess)
-            {
-                StartWeakened();
-                return;
-            }
-
-            _step = PatternStep.Punish;
-        }
-
-        private SkillSO GetStepSkill(EnemyPlan plan)
-        {
-            return _step switch
-            {
-                PatternStep.Basic => basicSkill != null ? basicSkill : plan.SelectedSkill,
-                PatternStep.GimmickStart => gimmickStartSkill,
-                PatternStep.Punish => punishSkill,
-                PatternStep.Weakened => weakenedSkill,
-                _ => null
-            };
-        }
-
-        private bool TryGetUsableSkill(SkillSO skillSO, Vector2Int from, Unit target, out BaseSkill skill)
-        {
-            skill = null;
-
-            if (skillSO == null || target == null || _owner.SkillCompo?.Skills == null)
-                return false;
-
-            if (!_owner.SkillCompo.Skills.TryGetValue(skillSO, out skill) || skill == null)
-                return false;
-
-            if (skill is not EnemySkill enemySkill)
-                return false;
-
-            return enemySkill.CanUseAt(from, target.gameObject);
-        }
-
-        private void BindSkillEnd(BaseSkill skill)
-        {
-            if (_boundSkill == skill)
-                return;
-
-            UnbindSkillEnd();
-
-            _boundSkill = skill;
-            _boundSkill.SkillEndEvent?.AddListener(HandlePatternSkillEnd);
-        }
-
-        private void UnbindSkillEnd()
-        {
-            if (_boundSkill == null)
-                return;
-
-            _boundSkill.SkillEndEvent?.RemoveListener(HandlePatternSkillEnd);
-            _boundSkill = null;
-        }
-
-        private void HandlePatternSkillEnd()
-        {
-            UnbindSkillEnd();
 
             switch (_step)
             {
@@ -208,31 +137,84 @@ namespace Code.UnitSystem.Enemies
             }
         }
 
-        private void AdvanceBasicStep()
+        public void CompleteGimmick(bool success)
         {
-            ++_basicUseCount;
-
-            if (_basicUseCount < CurrentBasicCount())
+            if (!_gimmickActive)
                 return;
 
-            _basicUseCount = 0;
+            _gimmickActive = false;
+            _gimmickResolved = true;
+            _gimmickSuccess = success;
+
+            if (success)
+                onGimmickSuccess?.Invoke();
+            else
+                onGimmickFail?.Invoke();
+        }
+
+        public void ResetPattern()
+        {
+            _step = PatternStep.Basic;
+            _basicUses = 0;
+            _weakTurnsLeft = 0;
+            _gimmickActive = false;
+            _gimmickResolved = false;
+            _gimmickSuccess = false;
+        }
+
+        internal void PreparePlanStep()
+        {
+            if (_step == PatternStep.GimmickResolve)
+                ResolveGimmickStep();
+        }
+
+        private bool ShouldAdvanceBySkill(SkillSO skillSO)
+        {
+            if (_step == PatternStep.Basic && basicSkill == null && useDefaultBasic)
+                return skillSO != null;
+
+            return skillSO != null && skillSO == PatternSkill;
+        }
+
+        private void ResolveGimmickStep()
+        {
+            if (!_gimmickResolved)
+                CompleteGimmick(false);
+
+            if (_gimmickSuccess)
+            {
+                StartWeakened();
+                return;
+            }
+
+            _step = PatternStep.Punish;
+        }
+
+        private void AdvanceBasicStep()
+        {
+            ++_basicUses;
+
+            if (_basicUses < CurrentBasicCount())
+                return;
+
+            _basicUses = 0;
             _step = PatternStep.GimmickStart;
         }
 
         private void StartGimmick()
         {
             _step = PatternStep.GimmickResolve;
-            _isGimmickActive = true;
-            _isGimmickResolved = false;
-            _isGimmickSuccess = false;
-            gimmickStartedEvent?.Invoke();
+            _gimmickActive = true;
+            _gimmickResolved = false;
+            _gimmickSuccess = false;
+            onGimmickStart?.Invoke();
         }
 
         private void StartWeakened()
         {
             _step = PatternStep.Weakened;
-            _weakenTurnCount = Mathf.Max(1, weakenTurnsOnSuccess);
-            weakenedStartedEvent?.Invoke();
+            _weakTurnsLeft = Mathf.Max(1, weakTurns);
+            onWeakStart?.Invoke();
         }
 
         private void ConsumeWeakenTurn()
@@ -240,12 +222,12 @@ namespace Code.UnitSystem.Enemies
             if (_step != PatternStep.Weakened)
                 return;
 
-            --_weakenTurnCount;
+            --_weakTurnsLeft;
 
-            if (_weakenTurnCount > 0)
+            if (_weakTurnsLeft > 0)
                 return;
 
-            weakenedEndedEvent?.Invoke();
+            onWeakEnd?.Invoke();
             ResetPattern();
         }
 
@@ -254,7 +236,7 @@ namespace Code.UnitSystem.Enemies
             if (!ReferenceEquals(evt.Unit, _owner))
                 return;
 
-            if (_step == PatternStep.Weakened && weakenedSkill == null)
+            if (SkipTurn)
                 ConsumeWeakenTurn();
         }
 
@@ -264,26 +246,9 @@ namespace Code.UnitSystem.Enemies
                 return Mathf.Max(1, basicCount);
 
             float healthRatio = _owner.HealthCompo.CurrentHealth / _owner.HealthCompo.MaxHealth;
-            return healthRatio <= lowHealthThreshold
-                ? Mathf.Max(1, lowHealthBasicCount)
+            return healthRatio <= lowHpThreshold
+                ? Mathf.Max(1, lowHpBasicCount)
                 : Mathf.Max(1, basicCount);
-        }
-
-        private static Unit ResolveTarget(EnemyPlan plan, IReadOnlyList<Unit> targets)
-        {
-            if (plan.Target != null)
-                return plan.Target;
-
-            if (targets == null)
-                return null;
-
-            foreach (var target in targets)
-            {
-                if (target != null && target.gameObject.activeInHierarchy)
-                    return target;
-            }
-
-            return null;
         }
     }
 }

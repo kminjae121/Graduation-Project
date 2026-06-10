@@ -5,12 +5,12 @@ using UnityEngine;
 
 namespace Code.UnitSystem.Enemies.AI
 {
-    public sealed class EnemyPlanner
+    public sealed class EnemyPlanner : EnemyPlannerBase
     {
         private readonly EnemySkillSelector _skills = new();
         private readonly EnemyMoveSelector _moves = new();
 
-        public void Build(EnemyPlan plan, AbstractEnemyUnit enemy, Vector2Int from,
+        public override void Build(EnemyPlan plan, AbstractEnemyUnit enemy, Vector2Int from,
             IReadOnlyList<Unit> targets, IReadOnlyList<EnemyMoveTile> tiles, EnemyRouteMap routes)
         {
             if (plan == null || enemy == null || targets == null || targets.Count == 0)
@@ -90,7 +90,7 @@ namespace Code.UnitSystem.Enemies.AI
             }
 
             // 마지막으로 직선거리가 아닌 실제 경로 비용 기준으로 가장 가까운 대상을 쫓는다.
-            Unit target = PickClosest(from, targets, routes);
+            Unit target = PickClosestTarget(from, targets, routes);
 
             if (target == null)
                 return;
@@ -113,56 +113,6 @@ namespace Code.UnitSystem.Enemies.AI
         }
 
         // 벽과 우회 경로를 반영하기 위해 직선거리보다 실제 경로 비용을 우선한다.
-        private static Unit PickClosest(Vector2Int from, IReadOnlyList<Unit> targets, EnemyRouteMap routes)
-        {
-            if (targets == null || GridMap.Instance == null)
-                return null;
-
-            Unit closest = null;
-            var bestCost = int.MaxValue;
-            var bestDistance = float.MaxValue;
-
-            foreach (var target in targets)
-            {
-                if (target == null)
-                    continue;
-
-                float distance = DistanceUtils.GetEuclideanDistance(from,
-                    GridMap.Instance.WorldToGridPos(target.transform.position));
-
-                int cost = 0;
-                bool hasRoute = false;
-
-                if (routes != null)
-                    hasRoute = routes.TryGetCost(target, from, out cost);
-
-                if (hasRoute)
-                {
-                    if (closest != null && cost > bestCost)
-                        continue;
-
-                    if (closest != null && cost == bestCost && distance >= bestDistance)
-                        continue;
-
-                    closest = target;
-                    bestCost = cost;
-                    bestDistance = distance;
-                    continue;
-                }
-
-                if (bestCost != int.MaxValue)
-                    continue;
-
-                if (closest != null && distance >= bestDistance)
-                    continue;
-
-                closest = target;
-                bestDistance = distance;
-            }
-
-            return closest;
-        }
-
         // 현재 이동 가능 칸 중 이동 후 스킬 사용이 가능한 후보를 만든다.
         private List<EnemyMoveOption> BuildSkillTileOptions(AbstractEnemyUnit enemy, Vector2Int from,
             IReadOnlyList<Unit> targets, IReadOnlyList<EnemyMoveTile> tiles)

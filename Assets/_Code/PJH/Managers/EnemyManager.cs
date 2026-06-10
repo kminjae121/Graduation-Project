@@ -19,7 +19,7 @@ namespace Code.Core.Managers
 
         private readonly Dictionary<AbstractEnemyUnit, EnemyPlan> _plans = new();
         private readonly Dictionary<Vector2Int, AbstractEnemyUnit> _reservedTiles = new();
-        private readonly EnemyPlanner _planner = new();
+        private readonly EnemyPlannerBase _defaultPlanner = new EnemyPlanner();
         private readonly EnemyMoveMap _moveMap = new();
         private readonly EnemyRouteMap _routeMap = new();
         private readonly HashSet<Vector2Int> _routeWatch = new();
@@ -49,10 +49,13 @@ namespace Code.Core.Managers
             _routeMap.Build(targets, _pathBaker, tile => CanMoveTo(enemy, currentPos, tile),
                 GetRouteWatch(currentPos, tiles));
 
-            _planner.Build(plan, enemy, currentPos, targets, tiles, _routeMap);
+            EnemyPlannerBase planner = _defaultPlanner;
 
-            if (enemy.TryGetComponent(out BossPatternController bossPattern))
-                bossPattern.TryApplyToPlan(plan, currentPos, targets);
+            if (enemy.TryGetComponent(out EnemyPlannerProvider provider) &&
+                provider.isActiveAndEnabled && provider.Planner != null)
+                planner = provider.Planner;
+
+            planner.Build(plan, enemy, currentPos, targets, tiles, _routeMap);
         }
 
         public bool TryGetPlan(AbstractEnemyUnit enemy, out EnemyPlan plan)
