@@ -1,13 +1,13 @@
+using Code.Combat;
 using Code.Core.Events.Bus;
 using Code.SkillSystem;
 using Code.UnitSystem.Enemies.AI;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 namespace Code.UnitSystem.Enemies
 {
-    public class BossPatternController : EnemyPlannerProvider
+    public class BossPatternController : EnemyPlannerProvider, IDamageTakenModifier
     {
         private enum PatternStep
         {
@@ -66,6 +66,14 @@ namespace Code.UnitSystem.Enemies
         public bool IsGimmickActive => _gimmickActive;
         public bool IsWeakened => _step == PatternStep.Weakened;
         public float DamageTakenMultiplier => IsWeakened ? weakDamageTakenRate : 1f;
+
+        public int ModifyDamageTaken(int damage)
+        {
+            if (damage <= 0)
+                return damage;
+
+            return Mathf.Max(0, Mathf.RoundToInt(damage * DamageTakenMultiplier));
+        }
 
         internal SkillSO PatternSkill => _step switch
         {

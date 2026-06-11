@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using Code.Map;
 using Code.SkillSystem;
-using Code.UnitSystem;
-using Code.UnitSystem.Enemies;
 using Code.Utils;
 using UnityEngine;
 
