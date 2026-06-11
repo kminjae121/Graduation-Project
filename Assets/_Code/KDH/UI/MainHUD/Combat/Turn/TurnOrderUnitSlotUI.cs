@@ -87,6 +87,17 @@ namespace Code.UI
             Setup(unit, false);
         }
 
+        public void SetScalePivot(Vector2 pivot)
+        {
+            if (_rectTransform == null)
+                _rectTransform = GetComponent<RectTransform>();
+
+            if (_rectTransform == null)
+                return;
+
+            _rectTransform.pivot = pivot;
+        }
+
         public void Setup(ITurnable unit, bool isCurrentTurnSlot)
         {
             _targetUnit = unit;
@@ -110,7 +121,7 @@ namespace Code.UI
             }
         }
 
-        public void ApplyDisplayState(float targetScale, bool isCurrentTurnSlot, float duration, Ease ease)
+        public void ApplyDisplayState(float targetScale, bool isCurrentTurnSlot, float duration, Ease ease, System.Action onLayoutChanged = null)
         {
             _isCurrentTurnSlot = isCurrentTurnSlot;
 
@@ -126,10 +137,14 @@ namespace Code.UI
             if (duration <= 0f)
             {
                 scaleTarget.localScale = target;
+                onLayoutChanged?.Invoke();
                 return;
             }
 
-            _scaleTween = scaleTarget.DOScale(target, duration).SetEase(ease);
+            _scaleTween = scaleTarget.DOScale(target, duration)
+                .SetEase(ease)
+                .OnUpdate(() => onLayoutChanged?.Invoke())
+                .OnComplete(() => onLayoutChanged?.Invoke());
         }
 
         public void OnPointerEnter(PointerEventData eventData)

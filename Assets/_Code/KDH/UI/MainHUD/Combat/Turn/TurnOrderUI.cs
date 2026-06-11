@@ -5,6 +5,7 @@ using Code.Core.Managers;
 using DG.Tweening;
 using GondrLib.ObjectPool.Runtime;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Code.UI
 {
@@ -21,12 +22,15 @@ namespace Code.UI
         [SerializeField] private float currentTurnSlotScale = 1.25f;
         [SerializeField] private float scaleDuration = 0.2f;
         [SerializeField] private Ease scaleEase = Ease.OutCubic;
+        [SerializeField] private bool alignSlotTopEdges = true;
+        [SerializeField] private Vector2 slotScalePivot = new Vector2(0.5f, 1f);
 
-        [Header("UI Pools")]
+        [Header("UI Pool")]
         [SerializeField] private Transform slotContainer;
         [SerializeField] private PoolingItemSO unitSlotPoolingSO;
 
         private PoolManagerMono _poolManager;
+        private RectTransform _slotContainerRect;
         private readonly List<TurnOrderUnitSlotUI> _activeUnitSlots = new List<TurnOrderUnitSlotUI>();
         private readonly List<ITurnable> _recentTurnHistory = new List<ITurnable>();
 
@@ -44,6 +48,7 @@ namespace Code.UI
                 turnManager = UnityEngine.Object.FindFirstObjectByType<TurnManager>();
 
             _poolManager = UnityEngine.Object.FindFirstObjectByType<PoolManagerMono>();
+            ConfigureSlotContainerLayout();
         }
 
         private void OnEnable()
@@ -64,7 +69,7 @@ namespace Code.UI
 
         private void HandleTurnOrderUpdate(TurnOrderUpdateEvent evt)
         {
-            if (turnManager == null || _poolManager == null) return;
+            if (turnManager == null) return;
 
             List<ITurnable> displayUnits = BuildDisplayUnits();
             int slotCount = Mathf.Max(1, showTurnOrderCount);
@@ -75,7 +80,7 @@ namespace Code.UI
             for (int i = 0; i < slotCount; ++i)
             {
                 ITurnable turnable = i < displayUnits.Count ? displayUnits[i] : null;
-                TurnOrderUnitSlotUI unitSlot = _poolManager.Pop<TurnOrderUnitSlotUI>(unitSlotPoolingSO);
+                TurnOrderUnitSlotUI unitSlot = PopUnitSlot();
                 if (unitSlot == null)
                     continue;
 
@@ -83,6 +88,7 @@ namespace Code.UI
 
                 unitSlot.transform.SetParent(slotContainer != null ? slotContainer : transform, false);
                 unitSlot.transform.SetSiblingIndex(i);
+                unitSlot.SetScalePivot(slotScalePivot);
 
                 RectTransform targetRect = unitSlot.GetComponent<RectTransform>();
                 if (targetRect != null)
@@ -94,9 +100,11 @@ namespace Code.UI
                 }
 
                 unitSlot.Setup(turnable, isCurrentTurnSlot);
-                unitSlot.ApplyDisplayState(GetSlotScale(i), isCurrentTurnSlot, scaleDuration, scaleEase);
+                unitSlot.ApplyDisplayState(GetSlotScale(i), isCurrentTurnSlot, scaleDuration, scaleEase, MarkSlotLayoutDirty);
                 _activeUnitSlots.Add(unitSlot);
             }
+
+            MarkSlotLayoutDirty();
         }
 
         private void HandleUnitTurnEnd(UnitTurnEndEvent evt)
@@ -204,6 +212,47 @@ namespace Code.UI
             if (distance == 1)
                 return nearCurrentSlotScale;
             return edgeSlotScale;
+        }
+
+        private void ConfigureSlotContainerLayout()
+        {
+            Transform targetContainer = slotContainer != null ? slotContainer : transform;
+            _slotContainerRect = targetContainer as RectTransform;
+
+            HorizontalOrVerticalLayoutGroup layoutGroup = targetContainer.GetComponent<HorizontalOrVerticalLayoutGroup>();
+            if (layoutGroup == null)
+                return;
+
+            layoutGroup.childScaleWidth = true;
+            layoutGroup.childScaleHeight = true;
+            if (alignSlotTopEdges)
+                layoutGroup.childAlignment = TextAnchor.UpperLeft;
+
+            MarkSlotLayoutDirty();
+        }
+
+        private void MarkSlotLayoutDirty()
+        {
+            if (_slotContainerRect == null)
+                return;
+
+            LayoutRebuilder.MarkLayoutForRebuild(_slotContainerRect);
+        }
+
+        private TurnOrderUnitSlotUI PopUnitSlot()
+        {
+            if (unitSlotPoolingSO == null)
+                return null;
+
+            TurnOrderUnitSlotUI unitSlot = null;
+            if (_poolManager != null)
+                unitSlot = _poolManager.Pop<TurnOrderUnitSlotUI>(unitSlotPoolingSO);
+
+            if (unitSlot != null || unitSlotPoolingSO.prefab == null)
+                return unitSlot;
+
+            GameObject instance = Instantiate(unitSlotPoolingSO.prefab);
+            return instance.GetComponent<TurnOrderUnitSlotUI>();
         }
 
         private void ClearAllSlots()
