@@ -39,6 +39,7 @@ namespace Code.UnitSystem.Enemies
 
         private bool _hasEndedTurn;
         private bool _isDead;
+        private EnemyPlannerProvider _plannerProvider;
         
         private readonly Vector3 _dampingSpeed = new(1.5f, 1.5f, 1.5f);
 
@@ -47,6 +48,7 @@ namespace Code.UnitSystem.Enemies
             base.Awake();
             
             BTAgent = GetComponent<BehaviorGraphAgent>();
+            _plannerProvider = GetComponent<EnemyPlannerProvider>();
         }
 
         protected override void AfterInitComponents()
@@ -249,16 +251,22 @@ namespace Code.UnitSystem.Enemies
 
         private void EnemyAttack(SkillSO skillSO, BaseSkill skill, GameObject target, System.Action onComplete)
         {
+            Unit targetUnit = target != null ? target.GetComponent<Unit>() : null;
+
             UnityAction endListener = null;
             endListener = () =>
             {
                 skill.SkillEndEvent?.RemoveListener(endListener);
+                if (_plannerProvider != null && _plannerProvider.isActiveAndEnabled)
+                    _plannerProvider.OnSkillFinished(skillSO, targetUnit);
                 onComplete?.Invoke();
             };
 
             skill.SkillEndEvent?.AddListener(endListener);
             skill.RotatorCompo = UnitRotatorCompo;
             skill.ConfigureSkillRange(skillSO);
+            if (_plannerProvider != null && _plannerProvider.isActiveAndEnabled)
+                _plannerProvider.OnSkillStarted(skillSO, targetUnit);
             skill.ForceUseSkill(target);
         }
 

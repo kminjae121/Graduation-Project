@@ -50,8 +50,11 @@ namespace Code.UnitSystem.Combat
             GameObject shootItem = Instantiate(item, pos ,Quaternion.identity);
             ShootItem shootItemCompo = shootItem.GetComponent<ShootItem>();
             
+            UnitAnimation targetAnimation = _target.GetComponentInChildren<UnitAnimation>();
+            GameObject hitTarget = targetAnimation != null ? targetAnimation.gameObject : _target;
+
             shootItemCompo.SetShootItemCompo(this);
-            shootItemCompo.SetTarget(_target.GetComponentInChildren<UnitAnimation>().gameObject);
+            shootItemCompo.SetTarget(hitTarget);
             shootItem.transform.rotation = Quaternion.Euler(rotation);
         }
     }

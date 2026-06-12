@@ -1,5 +1,4 @@
-﻿using System;
-using Code.Combat;
+﻿using Code.Combat;
 using Code.Core.Events.Bus;
 using Code.UI;
 using Code.UnitManaging;
@@ -134,6 +133,7 @@ namespace Code.UnitSystem.Combat
             int damage = damageData.damage;
             
             OnDefenseEvent?.Invoke(ref damage);
+            damage = ApplyDamageTakenModifiers(damage);
             
             if (isPenetrate != true)
             {
@@ -182,8 +182,19 @@ namespace Code.UnitSystem.Combat
                return;
            }
            
-           _entity.OnHitEvent?.Invoke();
-           OnInteractionEvent?.Invoke(dealer, damage);
+            _entity.OnHitEvent?.Invoke();
+            OnInteractionEvent?.Invoke(dealer, damage);
+        }
+
+        private int ApplyDamageTakenModifiers(int damage)
+        {
+            if (damage <= 0 || _entity == null)
+                return damage;
+
+            foreach (var modifier in _entity.GetComponents<IDamageTakenModifier>())
+                damage = Mathf.Max(0, modifier.ModifyDamageTaken(damage));
+
+            return damage;
         }
     }
 }

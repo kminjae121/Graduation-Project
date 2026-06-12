@@ -128,7 +128,7 @@ namespace Code.UnitSystem.Combat
                         _targetOutLineCompo.ResetOutLine();
 
                     Bus<EnemyHpInfo>.Raise(new EnemyHpInfo(0, 0, 0, 0, false,
-                        _targetEnemy.GetComponent<Unit>().unitSO.UnitImage, true));
+                        GetTargetIcon(_targetEnemy), true));
                     
                     skillManager.GetSkillInfo().SetEnemyTargeting(null);
                     skillManager.GetSkillInfo().SetEnemy(null);
@@ -146,11 +146,15 @@ namespace Code.UnitSystem.Combat
                 
                 if (skill != null)
                 {
-                    skill.RotatorCompo.SetDir(enemy.transform.position);
-                    skill.SetAddDamage(skill.CriticalSpot.CheckEnemyBody(skill.DamageData, enemy, skill.Damage));
+                    if (skill.RotatorCompo != null)
+                        skill.RotatorCompo.SetDir(enemy.transform.position);
+
+                    if (skill.CriticalSpot != null)
+                        skill.SetAddDamage(skill.CriticalSpot.CheckEnemyBody(skill.DamageData, enemy, skill.Damage));
+                    else
+                        skill.SetAddDamage(0);
                 }
                 
-                UnitHealth health = enemy.GetComponent<UnitHealth>();
                 _targetingCompo = enemy.GetComponent<EnemyTargeting>();
                 _targetOutLineCompo = _targetEnemy.GetComponent<UnitOutLineCompo>();
                 
@@ -159,10 +163,12 @@ namespace Code.UnitSystem.Combat
                 if (_targetingCompo != null)
                     _targetingCompo.Targeting();
                 
-                Bus<EnemyHpInfo>.Raise(new EnemyHpInfo(skillManager.GetSkillInfo().AddDamage, health.CurrentHealth,
-                    health.MaxHealth,
+                TryGetTargetHealthInfo(enemy, out float currentHp, out float maxHp, out Sprite icon);
+
+                Bus<EnemyHpInfo>.Raise(new EnemyHpInfo(skillManager.GetSkillInfo().AddDamage, currentHp,
+                    maxHp,
                     skillManager.GetSkillInfo().DamageData.damage, true,
-                    enemy.GetComponent<Unit>().unitSO.UnitImage, true));
+                    icon, true));
                 
                 skillManager.GetSkillInfo().SetEnemyTargeting(_targetingCompo);
                 skillManager.GetSkillInfo().SetEnemy(_targetEnemy);
@@ -184,13 +190,7 @@ namespace Code.UnitSystem.Combat
                 if (_targetingCompo != null)
                     _targetingCompo.Targeting();
 
-                UnitHealth health = _targetEnemy.GetComponent<UnitHealth>();
-                Unit unit = _targetEnemy.GetComponent<Unit>();
-
-                Sprite img = (unit != null && unit.unitSO != null) ? unit.unitSO.UnitImage : null;
-
-                float currentHp = health != null ? health.CurrentHealth : 0;
-                float maxHp = health != null ? health.MaxHealth : 0;
+                TryGetTargetHealthInfo(_targetEnemy, out float currentHp, out float maxHp, out Sprite img);
 
                 Bus<EnemyHpInfo>.Raise(new EnemyHpInfo(0, currentHp, maxHp, 0, true, img, false, 3));
             }
@@ -212,20 +212,55 @@ namespace Code.UnitSystem.Combat
                     _targetOutLineCompo.ResetOutLine();
                 
 
-                Sprite img = null;
-
-                var unit = _targetEnemy.GetComponent<Unit>();
-
-                if (unit != null && unit.unitSO != null)
-                    img = unit.unitSO.UnitImage;
-
-                Bus<EnemyHpInfo>.Raise(new EnemyHpInfo(0, 0, 0, 0, false, img, false, 0));
+                Bus<EnemyHpInfo>.Raise(new EnemyHpInfo(0, 0, 0, 0, false,
+                    GetTargetIcon(_targetEnemy), false, 0));
             }
 
             _targetEnemy = null;
             _targetingCompo = null;
         }
-        
-        
+
+        private static bool TryGetTargetHealthInfo(GameObject target, out float currentHp,
+            out float maxHp, out Sprite icon)
+        {
+            currentHp = 0f;
+            maxHp = 0f;
+            icon = null;
+
+            if (target == null)
+                return false;
+
+            if (target.TryGetComponent(out ITargetHealthInfo targetHealth))
+            {
+                currentHp = targetHealth.CurrentHealth;
+                maxHp = targetHealth.MaxHealth;
+                icon = targetHealth.Icon;
+                return true;
+            }
+
+            UnitHealth health = target.GetComponent<UnitHealth>();
+            icon = GetTargetIcon(target);
+
+            if (health == null)
+                return false;
+
+            currentHp = health.CurrentHealth;
+            maxHp = health.MaxHealth;
+            return true;
+        }
+
+        private static Sprite GetTargetIcon(GameObject target)
+        {
+            if (target == null)
+                return null;
+
+            if (target.TryGetComponent(out ITargetHealthInfo targetHealth))
+                return targetHealth.Icon;
+
+            Unit targetUnit = target.GetComponent<Unit>();
+            return targetUnit != null && targetUnit.unitSO != null
+                ? targetUnit.unitSO.UnitImage
+                : null;
+        }
     }
 }
