@@ -2,7 +2,6 @@
 using Code.Core.Events.Bus;
 using Code.UI;
 using Code.UnitManaging;
-using Code.UnitSystem.TraitSystem;
 using EntityComponent;
 using GameEventChannel;
 using UnityEngine;

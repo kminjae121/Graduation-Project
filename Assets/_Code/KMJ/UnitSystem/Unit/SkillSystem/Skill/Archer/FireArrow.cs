@@ -71,8 +71,13 @@ public class FireArrow : BasicUnitSkill
             _shootItemManager.SetTarget(_target);
             _shootItemManager.SetDamageData(DamageData,AddDamage);
             _shootItemManager.CreateShootItem("FireArrow",pos, slashRot);
-            
-            Bus<ApplyStatusEffectEvent>.Raise(new ApplyStatusEffectEvent(_target.GetComponent<Unit>(), EffectType.Burn,
-                new StatusEffectApplyData(burnDuration, burnDamage)));
+
+            Unit targetUnit = _target != null ? _target.GetComponent<Unit>() : null;
+
+            if (targetUnit != null)
+            {
+                Bus<ApplyStatusEffectEvent>.Raise(new ApplyStatusEffectEvent(targetUnit, EffectType.Burn,
+                    new StatusEffectApplyData(burnDuration, burnDamage)));
+            }
         }
     }
