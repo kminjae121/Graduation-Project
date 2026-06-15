@@ -265,10 +265,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87e7a1df653849d289d44340d8682486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.Enemies.BossGimmickSpawner
-  boss: {fileID: 0}
-  gimmickPrefab: {fileID: 0}
+  boss: {fileID: 6698335015231984026}
+  gimmickPrefab: {fileID: 229526134813121539, guid: 33418fed14ec4ae4d8a48c6a7c7b9c02, type: 3}
   spawnParent: {fileID: 0}
-  spawnOffset: {x: 0, y: 0, z: 0}
+  spawnOffset: {x: 0, y: 1, z: 0}
   blockTile: 1
 --- !u!114 &6698335015231984026
 MonoBehaviour:
