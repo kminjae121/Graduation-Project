@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 741e5926c17e4c944a4e1d2e69ccfd46, type: 3}
   m_Name: Melee Enemy
   m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.Enemies.AI.EnemyAIProfileSO
-  Style: 1
-  Kite: 1
+  Style: 0
+  Kite: 0
   DmgWeight: 1
   PrioWeight: 10
   PosWeight: 15

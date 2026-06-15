@@ -203,8 +203,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.Enemies.CommonMeleeEnemy
   <unitSO>k__BackingField: {fileID: 11400000, guid: 32ce4e1858963fe44b740451ca0d6f12, type: 2}
   <TurnGauge>k__BackingField: 0
-  <PoolingType>k__BackingField: {fileID: 11400000, guid: 46482cf0fc8e21d4bba4fe75ba908dc6, type: 2}
-  aiProfile: {fileID: 11400000, guid: 3021a5dad03303f458f2d8eb9e29c1c8, type: 2}
+  <PoolingType>k__BackingField: {fileID: 11400000, guid: 4367fcc42ca1380409026537c3ddb149, type: 2}
+  aiProfile: {fileID: 11400000, guid: 8c55dcf56de485e4c9232866e991051c, type: 2}
 --- !u!114 &7642760474090272466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,7 +295,7 @@ MonoBehaviour:
   basicCount: 2
   lowHpBasicCount: 3
   lowHpThreshold: 0.25
-  weakTurns: 1
+  weakTurns: 2
   skipInWeak: 1
   weakDamageTakenRate: 1.5
   onGimmickStart:

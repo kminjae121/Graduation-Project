@@ -19,7 +19,7 @@ MonoBehaviour:
   SkillValue: 0
   SkillCost: 0
   skillUIImage: {fileID: 21300000, guid: 0cb6fb332f6582b4b89008cb6769a9b7, type: 3}
-  className: Code.SkillSystem.GolemGimmickStartSkill
+  className: Code.SkillSystem.GolemPunishAllAttackSkill
   skillPrice: 0
   SkillDamage: 0
   SkillRange: 1
