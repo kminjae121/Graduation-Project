@@ -282,9 +282,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9023a77fafe4b3facb18218634e5daa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.Enemies.BossPatternController
-  basicSkill: {fileID: 0}
-  gimmickSkill: {fileID: 0}
-  punishSkill: {fileID: 0}
+  basicSkill: {fileID: 11400000, guid: a45cf72c25b0a884fbae08f59cbe47ff, type: 2}
+  gimmickSkill: {fileID: 11400000, guid: 418759b6e6c835a4493c8feb925c80aa, type: 2}
+  punishSkill: {fileID: 11400000, guid: bf93c9a408be47d4cac17df4a9f726c6, type: 2}
   weakSkill: {fileID: 0}
   canMove: 1
   moveForSkill: 1
@@ -300,13 +300,37 @@ MonoBehaviour:
   weakDamageTakenRate: 1.5
   onGimmickStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5647163459052964754}
+        m_TargetAssemblyTypeName: Code.UnitSystem.Enemies.BossGimmickSpawner, Assembly-CSharp
+        m_MethodName: Spawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onGimmickSuccess:
     m_PersistentCalls:
       m_Calls: []
   onGimmickFail:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5647163459052964754}
+        m_TargetAssemblyTypeName: Code.UnitSystem.Enemies.BossGimmickSpawner, Assembly-CSharp
+        m_MethodName: ClearCurrent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onWeakStart:
     m_PersistentCalls:
       m_Calls: []
@@ -5003,6 +5027,70 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
+--- !u!1 &1112362508649041189
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1584942494916763462}
+  - component: {fileID: 5678650738300921371}
+  m_Layer: 8
+  m_Name: Golem Punish All Attack Skill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1584942494916763462
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112362508649041189}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7908524167159092267}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5678650738300921371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112362508649041189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7097f2750ab4581b0a5eb1b5803f271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Code.SkillSystem.GolemGimmickStartSkill
+  <SkillSO>k__BackingField: {fileID: 11400000, guid: bf93c9a408be47d4cac17df4a9f726c6, type: 2}
+  triggerCompo: {fileID: 5668723894940260002}
+  statCompo: {fileID: 790636014069956737}
+  rangeCompo: {fileID: 5102907680623645986}
+  SkillEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  SkillFeedbackEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  SkillEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  isCanUseSkill: 0
+  IsActive: 0
+  useRange: 0
+  prefRange: 1
+  safeRange: 0
+  aiPriority: 0
+  needSight: 0
 --- !u!1 &1586466140563081330
 GameObject:
   m_ObjectHideFlags: 0
@@ -10273,6 +10361,70 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &3090200294738392274
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1697073642191847167}
+  - component: {fileID: 6601425044396915945}
+  m_Layer: 8
+  m_Name: Golem Gimmick Start Skill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1697073642191847167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3090200294738392274}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7908524167159092267}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6601425044396915945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3090200294738392274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7097f2750ab4581b0a5eb1b5803f271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Code.SkillSystem.GolemGimmickStartSkill
+  <SkillSO>k__BackingField: {fileID: 11400000, guid: 418759b6e6c835a4493c8feb925c80aa, type: 2}
+  triggerCompo: {fileID: 5668723894940260002}
+  statCompo: {fileID: 790636014069956737}
+  rangeCompo: {fileID: 5102907680623645986}
+  SkillEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  SkillFeedbackEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  SkillEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  isCanUseSkill: 0
+  IsActive: 0
+  useRange: 0
+  prefRange: 1
+  safeRange: 0
+  aiPriority: 0
+  needSight: 0
 --- !u!1 &3367325810357202952
 GameObject:
   m_ObjectHideFlags: 0
@@ -14927,73 +15079,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
---- !u!1 &3984750966320297749
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4029831568535094174}
-  - component: {fileID: 4125632135711795827}
-  m_Layer: 8
-  m_Name: Fire Explosion Skill
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4029831568535094174
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3984750966320297749}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7908524167159092267}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4125632135711795827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3984750966320297749}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a734f3dbf3c248fb8c0f4d83d42a41fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Code.SkillSystem.FireExplosionSkill
-  <SkillSO>k__BackingField: {fileID: 11400000, guid: f146fa9fd77a01d499255c82addafc12, type: 2}
-  triggerCompo: {fileID: 0}
-  statCompo: {fileID: 790636014069956737}
-  rangeCompo: {fileID: 5102907680623645986}
-  SkillEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  SkillFeedbackEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  SkillEndEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  isCanUseSkill: 0
-  IsActive: 0
-  useRange: 1
-  prefRange: 2
-  safeRange: 2
-  aiPriority: 1
-  needSight: 1
-  radius: 1
-  burnDuration: 2
-  burnDamage: 5
 --- !u!1 &4287263839947535553
 GameObject:
   m_ObjectHideFlags: 0
@@ -28933,6 +29018,70 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
+--- !u!1 &5467384873115081888
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2903048605247814841}
+  - component: {fileID: 1215968863494323999}
+  m_Layer: 8
+  m_Name: Enemy Melee Skill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2903048605247814841
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5467384873115081888}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7908524167159092267}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1215968863494323999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5467384873115081888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 421601ad24154c36bfe50975d1257eba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Code.SkillSystem.EnemyMeleeSkill
+  <SkillSO>k__BackingField: {fileID: 11400000, guid: a45cf72c25b0a884fbae08f59cbe47ff, type: 2}
+  triggerCompo: {fileID: 5668723894940260002}
+  statCompo: {fileID: 790636014069956737}
+  rangeCompo: {fileID: 5102907680623645986}
+  SkillEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  SkillFeedbackEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  SkillEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  isCanUseSkill: 0
+  IsActive: 0
+  useRange: 0
+  prefRange: 1
+  safeRange: 0
+  aiPriority: 0
+  needSight: 1
 --- !u!1 &6071981408772183075
 GameObject:
   m_ObjectHideFlags: 0
@@ -33627,8 +33776,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 263285909296309276}
-  - {fileID: 4029831568535094174}
+  - {fileID: 2903048605247814841}
+  - {fileID: 1697073642191847167}
+  - {fileID: 1584942494916763462}
   m_Father: {fileID: 2258278666318392622}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6638226641265113131
@@ -33643,7 +33793,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89697e88e3fe4b7d8f77ec969dd9a531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.SkillSystem.EnemySkillComponent
-  skillList: []
+  skillList:
+  - {fileID: 11400000, guid: a45cf72c25b0a884fbae08f59cbe47ff, type: 2}
+  - {fileID: 11400000, guid: 418759b6e6c835a4493c8feb925c80aa, type: 2}
+  - {fileID: 11400000, guid: bf93c9a408be47d4cac17df4a9f726c6, type: 2}
   skillStorage: {fileID: 0}
 --- !u!1 &6611206730818806379
 GameObject:
@@ -48452,72 +48605,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.UnitComponent.StatusEffectCompo
   statusEffectList: {fileID: 11400000, guid: 757213ffdcf00c540bb624379fbc878b, type: 2}
---- !u!1 &8343540099143092893
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 263285909296309276}
-  - component: {fileID: 1998675250641533765}
-  m_Layer: 8
-  m_Name: Ranged Skill
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &263285909296309276
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8343540099143092893}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7908524167159092267}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1998675250641533765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8343540099143092893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f9e17c15ee14bf6a88c318db26a91a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Code.SkillSystem.EnemyRangedAttack
-  <SkillSO>k__BackingField: {fileID: 11400000, guid: 4fbb9b81e26a4f8199495c7a3b531611, type: 2}
-  triggerCompo: {fileID: 0}
-  statCompo: {fileID: 790636014069956737}
-  rangeCompo: {fileID: 5102907680623645986}
-  SkillEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  SkillFeedbackEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  SkillEndEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  isCanUseSkill: 0
-  IsActive: 0
-  useRange: 1
-  prefRange: 2
-  safeRange: 2
-  aiPriority: 1
-  needSight: 1
-  projectilePrefab: {fileID: 0}
-  fireTrm: {fileID: 0}
 --- !u!1 &8836006895835372778
 GameObject:
   m_ObjectHideFlags: 0
