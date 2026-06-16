@@ -1,4 +1,5 @@
 using Code.Core;
+using Code.Core.Events.Bus;
 using Code.Tower;
 using Code.Tower.UI;
 using PixeLadder.EasyTransition;
@@ -24,11 +25,16 @@ namespace Code.Expedition.Managers
         [SerializeField] private Canvas canvas;
         [SerializeField] private TowerNodeMapView nodeMapView;
         [SerializeField] private TowerPortalChoicePanel portalChoicePanel;
+        [SerializeField] private GameObject eventUIPrefab;
+
+        private GameObject _eventUIInstance;
+        private bool _isEventRoomActive;
 
         protected override void Awake()
         {
             isDontDestroyOnLoad = false;
             base.Awake();
+            Bus<StageClearEvent>.Subscribe(HandleStageClear);
         }
 
         private void Start()
@@ -49,6 +55,7 @@ namespace Code.Expedition.Managers
         private void OnDestroy()
         {
             UnwireUIEvents();
+            Bus<StageClearEvent>.Unsubscribe(HandleStageClear);
         }
 
         public void RequestMoveToRoom(int roomId)
@@ -76,10 +83,16 @@ namespace Code.Expedition.Managers
             switch (room.RoomType)
             {
                 case TowerRoomType.Start:
-                case TowerRoomType.Event:
                 case TowerRoomType.Reward:
                 case TowerRoomType.Portal:
                     room.Clear();
+                    break;
+                case TowerRoomType.Event:
+                    if (!room.IsCleared)
+                    {
+                        ShowEventRoom();
+                        return false;
+                    }
                     break;
                 case TowerRoomType.Combat:
                     if (!room.IsCleared)
@@ -147,6 +160,65 @@ namespace Code.Expedition.Managers
 
             SetRuntimeUIVisible(false);
             TowerSceneLoader.LoadScene(sceneName, battleTransitionEffect);
+        }
+
+        private void ShowEventRoom()
+        {
+            EnsureEventUIInstance();
+
+            if (_eventUIInstance == null)
+            {
+                Debug.LogWarning("[ExpeditionManager] Event UI prefab is not assigned. Clearing event room immediately.");
+                TowerRunSession.CompleteCurrentRoom();
+                RefreshUI();
+                return;
+            }
+
+            _isEventRoomActive = true;
+            SetRuntimeUIVisible(false);
+            _eventUIInstance.SetActive(true);
+            _eventUIInstance.transform.SetAsLastSibling();
+        }
+
+        private void EnsureEventUIInstance()
+        {
+            if (_eventUIInstance != null)
+                return;
+
+            if (eventUIPrefab == null)
+                return;
+
+            if (canvas == null)
+                canvas = FindAnyObjectByType<Canvas>();
+
+            if (canvas == null)
+                canvas = CreateRuntimeCanvas();
+
+            _eventUIInstance = Instantiate(eventUIPrefab, canvas.transform);
+            _eventUIInstance.name = eventUIPrefab.name;
+            _eventUIInstance.SetActive(false);
+
+            if (_eventUIInstance.transform is RectTransform rectTransform)
+            {
+                rectTransform.anchorMin = Vector2.zero;
+                rectTransform.anchorMax = Vector2.one;
+                rectTransform.offsetMin = Vector2.zero;
+                rectTransform.offsetMax = Vector2.zero;
+            }
+        }
+
+        private void HandleStageClear(StageClearEvent evt)
+        {
+            if (!_isEventRoomActive || !evt.isClear)
+                return;
+
+            _isEventRoomActive = false;
+            TowerRunSession.CompleteCurrentRoom();
+
+            if (_eventUIInstance != null)
+                _eventUIInstance.SetActive(false);
+
+            RefreshUI();
         }
 
         private void SetRuntimeUIVisible(bool visible)
