@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 07cd5567b765cd74281acb137f829fcd
+timeCreated: 1492704724
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 87463
+  packageName: Stylized Treasure Chest by Gamertose
+  packageVersion: 2.0
+  assetPath: Assets/TreasureChest/Prefabs/TreasureChest_0.prefab
+  uploadId: 447782
