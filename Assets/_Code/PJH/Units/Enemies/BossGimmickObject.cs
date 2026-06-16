@@ -6,7 +6,7 @@ namespace Code.UnitSystem.Enemies
 {
     public class BossGimmickObject : MonoBehaviour, IDamageable, ITargetHealthInfo
     {
-        [SerializeField, Min(1)] private int maxHealth = 100;
+        [SerializeField, Min(1)] private int maxHealth = 10;
         [SerializeField] private Sprite icon;
         [SerializeField, Min(0f)] private float destroyDelay;
         [SerializeField] private UnityEvent onDamaged;
@@ -43,9 +43,6 @@ namespace Code.UnitSystem.Enemies
                 return;
 
             int damage = Mathf.Max(0, damageData.damage);
-
-            if (damage <= 0)
-                return;
 
             CurrentHealth = Mathf.Max(0f, CurrentHealth - damage);
             onDamaged?.Invoke();
