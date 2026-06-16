@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 55666ac4c1d4c19448ee221227fe618c
+timeCreated: 1491580207
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 87463
+  packageName: Stylized Treasure Chest by Gamertose
+  packageVersion: 2.0
+  assetPath: Assets/TreasureChest/Materials/TreasureChest.mat
+  uploadId: 447782
