@@ -19,6 +19,9 @@ namespace Code.UI
         [SerializeField] private GameObject hoverImage;
         [SerializeField] private GameObject blindImage;
         
+        [Header("Popup Settings")]
+        [SerializeField] private Vector2 popupOffset = new Vector2(0f, 300f);
+
         [Header("Animation Offset")]
         [SerializeField] private float hoverYOffset = 15f;
         [SerializeField] private float selectYOffset = 30f;
@@ -87,11 +90,14 @@ namespace Code.UI
             if (hoverImage != null) hoverImage.SetActive(false);
             if (blindImage != null) blindImage.SetActive(false);
             
+            HidePopup();
             ResetPosition();
         }
 
         public void ReturnToPool()
         {
+            HidePopup();
+
             if (_pool != null)
             {
                 _pool.Push(this);
@@ -100,6 +106,11 @@ namespace Code.UI
             {
                 Destroy(gameObject);
             }
+        }
+
+        private void OnDisable()
+        {
+            HidePopup();
         }
 
         public void SetupSkill(SkillSO skill, SkillComponent compo, int currentTurnCost)
@@ -149,6 +160,8 @@ namespace Code.UI
 
         public void OnPointerEnter(PointerEventData eventData)
         {
+            ShowPopup();
+
             if (!_isInteractable || _isSelected) return;
             if (hoverImage != null) hoverImage.SetActive(true);
 
@@ -158,6 +171,8 @@ namespace Code.UI
 
         public void OnPointerExit(PointerEventData eventData)
         {
+            HidePopup();
+
             if (!_isInteractable || _isSelected) return;
             if (hoverImage != null) hoverImage.SetActive(false);
             ResetPosition();
@@ -229,6 +244,17 @@ namespace Code.UI
         {
             _moveTween?.Kill();
             _moveTween = _rectTransform.DOAnchorPosY(_originalPosition.y, animDuration).SetEase(animEase);
+        }
+
+        private void ShowPopup()
+        {
+            if (_currentSkill == null) return;
+            Bus<CombatSkillHoverEvent>.Raise(new CombatSkillHoverEvent(_currentSkill, _rectTransform, popupOffset));
+        }
+
+        private void HidePopup()
+        {
+            Bus<CombatSkillHoverEvent>.Raise(new CombatSkillHoverEvent(null, null));
         }
     }
 }
