@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80b4b9682a3f495d9c21f232c47a41c2, type: 3}
-  m_Name: StageBGM
+  m_Name: ClickDownSound
   m_EditorClassIdentifier: Assembly-CSharp::Code.KMJ.UnitSystem.Sound.SoundClip
-  Clip: {fileID: 8300000, guid: 0388a3460cc96db438c33c8e98a0377b, type: 3}
-  AudioName: StageBGM
-  IsLooping: 1
+  Clip: {fileID: 8300000, guid: e5d4f3ae6ba669a4a85acea906afe599, type: 3}
+  AudioName: ClickDownSound
+  IsLooping: 0
   Volume: 20

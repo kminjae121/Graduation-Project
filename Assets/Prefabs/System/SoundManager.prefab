@@ -47,5 +47,17 @@ MonoBehaviour:
   isDontDestroyOnLoad: 1
   clips:
   - {fileID: 11400000, guid: 104d867b876571342b3320ea7d2ccebf, type: 2}
+  - {fileID: 11400000, guid: 0578f3a96005e0c45bac73a8aab09d3f, type: 2}
+  - {fileID: 11400000, guid: f0d3c16d647d9f446b4e522a7aa2516d, type: 2}
+  - {fileID: 11400000, guid: 4541a262401499b4b8873e9f3886b0ab, type: 2}
+  - {fileID: 11400000, guid: 81ee105dff454c44d9f3f891fbff8456, type: 2}
+  - {fileID: 11400000, guid: 0ea1576651894c4489425132cd5cf423, type: 2}
+  - {fileID: 11400000, guid: 80d1506e5cb63114ea303d81666866c0, type: 2}
+  - {fileID: 11400000, guid: 4bd585dc501a1324fb0d66bab3b8611e, type: 2}
+  - {fileID: 11400000, guid: 2bf17cf8a7533684f910ab9fabdc3248, type: 2}
+  - {fileID: 11400000, guid: 0f1c0f002d6265c498a2de06e80dd5e8, type: 2}
+  - {fileID: 11400000, guid: f5f440924fa83ef43a70c3920ea811d1, type: 2}
+  - {fileID: 11400000, guid: fea6a5bee2912174d834f0900c36b3e4, type: 2}
+  - {fileID: 11400000, guid: d5d8a2c7a8eae7341a3778c11c6129ee, type: 2}
   audioSourcePrefab: {fileID: 2964581562112302288, guid: 3dc0e63565920534ca160b1645e81241, type: 3}
   sourceCnt: 10

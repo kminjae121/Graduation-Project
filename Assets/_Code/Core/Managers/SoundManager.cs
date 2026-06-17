@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using Code.KMJ.UnitSystem.Sound;
 using UnityEngine;
@@ -96,6 +96,31 @@ namespace Code.Core
             _usingSources.Add(source);
         }
 
+        public void PlayBGMSound(string name)
+        {
+            StopAllLooping();
+            PlayLooping(name);
+        }
+
+        public void StopAllLooping()
+        {
+            for (int i = _usingSources.Count - 1; i >= 0; --i)
+            {
+                AudioSource source = _usingSources[i];
+
+                if (source == null)
+                {
+                    _usingSources.RemoveAt(i);
+                    continue;
+                }
+
+                if (!source.loop)
+                    continue;
+
+                ReleaseSource(source);
+            }
+        }
+
         public void StopLooping(string name)
         {
             if (!_loopingClipDictionary.TryGetValue(name, out var clip))
@@ -103,7 +128,7 @@ namespace Code.Core
 
             StopSourceByClip(clip, true);
         }
-
+        
         public void StopClip(string name)
         {
             if (!_clipDictionary.TryGetValue(name, out var clip))

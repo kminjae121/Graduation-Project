@@ -1,3 +1,5 @@
+using Code.Core;
+
 namespace PixeLadder.EasyTransition
 {
     using System.Collections;
@@ -84,6 +86,24 @@ namespace PixeLadder.EasyTransition
         /// </summary>
         public void LoadScene(string sceneName, TransitionEffect effect = null)
         {
+            switch (sceneName)
+            {
+                case "LobbyScene" : 
+                    SoundManager.Instance.PlayBGMSound("LobbyBGM");
+                    break;
+                case "BattleScene" :
+                    SoundManager.Instance.PlayBGMSound("StageBGM");
+                    break;
+                case "StartScene" :
+                    SoundManager.Instance.PlayBGMSound("MenuBGM");
+                    break;
+                case "TowerMapScene" :
+                    SoundManager.Instance.PlayBGMSound("StageSelectBGM");
+                    break;
+                default:
+                    break;
+            }
+            
             if (isTransitioning)
             {
                 Debug.LogWarning("SceneTransitioner: Transition already in progress.");

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Code.Core.Managers;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Code.UI.Test
@@ -7,7 +8,8 @@ namespace Code.UI.Test
     {
         public void Open()
         {
-            SceneManager.LoadScene("LobbyScene");
+            SceneChangeManager.Instance.ChangeSelectScene("LobbyScene");
+            
         }
 
         public void Exit()
