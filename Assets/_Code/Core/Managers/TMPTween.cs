@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using TMPro;
+using UnityEngine;
 
 namespace Code.Core.Managers
 {
@@ -23,16 +24,17 @@ namespace Code.Core.Managers
 
         public static Tween RemoveText(this TextMeshProUGUI thisTmp, float duration)
         {
-            string text = thisTmp.text;
-            
-            int length = text.Length;
+            string originalText = thisTmp.text;
 
             return DOTween.To(
-                () => length,
+                () => originalText.Length,
                 x =>
                 {
-                    length = x;
-                    thisTmp.text = text.Remove(length - 1);
+                    x = Mathf.Clamp(x, 0, originalText.Length);
+
+                    thisTmp.text = x == 0
+                        ? string.Empty
+                        : originalText.Substring(0, x);
                 },
                 0,
                 duration

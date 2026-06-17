@@ -81,13 +81,15 @@ namespace Code.UI
                 .Append(mainTxt.DoText(eventTexts[value].SkipTxt, activeTime))
                 .AppendInterval(0.5f)
                 .Append(eventImg.DOFade(0, 0.5f))
-                .Append(mainTxt.RemoveText( 0.5f))
+                .Append(mainTxt.DoText(string.Empty, 0))
                 .AppendInterval(0.3f)
                 .Append(thisObjectImg.DOFade(0, 1f))
                 .OnComplete(() => 
                 {
                     Bus<StageClearEvent>.Raise(new StageClearEvent(true));
                     CloseEventUI();
+                    DOTween.KillAll();
+                    SceneChangeManager.Instance.ChangeSelectScene("TowerMapScene");
                 });
         }
 
@@ -95,6 +97,8 @@ namespace Code.UI
         {
             skipBtn.onClick.RemoveAllListeners();
             selectBtn.onClick.RemoveAllListeners();
+
+            DOTween.KillAll();
         }
 
         protected abstract void Buff(int randValue);
@@ -117,16 +121,16 @@ namespace Code.UI
                     .Append(mainTxt.DoText(eventTexts[randomValue].FailTxt, activeTime))
                     .AppendInterval(0.3f)
                     .Append(eventImg.DOFade(0, 0.5f))
-                    .Append(mainTxt.RemoveText( 0.5f))
+                    .Append(mainTxt.DoText(string.Empty, 0))
                     .AppendInterval(0.2f)
                     .Append(thisObjectImg.DOFade(0, 0.5f))
                     .OnComplete(() => 
                     {
                         Bus<StageClearEvent>.Raise(new StageClearEvent(true));
                         CloseEventUI();
+                        DOTween.KillAll();
+                        SceneChangeManager.Instance.ChangeSelectScene("TowerMapScene");
                     });
-                
-                
             }
             else
             {
@@ -138,13 +142,15 @@ namespace Code.UI
                     .Append(mainTxt.DoText(eventTexts[randomValue].SuccessTxt, activeTime))
                     .AppendInterval(0.3f)
                     .Append(eventImg.DOFade(0, 0.5f))
-                    .Append(mainTxt.RemoveText( 0.5f))
+                    .Append(mainTxt.DoText(string.Empty, 0))
                     .AppendInterval(0.2f)
                     .Append(thisObjectImg.DOFade(0, 0.5f))
                     .OnComplete(() => 
                     {
                         Bus<StageClearEvent>.Raise(new StageClearEvent(true));
                         CloseEventUI();
+                        DOTween.KillAll();
+                        SceneChangeManager.Instance.ChangeSelectScene("TowerMapScene");
                     });
                  
             }
