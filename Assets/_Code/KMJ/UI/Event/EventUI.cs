@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 using Code.Core.Events.Bus;
+using Code.Tower;
 using Code.UnitManaging;
 using VHierarchy.Libs;
 
@@ -87,6 +88,7 @@ namespace Code.UI
                 .OnComplete(() => 
                 {
                     Bus<StageClearEvent>.Raise(new StageClearEvent(true));
+                    TowerRunSession.CompleteCurrentRoom();
                     CloseEventUI();
                     DOTween.KillAll();
                     SceneChangeManager.Instance.ChangeSelectScene("TowerMapScene");
@@ -127,6 +129,7 @@ namespace Code.UI
                     .OnComplete(() => 
                     {
                         Bus<StageClearEvent>.Raise(new StageClearEvent(true));
+                        TowerRunSession.CompleteCurrentRoom();
                         CloseEventUI();
                         DOTween.KillAll();
                         SceneChangeManager.Instance.ChangeSelectScene("TowerMapScene");
@@ -148,6 +151,7 @@ namespace Code.UI
                     .OnComplete(() => 
                     {
                         Bus<StageClearEvent>.Raise(new StageClearEvent(true));
+                        TowerRunSession.CompleteCurrentRoom();
                         CloseEventUI();
                         DOTween.KillAll();
                         SceneChangeManager.Instance.ChangeSelectScene("TowerMapScene");

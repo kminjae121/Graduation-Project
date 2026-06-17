@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Code.Core.Managers;
 using Code.Item;
 using Code.Items;
+using Code.Tower;
 using Code.UnitSystem;
 using Code.UnitSystem.ArtifactSystem;
 using DG.Tweening;
@@ -159,6 +160,7 @@ namespace _Code.KMJ
             uis[1].SetActive(false);
             
             DOTween.KillAll();
+            TowerRunSession.CompleteCurrentRoom();
             SceneChangeManager.Instance.ChangeSelectScene("TowerMapScene");
         }
 
@@ -171,7 +173,7 @@ namespace _Code.KMJ
             uis[1].SetActive(false);
             
             DOTween.KillAll();
-            
+            TowerRunSession.CompleteCurrentRoom();
             SceneChangeManager.Instance.ChangeSelectScene("TowerMapScene");
         }
     }
