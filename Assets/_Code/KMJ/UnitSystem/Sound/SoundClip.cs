@@ -2,14 +2,15 @@
 
 namespace Code.KMJ.UnitSystem.Sound
 {
-    public class SoundClip : MonoBehaviour
+    [CreateAssetMenu(menuName = "Sound/SoundClip", fileName = "Sound/SoundClip")]
+    public class SoundClip : ScriptableObject
     {
-        [field: SerializeField] public AudioClip Clip { get; private set; }
-        
-        [field: SerializeField] public string AudioName { get; private set; }
-        
-        [field: SerializeField] public bool IsLooping { get; private set; }
-        
-        [field: SerializeField] public float Volume { get; private set; }
+        public AudioClip Clip;
+
+        public string AudioName;
+
+        public bool IsLooping;
+
+        [Range(0, 101)] public float Volume;
     }
 }
