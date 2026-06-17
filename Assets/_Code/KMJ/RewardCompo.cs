@@ -23,6 +23,8 @@ namespace _Code.KMJ
 
         [SerializeField] private ParticleSystem particleSystem;
         [SerializeField] private ParticleSystem particleSystem2;
+        [SerializeField] private ParticleSystem particleSystem3;
+        [SerializeField] private ParticleSystem particleSystem4;
 
         [Header("UI")] [SerializeField] private List<GameObject> uis;
         [SerializeField] private List<Image> itemImgs;
@@ -67,6 +69,8 @@ namespace _Code.KMJ
         private IEnumerator RandomItem()
         {
             particleSystem2.Play();
+            particleSystem3.Play();
+            particleSystem4.Play();
 
             yield return new WaitForSeconds(0.5f);
             int rand = Random.Range(0, equippedItems.Count);

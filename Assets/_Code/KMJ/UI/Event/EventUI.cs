@@ -8,10 +8,11 @@ using UnityEngine.UI;
 using Random = UnityEngine.Random;
 using Code.Core.Events.Bus;
 using Code.UnitManaging;
+using VHierarchy.Libs;
 
 namespace Code.UI
 {
-    public class EventUI : MonoBehaviour
+    public abstract class EventUI : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI mainTxt;
         [SerializeField] private TextMeshProUGUI selectBtnTxt;
@@ -26,11 +27,11 @@ namespace Code.UI
 
         [SerializeField] private float activeTime = 1;
 
-        [SerializeField] private List<EventTextSO> eventTexts;
+        [SerializeField] protected List<EventTextSO> eventTexts;
 
         [SerializeField] private Image thisObjectImg;
 
-        [SerializeField] private UnitStorageSO storageSO;
+        [SerializeField] protected UnitStorageSO storageSO;
         
         private void OnEnable()
         {
@@ -47,6 +48,8 @@ namespace Code.UI
 
             int randValue = Random.Range(0, eventTexts.Count);
             thisObjectImg = GetComponent<Image>();
+            selectBtn.gameObject.SetActive(true);
+            skipBtn.gameObject.SetActive(true);
             
             selectBtnTxt.text = eventTexts[randValue].ApplyTxt;
             skipBtnTxt.text = eventTexts[randValue].CancelTxt;
@@ -78,13 +81,15 @@ namespace Code.UI
                 .Append(mainTxt.DoText(eventTexts[value].SkipTxt, activeTime))
                 .AppendInterval(0.5f)
                 .Append(eventImg.DOFade(0, 0.5f))
-                .Append(mainTxt.RemoveText( 0.5f))
+                .Append(mainTxt.DoText(string.Empty, 0))
                 .AppendInterval(0.3f)
                 .Append(thisObjectImg.DOFade(0, 1f))
                 .OnComplete(() => 
                 {
                     Bus<StageClearEvent>.Raise(new StageClearEvent(true));
                     CloseEventUI();
+                    DOTween.KillAll();
+                    SceneChangeManager.Instance.ChangeSelectScene("TowerMapScene");
                 });
         }
 
@@ -92,17 +97,22 @@ namespace Code.UI
         {
             skipBtn.onClick.RemoveAllListeners();
             selectBtn.onClick.RemoveAllListeners();
+
+            DOTween.KillAll();
         }
 
-        public void HandleSelectBtn(int value, int randomValue)
+        protected abstract void Buff(int randValue);
+
+        protected abstract void DeBuff(int randValue);
+        
+        
+
+        private void HandleSelectBtn(int value, int randomValue)
         {
             if (value == 1)
             {
-                storageSO.unitStates.ForEach(state =>
-                {
-                    state.TakeDamage(eventTexts[randomValue].value);
-                });
-                
+
+                DeBuff(randomValue);
                 mainTxt.text = eventTexts[randomValue].FailTxt;
                 
                 skipBtn.gameObject.SetActive(false);
@@ -111,38 +121,36 @@ namespace Code.UI
                     .Append(mainTxt.DoText(eventTexts[randomValue].FailTxt, activeTime))
                     .AppendInterval(0.3f)
                     .Append(eventImg.DOFade(0, 0.5f))
-                    .Append(mainTxt.RemoveText( 0.5f))
+                    .Append(mainTxt.DoText(string.Empty, 0))
                     .AppendInterval(0.2f)
                     .Append(thisObjectImg.DOFade(0, 0.5f))
                     .OnComplete(() => 
                     {
                         Bus<StageClearEvent>.Raise(new StageClearEvent(true));
                         CloseEventUI();
+                        DOTween.KillAll();
+                        SceneChangeManager.Instance.ChangeSelectScene("TowerMapScene");
                     });
-                
-                
             }
             else
             {
                 mainTxt.text = eventTexts[randomValue].SuccessTxt;
-                
-                storageSO.unitStates.ForEach(state =>
-                {
-                    state.Heal(eventTexts[randomValue].value);
-                });
+                Buff(randomValue);
                 skipBtn.gameObject.SetActive(false);
                 selectBtn.gameObject.SetActive(false);
                 DOTween.Sequence()
                     .Append(mainTxt.DoText(eventTexts[randomValue].SuccessTxt, activeTime))
                     .AppendInterval(0.3f)
                     .Append(eventImg.DOFade(0, 0.5f))
-                    .Append(mainTxt.RemoveText( 0.5f))
+                    .Append(mainTxt.DoText(string.Empty, 0))
                     .AppendInterval(0.2f)
                     .Append(thisObjectImg.DOFade(0, 0.5f))
                     .OnComplete(() => 
                     {
                         Bus<StageClearEvent>.Raise(new StageClearEvent(true));
                         CloseEventUI();
+                        DOTween.KillAll();
+                        SceneChangeManager.Instance.ChangeSelectScene("TowerMapScene");
                     });
                  
             }
