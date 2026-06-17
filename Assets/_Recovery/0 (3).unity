@@ -167,13 +167,12 @@ MonoBehaviour:
   battleSceneName: BattleScene
   eliteBattleSceneName: BattleScene
   bossBattleSceneName: BattleScene
-  eventSceneName: SelectEventScene
-  rewardSceneName: RewardScene
   battleTransitionEffect: {fileID: 11400000, guid: 800cf4f007f3e6a4d85d89ee6e2d175c, type: 2}
   autoCreateRuntimeUI: 0
   canvas: {fileID: 1353177083}
   nodeMapView: {fileID: 20133301}
   portalChoicePanel: {fileID: 0}
+  eventUIPrefab: {fileID: 7503534151109173129, guid: 05e4862149040ac40ba8c96a1bdea74a, type: 3}
 --- !u!1 &100010
 GameObject:
   m_ObjectHideFlags: 0

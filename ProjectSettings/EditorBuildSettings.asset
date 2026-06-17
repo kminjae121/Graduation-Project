@@ -24,6 +24,12 @@ EditorBuildSettings:
     path: Assets/Scenes/KDH_Scenes/BattleUI.unity
     guid: 7310a3118cb8bed4cad6526e12a2bacf
   - enabled: 1
+    path: Assets/Scenes/KMJ_Scenes/EventScene/SelectEventScene.unity
+    guid: 794d87ac455746045ad424f7af6ec2e1
+  - enabled: 1
+    path: Assets/Scenes/KMJ_Scenes/EventScene/RewardScene.unity
+    guid: 2bf14d69027661344b3885d65a6552d3
+  - enabled: 1
     path: Assets/Scenes/AJS_Scenes/Stage/Stage1.unity
     guid: ebe950c9aac5656458f5913ca6936aba
   - enabled: 1
