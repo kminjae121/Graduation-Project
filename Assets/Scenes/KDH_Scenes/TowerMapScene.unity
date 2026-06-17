@@ -167,6 +167,8 @@ MonoBehaviour:
   battleSceneName: BattleScene
   eliteBattleSceneName: BattleScene
   bossBattleSceneName: BattleScene
+  eventSceneName: SelectEventScene
+  rewardSceneName: RewardScene
   battleTransitionEffect: {fileID: 11400000, guid: 800cf4f007f3e6a4d85d89ee6e2d175c, type: 2}
   autoCreateRuntimeUI: 0
   canvas: {fileID: 1353177083}

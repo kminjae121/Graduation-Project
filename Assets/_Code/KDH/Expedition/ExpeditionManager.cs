@@ -17,6 +17,8 @@ namespace Code.Expedition.Managers
         [SerializeField] private string battleSceneName = "BattleScene";
         [SerializeField] private string eliteBattleSceneName = "BattleScene";
         [SerializeField] private string bossBattleSceneName = "BattleScene";
+        [SerializeField] private string eventSceneName = "SelectEventScene";
+        [SerializeField] private string rewardSceneName = "RewardScene";
         [SerializeField] private TransitionEffect battleTransitionEffect;
 
         [Header("Runtime UI")]
@@ -76,10 +78,22 @@ namespace Code.Expedition.Managers
             switch (room.RoomType)
             {
                 case TowerRoomType.Start:
-                case TowerRoomType.Event:
-                case TowerRoomType.Reward:
                 case TowerRoomType.Portal:
                     room.Clear();
+                    break;
+                case TowerRoomType.Event:
+                    if (!room.IsCleared)
+                    {
+                        LoadRoomScene(eventSceneName);
+                        return false;
+                    }
+                    break;
+                case TowerRoomType.Reward:
+                    if (!room.IsCleared)
+                    {
+                        LoadRoomScene(rewardSceneName);
+                        return false;
+                    }
                     break;
                 case TowerRoomType.Combat:
                     if (!room.IsCleared)
@@ -142,6 +156,18 @@ namespace Code.Expedition.Managers
             if (string.IsNullOrWhiteSpace(sceneName))
             {
                 Debug.LogWarning("Battle scene name is empty.");
+                return;
+            }
+
+            SetRuntimeUIVisible(false);
+            TowerSceneLoader.LoadScene(sceneName, battleTransitionEffect);
+        }
+
+        private void LoadRoomScene(string sceneName)
+        {
+            if (string.IsNullOrWhiteSpace(sceneName))
+            {
+                Debug.LogWarning("[ExpeditionManager] Room scene name is empty.");
                 return;
             }
 

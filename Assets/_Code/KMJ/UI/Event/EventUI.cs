@@ -7,11 +7,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 using Code.Core.Events.Bus;
+using Code.Tower;
 using Code.UnitManaging;
+using VHierarchy.Libs;
 
 namespace Code.UI
 {
-    public class EventUI : MonoBehaviour
+    public abstract class EventUI : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI mainTxt;
         [SerializeField] private TextMeshProUGUI selectBtnTxt;
@@ -26,16 +28,29 @@ namespace Code.UI
 
         [SerializeField] private float activeTime = 1;
 
-        [SerializeField] private List<EventTextSO> eventTexts;
+        [SerializeField] protected List<EventTextSO> eventTexts;
 
         [SerializeField] private Image thisObjectImg;
 
-        [SerializeField] private UnitStorageSO storageSO;
+        [SerializeField] protected UnitStorageSO storageSO;
         
         private void OnEnable()
         {
+            ResolveEventObject();
+
+            if (eventTexts == null || eventTexts.Count == 0)
+            {
+                Debug.LogWarning("[EventUI] Event text data is empty.");
+                CloseEventUI();
+                return;
+            }
+
+            ResetVisualState();
+
             int randValue = Random.Range(0, eventTexts.Count);
             thisObjectImg = GetComponent<Image>();
+            selectBtn.gameObject.SetActive(true);
+            skipBtn.gameObject.SetActive(true);
             
             selectBtnTxt.text = eventTexts[randValue].ApplyTxt;
             skipBtnTxt.text = eventTexts[randValue].CancelTxt;
@@ -53,6 +68,8 @@ namespace Code.UI
             
             int randomValue = Random.Range(0, 3);
             
+            skipBtn.onClick.RemoveAllListeners();
+            selectBtn.onClick.RemoveAllListeners();
             skipBtn.onClick.AddListener(() => HandleSkipBtn(randValue));
             selectBtn.onClick.AddListener(() =>HandleSelectBtn(randomValue, randValue));
         }
@@ -65,14 +82,16 @@ namespace Code.UI
                 .Append(mainTxt.DoText(eventTexts[value].SkipTxt, activeTime))
                 .AppendInterval(0.5f)
                 .Append(eventImg.DOFade(0, 0.5f))
-                .Append(mainTxt.RemoveText( 0.5f))
+                .Append(mainTxt.DoText(string.Empty, 0))
                 .AppendInterval(0.3f)
                 .Append(thisObjectImg.DOFade(0, 1f))
                 .OnComplete(() => 
                 {
-                    DOTween.KillAll();
                     Bus<StageClearEvent>.Raise(new StageClearEvent(true));
-                    evtObject.SetActive(false);
+                    TowerRunSession.CompleteCurrentRoom();
+                    CloseEventUI();
+                    DOTween.KillAll();
+                    SceneChangeManager.Instance.ChangeSelectScene("TowerMapScene");
                 });
         }
 
@@ -80,17 +99,22 @@ namespace Code.UI
         {
             skipBtn.onClick.RemoveAllListeners();
             selectBtn.onClick.RemoveAllListeners();
+
+            DOTween.KillAll();
         }
 
-        public void HandleSelectBtn(int value, int randomValue)
+        protected abstract void Buff(int randValue);
+
+        protected abstract void DeBuff(int randValue);
+        
+        
+
+        private void HandleSelectBtn(int value, int randomValue)
         {
             if (value == 1)
             {
-                storageSO.unitStates.ForEach(state =>
-                {
-                    state.TakeDamage(eventTexts[randomValue].value);
-                });
-                
+
+                DeBuff(randomValue);
                 mainTxt.text = eventTexts[randomValue].FailTxt;
                 
                 skipBtn.gameObject.SetActive(false);
@@ -99,43 +123,111 @@ namespace Code.UI
                     .Append(mainTxt.DoText(eventTexts[randomValue].FailTxt, activeTime))
                     .AppendInterval(0.3f)
                     .Append(eventImg.DOFade(0, 0.5f))
-                    .Append(mainTxt.RemoveText( 0.5f))
+                    .Append(mainTxt.DoText(string.Empty, 0))
                     .AppendInterval(0.2f)
                     .Append(thisObjectImg.DOFade(0, 0.5f))
                     .OnComplete(() => 
                     {
-                        DOTween.KillAll();
                         Bus<StageClearEvent>.Raise(new StageClearEvent(true));
-                        evtObject.SetActive(false);
+                        TowerRunSession.CompleteCurrentRoom();
+                        CloseEventUI();
+                        DOTween.KillAll();
+                        SceneChangeManager.Instance.ChangeSelectScene("TowerMapScene");
                     });
-                
-                
             }
             else
             {
                 mainTxt.text = eventTexts[randomValue].SuccessTxt;
-                
-                storageSO.unitStates.ForEach(state =>
-                {
-                    state.Heal(eventTexts[randomValue].value);
-                });
+                Buff(randomValue);
                 skipBtn.gameObject.SetActive(false);
                 selectBtn.gameObject.SetActive(false);
                 DOTween.Sequence()
                     .Append(mainTxt.DoText(eventTexts[randomValue].SuccessTxt, activeTime))
                     .AppendInterval(0.3f)
                     .Append(eventImg.DOFade(0, 0.5f))
-                    .Append(mainTxt.RemoveText( 0.5f))
+                    .Append(mainTxt.DoText(string.Empty, 0))
                     .AppendInterval(0.2f)
                     .Append(thisObjectImg.DOFade(0, 0.5f))
                     .OnComplete(() => 
                     {
-                        DOTween.KillAll();
                         Bus<StageClearEvent>.Raise(new StageClearEvent(true));
-                        evtObject.SetActive(false);
+                        TowerRunSession.CompleteCurrentRoom();
+                        CloseEventUI();
+                        DOTween.KillAll();
+                        SceneChangeManager.Instance.ChangeSelectScene("TowerMapScene");
                     });
                  
             }
+        }
+
+        private void ResolveEventObject()
+        {
+            if (evtObject != null)
+                return;
+
+            evtObject = transform.parent != null ? transform.parent.gameObject : gameObject;
+        }
+
+        private void ResetVisualState()
+        {
+            if (thisObjectImg == null)
+                thisObjectImg = GetComponent<Image>();
+
+            if (mainTxt != null)
+            {
+                mainTxt.DOKill();
+                mainTxt.text = string.Empty;
+                SetGraphicAlpha(mainTxt, 1f);
+            }
+
+            if (popUpTxt != null)
+            {
+                popUpTxt.DOKill();
+                popUpTxt.transform.DOKill();
+                popUpTxt.transform.localScale = Vector3.zero;
+                SetGraphicAlpha(popUpTxt, 1f);
+            }
+
+            if (thisObjectImg != null)
+            {
+                thisObjectImg.DOKill();
+                SetGraphicAlpha(thisObjectImg, 0f);
+            }
+
+            if (eventImg != null)
+            {
+                eventImg.DOKill();
+                SetGraphicAlpha(eventImg, 0f);
+            }
+
+            ResetButton(selectBtn);
+            ResetButton(skipBtn);
+        }
+
+        private static void ResetButton(Button button)
+        {
+            if (button == null)
+                return;
+
+            button.transform.DOKill();
+            button.gameObject.SetActive(true);
+            button.transform.localScale = Vector3.zero;
+        }
+
+        private static void SetGraphicAlpha(Graphic graphic, float alpha)
+        {
+            if (graphic == null)
+                return;
+
+            Color color = graphic.color;
+            color.a = alpha;
+            graphic.color = color;
+        }
+
+        private void CloseEventUI()
+        {
+            ResolveEventObject();
+            evtObject.SetActive(false);
         }
         
     }
