@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Code.Core;
 using Code.Core.Events.Bus;
 using Code.UnitSystem;
 using Code.UnitSystem.Combat;
@@ -63,7 +64,7 @@ public class ShooterAttack : BasicUnitSkill
             _shootItemManager.SetTarget(_target);
             _shootItemManager.SetDamageData(DamageData,AddDamage);
             _shootItemManager.CreateShootItem("ShootItem",pos, slashRot);   
-            
+            SoundManager.Instance.PlayClip("BowSound");
             Bus<CamShakeEvent>.Raise(new CamShakeEvent(0.15f));
         }
 

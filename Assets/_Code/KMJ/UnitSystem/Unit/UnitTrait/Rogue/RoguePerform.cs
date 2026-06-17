@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using _Code.Core.EventBus.Events.Trait;
+using Code.Core;
 using Code.Core.Events.Bus;
 using Code.Effects;
 using Code.UnitSystem.Combat;
@@ -64,6 +65,7 @@ namespace Code.UnitSystem.TraitSystem
                 }
                 shadow.gameObject.SetActive(false);
                 _abstractEnemies.Add(enemy);
+                SoundManager.Instance.PlayClip("ShadowDownSound");
                 yield return new WaitForSeconds(0.7f);
             }
 
@@ -79,6 +81,7 @@ namespace Code.UnitSystem.TraitSystem
 
             trm.y += 0.2f;
              vfxCompo.PlayVFX("DarkBoom", trm, Quaternion.identity);
+             SoundManager.Instance.PlayClip("ShadowBoomSound");
             
             _abstractEnemies.Clear();
         }

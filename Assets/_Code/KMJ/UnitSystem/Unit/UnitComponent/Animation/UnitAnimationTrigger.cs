@@ -10,6 +10,7 @@ namespace Code.UnitSystem
         public Action OnAnimationEndTrigger;
         public Action OnTakeDamageTrigger;
         public Action OnShowEffectTrigger;
+        public Action OnSoundPlayTrigger;
         
         private Unit _entity;
         
@@ -18,6 +19,7 @@ namespace Code.UnitSystem
             _entity = entity;
         }
 
+        private void SoundPlay() => OnSoundPlayTrigger?.Invoke();
         private void TakeDamage() => OnTakeDamageTrigger?.Invoke();
         private void TriggerDead() => OnDeadEvent?.Invoke();
         private void AnimationEnd() => OnAnimationEndTrigger?.Invoke();

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Code.Combat.StatusEffect;
+using Code.Core;
 using Code.Core.Events.Bus;
 using Code.UnitSystem;
 using Code.UnitSystem.Combat;
@@ -72,6 +73,9 @@ public class FireArrow : BasicUnitSkill
             _shootItemManager.SetDamageData(DamageData,AddDamage);
             _shootItemManager.CreateShootItem("FireArrow",pos, slashRot);
 
+            
+            SoundManager.Instance.PlayClip("BowSound");
+            
             Unit targetUnit = _target != null ? _target.GetComponent<Unit>() : null;
 
             if (targetUnit != null)

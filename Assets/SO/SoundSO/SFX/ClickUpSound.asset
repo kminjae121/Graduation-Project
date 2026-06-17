@@ -15,4 +15,4 @@ MonoBehaviour:
   Clip: {fileID: 8300000, guid: e5d4f3ae6ba669a4a85acea906afe599, type: 3}
   AudioName: ClickUpSound
   IsLooping: 0
-  Volume: 20
+  Volume: 10

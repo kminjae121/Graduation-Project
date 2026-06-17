@@ -15,4 +15,4 @@ MonoBehaviour:
   Clip: {fileID: 8300000, guid: 178c5a587bc6d3d46a175efab69be126, type: 3}
   AudioName: KnifeSound
   IsLooping: 0
-  Volume: 80
+  Volume: 60
