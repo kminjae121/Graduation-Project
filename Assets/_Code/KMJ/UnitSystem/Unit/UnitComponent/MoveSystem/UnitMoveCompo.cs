@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using _Code.Core.EventBus.Events.Trait;
+using Code.Core;
 using Code.Core.Events.Bus;
 using Code.Core.Interfaces;
 using Code.Map;
@@ -47,6 +48,11 @@ namespace Code.UnitSystem
             _unit.InputSO.OnClickMoveEvent += Move;
             _pathMoverCompo.OnMoveEnd += HandleMoveEnd;
             _isMoving = false;
+        }
+
+        private void WalkSound()
+        {
+            SoundManager.Instance.PlayClip("WalkSound");
         }
 
         protected override void OnDestroy()
@@ -164,6 +170,8 @@ namespace Code.UnitSystem
             rotatorCompo.SetDir(tile.WorldPos);
             CurrentMapTile.SetTileUnit(null);
             animationCompo.PlaySelectAnimation("MOVE");
+            
+            triggerCompo.OnSoundPlayTrigger += WalkSound;
         }
 
         private void HandleMoveEnd()
@@ -182,6 +190,8 @@ namespace Code.UnitSystem
             Bus<KnightSunEvent>.Raise(new KnightSunEvent(true));
             
             animationCompo.PlaySelectAnimation("IDLE");
+            
+            triggerCompo.OnSoundPlayTrigger -= WalkSound;
             UnitRangeCompo.RemoveAllRange();
         }
 

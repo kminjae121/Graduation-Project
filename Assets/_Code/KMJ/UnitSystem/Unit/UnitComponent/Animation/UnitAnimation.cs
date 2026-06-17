@@ -15,7 +15,7 @@ namespace Code.UnitSystem
         {
             if (_animator == null)
                 return;
-            
+            RestartFromEntry();
             AnimationAllStop();
             
             int animHash = Animator.StringToHash(animationName);

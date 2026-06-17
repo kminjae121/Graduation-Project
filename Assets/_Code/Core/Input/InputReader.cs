@@ -20,6 +20,8 @@ namespace Input
         public event Action OnInteractionEvent;
         public event Action OnCancelEvent;
 
+        public event Action OnClickCancelEvent;
+
         public Vector2 MovementKey { get; private set; }
         public Vector2 MouseUpDownValue { get; private set; }
         public event Action OnSelectUnitEvent;
@@ -118,6 +120,10 @@ namespace Input
                 
                 if (GetSelectedTile() != null)
                     OnClickMoveEvent?.Invoke();
+            }
+            else if (context.canceled)
+            {
+                OnClickCancelEvent?.Invoke();
             }
         }
 

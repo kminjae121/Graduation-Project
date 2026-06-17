@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using Code.Core.Managers;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -180,7 +181,7 @@ namespace Code.Ajs.Ux
         private IEnumerator HandleStartClickRoutine()
         {
             _isProcessingClick = true;
-            yield return PlayClickAndOptionallyWait(startClickSfx);
+           // yield return PlayClickAndOptionallyWait(startClickSfx);
             yield return PlayStartTransitionPanelRoutine();
 
             if (string.IsNullOrWhiteSpace(startSceneName))
@@ -190,7 +191,7 @@ namespace Code.Ajs.Ux
                 yield break;
             }
 
-            SceneManager.LoadScene(startSceneName);
+            SceneChangeManager.Instance.ChangeSelectScene("StartScene");
         }
 
         private void OnClickOption()
@@ -204,7 +205,7 @@ namespace Code.Ajs.Ux
         private IEnumerator HandleOptionClickRoutine()
         {
             _isProcessingClick = true;
-            yield return PlayClickAndOptionallyWait(optionClickSfx);
+            //yield return PlayClickAndOptionallyWait(optionClickSfx);
 
             if (optionPanel == null)
             {
@@ -227,8 +228,8 @@ namespace Code.Ajs.Ux
         private IEnumerator HandleQuitClickRoutine()
         {
             _isProcessingClick = true;
-            yield return PlayClickAndOptionallyWait(quitClickSfx);
-
+      //      yield return PlayClickAndOptionallyWait(quitClickSfx);
+      yield return null;
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #else

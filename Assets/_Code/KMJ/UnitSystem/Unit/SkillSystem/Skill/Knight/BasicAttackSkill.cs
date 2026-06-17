@@ -1,4 +1,5 @@
 using System.Collections;
+using Code.Core;
 using Code.Core.Events.Bus;
 using Code.Effects;
 using Code.UnitSystem;
@@ -29,6 +30,7 @@ public class BasicAttackSkill : BasicUnitSkill
         triggerCompo.OnAnimationEndTrigger += AttackEnd;
         triggerCompo.OnAttackTrigger += TakeDamage;
         triggerCompo.OnShowEffectTrigger += ShowEffect;
+        triggerCompo.OnSoundPlayTrigger += SoundPlay;
     }
 
     protected override void OnDestroy()
@@ -36,8 +38,12 @@ public class BasicAttackSkill : BasicUnitSkill
         base.OnDestroy();
         SkillEvent.RemoveListener(AttackAction);
     }
-    
 
+    public override void SoundPlay()
+    {
+        base.SoundPlay();
+        SoundManager.Instance.PlayClip("SwordDownSound");
+    }
 
     public void AttackAction(GameObject target)
     {
@@ -52,7 +58,7 @@ public class BasicAttackSkill : BasicUnitSkill
         yield return new WaitForSeconds(0.2f);
         SkillFeedbackEvent?.Invoke();
         yield return new WaitForSeconds(0.2f);
-        
+
         animtionCompo.PlaySelectAnimation("BAS");
     }
 
@@ -83,6 +89,7 @@ public class BasicAttackSkill : BasicUnitSkill
         triggerCompo.OnShowEffectTrigger -= ShowEffect;
         triggerCompo.OnAnimationEndTrigger -= AttackEnd;
         triggerCompo.OnAttackTrigger -= TakeDamage;
+        triggerCompo.OnSoundPlayTrigger -= SoundPlay;
         Bus<TurnEndUIEvent>.Raise(new TurnEndUIEvent(false));
         SkillEndEvent?.Invoke();
     }

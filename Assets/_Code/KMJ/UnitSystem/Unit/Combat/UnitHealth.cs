@@ -1,4 +1,5 @@
 ﻿using Code.Combat;
+using Code.Core;
 using Code.Core.Events.Bus;
 using Code.UI;
 using Code.UnitManaging;
@@ -184,6 +185,7 @@ namespace Code.UnitSystem.Combat
            
             _entity.OnHitEvent?.Invoke();
             OnInteractionEvent?.Invoke(dealer, damage);
+            SoundManager.Instance.PlayClip("HitSound");
         }
 
         private int ApplyDamageTakenModifiers(int damage)

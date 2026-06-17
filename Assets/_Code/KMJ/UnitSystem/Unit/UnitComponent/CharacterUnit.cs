@@ -1,5 +1,6 @@
 using System.Collections;
 using _Code.Core.EventBus.Events.Trait;
+using Code.Core;
 using Code.Passive;
 using Code.Core.Managers;
 using Code.Core.Events.Bus;
@@ -107,6 +108,8 @@ namespace Code.UnitSystem
             OnTurnStartEvent?.Invoke();
             
             Bus<WhatUnitTurnEvent>.Raise(new WhatUnitTurnEvent(unitSO.UnitType));
+            
+            SoundManager.Instance.PlayClip("PlayerTurnSound");
         }
 
         public void SetMoveTile()

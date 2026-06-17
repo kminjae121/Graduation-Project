@@ -48,6 +48,11 @@ namespace Code.SkillSystem
             if (_inputReader != null)
                 _inputReader.OnAttackEvent -= UseSkill;
         }
+
+        public virtual void SoundPlay()
+        {
+            
+        }
         
         public void SetEnemyTargeting(EnemyTargeting targeting)
         {

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Code.Core;
 using Code.UnitSystem;
 using Code.SkillSystem;
 using Code.UnitSystem.TraitSystem;
@@ -12,7 +13,6 @@ using UnityEngine.UI;
     public class ThrowKnifeSkill : BasicUnitSkill
     {
         private UnitAnimation _animtionCompo;
-
         private RogueShadowSpawn _shadowSpawn;
         
         protected void Start()
@@ -27,12 +27,19 @@ using UnityEngine.UI;
             base.StartEvent();
             triggerCompo.OnAttackTrigger += MoveShadow;
             triggerCompo.OnAnimationEndTrigger += SkillEnd;
+            triggerCompo.OnSoundPlayTrigger += SoundPlay;
         }
 
         protected override void OnDestroy()
         {
             SkillEvent.RemoveListener(AttackAction);
             base.OnDestroy();
+        }
+
+        public override void SoundPlay()
+        {
+            base.SoundPlay();
+            
         }
 
         public void AttackAction(GameObject target)
@@ -55,7 +62,7 @@ using UnityEngine.UI;
             _shadowSpawn.GetShadowMapTile().SetTileUnit(_characterUnit);
             _characterUnit.transform.position = _shadowSpawn.GetCurrentShadow().transform.position;
             _shadowSpawn.SetShadowInfo(_shadowSpawn.GetCurrentShadow(), false);
-            
+            SoundManager.Instance.PlayClip("ShadowDownSound");
         }
         
         protected override void SkillEnd()
@@ -64,6 +71,7 @@ using UnityEngine.UI;
             
             triggerCompo.OnAttackTrigger -= MoveShadow;
             triggerCompo.OnAnimationEndTrigger -= SkillEnd;
+            triggerCompo.OnSoundPlayTrigger -= SoundPlay;
             SkillEndEvent?.Invoke();
             _animtionCompo.PlaySelectAnimation("IDLE");
         }
