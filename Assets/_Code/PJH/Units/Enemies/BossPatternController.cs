@@ -90,7 +90,8 @@ namespace Code.UnitSystem.Enemies
         internal bool FallbackToDefault => fallbackToDefault;
 
         internal bool SkipTurn
-            => _step == PatternStep.Weakened && weakSkill == null && skipInWeak;
+            => (_step == PatternStep.GimmickResolve && !_gimmickResolved)
+               || (_step == PatternStep.Weakened && weakSkill == null && skipInWeak);
 
         internal bool CanMoveNow
         {
@@ -187,7 +188,7 @@ namespace Code.UnitSystem.Enemies
         private void ResolveGimmickStep()
         {
             if (!_gimmickResolved)
-                CompleteGimmick(false);
+                return;
 
             if (_gimmickSuccess)
             {

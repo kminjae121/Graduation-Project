@@ -230,14 +230,6 @@ namespace Code.UnitSystem.Combat
             if (target == null)
                 return false;
 
-            if (target.TryGetComponent(out ITargetHealthInfo targetHealth))
-            {
-                currentHp = targetHealth.CurrentHealth;
-                maxHp = targetHealth.MaxHealth;
-                icon = targetHealth.Icon;
-                return true;
-            }
-
             UnitHealth health = target.GetComponent<UnitHealth>();
             icon = GetTargetIcon(target);
 
@@ -253,9 +245,6 @@ namespace Code.UnitSystem.Combat
         {
             if (target == null)
                 return null;
-
-            if (target.TryGetComponent(out ITargetHealthInfo targetHealth))
-                return targetHealth.Icon;
 
             Unit targetUnit = target.GetComponent<Unit>();
             return targetUnit != null && targetUnit.unitSO != null
