@@ -21,7 +21,8 @@ MonoBehaviour:
   skillUIImage: {fileID: 21300000, guid: f465ce0484827fd439c96c47afb54066, type: 3}
   className: ShieldSkill
   skillPrice: 0
-  SkillDamage: 120
+  SkillDamage: 11
   SkillRange: 5
+  MinRange: 0
   IsOwnSkill: 1
   SkillType: 1

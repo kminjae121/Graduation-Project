@@ -11,6 +11,6 @@ namespace Code.KMJ.UnitSystem.Sound
 
         public bool IsLooping;
 
-        [Range(0, 101)] public float Volume;
+        [Range(0, 1)] public float Volume;
     }
 }

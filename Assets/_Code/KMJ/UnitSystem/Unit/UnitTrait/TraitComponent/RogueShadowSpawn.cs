@@ -2,33 +2,39 @@
 using _Code.Core.EventBus.Events.Trait;
 using Code.Core.Events.Bus;
 using Code.Core.Interfaces;
-using Unity.Cinemachine;
 using UnityEngine;
 
 namespace Code.UnitSystem.TraitSystem
 {
     public class RogueShadowSpawn : MonoBehaviour, IUnitComponent
     {
-        [SerializeField] private List<RogueShadow> shadows = new List<RogueShadow>();
+        [SerializeField] private List<RogueShadow> shadows = new();
         [SerializeField] private int maxShadowCnt = 3;
+
         private RogueShadow _currentShadowObj;
-        
+
         private int _shadowCnt = 0;
         private int _currentIdx = 0;
-        private int _maxIdx = 0;
 
         private CharacterUnit _unit;
 
         public void Initialize(Unit owner)
         {
-            _maxIdx = shadows.Count;
+            _unit = owner as CharacterUnit;
+
             _currentIdx = 0;
             _shadowCnt = 0;
+            _currentShadowObj = null;
+
+            maxShadowCnt = Mathf.Min(maxShadowCnt, shadows.Count);
 
             foreach (var shadow in shadows)
-                shadow.gameObject.SetActive(false);
+            {
+                if (shadow != null)
+                    shadow.gameObject.SetActive(false);
+            }
 
-            _unit = owner as CharacterUnit;
+            Bus<RogueGimicBarEvent>.Raise(new RogueGimicBarEvent(_shadowCnt));
         }
 
         public int GetMaxShadowCnt() => maxShadowCnt;
@@ -37,45 +43,83 @@ namespace Code.UnitSystem.TraitSystem
 
         public int GetCurrentShadowIdx() => _currentIdx;
 
-        public IMapTile GetShadowMapTile() => _currentShadowObj.GetMapTile();
-
         public List<RogueShadow> GetShadows() => shadows;
-        
+
         public RogueShadow GetCurrentShadow() => _currentShadowObj;
+
+        public IMapTile GetShadowMapTile()
+        {
+            return _currentShadowObj != null ? _currentShadowObj.GetMapTile() : null;
+        }
 
         public void SetShadowInfo(RogueShadow shadow, bool active)
         {
-            foreach (var shadowInfo in shadows)
-            {
-                if(shadowInfo == shadow)
-                        shadowInfo.gameObject.SetActive(active);
+            if (shadow == null) return;
+            if (!shadows.Contains(shadow)) return;
 
-                if (active == false)
-                {
-                    _currentIdx -= 1;
-                }
+            bool wasActive = shadow.gameObject.activeSelf;
+
+            shadow.gameObject.SetActive(active);
+
+            if (active && !wasActive)
+            {
+                _shadowCnt++;
             }
+            else if (!active && wasActive)
+            {
+                _shadowCnt--;
+            }
+
+            _shadowCnt = Mathf.Clamp(_shadowCnt, 0, maxShadowCnt);
+
+            if (_currentShadowObj == shadow && !active)
+                _currentShadowObj = null;
+
+            Bus<RogueGimicBarEvent>.Raise(new RogueGimicBarEvent(_shadowCnt));
         }
 
-        public void SetShadow(IMapTile trm)
+        public void SetShadow(IMapTile tile)
         {
-            if (_maxIdx <= 0) return;
+            if (tile == null) return;
+            if (shadows == null || shadows.Count == 0) return;
+            if (maxShadowCnt <= 0) return;
 
-            if (_currentIdx < 0) _currentIdx = 0;
+            RogueShadow shadow = shadows[_currentIdx];
 
-            var shadow = shadows[_currentIdx];
+            if (shadow == null)
+            {
+                MoveNextIndex();
+                return;
+            }
+
+            bool wasActive = shadow.gameObject.activeSelf;
+
             shadow.gameObject.SetActive(true);
-            shadow.SetPos(trm.WorldPos);
-            shadow.SetTile(trm);
+            shadow.SetPos(tile.WorldPos);
+            shadow.SetTile(tile);
+
             _currentShadowObj = shadow;
 
-            if (_shadowCnt < maxShadowCnt)
+            if (!wasActive)
                 _shadowCnt++;
+
+            _shadowCnt = Mathf.Clamp(_shadowCnt, 0, maxShadowCnt);
+
+            Bus<RogueGimicBarEvent>.Raise(new RogueGimicBarEvent(_shadowCnt));
+
+            MoveNextIndex();
+        }
+
+        private void MoveNextIndex()
+        {
             
             Bus<RogueSpecEvent>.Raise(new RogueSpecEvent(_shadowCnt));
             
             _currentIdx++;
-            if (_currentIdx >= _maxIdx)
+
+            int limit = Mathf.Min(maxShadowCnt, shadows.Count);
+
+            if (_currentIdx >= limit)
                 _currentIdx = 0;
         }
 
@@ -83,11 +127,15 @@ namespace Code.UnitSystem.TraitSystem
         {
             foreach (var shadow in shadows)
             {
-                shadow.gameObject.SetActive(false);
+                if (shadow != null)
+                    shadow.gameObject.SetActive(false);
             }
 
             _currentIdx = 0;
             _shadowCnt = 0;
+            _currentShadowObj = null;
+
+            Bus<RogueGimicBarEvent>.Raise(new RogueGimicBarEvent(_shadowCnt));
         }
     }
 }
