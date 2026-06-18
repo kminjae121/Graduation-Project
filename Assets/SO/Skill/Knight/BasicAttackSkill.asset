@@ -22,7 +22,8 @@ MonoBehaviour:
   skillUIImage: {fileID: 21300000, guid: 472ed1cd53a54e445bdc0cb40a3f6f28, type: 3}
   className: BasicAttackSkill
   skillPrice: 0
-  SkillDamage: 150
+  SkillDamage: 1
   SkillRange: 1
+  MinRange: 0
   IsOwnSkill: 0
   SkillType: 1

@@ -21,7 +21,7 @@ MonoBehaviour:
   skillUIImage: {fileID: 21300000, guid: 0cb6fb332f6582b4b89008cb6769a9b7, type: 3}
   className: Code.SkillSystem.GolemPunishAllAttackSkill
   skillPrice: 0
-  SkillDamage: 0
+  SkillDamage: 1
   SkillRange: 1
   MinRange: 0
   IsOwnSkill: 0

@@ -21,7 +21,7 @@ MonoBehaviour:
   skillUIImage: {fileID: 0}
   className: Code.SkillSystem.EnemyFireballSkill
   skillPrice: 0
-  SkillDamage: 500
+  SkillDamage: 5
   SkillRange: 3
   MinRange: 1
   IsOwnSkill: 0

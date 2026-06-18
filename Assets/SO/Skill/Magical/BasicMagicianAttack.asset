@@ -21,7 +21,8 @@ MonoBehaviour:
   skillUIImage: {fileID: 21300000, guid: b65316ed346908f429d795ed240afcf4, type: 3}
   className: LongAttack
   skillPrice: 0
-  SkillDamage: 150
+  SkillDamage: 11
   SkillRange: 5
+  MinRange: 0
   IsOwnSkill: 0
   SkillType: 0

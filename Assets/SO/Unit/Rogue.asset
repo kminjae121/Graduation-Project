@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitName: Rogue
   UnitClass: "\uB0C9\uD639\uD55C \uB3C4\uC801"
-  UnitImage: {fileID: 21300000, guid: e2a3602bcd60d22449e1aea7ec6b9e4f, type: 3}
+  UnitImage: {fileID: 21300000, guid: 866f6e09cd8e60848950ad8038e0cf84, type: 3}
   UnitSpawn: {fileID: 11400000, guid: 0458a1ab73a81ec4fb907ae3a1ceb906, type: 2}
   SkillStorage: {fileID: 11400000, guid: 9380b9c89da816143870c3f6246c846e, type: 2}
   OwnSkillStorage: {fileID: 11400000, guid: d863b61387956f640bbb8f75dd3c8442, type: 2}

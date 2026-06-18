@@ -15,4 +15,4 @@ MonoBehaviour:
   Clip: {fileID: 8300000, guid: a20ca16b7667b27499fc8cb4077f67ff, type: 3}
   AudioName: ShadowDownSound
   IsLooping: 0
-  Volume: 80
+  Volume: 1

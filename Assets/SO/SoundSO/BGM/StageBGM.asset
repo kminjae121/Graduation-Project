@@ -15,4 +15,4 @@ MonoBehaviour:
   Clip: {fileID: 8300000, guid: 0388a3460cc96db438c33c8e98a0377b, type: 3}
   AudioName: StageBGM
   IsLooping: 1
-  Volume: 20
+  Volume: 0.3

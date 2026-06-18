@@ -83,8 +83,8 @@ namespace Code.SkillSystem
                 {
                     if (_statCompo != null)
                     {
-                        int skillDamageValue = _statCompo.GetStat(StatInfo.AtkDamage);  
-                        int finallyDamage = skillDamageValue * (skill.BasicSkillDamage/ 100);  
+                        int skillDamageValue = _statCompo.GetStat(StatInfo.AtkDamage);
+                        int finallyDamage = (int)(skillDamageValue * skill.BasicSkillDamage);
                         basicDamage = finallyDamage;
                     }
                     else
