@@ -34,7 +34,7 @@ namespace Code.UnitSystem.TraitSystem
                     shadow.gameObject.SetActive(false);
             }
 
-            Bus<RogueGimicBarEvent>.Raise(new RogueGimicBarEvent(_shadowCnt));
+            Bus<RogueSpecEvent>.Raise(new RogueSpecEvent(_shadowCnt));
         }
 
         public int GetMaxShadowCnt() => maxShadowCnt;
@@ -75,7 +75,7 @@ namespace Code.UnitSystem.TraitSystem
             if (_currentShadowObj == shadow && !active)
                 _currentShadowObj = null;
 
-            Bus<RogueGimicBarEvent>.Raise(new RogueGimicBarEvent(_shadowCnt));
+            Bus<RogueSpecEvent>.Raise(new RogueSpecEvent(_shadowCnt));
         }
 
         public void SetShadow(IMapTile tile)
@@ -105,7 +105,7 @@ namespace Code.UnitSystem.TraitSystem
 
             _shadowCnt = Mathf.Clamp(_shadowCnt, 0, maxShadowCnt);
 
-            Bus<RogueGimicBarEvent>.Raise(new RogueGimicBarEvent(_shadowCnt));
+            Bus<RogueSpecEvent>.Raise(new RogueSpecEvent(_shadowCnt));
 
             MoveNextIndex();
         }
@@ -135,7 +135,7 @@ namespace Code.UnitSystem.TraitSystem
             _shadowCnt = 0;
             _currentShadowObj = null;
 
-            Bus<RogueGimicBarEvent>.Raise(new RogueGimicBarEvent(_shadowCnt));
+            Bus<RogueSpecEvent>.Raise(new RogueSpecEvent(_shadowCnt));
         }
     }
 }
