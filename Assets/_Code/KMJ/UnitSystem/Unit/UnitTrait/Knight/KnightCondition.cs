@@ -28,7 +28,7 @@ namespace Code.UnitSystem.TraitSystem
         {
             SetStack();
             
-            Bus<KnightGimicBarEvent>.Raise(new KnightGimicBarEvent(_stack));
+            Bus<KnightSpecEvent>.Raise(new KnightSpecEvent(_stack));
             
             if (_stack >= _maxStack)
             {

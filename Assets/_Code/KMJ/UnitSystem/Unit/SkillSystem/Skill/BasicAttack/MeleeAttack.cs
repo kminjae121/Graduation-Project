@@ -89,7 +89,7 @@ public class MeleeAttack : BasicUnitSkill
         SkillFeedbackEvent?.Invoke();
         
         if (_characterUnit.unitSO.UnitType == UnitType.Rogue)
-            Bus<UseGimicEvent>.Raise(new UseGimicEvent(UnitType.Rogue, _target));
+            Bus<UseSpecEvent>.Raise(new UseSpecEvent(UnitType.Rogue, _target));
         
         Bus<DamageEvent>.Raise(new DamageEvent(DamageData,_target,AddDamage, _characterUnit,false,false,0.3f));
     }

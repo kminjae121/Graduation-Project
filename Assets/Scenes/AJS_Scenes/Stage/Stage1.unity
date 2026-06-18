@@ -1,4 +1,4 @@
-%YAML 1.1
+﻿%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!29 &1
 OcclusionCullingSettings:
@@ -28118,7 +28118,7 @@ GameObject:
   - component: {fileID: 814436843}
   - component: {fileID: 814436844}
   m_Layer: 5
-  m_Name: RogueGimicUI
+  m_Name: RogueSpecUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28164,9 +28164,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e755fc00857495eabe8775ea3f30c0e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Code.UI.RogueGimicBarUI
+  m_EditorClassIdentifier: Assembly-CSharp::Code.UI.RogueSpecUI
   UnitType: 2
-  gaugeImg: {fileID: 1416867760}
 --- !u!1 &816643925
 GameObject:
   m_ObjectHideFlags: 0
@@ -30521,19 +30520,19 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6444533551672190450, guid: 95ce46339f81fcd4b8e9ec6d904fa534, type: 3}
-      propertyPath: gimicUIs.Array.size
+      propertyPath: specUIs.Array.size
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6444533551672190450, guid: 95ce46339f81fcd4b8e9ec6d904fa534, type: 3}
-      propertyPath: 'gimicUIs.Array.data[1]'
+      propertyPath: 'specUIs.Array.data[1]'
       value: 
       objectReference: {fileID: 1311071295}
     - target: {fileID: 6444533551672190450, guid: 95ce46339f81fcd4b8e9ec6d904fa534, type: 3}
-      propertyPath: 'gimicUIs.Array.data[2]'
+      propertyPath: 'specUIs.Array.data[2]'
       value: 
       objectReference: {fileID: 814436844}
     - target: {fileID: 6444533551672190450, guid: 95ce46339f81fcd4b8e9ec6d904fa534, type: 3}
-      propertyPath: 'gimicUIs.Array.data[3]'
+      propertyPath: 'specUIs.Array.data[3]'
       value: 
       objectReference: {fileID: 1349089421}
     - target: {fileID: 7355554641239736217, guid: 95ce46339f81fcd4b8e9ec6d904fa534, type: 3}
@@ -43378,7 +43377,7 @@ GameObject:
   - component: {fileID: 1311071294}
   - component: {fileID: 1311071295}
   m_Layer: 5
-  m_Name: ArcherGimicUI
+  m_Name: ArcherSpecUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43424,9 +43423,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a17f12a9ce054d559538f93a642f5de2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Code.UI.ArcherGimicUI
+  m_EditorClassIdentifier: Assembly-CSharp::Code.UI.ArcherSpecUI
   UnitType: 1
-  gaugeImg: {fileID: 132292024}
 --- !u!1 &1315318010
 GameObject:
   m_ObjectHideFlags: 0
@@ -44534,7 +44532,7 @@ GameObject:
   - component: {fileID: 1349089420}
   - component: {fileID: 1349089421}
   m_Layer: 5
-  m_Name: MagicianGimicUI
+  m_Name: MagicianSpecUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44580,7 +44578,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1405763637d84753830fd5edf26db608, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Code.UI.MagicianGimicBarUI
+  m_EditorClassIdentifier: Assembly-CSharp::Code.UI.MagicianSpecUI
   UnitType: 4
   gaugeImg: {fileID: 802777250}
 --- !u!1 &1351722545

@@ -29,6 +29,17 @@ namespace Code.UI
 
         public PoolingItemSO PoolingType => poolingType;
         public GameObject GameObject => gameObject;
+        public ITurnable TargetUnit => _targetUnit;
+        public RectTransform RectTransform
+        {
+            get
+            {
+                if (_rectTransform == null)
+                    _rectTransform = GetComponent<RectTransform>();
+
+                return _rectTransform;
+            }
+        }
 
         private void Awake()
         {
@@ -48,6 +59,7 @@ namespace Code.UI
         public void ResetItem()
         {
             _scaleTween?.Kill();
+            RectTransform?.DOKill(false);
             _targetUnit = null;
             _isCurrentTurnSlot = false;
             transform.localScale = Vector3.one;

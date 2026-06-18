@@ -142,7 +142,7 @@ namespace Code.UnitSystem.TraitSystem
 
             _unitHealthCompo.SetMaxHp(_unitHealthCompo.MaxHealth - 5);
             
-            Bus<UseGimicEvent>.Raise(new UseGimicEvent(UnitType.Knight, null));
+            Bus<UseSpecEvent>.Raise(new UseSpecEvent(UnitType.Knight, null));
         }
 
         private void ReduceThisDamage(ref int damage)
@@ -151,7 +151,7 @@ namespace Code.UnitSystem.TraitSystem
             
             _unitHealthCompo.SetMaxHp(_unitHealthCompo.MaxHealth - 5);
             
-            Bus<UseGimicEvent>.Raise(new UseGimicEvent(UnitType.Knight, null));
+            Bus<UseSpecEvent>.Raise(new UseSpecEvent(UnitType.Knight, null));
         }
 
         private void OnValidate()

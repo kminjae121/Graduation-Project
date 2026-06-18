@@ -25,12 +25,18 @@ namespace Code.UI
         [SerializeField] private bool alignSlotTopEdges = true;
         [SerializeField] private Vector2 slotScalePivot = new Vector2(0.5f, 1f);
 
+        [Header("Movement Animation")]
+        [SerializeField, Min(0f)] private float moveDuration = 0.28f;
+        [SerializeField] private Ease moveEase = Ease.OutCubic;
+        [SerializeField] private Vector2 newSlotStartOffset = new Vector2(90f, 0f);
+
         [Header("UI Pool")]
         [SerializeField] private Transform slotContainer;
         [SerializeField] private PoolingItemSO unitSlotPoolingSO;
 
         private PoolManagerMono _poolManager;
         private RectTransform _slotContainerRect;
+        private HorizontalOrVerticalLayoutGroup _slotLayoutGroup;
         private readonly List<TurnOrderUnitSlotUI> _activeUnitSlots = new List<TurnOrderUnitSlotUI>();
         private readonly List<ITurnable> _recentTurnHistory = new List<ITurnable>();
 
@@ -74,6 +80,7 @@ namespace Code.UI
             List<ITurnable> displayUnits = BuildDisplayUnits();
             int slotCount = Mathf.Max(1, showTurnOrderCount);
             int currentIndex = GetCurrentDisplayIndex();
+            Dictionary<ITurnable, Queue<Vector2>> previousPositions = CaptureActiveSlotPositions();
 
             ClearAllSlots();
 
@@ -104,7 +111,7 @@ namespace Code.UI
                 _activeUnitSlots.Add(unitSlot);
             }
 
-            MarkSlotLayoutDirty();
+            AnimateSlotMovement(previousPositions);
         }
 
         private void HandleUnitTurnEnd(UnitTurnEndEvent evt)
@@ -223,6 +230,7 @@ namespace Code.UI
             if (layoutGroup == null)
                 return;
 
+            _slotLayoutGroup = layoutGroup;
             layoutGroup.childScaleWidth = true;
             layoutGroup.childScaleHeight = true;
             if (alignSlotTopEdges)
@@ -270,6 +278,81 @@ namespace Code.UI
             }
 
             _activeUnitSlots.Clear();
+        }
+
+        private Dictionary<ITurnable, Queue<Vector2>> CaptureActiveSlotPositions()
+        {
+            Dictionary<ITurnable, Queue<Vector2>> positions = new Dictionary<ITurnable, Queue<Vector2>>();
+
+            for (int i = 0; i < _activeUnitSlots.Count; ++i)
+            {
+                TurnOrderUnitSlotUI slot = _activeUnitSlots[i];
+                if (slot == null || slot.TargetUnit == null || slot.RectTransform == null)
+                    continue;
+
+                if (!positions.TryGetValue(slot.TargetUnit, out Queue<Vector2> queue))
+                {
+                    queue = new Queue<Vector2>();
+                    positions.Add(slot.TargetUnit, queue);
+                }
+
+                queue.Enqueue(slot.RectTransform.anchoredPosition);
+            }
+
+            return positions;
+        }
+
+        private void AnimateSlotMovement(Dictionary<ITurnable, Queue<Vector2>> previousPositions)
+        {
+            if (_slotContainerRect == null)
+                return;
+
+            if (_slotLayoutGroup != null)
+                _slotLayoutGroup.enabled = true;
+
+            Canvas.ForceUpdateCanvases();
+            LayoutRebuilder.ForceRebuildLayoutImmediate(_slotContainerRect);
+
+            List<Vector2> targetPositions = new List<Vector2>(_activeUnitSlots.Count);
+            for (int i = 0; i < _activeUnitSlots.Count; ++i)
+            {
+                RectTransform rectTransform = _activeUnitSlots[i] != null ? _activeUnitSlots[i].RectTransform : null;
+                targetPositions.Add(rectTransform != null ? rectTransform.anchoredPosition : Vector2.zero);
+            }
+
+            if (_slotLayoutGroup != null)
+                _slotLayoutGroup.enabled = false;
+
+            for (int i = 0; i < _activeUnitSlots.Count; ++i)
+            {
+                TurnOrderUnitSlotUI slot = _activeUnitSlots[i];
+                if (slot == null || slot.RectTransform == null)
+                    continue;
+
+                RectTransform rectTransform = slot.RectTransform;
+                Vector2 targetPosition = targetPositions[i];
+                Vector2 startPosition = ResolveStartPosition(slot.TargetUnit, previousPositions, targetPosition);
+
+                rectTransform.anchoredPosition = startPosition;
+
+                if (moveDuration <= 0f)
+                {
+                    rectTransform.anchoredPosition = targetPosition;
+                    continue;
+                }
+
+                rectTransform.DOAnchorPos(targetPosition, moveDuration)
+                    .SetEase(moveEase)
+                    .SetUpdate(true);
+            }
+        }
+
+        private Vector2 ResolveStartPosition(ITurnable unit, Dictionary<ITurnable, Queue<Vector2>> previousPositions, Vector2 targetPosition)
+        {
+            if (unit != null && previousPositions != null && previousPositions.TryGetValue(unit, out Queue<Vector2> queue) && queue.Count > 0)
+                return queue.Dequeue();
+
+            return targetPosition + newSlotStartOffset;
         }
     }
 }

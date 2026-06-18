@@ -72,7 +72,7 @@ namespace Code.UnitSystem.TraitSystem
             if (_shadowCnt < maxShadowCnt)
                 _shadowCnt++;
             
-            Bus<RogueGimicBarEvent>.Raise(new RogueGimicBarEvent(_shadowCnt));
+            Bus<RogueSpecEvent>.Raise(new RogueSpecEvent(_shadowCnt));
             
             _currentIdx++;
             if (_currentIdx >= _maxIdx)

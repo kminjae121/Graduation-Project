@@ -27,7 +27,7 @@ namespace Code.UnitSystem.TraitSystem
             _condition = GetComponentInChildren<IUnitCondition>();
             _perform = GetComponentInChildren<IUnitPerform>();
             
-            Bus<UseGimicEvent>.Subscribe(CheckCondition);
+            Bus<UseSpecEvent>.Subscribe(CheckCondition);
 
             if (inputReader != null)
                 inputReader.OnAttackEvent += HandleTraitEnemy;
@@ -61,12 +61,12 @@ namespace Code.UnitSystem.TraitSystem
 
         private void OnDestroy()
         {
-            Bus<UseGimicEvent>.Unsubscribe(CheckCondition);
+            Bus<UseSpecEvent>.Unsubscribe(CheckCondition);
             if(inputReader != null)
                 inputReader.OnAttackEvent -= HandleTraitEnemy;
         }
 
-        public void CheckCondition(UseGimicEvent evt)
+        public void CheckCondition(UseSpecEvent evt)
         {
             if (evt.unitType != _unitType)
                 return;

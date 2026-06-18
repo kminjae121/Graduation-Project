@@ -1,4 +1,4 @@
-using _Code.Core.EventBus.Events.Trait;
+﻿using _Code.Core.EventBus.Events.Trait;
 using Code.Core.Events.Bus;
 using UnityEditor;
 using UnityEngine;
@@ -18,7 +18,7 @@ namespace Code.UnitSystem.TraitSystem
 
             _currentValue += 1;
             
-            Bus<ArcherGimicEvent>.Raise(new ArcherGimicEvent(_currentValue));
+            Bus<ArcherSpecEvent>.Raise(new ArcherSpecEvent(_currentValue));
             
             if (_currentValue >= maxValue)
             {
