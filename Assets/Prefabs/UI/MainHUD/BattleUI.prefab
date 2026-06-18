@@ -2610,7 +2610,7 @@ MonoBehaviour:
   - {fileID: 8575583353987918398}
   - {fileID: 46646453418519681}
   - {fileID: 9080648238946715471}
-  fillDuration: 0.5
+  fillDuration: 1.1
 --- !u!114 &8118529689650617686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3040,7 +3040,7 @@ MonoBehaviour:
   - {fileID: 4198642538987353310}
   - {fileID: 669349660888513604}
   - {fileID: 7059922158592779939}
-  fillDuration: 0.5
+  fillDuration: 1.1
 --- !u!114 &4120537703211752098
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using _Code.Core.EventBus.Events.Trait;
 using Code.Core.Events.Bus;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +13,8 @@ namespace Code.UI
         [SerializeField] private List<Image> gaugeImages = new List<Image>();
 
         [Header("Animation")]
-        [SerializeField, Min(0f)] private float fillDuration = 0.5f;
+        [SerializeField, Min(0f)] private float fillDuration = 1.1f;
+        [SerializeField] private Ease fillEase = Ease.OutCubic;
 
         private const int MaxShadowCount = 3;
         private List<Image> _resolvedGaugeImages = new List<Image>();
@@ -37,7 +39,7 @@ namespace Code.UI
         private void SetRogueSpecBar(RogueSpecEvent evt)
         {
             int shadowCount = Mathf.FloorToInt(evt.value);
-            SetCountGaugeImages(_resolvedGaugeImages, shadowCount, MaxShadowCount, fillDuration, false);
+            SetCountGaugeImages(_resolvedGaugeImages, shadowCount, MaxShadowCount, fillDuration, false, fillEase);
         }
 
         public override void OperationUI()

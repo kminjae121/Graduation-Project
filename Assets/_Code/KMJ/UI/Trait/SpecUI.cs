@@ -39,7 +39,7 @@ namespace Code.UI
             return result;
         }
 
-        protected static void SetCountGaugeImages(IReadOnlyList<Image> images, int value, int maxValue, float duration, bool immediate)
+        protected static void SetCountGaugeImages(IReadOnlyList<Image> images, int value, int maxValue, float duration, bool immediate, Ease ease = Ease.OutCubic)
         {
             if (images == null || images.Count == 0)
                 return;
@@ -63,7 +63,7 @@ namespace Code.UI
                     continue;
                 }
 
-                image.DOFillAmount(targetFillAmount, duration);
+                image.DOFillAmount(targetFillAmount, duration).SetEase(ease);
             }
         }
 
