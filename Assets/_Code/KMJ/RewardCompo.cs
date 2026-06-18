@@ -50,9 +50,6 @@ namespace _Code.KMJ
             
             btns[0].onClick.AddListener(ClickFirst);
             btns[1].onClick.AddListener(ClickSecond);
-            
-            
-            particleSystem.Play();
         }
 
         private void OnDestroy()
@@ -69,6 +66,9 @@ namespace _Code.KMJ
 
         private IEnumerator RandomItem()
         {
+            yield return new WaitForSeconds(1f);
+            particleSystem.Play();
+            yield return new WaitForSeconds(0.45f);
             particleSystem2.Play();
             particleSystem3.Play();
             particleSystem4.Play();

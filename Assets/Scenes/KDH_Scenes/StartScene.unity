@@ -1390,7 +1390,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 103799758284714348, guid: 468003bccfde9bc47bafe8270e493084, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 103799758284714348, guid: 468003bccfde9bc47bafe8270e493084, type: 3}
       propertyPath: m_AnchorMin.x
@@ -1398,7 +1398,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 103799758284714348, guid: 468003bccfde9bc47bafe8270e493084, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 103799758284714348, guid: 468003bccfde9bc47bafe8270e493084, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1438,11 +1438,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 103799758284714348, guid: 468003bccfde9bc47bafe8270e493084, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 1185
       objectReference: {fileID: 0}
     - target: {fileID: 103799758284714348, guid: 468003bccfde9bc47bafe8270e493084, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -80
       objectReference: {fileID: 0}
     - target: {fileID: 103799758284714348, guid: 468003bccfde9bc47bafe8270e493084, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1459,6 +1459,10 @@ PrefabInstance:
     - target: {fileID: 4894888731229164238, guid: 468003bccfde9bc47bafe8270e493084, type: 3}
       propertyPath: m_Name
       value: CharacterSlotButton (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4894888731229164238, guid: 468003bccfde9bc47bafe8270e493084, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7485772768366026881, guid: 468003bccfde9bc47bafe8270e493084, type: 3}
       propertyPath: characterInfo
@@ -4626,8 +4630,6 @@ MonoBehaviour:
     modelPrefab: {fileID: 4599886629886981136, guid: fcd15acc52b1dbe49aed4a3dab4bda6a, type: 3}
   - unitType: 3
     modelPrefab: {fileID: 4751138496874483367, guid: 5f03f9e2f010f1b47aa77865594a3943, type: 3}
-  - unitType: 4
-    modelPrefab: {fileID: 1719735736707114364, guid: 54c88e4b8aef96a44850eb62ef433bf8, type: 3}
   maxHealthText: {fileID: 1697996419}
   atkText: {fileID: 994109171}
   defText: {fileID: 1657083591}
