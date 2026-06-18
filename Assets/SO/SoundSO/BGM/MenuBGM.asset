@@ -15,4 +15,4 @@ MonoBehaviour:
   Clip: {fileID: 8300000, guid: 6d6a362940b496845b4ad925da26c8ec, type: 3}
   AudioName: MenuBGM
   IsLooping: 1
-  Volume: 63.4
+  Volume: 0.8

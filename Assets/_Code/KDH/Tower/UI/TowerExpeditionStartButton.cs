@@ -47,6 +47,7 @@ namespace Code.Tower.UI
 
         public void OpenPartySelection()
         {
+            PanelManager.CloseAll();
             TowerSceneLoader.DoTransition(ShowPartySelection, transitionEffect);
         }
 

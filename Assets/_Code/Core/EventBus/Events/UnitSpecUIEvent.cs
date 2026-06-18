@@ -1,10 +1,10 @@
 ﻿namespace Code.Core.Events.Bus
 {
-    public struct UnitGimicUIEvent : IEvent
+    public struct UnitSpecUIEvent : IEvent
     {
         public UnitType UnitType;
         
-        public UnitGimicUIEvent(UnitType unitType)
+        public UnitSpecUIEvent(UnitType unitType)
         {
             UnitType = unitType;
         }

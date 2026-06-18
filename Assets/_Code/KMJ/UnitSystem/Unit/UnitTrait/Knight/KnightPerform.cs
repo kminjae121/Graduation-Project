@@ -21,7 +21,7 @@ namespace Code.UnitSystem.TraitSystem
         public void Perform(GameObject target)
         {
             condition.ResetStack();
-            Bus<KnightGimicBarEvent>.Raise(new KnightGimicBarEvent(0));
+            Bus<KnightSpecEvent>.Raise(new KnightSpecEvent(0));
             
             foreach (var unit in defenseCompo.Targets)
             {

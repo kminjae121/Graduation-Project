@@ -68,7 +68,7 @@ public class LongAttack : BasicUnitSkill
             effectPrefab.StartParticleEffect(dir);
             
             if (_characterUnit.unitSO.UnitType == UnitType.Magician)
-                Bus<UseGimicEvent>.Raise(new UseGimicEvent(UnitType.Magician, _target));
+                Bus<UseSpecEvent>.Raise(new UseSpecEvent(UnitType.Magician, _target));
             
             effectPrefab.gameObject.SetActive(true);
         }

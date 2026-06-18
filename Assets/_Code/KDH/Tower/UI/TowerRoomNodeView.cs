@@ -25,6 +25,7 @@ namespace Code.Tower.UI
         [SerializeField, Min(0.01f)] private float colorChangeSpeed = 14f;
         [SerializeField, Min(0.01f)] private float selectedFillSpeed = 14f;
         [SerializeField, Min(0f)] private float selectionCommitDelay = 0.22f;
+        [SerializeField, Range(0.9f, 1f)] private float selectionCompleteThreshold = 0.995f;
 
         public event Action Clicked;
         public event Action<PointerEventData> PointerEntered;
@@ -153,20 +154,35 @@ namespace Code.Tower.UI
 
             PlaySelected();
 
-            if (selectionCommitDelay <= 0f)
-            {
-                Clicked?.Invoke();
-                return;
-            }
+            if (button != null)
+                button.interactable = false;
 
-            _selectionRoutine = StartCoroutine(CommitSelectionAfterDelay());
+            _selectionRoutine = StartCoroutine(CommitSelectionAfterEffect());
         }
 
-        private IEnumerator CommitSelectionAfterDelay()
+        private IEnumerator CommitSelectionAfterEffect()
         {
-            yield return new WaitForSecondsRealtime(selectionCommitDelay);
+            float elapsed = 0f;
+
+            while (!IsSelectionEffectComplete(elapsed))
+            {
+                elapsed += Time.unscaledDeltaTime;
+                yield return null;
+            }
+
             _selectionRoutine = null;
             Clicked?.Invoke();
+        }
+
+        private bool IsSelectionEffectComplete(float elapsed)
+        {
+            if (elapsed < selectionCommitDelay)
+                return false;
+
+            if (selectedRoomIcon == null)
+                return true;
+
+            return selectedRoomIcon.fillAmount >= selectionCompleteThreshold;
         }
 
         private void ResolveBindings()

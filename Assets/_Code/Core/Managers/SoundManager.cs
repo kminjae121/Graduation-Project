@@ -15,8 +15,8 @@ namespace Code.Core
         private readonly Stack<AudioSource> audioSources = new Stack<AudioSource>();
         private readonly List<AudioSource> _usingSources = new List<AudioSource>();
 
-        private readonly Dictionary<string, AudioClip> _clipDictionary = new Dictionary<string, AudioClip>();
-        private readonly Dictionary<string, AudioClip> _loopingClipDictionary = new Dictionary<string, AudioClip>();
+        private readonly Dictionary<string, SoundClip> _clipDictionary = new Dictionary<string, SoundClip>();
+        private readonly Dictionary<string, SoundClip> _loopingClipDictionary = new Dictionary<string, SoundClip>();
 
         protected override void Awake()
         {
@@ -36,12 +36,12 @@ namespace Code.Core
                 if (audio.IsLooping)
                 {
                     if (!_loopingClipDictionary.ContainsKey(audio.AudioName))
-                        _loopingClipDictionary.Add(audio.AudioName, audio.Clip);
+                        _loopingClipDictionary.Add(audio.AudioName, audio);
                 }
                 else
                 {
                     if (!_clipDictionary.ContainsKey(audio.AudioName))
-                        _clipDictionary.Add(audio.AudioName, audio.Clip);
+                        _clipDictionary.Add(audio.AudioName, audio);
                 }
             }
 
@@ -65,8 +65,9 @@ namespace Code.Core
             AudioSource source = GetSource();
             if (source == null) return;
 
-            source.clip = clip;
+            source.clip = clip.Clip;
             source.loop = false;
+            source.volume = clip.Volume;
             source.gameObject.SetActive(true);
             source.Play();
 
@@ -82,14 +83,15 @@ namespace Code.Core
                 return;
             }
 
-            if (IsLoopingAlreadyPlaying(clip))
+            if (IsLoopingAlreadyPlaying(clip.Clip))
                 return;
 
             AudioSource source = GetSource();
             if (source == null) return;
 
-            source.clip = clip;
+            source.clip = clip.Clip;
             source.loop = true;
+            source.volume = clip.Volume;
             source.gameObject.SetActive(true);
             source.Play();
 
@@ -126,7 +128,7 @@ namespace Code.Core
             if (!_loopingClipDictionary.TryGetValue(name, out var clip))
                 return;
 
-            StopSourceByClip(clip, true);
+            StopSourceByClip(clip.Clip, true);
         }
         
         public void StopClip(string name)
@@ -134,7 +136,7 @@ namespace Code.Core
             if (!_clipDictionary.TryGetValue(name, out var clip))
                 return;
 
-            StopSourceByClip(clip, false);
+            StopSourceByClip(clip.Clip, false);
         }
 
         private IEnumerator ReturnSource(AudioSource source)

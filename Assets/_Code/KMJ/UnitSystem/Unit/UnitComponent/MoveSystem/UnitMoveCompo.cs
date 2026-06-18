@@ -154,7 +154,7 @@ namespace Code.UnitSystem
         {
             if (rogueCompo != null)
             {
-                rogueCompo.SetShadow(tile);
+                rogueCompo.SetShadow(CurrentMapTile);
                 Bus<UseGimicEvent>.Raise(new UseGimicEvent(UnitType.Rogue, null));
             }
             

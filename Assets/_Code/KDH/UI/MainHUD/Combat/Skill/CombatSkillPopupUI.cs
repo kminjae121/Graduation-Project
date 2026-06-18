@@ -17,6 +17,9 @@ namespace Code.UI
         [SerializeField] private TextMeshProUGUI skillDamageText;
         [SerializeField] private TextMeshProUGUI skillRangeText;
 
+        [Header("Position")]
+        [SerializeField] private Vector2 popupOffset;
+
         private CanvasGroup _canvasGroup;
         private RectTransform _rectTransform;
         
@@ -61,7 +64,7 @@ namespace Code.UI
             if (evt.Pivot != null)
             {
                 _rectTransform.position = evt.Pivot.position;
-                _rectTransform.anchoredPosition += new Vector2(evt.Offset.x, evt.Offset.y);
+                _rectTransform.anchoredPosition += evt.Offset + popupOffset;
             }
             
             Show();

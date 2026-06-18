@@ -15,4 +15,4 @@ MonoBehaviour:
   Clip: {fileID: 8300000, guid: b3071549b47a6924ca536dc6c8aab1c1, type: 3}
   AudioName: SwordSwingSound
   IsLooping: 0
-  Volume: 50
+  Volume: 0.65

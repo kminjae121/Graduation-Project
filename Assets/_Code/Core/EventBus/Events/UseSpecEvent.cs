@@ -2,13 +2,13 @@
 
 namespace Code.Core.Events.Bus
 {
-    public struct UseGimicEvent : IEvent
+    public struct UseSpecEvent : IEvent
     {
         public UnitType unitType;
 
         public GameObject target;
         
-        public UseGimicEvent(UnitType unitType, GameObject target)
+        public UseSpecEvent(UnitType unitType, GameObject target)
         {
             this.unitType = unitType;
             this.target = target;

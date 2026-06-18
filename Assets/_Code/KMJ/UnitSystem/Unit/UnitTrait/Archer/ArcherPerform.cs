@@ -68,7 +68,7 @@ namespace Code.UnitSystem.TraitSystem
             }
             SoundManager.Instance.PlayClip("BowSound");
             Bus<CamShakeEvent>.Raise(new CamShakeEvent(0.15f));
-            Bus<ArcherGimicEvent>.Raise(new ArcherGimicEvent(0));
+            Bus<ArcherSpecEvent>.Raise(new ArcherSpecEvent(0));
             triggerCompo.OnAttackTrigger -= AtkAllEnemies; 
         }
 
