@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitName: Enemy
   UnitClass: 
-  UnitImage: {fileID: 21300000, guid: 9477cb249f8e7864686e99dd0d6d1567, type: 3}
+  UnitImage: {fileID: 21300000, guid: f33eabd7b78ef244c95baec2c98fdbb5, type: 3}
   UnitSpawn: {fileID: 11400000, guid: 0d183319405354943a860fa83c0bffa1, type: 2}
   SkillStorage: {fileID: 0}
   OwnSkillStorage: {fileID: 0}
