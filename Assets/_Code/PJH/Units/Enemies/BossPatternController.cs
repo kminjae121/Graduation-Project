@@ -79,19 +79,20 @@ namespace Code.UnitSystem.Enemies
         {
             PatternStep.Basic => basicSkill,
             PatternStep.GimmickStart => gimmickSkill,
+            PatternStep.GimmickResolve => basicSkill,
             PatternStep.Punish => punishSkill,
             PatternStep.Weakened => weakSkill,
             _ => null
         };
 
         internal bool UseDefaultPlan
-            => _step == PatternStep.Basic && basicSkill == null && useDefaultBasic;
+            => (_step == PatternStep.Basic || _step == PatternStep.GimmickResolve)
+               && basicSkill == null && useDefaultBasic;
 
         internal bool FallbackToDefault => fallbackToDefault;
 
         internal bool SkipTurn
-            => (_step == PatternStep.GimmickResolve && !_gimmickResolved)
-               || (_step == PatternStep.Weakened && weakSkill == null && skipInWeak);
+            => _step == PatternStep.Weakened && weakSkill == null && skipInWeak;
 
         internal bool CanMoveNow
         {
@@ -179,6 +180,9 @@ namespace Code.UnitSystem.Enemies
 
         private bool ShouldAdvanceBySkill(SkillSO skillSO)
         {
+            if (_step == PatternStep.GimmickResolve)
+                return false;
+
             if (_step == PatternStep.Basic && basicSkill == null && useDefaultBasic)
                 return skillSO != null;
 
