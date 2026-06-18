@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Code.Core;
 using Code.Core.Events.Bus;
 using Code.UnitSystem;
 using Code.UnitSystem.Combat;
@@ -68,6 +69,7 @@ public class BombArrow : BasicUnitSkill
         _shootItemManager.SetDamageData(DamageData,AddDamage);
         _shootItemManager.CreateShootItem("BombArrow",pos, slashRot);
     
+        SoundManager.Instance.PlayClip("BowSound");
         _target = null;
     }
 }

@@ -50,6 +50,7 @@ namespace Code.Core.Managers
             int sceneIdx = scenesName.IndexOf(sceneName);
             _currentSceneIdx = sceneIdx;
             
+            
             LoadSceneWithTransition(sceneName);
         }
 

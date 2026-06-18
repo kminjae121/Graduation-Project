@@ -1,5 +1,6 @@
 ﻿    using System.Collections;
-using Code.Core.Events.Bus;
+    using Code.Core;
+    using Code.Core.Events.Bus;
 using Code.UnitSystem;
 using Code.UnitSystem.Combat;
 using UnityEngine;
@@ -68,6 +69,7 @@ namespace Code.SkillSystem
             _shootItemManager.SetDamageData(DamageData,AddDamage);  
             _shootItemManager.CreateShootItem("PiercingArrow",pos, slashRot);
     
+            SoundManager.Instance.PlayClip("BowSound");
             _target = null;
         }
     }
