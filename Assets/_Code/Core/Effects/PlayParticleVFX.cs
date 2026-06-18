@@ -18,7 +18,7 @@ namespace Code.Effects
 
         public void StopVFX()
         {
-            particle.Stop(true);
+            particle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         }
 
         private void OnValidate()
