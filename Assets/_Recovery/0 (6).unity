@@ -2600,7 +2600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4310738326142391416, guid: 72cad89d56f064a4da80a8a03fa47db9, type: 3}
       propertyPath: scenesName.Array.size
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4310738326142391416, guid: 72cad89d56f064a4da80a8a03fa47db9, type: 3}
       propertyPath: 'scenesName.Array.data[2]'
@@ -2629,10 +2629,6 @@ PrefabInstance:
     - target: {fileID: 4310738326142391416, guid: 72cad89d56f064a4da80a8a03fa47db9, type: 3}
       propertyPath: 'scenesName.Array.data[8]'
       value: StartScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 4310738326142391416, guid: 72cad89d56f064a4da80a8a03fa47db9, type: 3}
-      propertyPath: 'scenesName.Array.data[9]'
-      value: TowerMapScene
       objectReference: {fileID: 0}
     - target: {fileID: 5172779121907639654, guid: 72cad89d56f064a4da80a8a03fa47db9, type: 3}
       propertyPath: m_LocalPosition.x

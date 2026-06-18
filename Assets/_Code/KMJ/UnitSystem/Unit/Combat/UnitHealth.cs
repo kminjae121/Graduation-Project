@@ -182,10 +182,12 @@ namespace Code.UnitSystem.Combat
                _entity.OnDeathEvent?.Invoke();
                return;
            }
-           
-            _entity.OnHitEvent?.Invoke();
-            OnInteractionEvent?.Invoke(dealer, damage);
-            SoundManager.Instance.PlayClip("HitSound");
+           else
+           {
+               _entity.OnHitEvent?.Invoke();
+               OnInteractionEvent?.Invoke(dealer, damage);
+               SoundManager.Instance.PlayClip("HitSound");   
+           }
         }
 
         private int ApplyDamageTakenModifiers(int damage)

@@ -15,4 +15,4 @@ MonoBehaviour:
   Clip: {fileID: 8300000, guid: 05e0137baadb5884b8accbcb3be12315, type: 3}
   AudioName: LobbyBGM
   IsLooping: 1
-  Volume: 80
+  Volume: 0.7

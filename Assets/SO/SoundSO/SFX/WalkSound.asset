@@ -15,4 +15,4 @@ MonoBehaviour:
   Clip: {fileID: 8300000, guid: e1d5238033da68244bed777415b3ad74, type: 3}
   AudioName: WalkSound
   IsLooping: 0
-  Volume: 80
+  Volume: 1

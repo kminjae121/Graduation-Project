@@ -22,7 +22,7 @@ MonoBehaviour:
   skillUIImage: {fileID: 0}
   className: Code.SkillSystem.EnemyRangedSkill
   skillPrice: 0
-  SkillDamage: 500
+  SkillDamage: 5
   SkillRange: 4
   MinRange: 1
   IsOwnSkill: 0
