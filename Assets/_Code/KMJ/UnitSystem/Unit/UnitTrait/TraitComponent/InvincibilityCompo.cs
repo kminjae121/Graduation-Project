@@ -34,14 +34,24 @@ namespace Code.UnitSystem.TraitSystem
         
         public void Initialize(Unit owner)
         {
+            if (_owner != null)
+                _owner.OnDeathEvent -= HandleOwnerDeath;
+
             _owner = owner;
             _healthCompo = owner.GetUnitCompo<UnitHealth>();
             _vfxCompo = owner.GetUnitCompo<UnitVFXCompo>();   
+
+            _owner.OnDeathEvent -= HandleOwnerDeath;
+            _owner.OnDeathEvent += HandleOwnerDeath;
+
             Injector.InjectInto(this);
         }
 
         private void OnDestroy()
         {
+            if (_owner != null)
+                _owner.OnDeathEvent -= HandleOwnerDeath;
+
             if(_turnManager != null)
                 _turnManager.OnTurnStart -= CheckInvincibility;
 
@@ -53,8 +63,8 @@ namespace Code.UnitSystem.TraitSystem
             _maxTurnCnt = maxTurn;
             _curTurnCnt = 0;
             _healthCompo.IsInvincibility = true;
-            
-            _vfxCompo?.PlayVFX(effectName, _owner.transform.position, Quaternion.identity);
+
+            PlayEffect();
 
             if (_turnManager == null)
                 return;
@@ -66,6 +76,8 @@ namespace Code.UnitSystem.TraitSystem
         public void SetFrontGuard(int maxTurn, Transform guardTrm, float damageRate = 0f,
             float frontAngle = 120f, Action<Unit> frontGuardHitAction = null)
         {
+            ClearFrontGuard();
+
             _frontGuardMaxTurnCnt = Mathf.Max(1, maxTurn);
             _frontGuardTurnCnt = 0;
             _frontGuardTrm = guardTrm != null ? guardTrm : _owner.transform;
@@ -85,6 +97,8 @@ namespace Code.UnitSystem.TraitSystem
 
             Bus<UnitTurnEndEvent>.Unsubscribe(CheckFrontGuard);
             Bus<UnitTurnEndEvent>.Subscribe(CheckFrontGuard);
+
+            PlayEffect();
         }
 
         private void CheckInvincibility()
@@ -94,7 +108,7 @@ namespace Code.UnitSystem.TraitSystem
                 _turnManager.OnTurnStart -= CheckInvincibility;
                 _healthCompo.IsInvincibility = false;
                 _curTurnCnt = 0;
-                _vfxCompo?.StopVFX(effectName);
+                StopEffect();
                 return;
             }
             
@@ -124,7 +138,10 @@ namespace Code.UnitSystem.TraitSystem
 
         private void GuardFrontDamage(ref DamageEvent evt, ref bool isCritical, ref bool isPenetrate)
         {
-            if (!_isFrontGuard || evt.target != _owner.gameObject || evt.Owner == null)
+            if (!_isFrontGuard || _owner == null || evt.target != _owner.gameObject || evt.Owner == null)
+                return;
+
+            if (_healthCompo == null || _healthCompo.IsDead)
                 return;
 
             if (!IsFrontAttack(evt.Owner.transform.position))
@@ -168,7 +185,34 @@ namespace Code.UnitSystem.TraitSystem
 
             Bus<UnitTurnEndEvent>.Unsubscribe(CheckFrontGuard);
 
-            _vfxCompo?.StopVFX(effectName);
+            StopEffect();
+        }
+
+        private void HandleOwnerDeath()
+        {
+            if (_turnManager != null)
+                _turnManager.OnTurnStart -= CheckInvincibility;
+
+            _curTurnCnt = 0;
+            _maxTurnCnt = 0;
+
+            if (_healthCompo != null)
+                _healthCompo.IsInvincibility = false;
+
+            ClearFrontGuard();
+            StopEffect();
+        }
+
+        private void PlayEffect()
+        {
+            if (!string.IsNullOrWhiteSpace(effectName))
+                _vfxCompo?.PlayVFX(effectName, _owner.transform.position, Quaternion.identity);
+        }
+
+        private void StopEffect()
+        {
+            if (!string.IsNullOrWhiteSpace(effectName))
+                _vfxCompo?.StopVFX(effectName);
         }
     }
 }

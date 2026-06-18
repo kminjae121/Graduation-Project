@@ -10,14 +10,14 @@ namespace Code.UnitSystem.Enemies
     public class BossGimmickSpawner : MonoBehaviour
     {
         [SerializeField] private BossPatternController boss;
-        [SerializeField] private BossGimmickObject gimmickPrefab;
+        [SerializeField] private BossGimmickUnit gimmickPrefab;
         [SerializeField] private Transform spawnParent;
         [SerializeField] private Vector3 spawnOffset;
         [SerializeField] private bool blockTile = true;
 
         private readonly List<IMapTile> _candidates = new();
 
-        private BossGimmickObject _currentGimmick;
+        private BossGimmickUnit _currentGimmick;
         private IMapTile _currentTile;
 
         private bool _tileWasWalkable;
@@ -61,7 +61,7 @@ namespace Code.UnitSystem.Enemies
 
             if (!RegisterGimmickUnit(_currentGimmick))
             {
-                BossGimmickObject gimmick = _currentGimmick;
+                BossGimmickUnit gimmick = _currentGimmick;
                 _currentGimmick = null;
                 ReleaseTile();
                 gimmick.ClearWithoutComplete();
@@ -71,7 +71,7 @@ namespace Code.UnitSystem.Enemies
 
         public void ClearCurrent()
         {
-            BossGimmickObject gimmick = _currentGimmick;
+            BossGimmickUnit gimmick = _currentGimmick;
             _currentGimmick = null;
 
             ReleaseTile();
@@ -80,7 +80,7 @@ namespace Code.UnitSystem.Enemies
                 gimmick.ClearWithoutComplete();
         }
 
-        public void CompleteGimmick(BossGimmickObject gimmick)
+        public void CompleteGimmick(BossGimmickUnit gimmick)
         {
             if (gimmick != _currentGimmick)
                 return;
@@ -90,7 +90,7 @@ namespace Code.UnitSystem.Enemies
             boss?.CompleteGimmick(true);
         }
 
-        public void FailGimmick(BossGimmickObject gimmick)
+        public void FailGimmick(BossGimmickUnit gimmick)
         {
             if (gimmick != _currentGimmick)
                 return;
@@ -100,7 +100,7 @@ namespace Code.UnitSystem.Enemies
             boss?.CompleteGimmick(false);
         }
 
-        internal void ReleaseGimmick(BossGimmickObject gimmick)
+        internal void ReleaseGimmick(BossGimmickUnit gimmick)
         {
             if (gimmick != _currentGimmick)
                 return;
@@ -179,20 +179,12 @@ namespace Code.UnitSystem.Enemies
             _currentTile = null;
         }
 
-        private static bool RegisterGimmickUnit(BossGimmickObject gimmick)
+        private static bool RegisterGimmickUnit(BossGimmickUnit gimmick)
         {
             if (gimmick == null)
                 return false;
 
-            Unit unit = gimmick.GetComponent<Unit>();
-
-            if (unit == null)
-            {
-                UnityLogger.LogWarning($"[{nameof(BossGimmickSpawner)}] Gimmick object has no Unit component.");
-                return false;
-            }
-
-            Bus<UnitSpawnEvent>.Raise(new UnitSpawnEvent(unit));
+            Bus<UnitSpawnEvent>.Raise(new UnitSpawnEvent(gimmick));
             return true;
         }
     }
