@@ -54,9 +54,11 @@ namespace Code.UnitSystem.Enemies
 
             ReserveTile(tile);
 
-            Transform parent = spawnParent != null ? spawnParent : transform;
-            _currentGimmick = Instantiate(gimmickPrefab, tile.WorldPos + spawnOffset,
-                Quaternion.identity, parent);
+            Vector3 spawnPosition = tile.WorldPos + spawnOffset;
+            _currentGimmick = spawnParent != null
+                ? Instantiate(gimmickPrefab, spawnPosition, Quaternion.identity, spawnParent)
+                : Instantiate(gimmickPrefab, spawnPosition, Quaternion.identity);
+
             _currentGimmick.Initialize(this);
 
             if (!RegisterGimmickUnit(_currentGimmick))

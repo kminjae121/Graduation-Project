@@ -5036,7 +5036,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1584942494916763462}
-  - component: {fileID: 5678650738300921371}
+  - component: {fileID: 2526644914251245036}
   m_Layer: 8
   m_Name: Golem Punish All Attack Skill
   m_TagString: Untagged
@@ -5059,7 +5059,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7908524167159092267}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5678650738300921371
+--- !u!114 &2526644914251245036
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5068,9 +5068,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1112362508649041189}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7097f2750ab4581b0a5eb1b5803f271, type: 3}
+  m_Script: {fileID: 11500000, guid: 60a2cd20bb89456f82118275d1724ff1, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Code.SkillSystem.GolemGimmickStartSkill
+  m_EditorClassIdentifier: Assembly-CSharp::Code.SkillSystem.GolemPunishAllAttackSkill
   <SkillSO>k__BackingField: {fileID: 11400000, guid: bf93c9a408be47d4cac17df4a9f726c6, type: 2}
   triggerCompo: {fileID: 5668723894940260002}
   statCompo: {fileID: 790636014069956737}
@@ -5087,10 +5087,12 @@ MonoBehaviour:
   isCanUseSkill: 0
   IsActive: 0
   useRange: 0
-  prefRange: 1
+  prefRange: 10
   safeRange: 0
   aiPriority: 0
   needSight: 0
+  shakeValue: 0.4
+  vfxName: 
 --- !u!1 &1586466140563081330
 GameObject:
   m_ObjectHideFlags: 0
@@ -10421,7 +10423,7 @@ MonoBehaviour:
   isCanUseSkill: 0
   IsActive: 0
   useRange: 0
-  prefRange: 1
+  prefRange: 10
   safeRange: 0
   aiPriority: 0
   needSight: 0
