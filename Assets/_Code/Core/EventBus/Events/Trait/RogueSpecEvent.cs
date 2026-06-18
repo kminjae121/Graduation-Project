@@ -2,11 +2,11 @@
 
 namespace _Code.Core.EventBus.Events.Trait
 {
-    public struct RogueGimicBarEvent : IEvent
+    public struct RogueSpecEvent : IEvent
     {
         public float value;
 
-        public RogueGimicBarEvent(float value)
+        public RogueSpecEvent(float value)
         {
             this.value = value;
         }

@@ -59,7 +59,7 @@ public class HealSkill : BasicUnitSkill
 
         public void Heal()
         {
-            Bus<UseGimicEvent>.Raise(new UseGimicEvent(UnitType.Magician, _target));
+            Bus<UseSpecEvent>.Raise(new UseSpecEvent(UnitType.Magician, _target));
             UnitHealth health = _characterUnit.GetUnitCompo<UnitHealth>();
 
             health.HealHp(20);

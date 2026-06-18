@@ -63,7 +63,7 @@ using UnityEngine;
 
             Vector3 slashRot = transform.rotation.eulerAngles;
             
-            Bus<UseGimicEvent>.Raise(new UseGimicEvent(UnitType.Magician, _target));
+            Bus<UseSpecEvent>.Raise(new UseSpecEvent(UnitType.Magician, _target));
             
             _shootItemManager.SetTarget(_target);
             _shootItemManager.SetDamageData(DamageData,AddDamage);

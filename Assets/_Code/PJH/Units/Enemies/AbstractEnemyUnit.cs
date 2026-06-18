@@ -94,6 +94,7 @@ namespace Code.UnitSystem.Enemies
         {
             _hasEndedTurn = false;
             base.OnTurnStart();
+            Bus<WhatUnitTurnEvent>.Raise(new WhatUnitTurnEvent(UnitType.None));
 
             if (!PrepareTurnStart())
             {

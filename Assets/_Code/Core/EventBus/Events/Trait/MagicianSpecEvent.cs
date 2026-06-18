@@ -2,11 +2,11 @@
 
 namespace _Code.Core.EventBus.Events.Trait
 {
-    public struct ArcherGimicEvent : IEvent
+    public struct MagicianSpecEvent : IEvent
     {
         public float value;
 
-        public ArcherGimicEvent(float value)
+        public MagicianSpecEvent(float value)
         {
             this.value = value;
         }

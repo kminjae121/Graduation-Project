@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 481332650997100003}
   - component: {fileID: 481332650997100004}
   - component: {fileID: 481332650997100005}
-  - component: {fileID: 229526134813121539}
   - component: {fileID: 69630169620936478}
   m_Layer: 8
   m_Name: Boss Gimmick Object
@@ -114,6 +113,16 @@ MonoBehaviour:
   <PoolingType>k__BackingField: {fileID: 0}
   maxCountdown: 2
   firstTurnGauge: 100
+  destroyDelay: 0
+  onDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
+  onFailed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &481332650997100002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,28 +185,6 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.UnitComponent.StatusEffectCompo
   statusEffectList: {fileID: 0}
---- !u!114 &229526134813121539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1346657022353125934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca492225c7064550a7c0aaeff49914a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.Enemies.BossGimmickObject
-  destroyDelay: 0
-  onDamaged:
-    m_PersistentCalls:
-      m_Calls: []
-  onDestroyed:
-    m_PersistentCalls:
-      m_Calls: []
-  onFailed:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!65 &69630169620936478
 BoxCollider:
   m_ObjectHideFlags: 0

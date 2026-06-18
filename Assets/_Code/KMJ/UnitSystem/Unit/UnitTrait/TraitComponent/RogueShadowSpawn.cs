@@ -112,6 +112,9 @@ namespace Code.UnitSystem.TraitSystem
 
         private void MoveNextIndex()
         {
+            
+            Bus<RogueSpecEvent>.Raise(new RogueSpecEvent(_shadowCnt));
+            
             _currentIdx++;
 
             int limit = Mathf.Min(maxShadowCnt, shadows.Count);

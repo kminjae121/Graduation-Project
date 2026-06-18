@@ -12,7 +12,6 @@ namespace Code.SkillSystem
     {
         private const string CounterAttackAnimationKey = "SHIELD ATTACK";
 
-        [SerializeField] private string shieldEffectName;
         [SerializeField] private int guardTurns = 2;
         [SerializeField, Range(0f, 1f)] private float frontDamageRate;
         [SerializeField] private float frontAngle = 120f;
@@ -77,7 +76,6 @@ namespace Code.SkillSystem
             }
 
             invincibility.SetFrontGuard(guardTurns, Owner.transform, frontDamageRate, frontAngle, CounterAttack);
-            Owner.VFXCompo.PlayVFX(shieldEffectName);
         }
 
         private bool HasFrontGuard()
@@ -92,6 +90,9 @@ namespace Code.SkillSystem
         private void CounterAttack(Unit attacker)
         {
             if (Owner == null || UnitManager == null || attacker == null)
+                return;
+
+            if (IsOwnerDead())
                 return;
 
             PlayCounterAttackAnimation();
@@ -189,9 +190,12 @@ namespace Code.SkillSystem
         private bool IsEnemyUnit(Unit unit)
             => unit != null && unit != Owner && unit.IsPlayerUnit != Owner.IsPlayerUnit;
 
+        private bool IsOwnerDead()
+            => Owner?.HealthCompo != null && Owner.HealthCompo.IsDead;
+
         private void PlayCounterAttackAnimation()
         {
-            if (Owner.UnitAnimator == null)
+            if (Owner.UnitAnimator == null || IsOwnerDead())
                 return;
 
             Owner.UnitAnimator.RestartFromEntry();

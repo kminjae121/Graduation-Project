@@ -77,11 +77,11 @@ namespace Code.UnitSystem.Combat
                 {
                     if (evt.Owner.unitSO.UnitType == UnitType.Archer && markCompo.GetCurrentMark() == 0)
                     {   
-                        Bus<UseGimicEvent>.Raise(new UseGimicEvent(UnitType.Archer, evt.target));   
+                        Bus<UseSpecEvent>.Raise(new UseSpecEvent(UnitType.Archer, evt.target));   
                     }
                     else if (evt.Owner.unitSO.UnitType != UnitType.Archer && markCompo.GetCurrentMark() > 0)
                     {
-                        Bus<UseGimicEvent>.Raise(new UseGimicEvent(UnitType.Archer, evt.target));
+                        Bus<UseSpecEvent>.Raise(new UseSpecEvent(UnitType.Archer, evt.target));
                     }
                     else
                         return;

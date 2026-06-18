@@ -1,10 +1,10 @@
 ﻿namespace Code.Core.Events.Bus
 {
-    public struct KnightGimicBarEvent : IEvent
+    public struct KnightSpecEvent : IEvent
     {
         public float value;
 
-        public KnightGimicBarEvent(float value)
+        public KnightSpecEvent(float value)
         {
             this.value = value;
         }
