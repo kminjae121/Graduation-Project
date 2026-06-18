@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Code.Core.Debugs;
+using Code.Core.Events.Bus;
 using Code.Core.Interfaces;
 using Code.Map;
 using UnityEngine;
@@ -41,11 +42,15 @@ namespace Code.UnitSystem.Enemies
             if (gimmickPrefab == null)
             {
                 UnityLogger.LogError($"[{nameof(BossGimmickSpawner)}] Gimmick prefab is missing.");
+                boss?.CompleteGimmick(false);
                 return;
             }
 
             if (!TryPickTile(out IMapTile tile))
+            {
+                boss?.CompleteGimmick(false);
                 return;
+            }
 
             ReserveTile(tile);
 
@@ -53,6 +58,15 @@ namespace Code.UnitSystem.Enemies
             _currentGimmick = Instantiate(gimmickPrefab, tile.WorldPos + spawnOffset,
                 Quaternion.identity, parent);
             _currentGimmick.Initialize(this);
+
+            if (!RegisterGimmickUnit(_currentGimmick))
+            {
+                BossGimmickObject gimmick = _currentGimmick;
+                _currentGimmick = null;
+                ReleaseTile();
+                gimmick.ClearWithoutComplete();
+                boss?.CompleteGimmick(false);
+            }
         }
 
         public void ClearCurrent()
@@ -74,6 +88,16 @@ namespace Code.UnitSystem.Enemies
             _currentGimmick = null;
             ReleaseTile();
             boss?.CompleteGimmick(true);
+        }
+
+        public void FailGimmick(BossGimmickObject gimmick)
+        {
+            if (gimmick != _currentGimmick)
+                return;
+
+            _currentGimmick = null;
+            ReleaseTile();
+            boss?.CompleteGimmick(false);
         }
 
         internal void ReleaseGimmick(BossGimmickObject gimmick)
@@ -153,6 +177,23 @@ namespace Code.UnitSystem.Enemies
             }
 
             _currentTile = null;
+        }
+
+        private static bool RegisterGimmickUnit(BossGimmickObject gimmick)
+        {
+            if (gimmick == null)
+                return false;
+
+            Unit unit = gimmick.GetComponent<Unit>();
+
+            if (unit == null)
+            {
+                UnityLogger.LogWarning($"[{nameof(BossGimmickSpawner)}] Gimmick object has no Unit component.");
+                return false;
+            }
+
+            Bus<UnitSpawnEvent>.Raise(new UnitSpawnEvent(unit));
+            return true;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Code.Core;
 using Code.Core.Events.Bus;
 using Code.UnitSystem;
 using Code.UnitSystem.Combat;
@@ -31,13 +32,23 @@ public class MeleeAttack : BasicUnitSkill
         base.StartEvent();
         triggerCompo.OnAttackTrigger += TakeDamage;
         triggerCompo.OnAnimationEndTrigger += AttackEnd;
+        triggerCompo.OnSoundPlayTrigger += SoundPlay;
     }
 
     protected override void OnDestroy()
     {
         SkillEvent.RemoveListener(AttackAction);
     }
-    
+
+    public override void SoundPlay()
+    {
+        base.SoundPlay();
+        if (_characterUnit.unitSO.UnitType == UnitType.Knight)
+            SoundManager.Instance.PlayClip("SwordSwingSound");
+        else if(_characterUnit.unitSO.UnitType == UnitType.Rogue)
+            SoundManager.Instance.PlayClip("KnifeSound");
+    }
+
     public void AttackAction(GameObject target)
     {
         _ownTrm = _characterUnit.transform.position;
@@ -69,6 +80,7 @@ public class MeleeAttack : BasicUnitSkill
         base.SkillEnd();
         triggerCompo.OnAttackTrigger -= TakeDamage;
         triggerCompo.OnAnimationEndTrigger -= AttackEnd;
+        triggerCompo.OnSoundPlayTrigger -= SoundPlay;
         SkillEndEvent?.Invoke();
     }
     

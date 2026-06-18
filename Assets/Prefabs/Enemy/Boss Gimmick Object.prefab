@@ -11,6 +11,11 @@ GameObject:
   - component: {fileID: 1857076217482176262}
   - component: {fileID: 1671466244163356859}
   - component: {fileID: 5575233262469913191}
+  - component: {fileID: 481332650997100001}
+  - component: {fileID: 481332650997100002}
+  - component: {fileID: 481332650997100003}
+  - component: {fileID: 481332650997100004}
+  - component: {fileID: 481332650997100005}
   - component: {fileID: 229526134813121539}
   - component: {fileID: 69630169620936478}
   m_Layer: 8
@@ -92,6 +97,85 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &481332650997100001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346657022353125934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d4f8f6e9c1742a39b0ca11d84913d9e, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.Enemies.BossGimmickUnit
+  <unitSO>k__BackingField: {fileID: 11400000, guid: 9bde07ec9b3f4b2ca5503f2f791b151a, type: 2}
+  <TurnGauge>k__BackingField: 0
+  <PoolingType>k__BackingField: {fileID: 0}
+  maxCountdown: 2
+  firstTurnGauge: 100
+--- !u!114 &481332650997100002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346657022353125934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf9fa60ab724bc985618c8d152e83f7, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  hpStat: {fileID: 11400000, guid: 63387e3874071ca48bdeb9a8b73277ff, type: 2}
+  maxHealth: 0
+  currentHealth: 0
+  normalText: {fileID: 11400000, guid: fc6dd7d9bb3e2cc4581c347ad34cd662, type: 2}
+  criticalText: {fileID: 11400000, guid: 06b606e1c3a03674fa90dc9aa08098fc, type: 2}
+  healText: {fileID: 0}
+  textEventChannel: {fileID: 11400000, guid: 249b09a83d3d0854e920cd46632fa8ba, type: 2}
+  StorageSO: {fileID: 0}
+  OnInteractionEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &481332650997100003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346657022353125934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86877c1bb2584ed2a0e8fde4f5836125, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  unitSO: {fileID: 11400000, guid: 9bde07ec9b3f4b2ca5503f2f791b151a, type: 2}
+--- !u!114 &481332650997100004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346657022353125934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69bb661cc1184ac78ba2cfcf1afd514c, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  _animator: {fileID: 0}
+--- !u!114 &481332650997100005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346657022353125934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4132b6426184e93a565253cbff9cbbe, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.UnitComponent.StatusEffectCompo
+  statusEffectList: {fileID: 0}
 --- !u!114 &229526134813121539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,13 +188,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca492225c7064550a7c0aaeff49914a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.Enemies.BossGimmickObject
-  maxHealth: 100
-  icon: {fileID: 21300000, guid: 472ed1cd53a54e445bdc0cb40a3f6f28, type: 3}
   destroyDelay: 0
   onDamaged:
     m_PersistentCalls:
       m_Calls: []
   onDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
+  onFailed:
     m_PersistentCalls:
       m_Calls: []
 --- !u!65 &69630169620936478

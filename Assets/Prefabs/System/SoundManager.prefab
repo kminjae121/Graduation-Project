@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8459634899373518270
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6438658282330829193}
+  - component: {fileID: 7249320132116023664}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6438658282330829193
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8459634899373518270}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -325.7527, y: 0.00001, z: -112.31841}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7249320132116023664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8459634899373518270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57751f9454ff44c98f3a5840550d5601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Code.Core.SoundManager
+  isDontDestroyOnLoad: 1
+  clips:
+  - {fileID: 11400000, guid: 104d867b876571342b3320ea7d2ccebf, type: 2}
+  - {fileID: 11400000, guid: 0578f3a96005e0c45bac73a8aab09d3f, type: 2}
+  - {fileID: 11400000, guid: f0d3c16d647d9f446b4e522a7aa2516d, type: 2}
+  - {fileID: 11400000, guid: 4541a262401499b4b8873e9f3886b0ab, type: 2}
+  - {fileID: 11400000, guid: 81ee105dff454c44d9f3f891fbff8456, type: 2}
+  - {fileID: 11400000, guid: 0ea1576651894c4489425132cd5cf423, type: 2}
+  - {fileID: 11400000, guid: 80d1506e5cb63114ea303d81666866c0, type: 2}
+  - {fileID: 11400000, guid: 4bd585dc501a1324fb0d66bab3b8611e, type: 2}
+  - {fileID: 11400000, guid: 2bf17cf8a7533684f910ab9fabdc3248, type: 2}
+  - {fileID: 11400000, guid: 0f1c0f002d6265c498a2de06e80dd5e8, type: 2}
+  - {fileID: 11400000, guid: f5f440924fa83ef43a70c3920ea811d1, type: 2}
+  - {fileID: 11400000, guid: fea6a5bee2912174d834f0900c36b3e4, type: 2}
+  - {fileID: 11400000, guid: d5d8a2c7a8eae7341a3778c11c6129ee, type: 2}
+  audioSourcePrefab: {fileID: 2964581562112302288, guid: 3dc0e63565920534ca160b1645e81241, type: 3}
+  sourceCnt: 10

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using _Code.Core.EventBus.Events.Trait;
+using Code.Core;
 using Code.Core.Events.Bus;
 using Code.UI;
 using Code.UnitSystem.Combat;
@@ -63,9 +64,9 @@ namespace Code.UnitSystem.TraitSystem
                 _shootItemManager.SetTarget(enemy.gameObject);
                 _shootItemManager.SetDamageData(_damageData,0);
                 _shootItemManager.CreateShootItem("CriticalArrow",pos, slashRot);   
-                
                 mark.ResetMark();
             }
+            SoundManager.Instance.PlayClip("BowSound");
             Bus<CamShakeEvent>.Raise(new CamShakeEvent(0.15f));
             Bus<ArcherGimicEvent>.Raise(new ArcherGimicEvent(0));
             triggerCompo.OnAttackTrigger -= AtkAllEnemies; 
