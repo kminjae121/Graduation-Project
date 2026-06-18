@@ -21,7 +21,7 @@ MonoBehaviour:
   skillUIImage: {fileID: 21300000, guid: a463ea773d117f248b763f43b56d91c3, type: 3}
   className: MeleeAttack
   skillPrice: 0
-  SkillDamage: 1.5
+  SkillDamage: 1
   SkillRange: 1
   MinRange: 0
   IsOwnSkill: 0
