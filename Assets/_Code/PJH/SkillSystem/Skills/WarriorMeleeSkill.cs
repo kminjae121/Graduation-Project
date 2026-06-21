@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Code.Core;
+using UnityEngine;
 
 namespace Code.SkillSystem
 {
@@ -7,7 +8,18 @@ namespace Code.SkillSystem
         [SerializeField] private string[] effectNames;
 
         private int _attackIndex;
-        
+
+        protected override void StartEvent()
+        {
+            base.StartEvent();
+            triggerCompo.OnSoundPlayTrigger += SoundPlay;
+        }
+
+        private void SoundPlay()
+        {
+            SoundManager.Instance.PlayClip("SlashSound");
+        }
+
         protected override void Attack(GameObject target)
         {
             PlayAttackEffect();
@@ -22,6 +34,7 @@ namespace Code.SkillSystem
             _attackIndex = 0;
             
             base.FinishSkill();
+            triggerCompo.OnSoundPlayTrigger -= SoundPlay;
         }
 
         private void PlayAttackEffect()

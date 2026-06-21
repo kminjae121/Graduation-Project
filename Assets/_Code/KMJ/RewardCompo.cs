@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Code.Core;
 using Code.Core.Managers;
 using Code.Item;
 using Code.Items;
@@ -67,6 +68,7 @@ namespace _Code.KMJ
         private IEnumerator RandomItem()
         {
             yield return new WaitForSeconds(1f);
+            SoundManager.Instance.PlayClip("ChestSound");
             particleSystem.Play();
             yield return new WaitForSeconds(0.45f);
             particleSystem2.Play();

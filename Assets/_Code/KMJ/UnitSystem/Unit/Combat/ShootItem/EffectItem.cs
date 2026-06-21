@@ -1,4 +1,5 @@
-﻿using Code.Core.Events.Bus;
+﻿using Code.Core;
+using Code.Core.Events.Bus;
 using UnityEngine;
 
 namespace Code.UnitSystem.Combat
@@ -31,6 +32,8 @@ namespace Code.UnitSystem.Combat
 
         public override void AttackEnd()
         {
+            SoundManager.Instance.PlayClip("ExplosionSound");
+            
             Bus<DamageEvent>.Raise(new DamageEvent(_shootItemManager.DamageData,_target,0,_shootItemManager.Unit
                 , false,false,0.2f));
             

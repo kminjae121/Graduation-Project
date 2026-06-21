@@ -58,7 +58,10 @@ public class FireArrow : BasicUnitSkill
         
         private IEnumerator FireArrowAction()
         {
-            yield return new WaitForSeconds(0.4f);
+            SoundManager.Instance.PlayClip("BowReloadSound");
+            yield return new WaitForSeconds(0.3f);
+            SoundManager.Instance.PlayClip("BlinkSound");
+            yield return new WaitForSeconds(0.1f);
             SkillFeedbackEvent?.Invoke();
             animtionCompo.PlaySelectAnimation("FIRE");
         }

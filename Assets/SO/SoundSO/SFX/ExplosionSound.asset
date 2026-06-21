@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80b4b9682a3f495d9c21f232c47a41c2, type: 3}
-  m_Name: BowSound
+  m_Name: ExplosionSound
   m_EditorClassIdentifier: Assembly-CSharp::Code.KMJ.UnitSystem.Sound.SoundClip
-  Clip: {fileID: 8300000, guid: 9f8a38e0eab256743a59753a471a7556, type: 3}
-  AudioName: BowSound
+  Clip: {fileID: 8300000, guid: 554214c60d90fb646a8d00f99c198d37, type: 3}
+  AudioName: ExplosionSound
   IsLooping: 0
-  Volume: 0.6
+  Volume: 0.8

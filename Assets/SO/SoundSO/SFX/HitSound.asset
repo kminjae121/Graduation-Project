@@ -15,4 +15,4 @@ MonoBehaviour:
   Clip: {fileID: 8300000, guid: 08b3bfb6f5c3ab04fa7471d4a2ab268d, type: 3}
   AudioName: HitSound
   IsLooping: 0
-  Volume: 0.2
+  Volume: 0.4
