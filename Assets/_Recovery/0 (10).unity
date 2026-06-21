@@ -967,7 +967,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7249320132116023664, guid: 0fa305997cd36684d8ea5aa2425b3781, type: 3}
       propertyPath: clips.Array.size
-      value: 23
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 7249320132116023664, guid: 0fa305997cd36684d8ea5aa2425b3781, type: 3}
       propertyPath: 'clips.Array.data[13]'
@@ -1001,14 +1001,6 @@ PrefabInstance:
       propertyPath: 'clips.Array.data[20]'
       value: 
       objectReference: {fileID: 11400000, guid: ac1f67d77c797124d9bae7e60a345df1, type: 2}
-    - target: {fileID: 7249320132116023664, guid: 0fa305997cd36684d8ea5aa2425b3781, type: 3}
-      propertyPath: 'clips.Array.data[21]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 9b48a7bdb45fab34aa1d6bb629f023f1, type: 2}
-    - target: {fileID: 7249320132116023664, guid: 0fa305997cd36684d8ea5aa2425b3781, type: 3}
-      propertyPath: 'clips.Array.data[22]'
-      value: 
-      objectReference: {fileID: 11400000, guid: a0144d2e7150211488e36122cabf5c94, type: 2}
     - target: {fileID: 8459634899373518270, guid: 0fa305997cd36684d8ea5aa2425b3781, type: 3}
       propertyPath: m_Name
       value: SoundManager

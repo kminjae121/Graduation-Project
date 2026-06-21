@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Code.Core;
 using Code.Core.Debugs;
 using Code.Core.Interfaces;
 using Code.Map;
@@ -21,15 +22,29 @@ namespace Code.UnitSystem.UnitComponent
         private Unit _owner;
         private GridMap _gridMap;
         private UnitRotator _rotatorCompo;
+        private UnitAnimationTrigger _triggerCompo;
         private int _pathLength;
 
         public void Initialize(Unit owner)
         {
             _owner = owner;
             _pathAgent = owner.GetComponent<PathAgent>();
+            _triggerCompo = owner.GetUnitCompo<UnitAnimationTrigger>();
             _gridMap = GridMap.Instance;
             _rotatorCompo = owner.GetUnitCompo<UnitRotator>();
             pointArray = new Vector3[maxPathCount];
+
+            _triggerCompo.OnWalkSoundTrigger += HandlePlayWalkSound;
+        }
+
+        private void OnDestroy()
+        {
+            _triggerCompo.OnWalkSoundTrigger -= HandlePlayWalkSound;
+        }
+
+        private void HandlePlayWalkSound()
+        {
+            SoundManager.Instance.PlayClip("WalkSound");
         }
 
         public void SetPathAndMove(Vector2Int startPos, Vector2Int destination, bool allowPartialPath = false)
