@@ -1,4 +1,5 @@
-﻿using Code.Core.Events.Bus;
+﻿using Code.Core;
+using Code.Core.Events.Bus;
 using Code.UnitSystem.Combat;
 using UnityEngine;
 
@@ -32,6 +33,7 @@ namespace Code.UnitSystem.TraitSystem
             _unit.GetUnitCompo<InvincibilityCompo>().SetUnitInvincibility(4);
 
             _healthCompo.ResetMaxHp();
+            SoundManager.Instance.PlayClip("GlowSound");
                  
             circleParticle.Play();
         }

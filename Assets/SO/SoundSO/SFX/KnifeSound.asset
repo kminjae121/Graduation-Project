@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80b4b9682a3f495d9c21f232c47a41c2, type: 3}
   m_Name: KnifeSound
   m_EditorClassIdentifier: Assembly-CSharp::Code.KMJ.UnitSystem.Sound.SoundClip
-  Clip: {fileID: 8300000, guid: 178c5a587bc6d3d46a175efab69be126, type: 3}
+  Clip: {fileID: 8300000, guid: 0db528000fba8884eb82b514021a8fec, type: 3}
   AudioName: KnifeSound
   IsLooping: 0
-  Volume: 0.2
+  Volume: 0.7

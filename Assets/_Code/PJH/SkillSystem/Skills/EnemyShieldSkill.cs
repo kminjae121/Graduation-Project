@@ -1,3 +1,4 @@
+using Code.Core;
 using Code.Core.Debugs;
 using Code.Core.Events.Bus;
 using Code.Map;
@@ -54,7 +55,19 @@ namespace Code.SkillSystem
 
         protected override void OnSkillStarted()
         {
+            triggerCompo.OnSoundPlayTrigger += SoundPlay;
             SkillFeedbackEvent?.Invoke();
+        }
+
+        protected override void FinishSkill()
+        {
+            base.FinishSkill();
+            triggerCompo.OnSoundPlayTrigger -= SoundPlay;
+        }
+
+        private void SoundPlay()
+        {
+            SoundManager.Instance.PlayClip("ShieldSound");
         }
 
         protected override void OnShowEffect()
