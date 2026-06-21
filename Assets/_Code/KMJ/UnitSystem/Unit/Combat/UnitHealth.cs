@@ -13,8 +13,8 @@ namespace Code.UnitSystem.Combat
     public class UnitHealth : MonoBehaviour, IUnitComponent, IDamageable
     {
         [SerializeField] private StatSO hpStat;
-        [SerializeField] private float maxHealth;
-        [SerializeField] private float currentHealth;
+        [SerializeField] private int maxHealth;
+        [SerializeField] private int currentHealth;
         [SerializeField] private TextInfo normalText, criticalText, healText;
         [SerializeField] private GameEventChannelSO textEventChannel;
 
@@ -33,8 +33,8 @@ namespace Code.UnitSystem.Combat
 
         public bool IsInvincibility { get;  set; } = false;
         
-        public float CurrentHealth => currentHealth;
-        public float MaxHealth => maxHealth;
+        public int CurrentHealth => currentHealth;
+        public int MaxHealth => maxHealth;
 
         public bool IsDead { get; private set; } = false;
 
@@ -62,8 +62,8 @@ namespace Code.UnitSystem.Combat
                         _unitStateCompo = unitState;
                 }
             
-                maxHealth = _unitStateCompo.MaxHealth;
-                currentHealth = _unitStateCompo.CurrentHp.Value;   
+                maxHealth = (int)_unitStateCompo.MaxHealth;
+                currentHealth = (int)_unitStateCompo.CurrentHp.Value;   
             }
             else
             { 
@@ -73,7 +73,7 @@ namespace Code.UnitSystem.Combat
             _unitAnimation = _entity.GetUnitCompo<UnitAnimation>();
         }
 
-        public void SetMaxHp(float value)
+        public void SetMaxHp(int value)
         {
             maxHealth = value;
 
@@ -85,13 +85,13 @@ namespace Code.UnitSystem.Combat
 
         public void ResetMaxHp()
         {
-            maxHealth = _unitStateCompo.MaxHealth;
-            currentHealth = _unitStateCompo.CurrentHp.Value;  
+            maxHealth = (int)_unitStateCompo.MaxHealth;
+            currentHealth = (int)_unitStateCompo.CurrentHp.Value;  
             
             OnHealthChangedEvent?.Invoke(currentHealth, maxHealth);
         }
 
-        public void HealHp(float amount)
+        public void HealHp(int amount)
         {
             currentHealth += amount;
 
@@ -125,7 +125,11 @@ namespace Code.UnitSystem.Combat
             Unit dealer,bool isCritical, bool isPenetrate)
         {
             if (IsDead)
+            {
+                _entity.OnDeathEvent?.Invoke();
+                SoundManager.Instance.PlayClip("HitSound");   
                 return;
+            }
             
 
             if (IsInvincibility)
@@ -178,6 +182,7 @@ namespace Code.UnitSystem.Combat
                
                if(_entity as CharacterUnit)
                    StorageSO.unitStates.Remove(_unitStateCompo);
+               SoundManager.Instance.PlayClip("HitSound");   
                
                _entity.OnDeathEvent?.Invoke();
                return;
