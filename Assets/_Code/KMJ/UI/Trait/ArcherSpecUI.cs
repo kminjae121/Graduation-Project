@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using _Code.Core.EventBus.Events.Trait;
 using Code.Core.Events.Bus;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +13,8 @@ namespace Code.UI
         [SerializeField] private List<Image> gaugeImages = new List<Image>();
 
         [Header("Animation")]
-        [SerializeField, Min(0f)] private float fillDuration = 0.5f;
+        [SerializeField, Min(0f)] private float fillDuration = 1.1f;
+        [SerializeField] private Ease fillEase = Ease.OutCubic;
 
         private List<Image> _resolvedGaugeImages = new List<Image>();
 
@@ -36,7 +38,7 @@ namespace Code.UI
         private void SetArcherSpecBar(ArcherSpecEvent evt)
         {
             int markCount = Mathf.FloorToInt(evt.value);
-            SetCountGaugeImages(_resolvedGaugeImages, markCount, GetMaxMarkCount(), fillDuration, false);
+            SetCountGaugeImages(_resolvedGaugeImages, markCount, GetMaxMarkCount(), fillDuration, false, fillEase);
         }
 
         private int GetMaxMarkCount()
