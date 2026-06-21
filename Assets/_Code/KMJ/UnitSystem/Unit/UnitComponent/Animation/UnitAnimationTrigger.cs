@@ -11,6 +11,7 @@ namespace Code.UnitSystem
         public Action OnTakeDamageTrigger;
         public Action OnShowEffectTrigger;
         public Action OnSoundPlayTrigger;
+        public Action OnWalkSoundTrigger;
         
         private Unit _entity;
         
@@ -18,6 +19,8 @@ namespace Code.UnitSystem
         {
             _entity = entity;
         }
+
+        private void WalkSoundPlay() => OnWalkSoundTrigger?.Invoke();
 
         private void SoundPlay() => OnSoundPlayTrigger?.Invoke();
         private void TakeDamage() => OnTakeDamageTrigger?.Invoke();

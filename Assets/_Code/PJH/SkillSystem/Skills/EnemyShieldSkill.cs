@@ -52,20 +52,8 @@ namespace Code.SkillSystem
             => 0f;
 
         protected override bool UseShowEffectEvent => true;
-
-        protected override void OnSkillStarted()
-        {
-            triggerCompo.OnSoundPlayTrigger += SoundPlay;
-            SkillFeedbackEvent?.Invoke();
-        }
-
-        protected override void FinishSkill()
-        {
-            base.FinishSkill();
-            triggerCompo.OnSoundPlayTrigger -= SoundPlay;
-        }
-
-        private void SoundPlay()
+        
+        private void ShieldSoundPlay()
         {
             SoundManager.Instance.PlayClip("ShieldSound");
         }
@@ -73,6 +61,7 @@ namespace Code.SkillSystem
         protected override void OnShowEffect()
         {
             ApplyFrontGuard();
+            ShieldSoundPlay();
         }
 
         private void ApplyFrontGuard()
