@@ -8,8 +8,8 @@ namespace Code.Tower
     {
         private const int LaneCount = 7;
         private const int PathCount = 6;
-        private const int NormalStageRows = 7;
-        private const int BossStageRows = 6;
+        private const int NormalStageRows = 12;
+        private const int BossStageRows = 10;
         private const int MinimumDistinctStartLanes = 2;
         private const int EliteMinimumRow = 3;
 

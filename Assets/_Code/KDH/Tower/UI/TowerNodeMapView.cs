@@ -22,6 +22,8 @@ namespace Code.Tower.UI
         [SerializeField] private TextMeshProUGUI floorText;
 
         [Header("Map Roots")]
+        [SerializeField] private ScrollRect mapScrollRect;
+        [SerializeField] private RectTransform viewportRoot;
         [SerializeField] private RectTransform nodeRoot;
 
         [Header("Prefabs")]
@@ -38,9 +40,25 @@ namespace Code.Tower.UI
         [SerializeField] private float connectionWidth = 5f;
         [SerializeField] private float horizontalMapPadding = 120f;
         [SerializeField] private float verticalMapPadding = 120f;
+        [SerializeField, Min(1f)] private float verticalMapLengthMultiplier = 1.85f;
+        [SerializeField, Min(0f)] private float minScrollableContentHeight = 1600f;
+
+        [Header("Scroll")]
+        [SerializeField] private bool scrollToCurrentRoom = true;
+        [SerializeField, Min(1f)] private float scrollSensitivity = 34f;
+
+        [Header("Connection Style")]
+        [SerializeField] private Color connectionColor = new(0.19f, 0.2f, 0.18f, 0.92f);
+        [SerializeField] private Color connectionShadowColor = new(0f, 0f, 0f, 0.18f);
+        [SerializeField, Min(1f)] private float connectionDashLength = 12f;
+        [SerializeField, Min(1f)] private float connectionDashGap = 10f;
+        [SerializeField, Range(0f, 0.45f)] private float connectionCurveStrength = 0.18f;
+        [SerializeField, Min(0f)] private float connectionMinCurveOffset = 34f;
+        [SerializeField, Min(0f)] private float connectionMaxCurveOffset = 96f;
 
         private readonly Dictionary<int, Vector2> _nodePositions = new();
         private float _resolvedMapScale = 1f;
+        private Vector2 _resolvedContentSize = new(1200f, 1600f);
 
         public event Action<int> OnRoomSelected;
 
@@ -61,11 +79,7 @@ namespace Code.Tower.UI
             floorText = CreateText("FloorText", self, new Vector2(52f, -30f), new Vector2(520f, -86f), 36f, FontStyles.Bold);
             floorText.alignment = TextAlignmentOptions.Left;
 
-            nodeRoot = CreateRect("TowerMapRoot", self);
-            nodeRoot.anchorMin = new Vector2(0f, 0f);
-            nodeRoot.anchorMax = new Vector2(1f, 1f);
-            nodeRoot.offsetMin = new Vector2(0f, 104f);
-            nodeRoot.offsetMax = new Vector2(0f, -148f);
+            BuildScrollArea(self, null);
 
             roomTooltip = TowerRoomTooltip.CreateDefault(self);
         }
@@ -89,6 +103,7 @@ namespace Code.Tower.UI
             UpdateFloorText(map);
             DrawConnections(map, currentRoom, rooms);
             DrawRoomNodes(map, currentRoom, rooms);
+            UpdateScrollPosition(currentRoom);
         }
 
         private void UpdateFloorText(TowerFloorMap map)
@@ -125,9 +140,10 @@ namespace Code.Tower.UI
             Vector2 from = GetNodePosition(fromRoom);
             Vector2 to = GetNodePosition(toRoom);
             float scaledConnectionWidth = connectionWidth * GetMapScale();
+            float curveSign = GetConnectionCurveSign(fromRoom.Id, toRoom.Id);
 
-            CreateConnectionLine("ConnectionShadow", from, to, scaledConnectionWidth + 5f, new Color(0f, 0f, 0f, 0.42f));
-            CreateConnectionLine("Connection", from, to, scaledConnectionWidth, Color.white);
+            CreateConnectionLine("ConnectionShadow", from, to, scaledConnectionWidth + 4f, connectionShadowColor, curveSign);
+            CreateConnectionLine("Connection", from, to, scaledConnectionWidth, connectionColor, curveSign);
         }
 
         private void DrawRoomNodes(TowerFloorMap map, TowerRoomNode currentRoom, IReadOnlyList<TowerRoomNode> rooms)
@@ -270,32 +286,56 @@ namespace Code.Tower.UI
             int minY = rooms.Min(room => room.GridPosition.y);
             int maxY = rooms.Max(room => room.GridPosition.y);
 
-            Vector2 center = new((minX + maxX) * 0.5f, (minY + maxY) * 0.5f);
-            _resolvedMapScale = CalculateAutoMapScale(minX, maxX, minY, maxY);
+            float centerY = (minY + maxY) * 0.5f;
+            _resolvedMapScale = CalculateAutoMapScale(minY, maxY);
+            _resolvedContentSize = CalculateContentSize(minX, maxX, minY, maxY);
+            ResizeNodeRoot(_resolvedContentSize);
 
             foreach (TowerRoomNode room in rooms)
             {
-                Vector2 gridDelta = room.GridPosition - center;
                 _nodePositions[room.Id] = new Vector2(
-                    gridDelta.y * cellSize.x,
-                    gridDelta.x * cellSize.y) * _resolvedMapScale;
+                    (room.GridPosition.y - centerY) * cellSize.x * _resolvedMapScale,
+                    (room.GridPosition.x - minX) * GetVerticalCellSize() * _resolvedMapScale + verticalMapPadding + nodeSize.y * _resolvedMapScale * 0.5f);
             }
         }
 
-        private float CalculateAutoMapScale(int minX, int maxX, int minY, int maxY)
+        private float CalculateAutoMapScale(int minY, int maxY)
         {
             float gridWidth = Mathf.Max(0, maxY - minY) * cellSize.x + nodeSize.x;
-            float gridHeight = Mathf.Max(0, maxX - minX) * cellSize.y + nodeSize.y;
-            Vector2 contentSize = new(Mathf.Max(1f, gridWidth), Mathf.Max(1f, gridHeight));
-            Vector2 rootSize = GetNodeRootSize();
+            Vector2 rootSize = GetViewportSize();
             float horizontalPadding = Mathf.Max(0f, horizontalMapPadding);
-            float verticalPadding = Mathf.Max(0f, verticalMapPadding);
-            Vector2 availableSize = new(
-                Mathf.Max(1f, rootSize.x - horizontalPadding * 2f),
-                Mathf.Max(1f, rootSize.y - verticalPadding * 2f));
+            float availableWidth = Mathf.Max(1f, rootSize.x - horizontalPadding * 2f);
 
-            float scale = Mathf.Min(availableSize.x / contentSize.x, availableSize.y / contentSize.y);
+            float scale = Mathf.Min(1f, availableWidth / Mathf.Max(1f, gridWidth));
             return float.IsNaN(scale) || float.IsInfinity(scale) ? 1f : Mathf.Max(0.1f, scale);
+        }
+
+        private Vector2 CalculateContentSize(int minX, int maxX, int minY, int maxY)
+        {
+            Vector2 viewportSize = GetViewportSize();
+            float gridWidth = Mathf.Max(0, maxY - minY) * cellSize.x * _resolvedMapScale + nodeSize.x * _resolvedMapScale + horizontalMapPadding * 2f;
+            float gridHeight = Mathf.Max(0, maxX - minX) * GetVerticalCellSize() * _resolvedMapScale + nodeSize.y * _resolvedMapScale + verticalMapPadding * 2f;
+
+            return new Vector2(
+                Mathf.Max(viewportSize.x, gridWidth),
+                Mathf.Max(viewportSize.y, minScrollableContentHeight, gridHeight));
+        }
+
+        private void ResizeNodeRoot(Vector2 contentSize)
+        {
+            if (nodeRoot == null)
+                return;
+
+            nodeRoot.anchorMin = new Vector2(0.5f, 0f);
+            nodeRoot.anchorMax = new Vector2(0.5f, 0f);
+            nodeRoot.pivot = new Vector2(0.5f, 0f);
+            nodeRoot.anchoredPosition = Vector2.zero;
+            nodeRoot.sizeDelta = contentSize;
+        }
+
+        private float GetVerticalCellSize()
+        {
+            return cellSize.y * Mathf.Max(1f, verticalMapLengthMultiplier);
         }
 
         private Vector2 GetNodePosition(TowerRoomNode room)
@@ -305,42 +345,270 @@ namespace Code.Tower.UI
                 : Vector2.zero;
         }
 
-        private Vector2 GetNodeRootSize()
+        private Vector2 GetViewportSize()
         {
-            Vector2 size = nodeRoot.rect.size;
+            RectTransform target = viewportRoot != null ? viewportRoot : transform as RectTransform;
+            Vector2 size = target != null ? target.rect.size : Vector2.zero;
 
             if (size.x > 0f && size.y > 0f)
                 return size;
 
-            return nodeRoot.sizeDelta.sqrMagnitude > 0f ? nodeRoot.sizeDelta : new Vector2(1100f, 640f);
+            return target != null && target.sizeDelta.sqrMagnitude > 0f ? target.sizeDelta : new Vector2(1100f, 640f);
         }
 
-        private void CreateConnectionLine(string objectName, Vector2 from, Vector2 to, float width, Color color)
+        private void CreateConnectionLine(string objectName, Vector2 from, Vector2 to, float width, Color color, float curveSign)
         {
             Vector2 delta = to - from;
+            if (delta.sqrMagnitude <= 0.01f)
+                return;
 
-            RectTransform line = CreateRect(objectName, nodeRoot);
-            line.sizeDelta = new Vector2(delta.magnitude, width);
-            line.anchoredPosition = from + delta * 0.5f;
-            line.localRotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(delta.y, delta.x) * Mathf.Rad2Deg);
-            line.SetAsFirstSibling();
+            RectTransform group = CreateConnectionGroup(objectName);
+            Vector2 controlA = GetConnectionControlPoint(from, to, 0.34f, curveSign);
+            Vector2 controlB = GetConnectionControlPoint(from, to, 0.66f, -curveSign * 0.72f);
+            float length = EstimateBezierLength(from, controlA, controlB, to);
+            float dashLength = connectionDashLength * GetMapScale();
+            float dashGap = connectionDashGap * GetMapScale();
+            float dashStep = Mathf.Max(1f, dashLength + dashGap);
+            int dashCount = Mathf.Max(1, Mathf.FloorToInt(length / dashStep));
 
-            Image image = line.gameObject.AddComponent<Image>();
+            for (int i = 0; i < dashCount; ++i)
+            {
+                float t = dashCount == 1 ? 0.5f : (i + 0.5f) / dashCount;
+                Vector2 point = EvaluateBezier(from, controlA, controlB, to, t);
+                Vector2 tangent = EvaluateBezierTangent(from, controlA, controlB, to, t);
+                CreateConnectionDash(group, point, tangent, dashLength, width, color);
+            }
+
+        }
+
+        private RectTransform CreateConnectionGroup(string objectName)
+        {
+            RectTransform group = CreateRect(objectName, nodeRoot);
+            group.anchorMin = new Vector2(0.5f, 0f);
+            group.anchorMax = new Vector2(0.5f, 0f);
+            group.pivot = new Vector2(0.5f, 0f);
+            group.anchoredPosition = Vector2.zero;
+            group.sizeDelta = _resolvedContentSize;
+            return group;
+        }
+
+        private void CreateConnectionDash(RectTransform parent, Vector2 position, Vector2 tangent, float length, float width, Color color)
+        {
+            RectTransform dash = CreateRect("Dash", parent);
+            dash.anchorMin = new Vector2(0.5f, 0f);
+            dash.anchorMax = new Vector2(0.5f, 0f);
+            dash.pivot = new Vector2(0.5f, 0.5f);
+            dash.sizeDelta = new Vector2(length, width);
+            dash.anchoredPosition = position;
+            dash.localRotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(tangent.y, tangent.x) * Mathf.Rad2Deg);
+
+            Image image = dash.gameObject.AddComponent<Image>();
+            image.raycastTarget = false;
             image.color = color;
+        }
+
+        private Vector2 GetConnectionControlPoint(Vector2 from, Vector2 to, float pathT, float curveSign)
+        {
+            Vector2 delta = to - from;
+            Vector2 perpendicular = new(-delta.y, delta.x);
+
+            if (perpendicular.sqrMagnitude <= 0.01f)
+                perpendicular = Vector2.right;
+            else
+                perpendicular.Normalize();
+
+            float curveOffset = Mathf.Clamp(delta.magnitude * connectionCurveStrength, connectionMinCurveOffset, connectionMaxCurveOffset);
+            return Vector2.Lerp(from, to, pathT) + perpendicular * curveOffset * curveSign;
+        }
+
+        private static float GetConnectionCurveSign(int fromId, int toId)
+        {
+            unchecked
+            {
+                int hash = fromId * 73856093 ^ toId * 19349663;
+                return (hash & 1) == 0 ? 1f : -1f;
+            }
+        }
+
+        private static Vector2 EvaluateBezier(Vector2 a, Vector2 b, Vector2 c, Vector2 d, float t)
+        {
+            float oneMinusT = 1f - t;
+            return oneMinusT * oneMinusT * oneMinusT * a
+                   + 3f * oneMinusT * oneMinusT * t * b
+                   + 3f * oneMinusT * t * t * c
+                   + t * t * t * d;
+        }
+
+        private static Vector2 EvaluateBezierTangent(Vector2 a, Vector2 b, Vector2 c, Vector2 d, float t)
+        {
+            float oneMinusT = 1f - t;
+            Vector2 tangent = 3f * oneMinusT * oneMinusT * (b - a)
+                              + 6f * oneMinusT * t * (c - b)
+                              + 3f * t * t * (d - c);
+
+            return tangent.sqrMagnitude <= 0.01f ? Vector2.up : tangent.normalized;
+        }
+
+        private static float EstimateBezierLength(Vector2 a, Vector2 b, Vector2 c, Vector2 d)
+        {
+            const int segmentCount = 24;
+            float length = 0f;
+            Vector2 previous = a;
+
+            for (int i = 1; i <= segmentCount; ++i)
+            {
+                Vector2 current = EvaluateBezier(a, b, c, d, i / (float)segmentCount);
+                length += Vector2.Distance(previous, current);
+                previous = current;
+            }
+
+            return length;
         }
 
         private void EnsureNodeRoot()
         {
-            RectTransform self = transform as RectTransform;
+            EnsureMapScrollArea();
+        }
 
-            if (nodeRoot != null)
+        private void EnsureMapScrollArea()
+        {
+            RectTransform self = transform as RectTransform;
+            if (self == null)
                 return;
 
-            nodeRoot = CreateRect("TowerMapRoot", self != null ? self : transform);
-            nodeRoot.anchorMin = Vector2.zero;
-            nodeRoot.anchorMax = Vector2.one;
-            nodeRoot.offsetMin = new Vector2(0f, 104f);
-            nodeRoot.offsetMax = new Vector2(0f, -148f);
+            if (mapScrollRect == null)
+                mapScrollRect = GetComponentInChildren<ScrollRect>(true);
+
+            if (mapScrollRect != null)
+            {
+                if (viewportRoot == null)
+                    viewportRoot = mapScrollRect.viewport;
+
+                if (nodeRoot == null)
+                    nodeRoot = mapScrollRect.content;
+
+                if (viewportRoot == null || nodeRoot == null)
+                    BuildScrollArea(self, nodeRoot);
+                else
+                    ConfigureScrollRect();
+
+                return;
+            }
+
+            BuildScrollArea(self, nodeRoot);
+        }
+
+        private void BuildScrollArea(RectTransform self, RectTransform existingNodeRoot)
+        {
+            RectTransform scrollArea = CreateRect("TowerMapScrollView", self);
+            CopyMapAreaRect(existingNodeRoot, scrollArea);
+
+            mapScrollRect = scrollArea.gameObject.AddComponent<ScrollRect>();
+            mapScrollRect.horizontal = false;
+            mapScrollRect.vertical = true;
+            mapScrollRect.movementType = ScrollRect.MovementType.Elastic;
+            mapScrollRect.inertia = true;
+            mapScrollRect.scrollSensitivity = scrollSensitivity;
+            ConfigureScrollRaycastTarget(scrollArea);
+
+            viewportRoot = CreateRect("Viewport", scrollArea);
+            viewportRoot.anchorMin = Vector2.zero;
+            viewportRoot.anchorMax = Vector2.one;
+            viewportRoot.offsetMin = Vector2.zero;
+            viewportRoot.offsetMax = Vector2.zero;
+            viewportRoot.gameObject.AddComponent<RectMask2D>();
+
+            nodeRoot = existingNodeRoot != null ? existingNodeRoot : CreateRect("TowerMapRoot", viewportRoot);
+            nodeRoot.SetParent(viewportRoot, false);
+
+            mapScrollRect.viewport = viewportRoot;
+            mapScrollRect.content = nodeRoot;
+            ConfigureNodeRootForScrollContent();
+        }
+
+        private void ConfigureScrollRect()
+        {
+            mapScrollRect.horizontal = false;
+            mapScrollRect.vertical = true;
+            mapScrollRect.scrollSensitivity = scrollSensitivity;
+            ConfigureScrollRaycastTarget(mapScrollRect.transform as RectTransform);
+
+            if (viewportRoot != null && viewportRoot.GetComponent<RectMask2D>() == null)
+                viewportRoot.gameObject.AddComponent<RectMask2D>();
+
+            if (nodeRoot != null && viewportRoot != null && nodeRoot.parent != viewportRoot)
+                nodeRoot.SetParent(viewportRoot, false);
+
+            ConfigureNodeRootForScrollContent();
+        }
+
+        private void ConfigureScrollRaycastTarget(RectTransform target)
+        {
+            if (target == null)
+                return;
+
+            Image image = GetOrAdd<Image>(target.gameObject);
+            image.color = new Color(1f, 1f, 1f, 0f);
+            image.raycastTarget = true;
+        }
+
+        private void ConfigureNodeRootForScrollContent()
+        {
+            if (nodeRoot == null)
+                return;
+
+            nodeRoot.anchorMin = new Vector2(0.5f, 0f);
+            nodeRoot.anchorMax = new Vector2(0.5f, 0f);
+            nodeRoot.pivot = new Vector2(0.5f, 0f);
+            nodeRoot.anchoredPosition = Vector2.zero;
+
+            if (nodeRoot.sizeDelta.sqrMagnitude <= 0f)
+                nodeRoot.sizeDelta = _resolvedContentSize;
+        }
+
+        private void CopyMapAreaRect(RectTransform source, RectTransform target)
+        {
+            if (target == null)
+                return;
+
+            if (source != null)
+            {
+                target.SetSiblingIndex(source.GetSiblingIndex());
+                target.anchorMin = source.anchorMin;
+                target.anchorMax = source.anchorMax;
+                target.offsetMin = source.offsetMin;
+                target.offsetMax = source.offsetMax;
+                target.pivot = source.pivot;
+                return;
+            }
+
+            target.anchorMin = new Vector2(0f, 0f);
+            target.anchorMax = new Vector2(1f, 1f);
+            target.offsetMin = new Vector2(0f, 104f);
+            target.offsetMax = new Vector2(0f, -148f);
+            target.pivot = new Vector2(0.5f, 0.5f);
+        }
+
+        private void UpdateScrollPosition(TowerRoomNode currentRoom)
+        {
+            if (!scrollToCurrentRoom || mapScrollRect == null || viewportRoot == null || nodeRoot == null || currentRoom == null)
+                return;
+
+            Canvas.ForceUpdateCanvases();
+
+            float contentHeight = Mathf.Max(1f, nodeRoot.rect.height);
+            float viewportHeight = Mathf.Max(1f, viewportRoot.rect.height);
+            float scrollableHeight = contentHeight - viewportHeight;
+
+            if (scrollableHeight <= 0f)
+            {
+                mapScrollRect.verticalNormalizedPosition = 0f;
+                return;
+            }
+
+            float currentY = GetNodePosition(currentRoom).y;
+            float targetOffset = Mathf.Clamp(currentY - viewportHeight * 0.34f, 0f, scrollableHeight);
+            mapScrollRect.verticalNormalizedPosition = Mathf.InverseLerp(0f, scrollableHeight, targetOffset);
         }
 
         private float GetMapScale()
