@@ -19,7 +19,10 @@ namespace Code.Tower.UI
         [SerializeField, Min(0.01f)] private float hoverScaleSpeed = 14f;
 
         [Header("Color")]
-        [SerializeField] private Color idleIconColor = new(0.58f, 0.58f, 0.58f, 1f);
+        [SerializeField] private Color availableIconColor = new(0.91f, 0.91f, 0.88f, 1f);
+        [SerializeField] private Color unavailableIconColor = new(0.48f, 0.48f, 0.44f, 0.82f);
+        [SerializeField] private Color unknownIconColor = new(0.42f, 0.42f, 0.39f, 0.62f);
+        [SerializeField] private Color currentIconColor = new(0.74f, 0.72f, 0.62f, 1f);
         [SerializeField] private Color hoverIconColor = Color.white;
         [SerializeField] private Color selectedIconColor = Color.black;
         [SerializeField, Min(0.01f)] private float colorChangeSpeed = 14f;
@@ -35,13 +38,14 @@ namespace Code.Tower.UI
         private Vector3 _baseScale = Vector3.one;
         private bool _isHovered;
         private bool _isSelected;
+        private bool _isCurrent;
         private Color _normalIconColor;
         private Coroutine _selectionRoutine;
 
         private void Awake()
         {
             _baseScale = transform.localScale;
-            _normalIconColor = idleIconColor;
+            _normalIconColor = unavailableIconColor;
             ResolveBindings();
             SetSelectedFillImmediate(_isSelected ? 1f : 0f);
         }
@@ -52,6 +56,8 @@ namespace Code.Tower.UI
                 _baseScale = transform.localScale;
 
             _isHovered = false;
+            _isSelected = false;
+            _isCurrent = false;
             transform.localScale = _baseScale;
             ResolveBindings();
             SetSelectedFillImmediate(_isSelected ? 1f : 0f);
@@ -113,8 +119,9 @@ namespace Code.Tower.UI
                 roomIconImage.raycastTarget = button != null;
             }
 
-            _normalIconColor = idleIconColor;
-            _isSelected = isSelected;
+            _normalIconColor = GetNormalIconColor(isRevealed, isInteractable, isSelected);
+            _isCurrent = isSelected;
+            _isSelected = false;
 
             if (roomIconImage != null)
                 roomIconImage.color = GetTargetIconColor();
@@ -216,7 +223,21 @@ namespace Code.Tower.UI
             if (_isSelected)
                 return selectedIconColor;
 
+            if (_isCurrent)
+                return _isHovered ? hoverIconColor : currentIconColor;
+
             return _isHovered ? hoverIconColor : _normalIconColor;
+        }
+
+        private Color GetNormalIconColor(bool isRevealed, bool isInteractable, bool isCurrent)
+        {
+            if (isCurrent)
+                return currentIconColor;
+
+            if (!isRevealed)
+                return unknownIconColor;
+
+            return isInteractable ? availableIconColor : unavailableIconColor;
         }
 
         private static float GetSmoothStep(float speed)

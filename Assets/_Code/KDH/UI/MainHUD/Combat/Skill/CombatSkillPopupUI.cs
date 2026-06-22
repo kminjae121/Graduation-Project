@@ -22,11 +22,15 @@ namespace Code.UI
 
         private CanvasGroup _canvasGroup;
         private RectTransform _rectTransform;
+        private RectTransform _parentRectTransform;
+        private Canvas _canvas;
         
         private void Awake()
         {
             _canvasGroup = GetComponent<CanvasGroup>();
             _rectTransform = GetComponent<RectTransform>();
+            _parentRectTransform = _rectTransform.parent as RectTransform;
+            _canvas = GetComponentInParent<Canvas>();
             
             _canvasGroup.blocksRaycasts = false;
             _canvasGroup.interactable = false;
@@ -62,12 +66,39 @@ namespace Code.UI
             if (skillRangeText != null) skillRangeText.text = evt.Skill.SkillRange.ToString();
 
             if (evt.Pivot != null)
-            {
-                _rectTransform.position = evt.Pivot.position;
-                _rectTransform.anchoredPosition += evt.Offset + popupOffset;
-            }
+                SetPopupPosition(evt.Pivot, evt.Offset + popupOffset);
             
             Show();
+        }
+
+        private void SetPopupPosition(RectTransform pivot, Vector2 offset)
+        {
+            if (_parentRectTransform == null)
+                _parentRectTransform = _rectTransform.parent as RectTransform;
+
+            if (_canvas == null)
+                _canvas = GetComponentInParent<Canvas>();
+
+            Camera uiCamera = GetCanvasCamera();
+            Vector2 screenPosition = RectTransformUtility.WorldToScreenPoint(uiCamera, pivot.position);
+
+            if (_parentRectTransform != null &&
+                RectTransformUtility.ScreenPointToLocalPointInRectangle(_parentRectTransform, screenPosition, uiCamera, out Vector2 localPosition))
+            {
+                _rectTransform.anchoredPosition = localPosition + offset;
+                return;
+            }
+
+            _rectTransform.position = pivot.position;
+            _rectTransform.anchoredPosition += offset;
+        }
+
+        private Camera GetCanvasCamera()
+        {
+            if (_canvas == null || _canvas.renderMode == RenderMode.ScreenSpaceOverlay)
+                return null;
+
+            return _canvas.worldCamera;
         }
 
         private void Show()

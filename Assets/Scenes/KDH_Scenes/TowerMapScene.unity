@@ -164,9 +164,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDontDestroyOnLoad: 0
-  battleSceneName: BattleScene
-  eliteBattleSceneName: BattleScene
-  bossBattleSceneName: BattleScene
+  battleSceneName: BattleScene1
+  battleSceneNames:
+  - BattleScene1
+  - BattleScene2
+  - BattleScene3
+  - BattleScene4
+  - BattleScene5
+  eliteBattleSceneName: BattleScene1
+  eliteBattleSceneNames: []
+  bossBattleSceneName: BattleScene1
+  bossBattleSceneNames: []
   eventSceneName: SelectEventScene
   rewardSceneName: RewardScene
   battleTransitionEffect: {fileID: 11400000, guid: 800cf4f007f3e6a4d85d89ee6e2d175c, type: 2}
@@ -363,6 +371,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.Tower.UI.TowerNodeMapView
   floorText: {fileID: 439910789}
+  mapScrollRect: {fileID: 0}
+  viewportRoot: {fileID: 0}
   nodeRoot: {fileID: 547097829}
   roomNodePrefab: {fileID: 2559632625616717133, guid: e7f9647bab790f14e82bf55c588695f7, type: 3}
   roomTooltip: {fileID: 1285496911304245846, guid: 9810dab8d5c39754a919938b20d6d546, type: 3}
@@ -387,6 +397,17 @@ MonoBehaviour:
   connectionWidth: 5
   horizontalMapPadding: 120
   verticalMapPadding: 120
+  verticalMapLengthMultiplier: 1.85
+  minScrollableContentHeight: 1600
+  scrollToCurrentRoom: 1
+  scrollSensitivity: 34
+  connectionColor: {r: 0.19, g: 0.2, b: 0.18, a: 0.92}
+  connectionShadowColor: {r: 0, g: 0, b: 0, a: 0.18}
+  connectionDashLength: 12
+  connectionDashGap: 10
+  connectionCurveStrength: 0.18
+  connectionMinCurveOffset: 34
+  connectionMaxCurveOffset: 96
 --- !u!1 &439910787
 GameObject:
   m_ObjectHideFlags: 0

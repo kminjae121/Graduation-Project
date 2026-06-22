@@ -59,6 +59,9 @@ namespace Code.UI
         private readonly List<CharacterSkillButton> _activeSkillButtons = new();
         private bool _triggersInitialized;
         private Coroutine _fillCoroutine;
+        private Coroutine _textCoroutine;
+        private int _displayedSkillLoadoutCost;
+        private bool _hasSkillLoadoutValue;
 
         public bool IsVisible => GetContainer().gameObject.activeSelf;
 
@@ -77,6 +80,7 @@ namespace Code.UI
             Bus<SkillUnequipEvent>.Unsubscribe(HandleSkillUnequipped);
 
             UnsubscribeHpEvent();
+            StopSkillLoadoutAnimation();
             ClearSkillButtons();
         }
 
@@ -93,8 +97,13 @@ namespace Code.UI
 
         public void SetUnit(UnitState unit)
         {
+            bool isUnitChanged = !ReferenceEquals(_currentUnit, unit);
+
             UnsubscribeHpEvent();
             _currentUnit = unit;
+
+            if (isUnitChanged)
+                ResetSkillLoadoutAnimationState();
 
             if (_currentUnit?.CurrentHp != null)
                 _currentUnit.CurrentHp.OnValueChanged += RefreshHpBar;
@@ -121,6 +130,7 @@ namespace Code.UI
             Bus<SkillUIHoverEvent>.Raise(new SkillUIHoverEvent(null, null));
             Bus<SkillEquipPopupEvent>.Raise(new SkillEquipPopupEvent(null, false, null));
             Bus<ArtifactPopupEvent>.Raise(new ArtifactPopupEvent(null, false, null));
+            StopSkillLoadoutAnimation();
         }
 
         public void RefreshView()
@@ -138,7 +148,7 @@ namespace Code.UI
             RefreshHpBar(0f, _currentUnit.CurrentHp != null ? _currentUnit.CurrentHp.Value : _currentUnit.Data.Maxhealth);
             RefreshArtifactSlots();
             RefreshSkillList();
-            RefreshSkillLoadoutUI(true);
+            RefreshSkillLoadoutUI(!_hasSkillLoadoutValue);
         }
 
         private void SetupArtifactSlotTriggers()
@@ -341,28 +351,17 @@ namespace Code.UI
 
             int currentCost = GetCurrentSkillLoadoutCost();
             int maxCost = data.LoadOutCost;
-
-            if (skillLoadoutText != null)
-                skillLoadoutText.text = $"{currentCost} / {maxCost}";
-
-            if (skillLoadoutFillImage == null)
-                return;
-
-            skillLoadoutFillImage.type = Image.Type.Filled;
-            skillLoadoutFillImage.fillMethod = Image.FillMethod.Vertical;
-            skillLoadoutFillImage.fillOrigin = (int)Image.OriginVertical.Bottom;
-
             float targetFillAmount = maxCost > 0 ? (float)currentCost / maxCost : 0f;
+            bool shouldInstant = instant || !gameObject.activeInHierarchy || !IsVisible;
 
-            if (instant || !gameObject.activeInHierarchy)
+            if (shouldInstant)
             {
-                skillLoadoutFillImage.fillAmount = targetFillAmount;
-                StopFillCoroutine();
+                SetSkillLoadoutImmediate(currentCost, maxCost, targetFillAmount);
                 return;
             }
 
-            StopFillCoroutine();
-            _fillCoroutine = StartCoroutine(CoSmoothFill(targetFillAmount));
+            AnimateSkillLoadoutFill(targetFillAmount);
+            AnimateSkillLoadoutText(currentCost, maxCost);
         }
 
         private IEnumerator CoSmoothFill(float targetAmount)
@@ -385,6 +384,90 @@ namespace Code.UI
 
             skillLoadoutFillImage.fillAmount = targetAmount;
             _fillCoroutine = null;
+        }
+
+        private IEnumerator CoSmoothSkillLoadoutText(int targetCost, int maxCost)
+        {
+            if (skillLoadoutText == null)
+            {
+                _textCoroutine = null;
+                yield break;
+            }
+
+            int startCost = _hasSkillLoadoutValue ? _displayedSkillLoadoutCost : targetCost;
+            int stepCount = Mathf.Abs(targetCost - startCost);
+
+            if (stepCount <= 0 || fillAnimationDuration <= 0f)
+            {
+                SetSkillLoadoutText(targetCost, maxCost);
+                _textCoroutine = null;
+                yield break;
+            }
+
+            int direction = targetCost > startCost ? 1 : -1;
+            int currentCost = startCost;
+            float stepInterval = Mathf.Max(0.04f, fillAnimationDuration / stepCount);
+
+            SetSkillLoadoutText(currentCost, maxCost);
+
+            while (currentCost != targetCost)
+            {
+                float elapsedTime = 0f;
+
+                while (elapsedTime < stepInterval)
+                {
+                    elapsedTime += Time.deltaTime;
+                    yield return null;
+                }
+
+                currentCost += direction;
+                SetSkillLoadoutText(currentCost, maxCost);
+            }
+
+            _textCoroutine = null;
+        }
+
+        private void SetSkillLoadoutImmediate(int currentCost, int maxCost, float fillAmount)
+        {
+            StopSkillLoadoutAnimation();
+
+            if (skillLoadoutFillImage != null)
+                skillLoadoutFillImage.fillAmount = fillAmount;
+
+            SetSkillLoadoutText(currentCost, maxCost);
+        }
+
+        private void AnimateSkillLoadoutFill(float targetFillAmount)
+        {
+            StopFillCoroutine();
+
+            if (skillLoadoutFillImage == null)
+                return;
+
+            _fillCoroutine = StartCoroutine(CoSmoothFill(targetFillAmount));
+        }
+
+        private void AnimateSkillLoadoutText(int targetCost, int maxCost)
+        {
+            StopTextCoroutine();
+
+            if (skillLoadoutText == null)
+            {
+                _displayedSkillLoadoutCost = targetCost;
+                _hasSkillLoadoutValue = true;
+                return;
+            }
+
+            _textCoroutine = StartCoroutine(CoSmoothSkillLoadoutText(targetCost, maxCost));
+        }
+
+        private void SetSkillLoadoutText(int currentCost, int maxCost)
+        {
+            if (skillLoadoutText != null)
+                skillLoadoutText.text = $"{currentCost} / {maxCost}";
+
+            _displayedSkillLoadoutCost = currentCost;
+            _hasSkillLoadoutValue = true;
         }
 
         private int GetCurrentSkillLoadoutCost()
@@ -508,6 +591,28 @@ namespace Code.UI
 
             StopCoroutine(_fillCoroutine);
             _fillCoroutine = null;
+        }
+
+        private void StopTextCoroutine()
+        {
+            if (_textCoroutine == null)
+                return;
+
+            StopCoroutine(_textCoroutine);
+            _textCoroutine = null;
+        }
+
+        private void StopSkillLoadoutAnimation()
+        {
+            StopFillCoroutine();
+            StopTextCoroutine();
+        }
+
+        private void ResetSkillLoadoutAnimationState()
+        {
+            StopSkillLoadoutAnimation();
+            _displayedSkillLoadoutCost = 0;
+            _hasSkillLoadoutValue = false;
         }
 
         private static int GetStatBonus(StatInfo statInfo, UnitType unitType)

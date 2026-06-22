@@ -140,7 +140,7 @@ namespace Code.UnitSystem.TraitSystem
         {
             damage = Mathf.RoundToInt(damage * 0.5f);
 
-            _unitHealthCompo.SetMaxHp(_unitHealthCompo.MaxHealth - 5);
+            _unitHealthCompo.SetMaxHp(_unitHealthCompo.MaxHealth - 7);
             
             Bus<UseSpecEvent>.Raise(new UseSpecEvent(UnitType.Knight, null));
         }
@@ -149,7 +149,7 @@ namespace Code.UnitSystem.TraitSystem
         {
             damage = 0;
             
-            _unitHealthCompo.SetMaxHp(_unitHealthCompo.MaxHealth - 5);
+            _unitHealthCompo.SetMaxHp(_unitHealthCompo.MaxHealth - 7);
             
             Bus<UseSpecEvent>.Raise(new UseSpecEvent(UnitType.Knight, null));
         }

@@ -55,7 +55,10 @@ MonoBehaviour:
   button: {fileID: 3415395379653892925}
   hoverScaleMultiplier: 1.12
   hoverScaleSpeed: 14
-  idleIconColor: {r: 0.58, g: 0.58, b: 0.58, a: 1}
+  availableIconColor: {r: 0.91, g: 0.91, b: 0.88, a: 1}
+  unavailableIconColor: {r: 0.48, g: 0.48, b: 0.44, a: 0.82}
+  unknownIconColor: {r: 0.42, g: 0.42, b: 0.39, a: 0.62}
+  currentIconColor: {r: 0.74, g: 0.72, b: 0.62, a: 1}
   hoverIconColor: {r: 1, g: 1, b: 1, a: 1}
   selectedIconColor: {r: 0, g: 0, b: 0, a: 1}
   colorChangeSpeed: 14
