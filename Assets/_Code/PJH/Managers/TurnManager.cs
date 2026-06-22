@@ -18,6 +18,7 @@ namespace Code.Core.Managers
         [SerializeField] private float baseTurnGauge = 100f;
         [SerializeField] private float firstRoundInterval = 150f;
         [SerializeField] private float roundInterval = 100f;
+        [SerializeField] private bool playerFirstOnBattleStart = true;
 
         [Header("Dependencies")]
         [SerializeField] private UnitManager unitManager;
@@ -32,6 +33,7 @@ namespace Code.Core.Managers
         private RoundTracker _roundTracker;
         private bool _turnFlag;
         private bool _turnOrderDirty;
+        private const float FirstTurnEnemyOffset = 0.01f;
 
         private void Awake()
         {
@@ -77,16 +79,33 @@ namespace Code.Core.Managers
             };
 
             RefreshUnits();
+            InitializeBattleTurnGauge();
+
+            StartNextTurn();
+        }
+
+        private void InitializeBattleTurnGauge()
+        {
+            bool usePlayerFirst = playerFirstOnBattleStart
+                                  && _units.Any(unit => !(unit is RoundTracker) && unit.IsPlayerUnit);
 
             foreach (var unit in _units)
             {
                 if (unit is RoundTracker)
                     continue;
-                
-                unit.TurnGauge = CalculateBaseTurnGauge(unit);
-            }
 
-            StartNextTurn();
+                float baseGauge = CalculateBaseTurnGauge(unit);
+
+                if (!usePlayerFirst)
+                {
+                    unit.TurnGauge = baseGauge;
+                    continue;
+                }
+
+                unit.TurnGauge = unit.IsPlayerUnit
+                    ? 0f
+                    : Mathf.Max(0f, baseGauge - FirstTurnEnemyOffset);
+            }
         }
 
         private float CalculateBaseTurnGauge(ITurnable unit)
