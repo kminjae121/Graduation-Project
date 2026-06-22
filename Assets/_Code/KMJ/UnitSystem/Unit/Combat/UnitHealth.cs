@@ -1,4 +1,6 @@
-﻿using Code.Combat;
+﻿using System;
+using System.Collections;
+using Code.Combat;
 using Code.Core;
 using Code.Core.Events.Bus;
 using Code.UI;
@@ -37,6 +39,8 @@ namespace Code.UnitSystem.Combat
         public int MaxHealth => maxHealth;
 
         public bool IsDead { get; private set; } = false;
+
+        private bool _isCompoleteDead = false;
 
 
         public UnityEvent<Unit,int> OnInteractionEvent;
@@ -119,7 +123,16 @@ namespace Code.UnitSystem.Combat
             
             textEventChannel.RaiseEvent(textEvt);
         }
-        
+
+        private void Update()
+        {
+            if (CurrentHealth <= 0 && _isCompoleteDead)
+            {
+                StartCoroutine(WaitDie());
+                _isCompoleteDead = false;
+            }
+        }
+
 
         public void ApplyDamage(DamageData damageData, Vector3 hitPoint, Vector3 hitNormal,
             Unit dealer,bool isCritical, bool isPenetrate)
@@ -185,6 +198,8 @@ namespace Code.UnitSystem.Combat
                SoundManager.Instance.PlayClip("HitSound");   
                
                _entity.OnDeathEvent?.Invoke();
+
+               StartCoroutine(WaitDie());
                return;
            }
            else
@@ -204,6 +219,13 @@ namespace Code.UnitSystem.Combat
                 damage = Mathf.Max(0, modifier.ModifyDamageTaken(damage));
 
             return damage;
+        }
+
+        private IEnumerator WaitDie()
+        {
+            yield return new WaitForSeconds(3f);
+            Bus<UnitDeadEvent>.Raise(new UnitDeadEvent(_entity));
+            _entity.gameObject.SetActive(false);
         }
     }
 }

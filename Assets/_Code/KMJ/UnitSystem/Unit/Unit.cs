@@ -87,9 +87,6 @@ namespace Code.UnitSystem
         
         private void RegisterEvents()
         {
-            OnHitEvent -= Hit;
-            OnDeathEvent -= Dead;
-        
             OnHitEvent += Hit;
             OnDeathEvent += Dead;
         }
