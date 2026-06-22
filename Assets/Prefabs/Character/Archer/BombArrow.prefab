@@ -173,7 +173,7 @@ MonoBehaviour:
     m_Bits: 256
   bombTrm: {fileID: 7455794510644018766}
   castSize: {x: 4, y: 4, z: 4}
-  damage: 20
+  damage: 15
 --- !u!54 &2521774547407510811
 Rigidbody:
   m_ObjectHideFlags: 0
