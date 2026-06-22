@@ -25,7 +25,7 @@ MonoBehaviour:
   Speed: 3
   isPlayerUnit: 0
   MoveRange: 3
-  Maxhealth: 200
+  Maxhealth: 500
   AttackDamage: 5
   DefensivePower: 0
   ShieldValue: 0

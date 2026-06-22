@@ -7,6 +7,8 @@ namespace Code.UnitSystem.Enemies.AI
     public abstract class EnemyPlannerProvider : MonoBehaviour
     {
         public abstract EnemyPlannerBase Planner { get; }
+        public virtual bool ShouldSkipTurn => false;
+        public virtual bool SuppressHitAnimation => false;
 
         public virtual void OnSkillStarted(SkillSO skillSO, Unit target)
         {

@@ -285,18 +285,20 @@ MonoBehaviour:
   basicSkill: {fileID: 11400000, guid: a45cf72c25b0a884fbae08f59cbe47ff, type: 2}
   gimmickSkill: {fileID: 11400000, guid: 418759b6e6c835a4493c8feb925c80aa, type: 2}
   punishSkill: {fileID: 11400000, guid: bf93c9a408be47d4cac17df4a9f726c6, type: 2}
-  weakSkill: {fileID: 0}
   canMove: 1
   moveForSkill: 1
   moveInGimmick: 1
-  moveInWeak: 1
   useDefaultBasic: 1
   fallbackToDefault: 0
   basicCount: 2
   lowHpBasicCount: 3
   lowHpThreshold: 0.25
   weakTurns: 2
-  weakDamageTakenRate: 1.5
+  weakDamageTakenRate: 2
+  weakDownAnimationKey: DOWN
+  weakKneeAnimationKey: KNEE
+  weakUpAnimationKey: UP
+  downToKneeDelay: 0.8
   onGimmickStart:
     m_PersistentCalls:
       m_Calls:
