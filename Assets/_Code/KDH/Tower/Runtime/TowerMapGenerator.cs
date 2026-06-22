@@ -6,11 +6,11 @@ namespace Code.Tower
 {
     public static class TowerMapGenerator
     {
-        private const int LaneCount = 7;
-        private const int PathCount = 6;
-        private const int NormalStageRows = 12;
-        private const int BossStageRows = 10;
-        private const int MinimumDistinctStartLanes = 2;
+        private const int LaneCount = 5;
+        private const int PathCount = 5;
+        private const int NormalStageRows = 8;
+        private const int BossStageRows = 8;
+        private const int MinimumDistinctStartLanes = 3;
         private const int EliteMinimumRow = 3;
 
         private const float EventWeight = 0.22f;
