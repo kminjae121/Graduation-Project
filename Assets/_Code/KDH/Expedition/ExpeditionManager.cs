@@ -31,6 +31,10 @@ namespace Code.Expedition.Managers
         [SerializeField] private TowerNodeMapView nodeMapView;
         [SerializeField] private TowerPortalChoicePanel portalChoicePanel;
 
+        [Header("Debug Hotkeys")]
+        [SerializeField] private bool enableStageSkipHotkey = true;
+        [SerializeField] private KeyCode stageSkipKey = KeyCode.K;
+
         protected override void Awake()
         {
             isDontDestroyOnLoad = false;
@@ -55,6 +59,15 @@ namespace Code.Expedition.Managers
         private void OnDestroy()
         {
             UnwireUIEvents();
+        }
+
+        private void Update()
+        {
+            if (!enableStageSkipHotkey)
+                return;
+
+            if (UnityEngine.Input.GetKeyDown(stageSkipKey))
+                SkipCurrentStage();
         }
 
         public void RequestMoveToRoom(int roomId)
@@ -146,6 +159,17 @@ namespace Code.Expedition.Managers
             TowerRunSession.AdvanceToNextFloor();
             ResolveCurrentRoomOnMapEnter();
             RefreshUI();
+        }
+
+        private void SkipCurrentStage()
+        {
+            if (!TowerRunSession.IsActive)
+                return;
+
+            TowerRunSession.AdvanceToNextFloor();
+
+            if (ResolveCurrentRoomOnMapEnter())
+                RefreshUI();
         }
 
         private void HandleReturnLobbySelected()
