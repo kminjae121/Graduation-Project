@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/KDH_Scenes/TowerMapScene.unity
     guid: 8f1a19b7f4f34a2f9c9bf7e7d036c901
   - enabled: 1
-    path: Assets/Scenes/KDH_Scenes/BattleScene.unity
+    path: Assets/Scenes/KDH_Scenes/BattleScene1.unity
     guid: 7187174113aa71c499806f2aef1b7387
   - enabled: 1
     path: Assets/Scenes/KDH_Scenes/BattleUI.unity

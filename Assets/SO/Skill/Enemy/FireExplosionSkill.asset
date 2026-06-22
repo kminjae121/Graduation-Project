@@ -21,7 +21,7 @@ MonoBehaviour:
   skillUIImage: {fileID: 0}
   className: Code.SkillSystem.FireExplosionSkill
   skillPrice: 0
-  SkillDamage: 3
+  SkillDamage: 2
   SkillRange: 4
   MinRange: 1
   IsOwnSkill: 0
