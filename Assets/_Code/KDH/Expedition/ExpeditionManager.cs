@@ -230,6 +230,7 @@ namespace Code.Expedition.Managers
             if (canvas == null)
                 canvas = CreateRuntimeCanvas();
 
+            EnsureCanvasRaycaster(canvas);
             EnsureEventSystem();
 
             RectTransform canvasRect = canvas.transform as RectTransform;
@@ -261,6 +262,15 @@ namespace Code.Expedition.Managers
 
             canvasObject.AddComponent<GraphicRaycaster>();
             return newCanvas;
+        }
+
+        private static void EnsureCanvasRaycaster(Canvas targetCanvas)
+        {
+            if (targetCanvas == null)
+                return;
+
+            if (targetCanvas.GetComponent<GraphicRaycaster>() == null)
+                targetCanvas.gameObject.AddComponent<GraphicRaycaster>();
         }
 
         private static void EnsureEventSystem()
