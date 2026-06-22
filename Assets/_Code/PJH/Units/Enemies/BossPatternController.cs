@@ -1,3 +1,4 @@
+using System.Collections;
 using Code.Combat;
 using Code.Core.Events.Bus;
 using Code.SkillSystem;
@@ -22,13 +23,11 @@ namespace Code.UnitSystem.Enemies
         [SerializeField] private SkillSO basicSkill;
         [SerializeField] private SkillSO gimmickSkill;
         [SerializeField] private SkillSO punishSkill;
-        [SerializeField] private SkillSO weakSkill;
 
         [Header("Movement")]
         [SerializeField] private bool canMove = true;
         [SerializeField] private bool moveForSkill = true;
         [SerializeField] private bool moveInGimmick = true;
-        [SerializeField] private bool moveInWeak;
 
         [Header("Fallback")]
         [SerializeField] private bool useDefaultBasic = true;
@@ -40,8 +39,12 @@ namespace Code.UnitSystem.Enemies
         [SerializeField, Range(0f, 1f)] private float lowHpThreshold = 0.25f;
 
         [Header("Weaken")]
-        [SerializeField, Min(1)] private int weakTurns = 1;
-        [SerializeField] private float weakDamageTakenRate = 1.5f;
+        [SerializeField, Min(1)] private int weakTurns = 2;
+        [SerializeField] private float weakDamageTakenRate = 2f;
+        [SerializeField] private string weakDownAnimationKey = "DOWN";
+        [SerializeField] private string weakKneeAnimationKey = "KNEE";
+        [SerializeField] private string weakUpAnimationKey = "UP";
+        [SerializeField, Min(0f)] private float downToKneeDelay = 0.8f;
 
         [Header("Events")]
         [SerializeField] private UnityEvent onGimmickStart;
@@ -59,8 +62,11 @@ namespace Code.UnitSystem.Enemies
         private bool _gimmickActive;
         private bool _gimmickResolved;
         private bool _gimmickSuccess;
+        private Coroutine _weakPoseRoutine;
 
         public override EnemyPlannerBase Planner => _planner ??= new BossPlanner(this);
+        public override bool ShouldSkipTurn => IsWeakened;
+        public override bool SuppressHitAnimation => IsWeakened;
 
         public bool IsGimmickActive => _gimmickActive;
         public bool IsWeakened => _step == PatternStep.Weakened;
@@ -80,13 +86,12 @@ namespace Code.UnitSystem.Enemies
             PatternStep.GimmickStart => gimmickSkill,
             PatternStep.GimmickResolve => basicSkill,
             PatternStep.Punish => punishSkill,
-            PatternStep.Weakened => weakSkill != null ? weakSkill : basicSkill,
+            PatternStep.Weakened => null,
             _ => null
         };
 
         internal bool UseDefaultPlan
-            => (_step == PatternStep.Basic || _step == PatternStep.GimmickResolve ||
-                (_step == PatternStep.Weakened && weakSkill == null))
+            => (_step == PatternStep.Basic || _step == PatternStep.GimmickResolve)
                && basicSkill == null && useDefaultBasic;
 
         internal bool FallbackToDefault => fallbackToDefault;
@@ -101,7 +106,7 @@ namespace Code.UnitSystem.Enemies
                 return _step switch
                 {
                     PatternStep.GimmickStart or PatternStep.GimmickResolve => moveInGimmick,
-                    PatternStep.Weakened => moveInWeak,
+                    PatternStep.Weakened => false,
                     _ => true
                 };
             }
@@ -119,6 +124,7 @@ namespace Code.UnitSystem.Enemies
 
         private void OnDisable()
         {
+            StopWeakPoseRoutine();
             Bus<UnitTurnEndEvent>.Unsubscribe(HandleUnitTurnEnd);
         }
 
@@ -147,17 +153,24 @@ namespace Code.UnitSystem.Enemies
                 return;
 
             _gimmickActive = false;
-            _gimmickResolved = true;
-            _gimmickSuccess = success;
 
             if (success)
+            {
+                _gimmickResolved = false;
+                _gimmickSuccess = false;
                 onGimmickSuccess?.Invoke();
-            else
-                onGimmickFail?.Invoke();
+                StartWeakened();
+                return;
+            }
+
+            _gimmickResolved = true;
+            _gimmickSuccess = false;
+            onGimmickFail?.Invoke();
         }
 
         public void ResetPattern()
         {
+            StopWeakPoseRoutine();
             _step = PatternStep.Basic;
             _basicUses = 0;
             _weakTurnsLeft = 0;
@@ -222,9 +235,14 @@ namespace Code.UnitSystem.Enemies
 
         private void StartWeakened()
         {
+            StopWeakPoseRoutine();
             _step = PatternStep.Weakened;
             _weakTurnsLeft = Mathf.Max(1, weakTurns);
+            _gimmickResolved = false;
+            _gimmickSuccess = false;
             onWeakStart?.Invoke();
+            PlayWeakenAnimation(weakDownAnimationKey);
+            _weakPoseRoutine = StartCoroutine(PlayKneeAfterDelay());
         }
 
         private void ConsumeWeakenTurn()
@@ -237,8 +255,40 @@ namespace Code.UnitSystem.Enemies
             if (_weakTurnsLeft > 0)
                 return;
 
+            StopWeakPoseRoutine();
+            PlayWeakenAnimation(weakUpAnimationKey);
             onWeakEnd?.Invoke();
             ResetPattern();
+        }
+
+        private IEnumerator PlayKneeAfterDelay()
+        {
+            if (downToKneeDelay > 0f)
+                yield return new WaitForSeconds(downToKneeDelay);
+            else
+                yield return null;
+
+            _weakPoseRoutine = null;
+
+            if (IsWeakened)
+                PlayWeakenAnimation(weakKneeAnimationKey);
+        }
+
+        private void PlayWeakenAnimation(string animationKey)
+        {
+            if (string.IsNullOrWhiteSpace(animationKey) || _owner?.UnitAnimator == null)
+                return;
+
+            _owner.UnitAnimator.PlaySelectAnimation(animationKey);
+        }
+
+        private void StopWeakPoseRoutine()
+        {
+            if (_weakPoseRoutine == null)
+                return;
+
+            StopCoroutine(_weakPoseRoutine);
+            _weakPoseRoutine = null;
         }
 
         private void HandleUnitTurnEnd(UnitTurnEndEvent evt)

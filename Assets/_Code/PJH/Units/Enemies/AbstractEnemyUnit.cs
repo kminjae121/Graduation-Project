@@ -156,13 +156,13 @@ namespace Code.UnitSystem.Enemies
             if (_isDead)
                 return;
 
-            if (UnitAnimator != null)
+            if (UnitAnimator != null &&
+                (_plannerProvider == null || !_plannerProvider.SuppressHitAnimation))
             {
                 UnitAnimator.RestartFromEntry();
                 UnitAnimator.PlaySelectAnimation("HIT");
+                StartCoroutine(HitIdle());
             }
-
-            StartCoroutine(HitIdle());
 
             base.Hit();
         }
@@ -205,7 +205,12 @@ namespace Code.UnitSystem.Enemies
         }
 
         protected virtual bool PrepareTurnStart()
-            => UpdateTargetBlackboard();
+        {
+            if (_plannerProvider != null && _plannerProvider.isActiveAndEnabled && _plannerProvider.ShouldSkipTurn)
+                return false;
+
+            return UpdateTargetBlackboard();
+        }
 
         public void OrderSkill(SkillSO skillSO, GameObject target, System.Action onComplete)
         {
