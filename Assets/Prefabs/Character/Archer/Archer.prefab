@@ -61064,6 +61064,10 @@ PrefabInstance:
       propertyPath: targetHealth
       value: 
       objectReference: {fileID: 6766064933185521238}
+    - target: {fileID: 5467037370515280763, guid: 91dda8669248fe449b8b886ebf7b7995, type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6932941932523374441, guid: 91dda8669248fe449b8b886ebf7b7995, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 57.4
