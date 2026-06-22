@@ -226,10 +226,16 @@ namespace Code.UnitSystem.Combat
 
         private IEnumerator WaitDie()
         {
-            yield return new WaitForSeconds(3f);
-
+            yield return new WaitForSeconds(5f);
             _entity.OnDeathEvent?.Invoke();
+
+            if (_entity as AbstractEnemyUnit)
+            {
+                if (StageManager.Instance != null)
+                    StageManager.Instance.RemoveEnemy(_entity.gameObject);
+            }
             Bus<UnitDeadEvent>.Raise(new UnitDeadEvent(_entity));
+            _entity.gameObject.SetActive(false);
         }
     }
 }

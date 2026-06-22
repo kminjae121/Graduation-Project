@@ -173,7 +173,7 @@ MonoBehaviour:
   - BattleScene5
   eliteBattleSceneName: BattleScene1
   eliteBattleSceneNames: []
-  bossBattleSceneName: BattleScene1
+  bossBattleSceneName: BossScene1
   bossBattleSceneNames: []
   eventSceneName: SelectEventScene
   rewardSceneName: RewardScene
