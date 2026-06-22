@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitName: Golem
   UnitClass: 
-  UnitImage: {fileID: 21300000, guid: f33eabd7b78ef244c95baec2c98fdbb5, type: 3}
+  UnitImage: {fileID: 21300000, guid: de673148dcc9c724ca6a4ea5071580da, type: 3}
   UnitSpawn: {fileID: 11400000, guid: 4567c5b57677f364cb687748b90a144d, type: 2}
   SkillStorage: {fileID: 0}
   OwnSkillStorage: {fileID: 0}
