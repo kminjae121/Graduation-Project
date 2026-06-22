@@ -12147,8 +12147,8 @@ MonoBehaviour:
   unitStorage: {fileID: 11400000, guid: 001b4c37e1da0a04bbe3f0aedc15543d, type: 2}
   characterUIList:
   - {fileID: 1503310207}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1204752350}
+  - {fileID: 1293969806}
   characterClickMode: 0
   sendPartyHoverEvents: 0
 --- !u!1 &2039435301

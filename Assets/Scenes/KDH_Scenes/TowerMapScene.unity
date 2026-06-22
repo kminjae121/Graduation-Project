@@ -164,9 +164,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDontDestroyOnLoad: 0
-  battleSceneName: BattleScene
-  eliteBattleSceneName: BattleScene
-  bossBattleSceneName: BattleScene
+  battleSceneName: BattleScene1
+  battleSceneNames:
+  - BattleScene1
+  - BattleScene2
+  - BattleScene3
+  - BattleScene4
+  - BattleScene5
+  eliteBattleSceneName: BattleScene1
+  eliteBattleSceneNames: []
+  bossBattleSceneName: BattleScene1
+  bossBattleSceneNames: []
   eventSceneName: SelectEventScene
   rewardSceneName: RewardScene
   battleTransitionEffect: {fileID: 11400000, guid: 800cf4f007f3e6a4d85d89ee6e2d175c, type: 2}

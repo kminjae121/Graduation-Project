@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Code.Core;
 using Code.Tower;
 using Code.Tower.UI;
@@ -14,9 +15,12 @@ namespace Code.Expedition.Managers
     public class ExpeditionManager : MonoSingleton<ExpeditionManager>
     {
         [Header("Scene")]
-        [SerializeField] private string battleSceneName = "BattleScene";
-        [SerializeField] private string eliteBattleSceneName = "BattleScene";
-        [SerializeField] private string bossBattleSceneName = "BattleScene";
+        [SerializeField] private string battleSceneName = "BattleScene1";
+        [SerializeField] private List<string> battleSceneNames = new() { "BattleScene1" };
+        [SerializeField] private string eliteBattleSceneName = "BattleScene1";
+        [SerializeField] private List<string> eliteBattleSceneNames = new();
+        [SerializeField] private string bossBattleSceneName = "BattleScene1";
+        [SerializeField] private List<string> bossBattleSceneNames = new();
         [SerializeField] private string eventSceneName = "SelectEventScene";
         [SerializeField] private string rewardSceneName = "RewardScene";
         [SerializeField] private TransitionEffect battleTransitionEffect;
@@ -37,7 +41,7 @@ namespace Code.Expedition.Managers
         {
             if (!TowerRunSession.IsActive)
             {
-                Debug.LogWarning("[ExpeditionManager] Tower run is not active.");
+                Debug.LogWarning("[ExpeditionManager] 진행 중인 탑 원정이 없습니다.");
                 return;
             }
 
@@ -57,7 +61,7 @@ namespace Code.Expedition.Managers
         {
             if (!TowerRunSession.TryMoveToRoom(roomId, out TowerRoomNode movedRoom))
             {
-                Debug.LogWarning($"Cannot move to room {roomId}. Current room must be cleared and connected.");
+                Debug.LogWarning($"현재 방이 클리어되어 있고 연결된 방일 때만 {roomId}번 방으로 이동할 수 있습니다.");
                 return;
             }
 
@@ -98,21 +102,21 @@ namespace Code.Expedition.Managers
                 case TowerRoomType.Combat:
                     if (!room.IsCleared)
                     {
-                        LoadBattleScene(battleSceneName);
+                        LoadBattleScene(GetRandomSceneName(battleSceneNames, battleSceneName));
                         return false;
                     }
                     break;
                 case TowerRoomType.EliteCombat:
                     if (!room.IsCleared)
                     {
-                        LoadBattleScene(eliteBattleSceneName);
+                        LoadBattleScene(GetRandomSceneName(eliteBattleSceneNames, eliteBattleSceneName));
                         return false;
                     }
                     break;
                 case TowerRoomType.Boss:
                     if (!room.IsCleared)
                     {
-                        LoadBattleScene(bossBattleSceneName);
+                        LoadBattleScene(GetRandomSceneName(bossBattleSceneNames, bossBattleSceneName));
                         return false;
                     }
                     break;
@@ -155,7 +159,7 @@ namespace Code.Expedition.Managers
         {
             if (string.IsNullOrWhiteSpace(sceneName))
             {
-                Debug.LogWarning("Battle scene name is empty.");
+                Debug.LogWarning("[ExpeditionManager] 전투 씬 이름이 비어 있습니다.");
                 return;
             }
 
@@ -167,12 +171,43 @@ namespace Code.Expedition.Managers
         {
             if (string.IsNullOrWhiteSpace(sceneName))
             {
-                Debug.LogWarning("[ExpeditionManager] Room scene name is empty.");
+                Debug.LogWarning("[ExpeditionManager] 방 씬 이름이 비어 있습니다.");
                 return;
             }
 
             SetRuntimeUIVisible(false);
             TowerSceneLoader.LoadScene(sceneName, battleTransitionEffect);
+        }
+
+        private static string GetRandomSceneName(IReadOnlyList<string> sceneNames, string fallbackSceneName)
+        {
+            int validSceneCount = 0;
+
+            if (sceneNames != null)
+            {
+                for (int i = 0; i < sceneNames.Count; i++)
+                    if (!string.IsNullOrWhiteSpace(sceneNames[i]))
+                        validSceneCount++;
+            }
+
+            if (validSceneCount <= 0)
+                return fallbackSceneName;
+
+            int selectedIndex = Random.Range(0, validSceneCount);
+
+            for (int i = 0; i < sceneNames.Count; i++)
+            {
+                string sceneName = sceneNames[i];
+                if (string.IsNullOrWhiteSpace(sceneName))
+                    continue;
+
+                if (selectedIndex == 0)
+                    return sceneName;
+
+                selectedIndex--;
+            }
+
+            return fallbackSceneName;
         }
 
         private void SetRuntimeUIVisible(bool visible)
