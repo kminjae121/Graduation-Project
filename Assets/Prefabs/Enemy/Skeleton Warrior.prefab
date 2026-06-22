@@ -1002,7 +1002,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Code.UnitSystem.Enemies.CommonMeleeEnemy
   <unitSO>k__BackingField: {fileID: 11400000, guid: 32ce4e1858963fe44b740451ca0d6f12, type: 2}
-  <TurnGauge>k__BackingField: 0
+  <TurnGauge>k__BackingField: 50
   <PoolingType>k__BackingField: {fileID: 11400000, guid: 46482cf0fc8e21d4bba4fe75ba908dc6, type: 2}
   aiProfile: {fileID: 11400000, guid: 3021a5dad03303f458f2d8eb9e29c1c8, type: 2}
 --- !u!114 &4838134854643347542
