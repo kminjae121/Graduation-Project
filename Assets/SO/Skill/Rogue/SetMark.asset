@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SetMark
   m_EditorClassIdentifier: 
   unitType: 2
-  skillName: "\u3131"
+  skillName: "\uADF8\uB9BC\uC790\uC774\uB3D9"
   skillAnimationKey: 
   SkillDescription: "\uC804\uC5D0 \uC124\uCE58\uD55C \uADF8\uB9BC\uC790\uB85C \uB3CC\uC544\uAC11\uB2C8\uB2E4."
   SkillValue: 6

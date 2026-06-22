@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: BasicAttackSkill
   m_EditorClassIdentifier: 
   unitType: 3
-  skillName: "\uBCA0\uC5B4\uAC00\uB974\uAE30"
+  skillName: "\uB0B4\uB824\uCC0D\uAE30"
   skillAnimationKey: 
-  SkillDescription: "\uAC80\uC744 \uB4E4\uACE0 \uBE60\uB974\uAC8C \uD68C\uC804\uD558\uC5EC\n\uBB3C\uB9AC
-    \uD53C\uD574\uB97C 4\uD68C \uC785\uD799\uB2C8\uB2E4."
+  SkillDescription: "\uD070 \uAC80\uC744 \uC138\uAC8C \uB0B4\uB9AC\uCCD0 \uD53C\uD574\uB97C
+    \uC785\uD799\uB2C8\uB2E4."
   SkillValue: 5
   SkillCost: 5
-  skillUIImage: {fileID: 21300000, guid: 472ed1cd53a54e445bdc0cb40a3f6f28, type: 3}
+  skillUIImage: {fileID: 21300000, guid: 7c35e281febf5be46b0825102e69c615, type: 3}
   className: BasicAttackSkill
   skillPrice: 0
-  SkillDamage: 1
+  SkillDamage: 2
   SkillRange: 1
   MinRange: 0
   IsOwnSkill: 0
