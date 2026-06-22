@@ -38,6 +38,7 @@ namespace Code.UI
         private SkillComponent _skillCompo;
         private bool _isSelected;
         private bool _isInteractable;
+        private bool _isPointerInside;
 
         private Color _originBgColor = Color.white;
         private Color _originIconColor = Color.white;
@@ -85,13 +86,14 @@ namespace Code.UI
             _skillCompo = null;
             _isSelected = false;
             _isInteractable = false;
+            _isPointerInside = false;
             ApplyColorMultiplier(1f);
             
             if (hoverImage != null) hoverImage.SetActive(false);
             if (blindImage != null) blindImage.SetActive(false);
             
             HidePopup();
-            ResetPosition();
+            ResetPosition(true);
         }
 
         public void ReturnToPool()
@@ -110,7 +112,11 @@ namespace Code.UI
 
         private void OnDisable()
         {
+            _isPointerInside = false;
+            _isSelected = false;
+            if (hoverImage != null) hoverImage.SetActive(false);
             HidePopup();
+            ResetPosition(true);
         }
 
         public void SetupSkill(SkillSO skill, SkillComponent compo, int currentTurnCost)
@@ -118,6 +124,7 @@ namespace Code.UI
             _currentSkill = skill;
             _skillCompo = compo;
             _isSelected = false;
+            _isPointerInside = false;
             
             if (hoverImage != null) hoverImage.SetActive(false);
             
@@ -126,7 +133,7 @@ namespace Code.UI
             if (costText != null) costText.text = skill.SkillCost.ToString();
             
             UpdateInteractability(currentTurnCost);
-            ResetPosition();
+            ResetPosition(true);
         }
 
         public void UpdateInteractability(int currentTurnCost)
@@ -139,12 +146,15 @@ namespace Code.UI
 
             if (!_isInteractable)
             {
-                transform.SetAsFirstSibling();
                 ApplyColorMultiplier(darkenMultiplier);
+                if (!_isSelected)
+                    ClearHoverVisual();
             }
             else
             {
                 ApplyColorMultiplier(1f);
+                if (_isPointerInside && !_isSelected)
+                    ApplyHoverVisual();
             }
         }
 
@@ -160,22 +170,20 @@ namespace Code.UI
 
         public void OnPointerEnter(PointerEventData eventData)
         {
+            _isPointerInside = true;
             ShowPopup();
 
             if (!_isInteractable || _isSelected) return;
-            if (hoverImage != null) hoverImage.SetActive(true);
-
-            _moveTween?.Kill();
-            _moveTween = _rectTransform.DOAnchorPosY(_originalPosition.y + hoverYOffset, animDuration).SetEase(animEase);
+            ApplyHoverVisual();
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
+            _isPointerInside = false;
             HidePopup();
 
-            if (!_isInteractable || _isSelected) return;
-            if (hoverImage != null) hoverImage.SetActive(false);
-            ResetPosition();
+            if (_isSelected) return;
+            ClearHoverVisual();
         }
 
         public void OnPointerClick(PointerEventData eventData)
@@ -200,11 +208,7 @@ namespace Code.UI
         private void SelectThisSkill()
         {
             _isSelected = true;
-            
-            if (hoverImage != null) hoverImage.SetActive(true);
-            
-            _moveTween?.Kill();
-            _moveTween = _rectTransform.DOAnchorPosY(_originalPosition.y + selectYOffset, animDuration).SetEase(animEase);
+            ApplySelectedVisual();
             
             if (_skillCompo != null && _currentSkill != null)
             {
@@ -220,8 +224,10 @@ namespace Code.UI
             if (evt.SelectedSkill != _currentSkill && _isSelected)
             {
                 _isSelected = false;
-                if (hoverImage != null) hoverImage.SetActive(false);
-                ResetPosition();
+                if (_isPointerInside && _isInteractable)
+                    ApplyHoverVisual();
+                else
+                    ClearHoverVisual();
             }
         }
 
@@ -230,8 +236,10 @@ namespace Code.UI
             if (_isSelected)
             {
                 _isSelected = false;
-                if (hoverImage != null) hoverImage.SetActive(false);
-                ResetPosition();
+                if (_isPointerInside && _isInteractable)
+                    ApplyHoverVisual();
+                else
+                    ClearHoverVisual();
                 
                 if (_skillCompo != null)
                 {
@@ -240,9 +248,40 @@ namespace Code.UI
             }
         }
 
-        private void ResetPosition()
+        private void ApplyHoverVisual()
+        {
+            if (hoverImage != null) hoverImage.SetActive(true);
+            MoveToYOffset(hoverYOffset);
+        }
+
+        private void ApplySelectedVisual()
+        {
+            if (hoverImage != null) hoverImage.SetActive(true);
+            MoveToYOffset(selectYOffset);
+        }
+
+        private void ClearHoverVisual()
+        {
+            if (hoverImage != null) hoverImage.SetActive(false);
+            ResetPosition();
+        }
+
+        private void MoveToYOffset(float yOffset)
         {
             _moveTween?.Kill();
+            _moveTween = _rectTransform.DOAnchorPosY(_originalPosition.y + yOffset, animDuration).SetEase(animEase);
+        }
+
+        private void ResetPosition(bool instant = false)
+        {
+            _moveTween?.Kill();
+
+            if (instant || !gameObject.activeInHierarchy)
+            {
+                _rectTransform.anchoredPosition = new Vector2(_rectTransform.anchoredPosition.x, _originalPosition.y);
+                return;
+            }
+
             _moveTween = _rectTransform.DOAnchorPosY(_originalPosition.y, animDuration).SetEase(animEase);
         }
 

@@ -289,14 +289,13 @@ MonoBehaviour:
   canMove: 1
   moveForSkill: 1
   moveInGimmick: 1
-  moveInWeak: 0
+  moveInWeak: 1
   useDefaultBasic: 1
   fallbackToDefault: 0
   basicCount: 2
   lowHpBasicCount: 3
   lowHpThreshold: 0.25
   weakTurns: 2
-  skipInWeak: 1
   weakDamageTakenRate: 1.5
   onGimmickStart:
     m_PersistentCalls:

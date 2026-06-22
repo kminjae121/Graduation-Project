@@ -10,6 +10,7 @@ namespace Code.UnitSystem.Enemies.AI
     {
         private readonly BossPatternController _pattern;
         private readonly EnemyPlanner _fallbackPlanner = new();
+        private readonly EnemyMoveSelector _moves = new();
 
         public BossPlanner(BossPatternController pattern)
         {
@@ -23,12 +24,6 @@ namespace Code.UnitSystem.Enemies.AI
                 return;
 
             _pattern.PreparePlanStep();
-
-            if (_pattern.SkipTurn)
-            {
-                plan.Clear();
-                return;
-            }
 
             if (_pattern.UseDefaultPlan)
             {
@@ -70,6 +65,14 @@ namespace Code.UnitSystem.Enemies.AI
             {
                 plan.SetTarget(target);
                 plan.SetMoveTile(moveTile);
+                return;
+            }
+
+            if (_pattern.CanMoveNow &&
+                TryFindApproachTile(target, from, tiles, routes, out Vector2Int approachTile))
+            {
+                plan.SetTarget(target);
+                plan.SetMoveTile(approachTile);
                 return;
             }
 
@@ -119,6 +122,18 @@ namespace Code.UnitSystem.Enemies.AI
 
             selectedTile = bestOption.Tile;
             return found;
+        }
+
+        private bool TryFindApproachTile(Unit target, Vector2Int from,
+            IReadOnlyList<EnemyMoveTile> tiles, EnemyRouteMap routes, out Vector2Int selectedTile)
+        {
+            selectedTile = default;
+
+            if (target == null || tiles == null || GridMap.Instance == null)
+                return false;
+
+            Vector2Int targetPos = GridMap.Instance.WorldToGridPos(target.transform.position);
+            return _moves.TryApproachTile(from, target, targetPos, tiles, routes, out selectedTile);
         }
 
         private static bool IsBetterMoveOption(EnemyMoveOption option, EnemyMoveOption best)
