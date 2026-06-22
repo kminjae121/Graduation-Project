@@ -33,7 +33,13 @@ namespace Code.Core.Managers
         [SerializeField] private GameObject gameOverUI;
         [SerializeField] private GameObject cam;
 
+        [Header("Debug Hotkeys")]
+        [SerializeField] private bool enableStageSkipHotkey = true;
+        [SerializeField] private KeyCode stageSkipKey = KeyCode.K;
+
         [Inject] private PoolManagerMono _poolManager;
+        private bool _stageClearRaised;
+
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -48,6 +54,15 @@ namespace Code.Core.Managers
         private void Start()
         {
             SpawnEnemies();
+        }
+
+        private void Update()
+        {
+            if (!enableStageSkipHotkey)
+                return;
+
+            if (UnityEngine.Input.GetKeyDown(stageSkipKey))
+                SkipStage();
         }
 
         private void SpawnEnemies()
@@ -93,8 +108,22 @@ namespace Code.Core.Managers
             if (enemies.Count <= 0)
                 if (gameClearUI != null)
                 {
-                    Bus<StageClearEvent>.Raise(new StageClearEvent(true));
+                    RaiseStageClear();
                 }
+        }
+
+        private void SkipStage()
+        {
+            RaiseStageClear();
+        }
+
+        private void RaiseStageClear()
+        {
+            if (_stageClearRaised)
+                return;
+
+            _stageClearRaised = true;
+            Bus<StageClearEvent>.Raise(new StageClearEvent(true));
         }
 
         public void AddPlayerCnt()
