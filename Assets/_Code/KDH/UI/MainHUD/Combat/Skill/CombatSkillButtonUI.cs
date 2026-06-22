@@ -1,5 +1,6 @@
 ﻿using Code.Core.Events.Bus;
 using Code.SkillSystem;
+using System.Collections.Generic;
 using DG.Tweening;
 using GondrLib.ObjectPool.Runtime;
 using TMPro;
@@ -31,11 +32,13 @@ namespace Code.UI
         [SerializeField] private float darkenMultiplier = 0.4f;
 
         private RectTransform _rectTransform;
+        private RectTransform _visualRoot;
         private Image _backgroundImage;
-        private Vector2 _originalPosition;
+        private Vector2 _visualRootOriginPosition;
         private Tween _moveTween;
         private SkillSO _currentSkill;
         private SkillComponent _skillCompo;
+        private Canvas _canvas;
         private bool _isSelected;
         private bool _isInteractable;
         private bool _isPointerInside;
@@ -53,8 +56,11 @@ namespace Code.UI
         private void Awake()
         {
             _rectTransform = GetComponent<RectTransform>();
+            _canvas = GetComponentInParent<Canvas>();
+            EnsureRaycastTarget();
+            _visualRoot = CreateVisualRoot();
+            _visualRootOriginPosition = _visualRoot.anchoredPosition;
             _backgroundImage = GetComponent<Image>();
-            _originalPosition = _rectTransform.anchoredPosition;
 
             if (_backgroundImage != null) _originBgColor = _backgroundImage.color;
             if (skillIcon != null) _originIconColor = skillIcon.color;
@@ -66,6 +72,20 @@ namespace Code.UI
             
             Bus<CombatSkillCancelEvent>.Subscribe(HandleSkillCancel);
             Bus<CombatSkillSelectEvent>.Subscribe(HandleOtherSkillSelected);
+        }
+
+        private void Update()
+        {
+            if (!_isPointerInside) return;
+            if (IsPointerInsideButton()) return;
+
+            _isPointerInside = false;
+            HidePopup();
+
+            if (!_isSelected)
+            {
+                ClearHoverVisual();
+            }
         }
 
         private void OnDestroy()
@@ -170,6 +190,8 @@ namespace Code.UI
 
         public void OnPointerEnter(PointerEventData eventData)
         {
+            if (!IsPointerInsideButton(eventData)) return;
+
             _isPointerInside = true;
             ShowPopup();
 
@@ -188,7 +210,7 @@ namespace Code.UI
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (eventData.button == PointerEventData.InputButton.Left)
+            if (eventData.button == PointerEventData.InputButton.Left && IsPointerInsideButton(eventData))
             {
                 TrySelectSkill();
             }
@@ -269,7 +291,7 @@ namespace Code.UI
         private void MoveToYOffset(float yOffset)
         {
             _moveTween?.Kill();
-            _moveTween = _rectTransform.DOAnchorPosY(_originalPosition.y + yOffset, animDuration).SetEase(animEase);
+            _moveTween = _visualRoot.DOAnchorPosY(_visualRootOriginPosition.y + yOffset, animDuration).SetEase(animEase);
         }
 
         private void ResetPosition(bool instant = false)
@@ -278,11 +300,11 @@ namespace Code.UI
 
             if (instant || !gameObject.activeInHierarchy)
             {
-                _rectTransform.anchoredPosition = new Vector2(_rectTransform.anchoredPosition.x, _originalPosition.y);
+                _visualRoot.anchoredPosition = _visualRootOriginPosition;
                 return;
             }
 
-            _moveTween = _rectTransform.DOAnchorPosY(_originalPosition.y, animDuration).SetEase(animEase);
+            _moveTween = _visualRoot.DOAnchorPosY(_visualRootOriginPosition.y, animDuration).SetEase(animEase);
         }
 
         private void ShowPopup()
@@ -294,6 +316,80 @@ namespace Code.UI
         private void HidePopup()
         {
             Bus<CombatSkillHoverEvent>.Raise(new CombatSkillHoverEvent(null, null));
+        }
+
+        private void EnsureRaycastTarget()
+        {
+            Graphic graphic = GetComponent<Graphic>();
+            if (graphic != null)
+            {
+                graphic.raycastTarget = true;
+                return;
+            }
+
+            Image image = gameObject.AddComponent<Image>();
+            image.color = new Color(1f, 1f, 1f, 0f);
+            image.raycastTarget = true;
+        }
+
+        private RectTransform CreateVisualRoot()
+        {
+            Transform existing = _rectTransform.Find("CombatSkillVisualRoot");
+            if (existing is RectTransform existingRect)
+            {
+                return existingRect;
+            }
+
+            GameObject rootObject = new GameObject("CombatSkillVisualRoot", typeof(RectTransform));
+            rootObject.layer = gameObject.layer;
+
+            RectTransform root = rootObject.GetComponent<RectTransform>();
+            root.SetParent(_rectTransform, false);
+            root.anchorMin = new Vector2(0.5f, 0.5f);
+            root.anchorMax = new Vector2(0.5f, 0.5f);
+            root.pivot = new Vector2(0.5f, 0.5f);
+            root.sizeDelta = _rectTransform.sizeDelta;
+            root.anchoredPosition = Vector2.zero;
+            root.localScale = Vector3.one;
+            root.localRotation = Quaternion.identity;
+
+            List<Transform> children = new List<Transform>();
+            for (int i = 0; i < _rectTransform.childCount; i++)
+            {
+                Transform child = _rectTransform.GetChild(i);
+                if (child != root)
+                {
+                    children.Add(child);
+                }
+            }
+
+            foreach (Transform child in children)
+            {
+                child.SetParent(root, false);
+            }
+
+            return root;
+        }
+
+        private bool IsPointerInsideButton(PointerEventData eventData = null)
+        {
+            Vector2 screenPosition = eventData != null ? eventData.position : (Vector2)UnityEngine.Input.mousePosition;
+            return RectTransformUtility.RectangleContainsScreenPoint(_rectTransform, screenPosition, GetEventCamera(eventData));
+        }
+
+        private Camera GetEventCamera(PointerEventData eventData)
+        {
+            if (eventData != null && eventData.enterEventCamera != null)
+            {
+                return eventData.enterEventCamera;
+            }
+
+            if (_canvas == null || _canvas.renderMode == RenderMode.ScreenSpaceOverlay)
+            {
+                return null;
+            }
+
+            return _canvas.worldCamera;
         }
     }
 }

@@ -3,8 +3,10 @@ using System.Collections;
 using Code.Combat;
 using Code.Core;
 using Code.Core.Events.Bus;
+using Code.Core.Managers;
 using Code.UI;
 using Code.UnitManaging;
+using Code.UnitSystem.Enemies;
 using EntityComponent;
 using GameEventChannel;
 using UnityEngine;
@@ -225,8 +227,9 @@ namespace Code.UnitSystem.Combat
         private IEnumerator WaitDie()
         {
             yield return new WaitForSeconds(3f);
+
+            _entity.OnDeathEvent?.Invoke();
             Bus<UnitDeadEvent>.Raise(new UnitDeadEvent(_entity));
-            _entity.gameObject.SetActive(false);
         }
     }
 }

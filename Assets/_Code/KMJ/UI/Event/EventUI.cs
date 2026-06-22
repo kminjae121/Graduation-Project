@@ -9,7 +9,6 @@ using Random = UnityEngine.Random;
 using Code.Core.Events.Bus;
 using Code.Tower;
 using Code.UnitManaging;
-using VHierarchy.Libs;
 
 namespace Code.UI
 {
