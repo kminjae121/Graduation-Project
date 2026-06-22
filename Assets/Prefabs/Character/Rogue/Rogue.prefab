@@ -174800,6 +174800,10 @@ PrefabInstance:
       propertyPath: targetHealth
       value: 
       objectReference: {fileID: 5629794309468085115}
+    - target: {fileID: 5467037370515280763, guid: 91dda8669248fe449b8b886ebf7b7995, type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6932941932523374441, guid: 91dda8669248fe449b8b886ebf7b7995, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.2
