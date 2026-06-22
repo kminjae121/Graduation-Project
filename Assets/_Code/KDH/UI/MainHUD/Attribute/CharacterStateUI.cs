@@ -53,6 +53,7 @@ namespace Code.UI
         public void SetUnit(UnitState unit)
         {
             UnsubscribeCurrentUnit();
+            _healthBarTween?.Kill();
 
             _unit = unit;
 
@@ -111,12 +112,24 @@ namespace Code.UI
             if (_unit == null || healthBar == null)
                 return;
 
-            float fillValue = next / _unit.Data.Maxhealth;
+            float maxHealth = GetMaxHealth();
+            float fillValue = maxHealth > 0f ? Mathf.Clamp01(next / maxHealth) : 0f;
 
             _healthBarTween?.Kill();
             _healthBarTween = healthBar
                 .DOFillAmount(fillValue, tweenTime)
                 .SetEase(Ease.OutCubic);
+        }
+
+        private float GetMaxHealth()
+        {
+            if (_unit == null)
+                return 0f;
+
+            if (_unit.MaxHealth > 0f)
+                return _unit.MaxHealth;
+
+            return _unit.Data != null ? _unit.Data.Maxhealth : 0f;
         }
 
         private void UnsubscribeCurrentUnit()

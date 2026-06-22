@@ -163,6 +163,7 @@ namespace Code.Tower.UI
 
             if (nodeRect != null)
             {
+                ConfigureMapItemRect(nodeRect);
                 nodeRect.sizeDelta = nodeSize * GetMapScale();
                 nodeRect.anchoredPosition = GetNodePosition(room);
             }
@@ -384,8 +385,7 @@ namespace Code.Tower.UI
         private RectTransform CreateConnectionGroup(string objectName)
         {
             RectTransform group = CreateRect(objectName, nodeRoot);
-            group.anchorMin = new Vector2(0.5f, 0f);
-            group.anchorMax = new Vector2(0.5f, 0f);
+            ConfigureMapItemRect(group);
             group.pivot = new Vector2(0.5f, 0f);
             group.anchoredPosition = Vector2.zero;
             group.sizeDelta = _resolvedContentSize;
@@ -395,9 +395,7 @@ namespace Code.Tower.UI
         private void CreateConnectionDash(RectTransform parent, Vector2 position, Vector2 tangent, float length, float width, Color color)
         {
             RectTransform dash = CreateRect("Dash", parent);
-            dash.anchorMin = new Vector2(0.5f, 0f);
-            dash.anchorMax = new Vector2(0.5f, 0f);
-            dash.pivot = new Vector2(0.5f, 0.5f);
+            ConfigureMapItemRect(dash);
             dash.sizeDelta = new Vector2(length, width);
             dash.anchoredPosition = position;
             dash.localRotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(tangent.y, tangent.x) * Mathf.Rad2Deg);
@@ -557,13 +555,22 @@ namespace Code.Tower.UI
             if (nodeRoot == null)
                 return;
 
-            nodeRoot.anchorMin = new Vector2(0.5f, 0f);
-            nodeRoot.anchorMax = new Vector2(0.5f, 0f);
+            ConfigureMapItemRect(nodeRoot);
             nodeRoot.pivot = new Vector2(0.5f, 0f);
             nodeRoot.anchoredPosition = Vector2.zero;
 
             if (nodeRoot.sizeDelta.sqrMagnitude <= 0f)
                 nodeRoot.sizeDelta = _resolvedContentSize;
+        }
+
+        private static void ConfigureMapItemRect(RectTransform rect)
+        {
+            if (rect == null)
+                return;
+
+            rect.anchorMin = new Vector2(0.5f, 0f);
+            rect.anchorMax = new Vector2(0.5f, 0f);
+            rect.pivot = new Vector2(0.5f, 0.5f);
         }
 
         private void CopyMapAreaRect(RectTransform source, RectTransform target)
