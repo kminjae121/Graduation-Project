@@ -268,7 +268,7 @@ MonoBehaviour:
   boss: {fileID: 6698335015231984026}
   gimmickPrefab: {fileID: 481332650997100001, guid: 33418fed14ec4ae4d8a48c6a7c7b9c02, type: 3}
   spawnParent: {fileID: 0}
-  spawnOffset: {x: 0, y: 1, z: 0}
+  spawnOffset: {x: 0, y: 0.7, z: 0}
   blockTile: 1
 --- !u!114 &6698335015231984026
 MonoBehaviour:

@@ -75,6 +75,7 @@ namespace Code.UnitSystem.Combat
             }
 
             _unitAnimation = _entity.GetUnitCompo<UnitAnimation>();
+            OnHealthChangedEvent?.Invoke(currentHealth, maxHealth);
         }
 
         public void SetMaxHp(int value)
