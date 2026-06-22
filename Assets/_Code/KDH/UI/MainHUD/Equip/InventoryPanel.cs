@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Code.Core;
 using Code.Core.Events.Bus;
 using Code.Core.Managers;
 using Code.Item;
@@ -197,6 +198,8 @@ namespace Code.UI
                 Bus<WarningUIEvent>.Raise(new WarningUIEvent($"아티팩트는 최대 {maxArtifactEquipCount}개까지 장착할 수 있습니다."));
                 return;
             }
+            
+            SoundManager.Instance.PlayClip("SelectSound");
 
             _unit.OwnArtifactStorage?.artifacts.Remove(evt.EquipmentItem);
 

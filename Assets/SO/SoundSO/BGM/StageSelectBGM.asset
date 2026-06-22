@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80b4b9682a3f495d9c21f232c47a41c2, type: 3}
   m_Name: StageSelectBGM
   m_EditorClassIdentifier: Assembly-CSharp::Code.KMJ.UnitSystem.Sound.SoundClip
-  Clip: {fileID: 8300000, guid: 97cc143d6d98d84458fce4c30ca48240, type: 3}
+  Clip: {fileID: 8300000, guid: 0388a3460cc96db438c33c8e98a0377b, type: 3}
   AudioName: StageSelectBGM
   IsLooping: 1
   Volume: 0.6

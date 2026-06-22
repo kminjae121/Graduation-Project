@@ -47,7 +47,10 @@ public class ShooterAttack : BasicUnitSkill
 
         private IEnumerator ShootAttackSet(GameObject target)
         {
-            yield return new WaitForSeconds(0.4f);
+            SoundManager.Instance.PlayClip("BowReloadSound");
+            yield return new WaitForSeconds(0.3f);
+            SoundManager.Instance.PlayClip("BlinkSound");
+            yield return new WaitForSeconds(0.1f);
             
             _target = null;
             _target = target;

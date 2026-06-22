@@ -1,3 +1,4 @@
+using Code.Core;
 using Code.Core.Debugs;
 using Code.Core.Events.Bus;
 using Code.Map;
@@ -51,15 +52,16 @@ namespace Code.SkillSystem
             => 0f;
 
         protected override bool UseShowEffectEvent => true;
-
-        protected override void OnSkillStarted()
+        
+        private void ShieldSoundPlay()
         {
-            SkillFeedbackEvent?.Invoke();
+            SoundManager.Instance.PlayClip("ShieldSound");
         }
 
         protected override void OnShowEffect()
         {
             ApplyFrontGuard();
+            ShieldSoundPlay();
         }
 
         private void ApplyFrontGuard()

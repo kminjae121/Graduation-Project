@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80b4b9682a3f495d9c21f232c47a41c2, type: 3}
-  m_Name: HitSound2
+  m_Name: SelectSound
   m_EditorClassIdentifier: Assembly-CSharp::Code.KMJ.UnitSystem.Sound.SoundClip
-  Clip: {fileID: 8300000, guid: d1b0f43f28fe4a74e93f26d063ed2d93, type: 3}
-  AudioName: HitSound2
+  Clip: {fileID: 8300000, guid: afb4a425879ac6c4d8f8bcbd11b21081, type: 3}
+  AudioName: SelectSound
   IsLooping: 0
-  Volume: 1
+  Volume: 0.7

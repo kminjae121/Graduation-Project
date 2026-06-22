@@ -43,7 +43,9 @@ public class BombArrow : BasicUnitSkill
     
     private IEnumerator FireArrowAction()
     {
+        SoundManager.Instance.PlayClip("BowReloadSound");
         yield return new WaitForSeconds(0.3f);
+        SoundManager.Instance.PlayClip("BlinkSound");
         yield return new WaitForSeconds(0.1f);
         SkillFeedbackEvent?.Invoke();
         animtionCompo.PlaySelectAnimation("AIM");

@@ -5,6 +5,7 @@ using Code.Core.Debugs;
 using Code.Core.Events.Bus;
 using Code.Core.Interfaces;
 using Code.UnitSystem;
+using Code.UnitSystem.Combat;
 using GondrLib.Dependencies;
 using UnityEngine;
 

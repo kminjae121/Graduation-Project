@@ -1,4 +1,5 @@
 using Code.Combat.StatusEffect;
+using Code.Core;
 using Code.Core.Events.Bus;
 using Code.UnitSystem;
 using UnityEngine;
@@ -9,6 +10,23 @@ namespace Code.SkillSystem
     {
         [SerializeField] private int burnDuration = 2;
         [SerializeField] private int burnDamage = 5;
+
+        protected override void StartEvent()
+        {
+            base.StartEvent();
+            triggerCompo.OnSoundPlayTrigger += PlayerSound;
+        }
+
+        protected override void FinishSkill()
+        {
+            base.FinishSkill();
+            triggerCompo.OnSoundPlayTrigger -= PlayerSound;
+        }
+
+        private void PlayerSound()
+        {
+            SoundManager.Instance.PlayClip("ExplosionSound");
+        }
 
         protected override void Attack(GameObject target)
         {

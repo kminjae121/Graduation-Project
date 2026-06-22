@@ -1,4 +1,5 @@
-﻿using Code.Core.Events.Bus;
+﻿using Code.Core;
+using Code.Core.Events.Bus;
 using UnityEngine;
 
 namespace Code.UnitSystem.Combat
@@ -31,8 +32,7 @@ namespace Code.UnitSystem.Combat
 
         public override void AttackEnd()
         {
-            Bus<DamageEvent>.Raise(new DamageEvent(_shootItemManager.DamageData,_target,0,_shootItemManager.Unit
-                , false,false,0.2f));
+            SoundManager.Instance.PlayClip("ExplosionSound2");
             
             ParticleSystem particle = Instantiate(bombEffect, transform.position, Quaternion.identity);
             particle.Play();

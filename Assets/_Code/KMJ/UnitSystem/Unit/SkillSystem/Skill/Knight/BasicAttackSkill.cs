@@ -88,8 +88,8 @@ public class BasicAttackSkill : BasicUnitSkill
         base.SkillEnd();
         triggerCompo.OnShowEffectTrigger -= ShowEffect;
         triggerCompo.OnAnimationEndTrigger -= AttackEnd;
-        triggerCompo.OnAttackTrigger -= TakeDamage;
         triggerCompo.OnSoundPlayTrigger -= SoundPlay;
+        triggerCompo.OnAttackTrigger -= TakeDamage;
         Bus<TurnEndUIEvent>.Raise(new TurnEndUIEvent(false));
         SkillEndEvent?.Invoke();
     }

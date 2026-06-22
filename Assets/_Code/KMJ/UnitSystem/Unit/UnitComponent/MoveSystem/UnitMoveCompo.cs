@@ -49,11 +49,7 @@ namespace Code.UnitSystem
             _pathMoverCompo.OnMoveEnd += HandleMoveEnd;
             _isMoving = false;
         }
-
-        private void WalkSound()
-        {
-            SoundManager.Instance.PlayClip("WalkSound");
-        }
+        
 
         protected override void OnDestroy()
         {
@@ -170,8 +166,6 @@ namespace Code.UnitSystem
             rotatorCompo.SetDir(tile.WorldPos);
             CurrentMapTile.SetTileUnit(null);
             animationCompo.PlaySelectAnimation("MOVE");
-            
-            triggerCompo.OnSoundPlayTrigger += WalkSound;
         }
 
         private void HandleMoveEnd()
@@ -190,8 +184,6 @@ namespace Code.UnitSystem
             Bus<KnightSunEvent>.Raise(new KnightSunEvent(true));
             
             animationCompo.PlaySelectAnimation("IDLE");
-            
-            triggerCompo.OnSoundPlayTrigger -= WalkSound;
             UnitRangeCompo.RemoveAllRange();
         }
 
