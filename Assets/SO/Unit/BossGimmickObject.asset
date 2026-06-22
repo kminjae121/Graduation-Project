@@ -22,10 +22,10 @@ MonoBehaviour:
   EquippedArtifacts: {fileID: 0}
   LoadOutCost: 0
   isLongRange: 0
-  Speed: 1
+  Speed: 3
   isPlayerUnit: 0
   MoveRange: 0
-  Maxhealth: 100
+  Maxhealth: 50
   AttackDamage: 0
   DefensivePower: 0
   ShieldValue: 0
