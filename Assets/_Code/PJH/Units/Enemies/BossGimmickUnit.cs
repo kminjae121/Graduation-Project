@@ -123,7 +123,7 @@ namespace Code.UnitSystem.Enemies
                 return;
 
             _finished = true;
-            _unitUnregistered = true;
+            UnregisterUnit();
             onDestroyed?.Invoke();
             _spawner?.CompleteGimmick(this);
 
@@ -157,6 +157,11 @@ namespace Code.UnitSystem.Enemies
         {
             if (!_finished)
                 onDamaged?.Invoke();
+        }
+
+        protected override void Dead()
+        {
+            UnregisterUnit();
         }
 
         private void UnregisterUnit()

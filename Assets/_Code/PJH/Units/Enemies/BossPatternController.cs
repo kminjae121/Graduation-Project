@@ -41,7 +41,6 @@ namespace Code.UnitSystem.Enemies
 
         [Header("Weaken")]
         [SerializeField, Min(1)] private int weakTurns = 1;
-        [SerializeField] private bool skipInWeak = true;
         [SerializeField] private float weakDamageTakenRate = 1.5f;
 
         [Header("Events")]
@@ -81,18 +80,16 @@ namespace Code.UnitSystem.Enemies
             PatternStep.GimmickStart => gimmickSkill,
             PatternStep.GimmickResolve => basicSkill,
             PatternStep.Punish => punishSkill,
-            PatternStep.Weakened => weakSkill,
+            PatternStep.Weakened => weakSkill != null ? weakSkill : basicSkill,
             _ => null
         };
 
         internal bool UseDefaultPlan
-            => (_step == PatternStep.Basic || _step == PatternStep.GimmickResolve)
+            => (_step == PatternStep.Basic || _step == PatternStep.GimmickResolve ||
+                (_step == PatternStep.Weakened && weakSkill == null))
                && basicSkill == null && useDefaultBasic;
 
         internal bool FallbackToDefault => fallbackToDefault;
-
-        internal bool SkipTurn
-            => _step == PatternStep.Weakened && weakSkill == null && skipInWeak;
 
         internal bool CanMoveNow
         {
@@ -141,9 +138,6 @@ namespace Code.UnitSystem.Enemies
                 case PatternStep.Punish:
                     ResetPattern();
                     break;
-                case PatternStep.Weakened:
-                    ConsumeWeakenTurn();
-                    break;
             }
         }
 
@@ -181,6 +175,9 @@ namespace Code.UnitSystem.Enemies
         private bool ShouldAdvanceBySkill(SkillSO skillSO)
         {
             if (_step == PatternStep.GimmickResolve)
+                return false;
+
+            if (_step == PatternStep.Weakened)
                 return false;
 
             if (_step == PatternStep.Basic && basicSkill == null && useDefaultBasic)
@@ -249,7 +246,7 @@ namespace Code.UnitSystem.Enemies
             if (!ReferenceEquals(evt.Unit, _owner))
                 return;
 
-            if (SkipTurn)
+            if (IsWeakened)
                 ConsumeWeakenTurn();
         }
 

@@ -31,26 +31,39 @@ namespace Code.Core.Managers
         private List<ITurnable> _units;
         private RoundTracker _roundTracker;
         private bool _turnFlag;
+        private bool _turnOrderDirty;
 
         private void Awake()
         {
             Bus<RequestTurnEndEvent>.Subscribe(OnTurnEndRequested);
             Bus<UnitTurnEndEvent>.Subscribe(OnUnitTurnEnd);
+            Bus<UnitSpawnEvent>.Subscribe(OnUnitListChanged);
+            Bus<UnitDeadEvent>.Subscribe(OnUnitListChanged);
         }
 
         private void Update()
         {
-            if (!_turnFlag)
+            if (_turnFlag)
+            {
+                _turnFlag = false;
+                _turnOrderDirty = false;
+                StartNextTurn();
                 return;
-            
-            _turnFlag = false;
-            StartNextTurn();
+            }
+
+            if (!_turnOrderDirty)
+                return;
+
+            _turnOrderDirty = false;
+            Bus<TurnOrderUpdateEvent>.Raise(new TurnOrderUpdateEvent());
         }
 
         private void OnDestroy()
         {
             Bus<RequestTurnEndEvent>.Unsubscribe(OnTurnEndRequested);
             Bus<UnitTurnEndEvent>.Unsubscribe(OnUnitTurnEnd);
+            Bus<UnitSpawnEvent>.Unsubscribe(OnUnitListChanged);
+            Bus<UnitDeadEvent>.Unsubscribe(OnUnitListChanged);
         }
 
         public void StartBattle()
@@ -109,6 +122,24 @@ namespace Code.Core.Managers
             }
 
             _turnFlag = true;
+        }
+
+        private void OnUnitListChanged(UnitSpawnEvent evt)
+        {
+            MarkTurnOrderDirty();
+        }
+
+        private void OnUnitListChanged(UnitDeadEvent evt)
+        {
+            MarkTurnOrderDirty();
+        }
+
+        private void MarkTurnOrderDirty()
+        {
+            if (CurrentRound <= 0)
+                return;
+
+            _turnOrderDirty = true;
         }
 
         private void StartNextTurn()
@@ -202,6 +233,11 @@ namespace Code.Core.Managers
         public List<ITurnable> GetTimelineUnits(int count)
         {
             List<ITurnable> timeline = new List<ITurnable>();
+
+            if (unitManager == null)
+                return timeline;
+
+            RefreshUnits();
             
             if (_units == null || _units.Count == 0)
                 return timeline;
