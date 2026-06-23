@@ -1,6 +1,8 @@
 using System;
 using Code.Core;
+using Code.Core.Managers;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameDescription : MonoSingleton<GameDescription>
 {
@@ -27,6 +29,14 @@ public class GameDescription : MonoSingleton<GameDescription>
             descriptionUI.SetActive(false);
             _isOpen = false;
             Time.timeScale = 1;
+        }
+
+        if (UnityEngine.Input.GetKeyDown(KeyCode.B))
+        {
+            if (SceneManager.GetActiveScene().name == "LobbyScene" ||  SceneManager.GetActiveScene().name == "TowerMapScene")
+            {
+                SceneChangeManager.Instance.ChangeSelectScene("BossScene1");
+            }
         }
     }
 }
