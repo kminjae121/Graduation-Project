@@ -4435,7 +4435,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4310738326142391416, guid: 72cad89d56f064a4da80a8a03fa47db9, type: 3}
       propertyPath: scenesName.Array.size
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4310738326142391416, guid: 72cad89d56f064a4da80a8a03fa47db9, type: 3}
       propertyPath: 'scenesName.Array.data[2]'
@@ -4468,6 +4468,10 @@ PrefabInstance:
     - target: {fileID: 4310738326142391416, guid: 72cad89d56f064a4da80a8a03fa47db9, type: 3}
       propertyPath: 'scenesName.Array.data[9]'
       value: TowerMapScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 4310738326142391416, guid: 72cad89d56f064a4da80a8a03fa47db9, type: 3}
+      propertyPath: 'scenesName.Array.data[10]'
+      value: BossScene1
       objectReference: {fileID: 0}
     - target: {fileID: 5172779121907639654, guid: 72cad89d56f064a4da80a8a03fa47db9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5000,5 +5004,5 @@ SceneRoots:
   - {fileID: 612828734}
   - {fileID: 1963525151}
   - {fileID: 2012584144}
-  - {fileID: 2001451102}
   - {fileID: 2082225934}
+  - {fileID: 2001451102}

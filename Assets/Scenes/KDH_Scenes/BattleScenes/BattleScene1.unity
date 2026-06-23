@@ -36672,27 +36672,31 @@ PrefabInstance:
       objectReference: {fileID: 848431497}
     - target: {fileID: 4215123572567445162, guid: d587fee46528bcb4396971826c10f454, type: 3}
       propertyPath: enemySpawns.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4215123572567445162, guid: d587fee46528bcb4396971826c10f454, type: 3}
       propertyPath: enemySpawns.Array.data[0].enemyPrefab
       value: 
-      objectReference: {fileID: 11400000, guid: 4367fcc42ca1380409026537c3ddb149, type: 2}
+      objectReference: {fileID: 11400000, guid: dc6302d9335b6114ea7810b1a3d33f76, type: 2}
     - target: {fileID: 4215123572567445162, guid: d587fee46528bcb4396971826c10f454, type: 3}
       propertyPath: enemySpawns.Array.data[1].enemyPrefab
       value: 
-      objectReference: {fileID: 11400000, guid: dc6302d9335b6114ea7810b1a3d33f76, type: 2}
+      objectReference: {fileID: 11400000, guid: 5d5dfd4c6ba3fa04fa0cf0d055c556bd, type: 2}
+    - target: {fileID: 4215123572567445162, guid: d587fee46528bcb4396971826c10f454, type: 3}
+      propertyPath: enemySpawns.Array.data[2].enemyPrefab
+      value: 
+      objectReference: {fileID: 11400000, guid: 5d5dfd4c6ba3fa04fa0cf0d055c556bd, type: 2}
     - target: {fileID: 4215123572567445162, guid: d587fee46528bcb4396971826c10f454, type: 3}
       propertyPath: enemySpawns.Array.data[0].spawnCoord.x
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4215123572567445162, guid: d587fee46528bcb4396971826c10f454, type: 3}
       propertyPath: enemySpawns.Array.data[0].spawnCoord.y
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4215123572567445162, guid: d587fee46528bcb4396971826c10f454, type: 3}
       propertyPath: enemySpawns.Array.data[1].spawnCoord.x
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4215123572567445162, guid: d587fee46528bcb4396971826c10f454, type: 3}
       propertyPath: enemySpawns.Array.data[1].spawnCoord.y
@@ -36700,7 +36704,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4215123572567445162, guid: d587fee46528bcb4396971826c10f454, type: 3}
       propertyPath: enemySpawns.Array.data[2].spawnCoord.x
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4215123572567445162, guid: d587fee46528bcb4396971826c10f454, type: 3}
       propertyPath: enemySpawns.Array.data[2].spawnCoord.y
