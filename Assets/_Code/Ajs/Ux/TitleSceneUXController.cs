@@ -1,452 +1,198 @@
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using System.Collections;
-using System.Collections.Generic;
 using Code.Core.Managers;
-#if ENABLE_INPUT_SYSTEM
-using UnityEngine.InputSystem;
-#endif
+using PixeLadder.EasyTransition;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace Code.Ajs.Ux
 {
     public class TitleSceneUXController : MonoBehaviour
     {
-        [Header("UI References")]
-        [SerializeField] private GameObject menuRoot;
-        [SerializeField] private GameObject playButPanel;
-        [SerializeField] private Transform buttonSearchRoot;
-        [SerializeField] private Button startButton;
-        [SerializeField] private Button optionButton;
-        [SerializeField] private Button quitButton;
-        [SerializeField] private GameObject optionPanel;
-        
-        [Header("Menu Motion")]
-        [SerializeField] private bool animateMenuButtonsOnOpen = true;
-        [SerializeField] private bool autoCollectMenuButtons = true;
-        [SerializeField] private List<RectTransform> menuButtonRects = new List<RectTransform>();
-        [SerializeField, Min(0f)] private float buttonStartOffsetX = 500f;
-        [SerializeField, Min(0.01f)] private float buttonMoveDuration = 0.25f;
-        [SerializeField, Min(0f)] private float buttonStaggerDelay = 0.06f;
-        [SerializeField, Range(0.5f, 1.2f)] private float buttonStartScale = 0.95f;
-        
-        [Header("Per Button UX")]
-        [SerializeField] private bool sideFadeOnlyOnStartButton = true;
-        [SerializeField] private bool enableHoverScaleOnButtons = true;
-        [SerializeField, Range(1f, 1.3f)] private float hoverScaleOnButtons = 1.08f;
-
         [Header("Scene")]
-        [SerializeField] private string startSceneName;
-        
-        [Header("Start Transition Panel")]
-        [SerializeField] private GameObject startTransitionPanel;
-        [SerializeField] private bool useStartTransitionPanel = true;
-        [SerializeField, Min(0.01f)] private float startTransitionDuration = 0.2f;
-        [SerializeField, Min(0f)] private float startTransitionSlideX = 120f;
+        [FormerlySerializedAs("startSceneName")]
+        [SerializeField] private string targetSceneName = "StartScene";
 
-        [Header("Behavior")]
-        [SerializeField] private bool hideMenuOnStart = true;
+        [Header("Play Button")]
+        [FormerlySerializedAs("startButton")]
+        [SerializeField] private Button playButton;
+        [SerializeField] private Transform playButtonScaleTarget;
 
-        [Header("Audio")]
-        [SerializeField] private AudioSource uiAudioSource;
-        [SerializeField] private AudioClip defaultClickSfx;
-        [SerializeField] private AudioClip menuOpenSfx;
-        [SerializeField] private AudioClip startClickSfx;
-        [SerializeField] private AudioClip optionClickSfx;
-        [SerializeField] private AudioClip quitClickSfx;
-        [SerializeField] private bool waitForClickSfxBeforeAction;
-        [SerializeField, Min(0f)] private float maxWaitSeconds = 0.2f;
+        [Header("Hover")]
+        [SerializeField, Min(1f)] private float hoverScale = 1.08f;
+        [SerializeField, Min(0.01f)] private float hoverDuration = 0.18f;
 
-        private bool _menuOpened;
-        private bool _isProcessingClick;
-        private CanvasGroup _selfCanvasGroup;
-        private bool _useSelfCanvasGroupHide;
-        private readonly Dictionary<RectTransform, Vector2> _originalAnchoredPositions = new Dictionary<RectTransform, Vector2>();
-        private CanvasGroup _startTransitionCanvasGroup;
-        private RectTransform _startTransitionRect;
-        private Vector2 _startTransitionOriginalPos;
+        private Transform _scaleTarget;
+        private Vector3 _originalScale;
+        private Coroutine _scaleRoutine;
+        private EventTrigger _playButtonEventTrigger;
+        private EventTrigger.Entry _pointerEnterEntry;
+        private EventTrigger.Entry _pointerExitEntry;
+        private bool _isLoadingScene;
 
         private void Awake()
         {
-            SetupButtonUX();
-            CacheButtonPositions();
-            SetupStartTransitionPanel();
-
-            if (hideMenuOnStart && menuRoot != null)
-            {
-                if (menuRoot == gameObject)
-                {
-                    // If we disable the same object this script is on, Update won't run.
-                    _selfCanvasGroup = GetComponent<CanvasGroup>();
-                    if (_selfCanvasGroup == null)
-                        _selfCanvasGroup = gameObject.AddComponent<CanvasGroup>();
-
-                    _selfCanvasGroup.alpha = 0f;
-                    _selfCanvasGroup.interactable = false;
-                    _selfCanvasGroup.blocksRaycasts = false;
-                    _useSelfCanvasGroupHide = true;
-                }
-                else
-                {
-                    menuRoot.SetActive(false);
-                }
-            }
+            CacheScaleTarget();
         }
 
         private void OnEnable()
         {
-            if (startButton != null)
-                startButton.onClick.AddListener(OnClickStart);
-
-            if (optionButton != null)
-                optionButton.onClick.AddListener(OnClickOption);
-
-            if (quitButton != null)
-                quitButton.onClick.AddListener(OnClickQuit);
+            if (playButton != null)
+            {
+                playButton.onClick.AddListener(LoadTargetScene);
+                RegisterHoverEvents();
+            }
         }
 
         private void OnDisable()
         {
-            if (startButton != null)
-                startButton.onClick.RemoveListener(OnClickStart);
+            if (playButton != null)
+                playButton.onClick.RemoveListener(LoadTargetScene);
 
-            if (optionButton != null)
-                optionButton.onClick.RemoveListener(OnClickOption);
-
-            if (quitButton != null)
-                quitButton.onClick.RemoveListener(OnClickQuit);
+            UnregisterHoverEvents();
+            StopScaleRoutine();
+            ResetScale();
         }
 
-        private void Update()
+        private void CacheScaleTarget()
         {
-            if (_menuOpened)
+            _scaleTarget = playButtonScaleTarget != null ? playButtonScaleTarget : playButton != null ? playButton.transform : null;
+
+            if (_scaleTarget != null)
+                _originalScale = _scaleTarget.localScale;
+        }
+
+        private void RegisterHoverEvents()
+        {
+            if (playButton == null)
                 return;
 
-            if (IsAnyInputPressed())
-                OpenMenu();
+            _playButtonEventTrigger = playButton.GetComponent<EventTrigger>();
+            if (_playButtonEventTrigger == null)
+                _playButtonEventTrigger = playButton.gameObject.AddComponent<EventTrigger>();
+
+            _pointerEnterEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
+            _pointerEnterEntry.callback.AddListener(OnPlayButtonPointerEnter);
+            _playButtonEventTrigger.triggers.Add(_pointerEnterEntry);
+
+            _pointerExitEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
+            _pointerExitEntry.callback.AddListener(OnPlayButtonPointerExit);
+            _playButtonEventTrigger.triggers.Add(_pointerExitEntry);
         }
 
-        private void OpenMenu()
+        private void UnregisterHoverEvents()
         {
-            _menuOpened = true;
-            PlayMenuOpenSfx();
-
-            if (playButPanel != null)
-                playButPanel.SetActive(false);
-
-            if (menuRoot != null)
-            {
-                if (_useSelfCanvasGroupHide && menuRoot == gameObject && _selfCanvasGroup != null)
-                {
-                    _selfCanvasGroup.alpha = 1f;
-                    _selfCanvasGroup.interactable = true;
-                    _selfCanvasGroup.blocksRaycasts = true;
-                }
-                else
-                {
-                    menuRoot.SetActive(true);
-                }
-            }
-
-            if (animateMenuButtonsOnOpen)
-                StartCoroutine(AnimateMenuButtonsRoutine());
-        }
-
-        private bool IsAnyInputPressed()
-        {
-#if ENABLE_INPUT_SYSTEM
-            if (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame)
-                return true;
-
-            if (Mouse.current != null && (Mouse.current.leftButton.wasPressedThisFrame || Mouse.current.rightButton.wasPressedThisFrame))
-                return true;
-
-            if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
-                return true;
-
-            return false;
-#else
-            return Input.anyKeyDown;
-#endif
-        }
-
-        private void OnClickStart()
-        {
-            if (_isProcessingClick)
+            if (_playButtonEventTrigger == null)
                 return;
 
-            StartCoroutine(HandleStartClickRoutine());
+            if (_pointerEnterEntry != null)
+                _playButtonEventTrigger.triggers.Remove(_pointerEnterEntry);
+
+            if (_pointerExitEntry != null)
+                _playButtonEventTrigger.triggers.Remove(_pointerExitEntry);
+
+            _pointerEnterEntry = null;
+            _pointerExitEntry = null;
+            _playButtonEventTrigger = null;
         }
 
-        private IEnumerator HandleStartClickRoutine()
+        private void OnPlayButtonPointerEnter(BaseEventData eventData)
         {
-            _isProcessingClick = true;
-           // yield return PlayClickAndOptionallyWait(startClickSfx);
-            yield return PlayStartTransitionPanelRoutine();
+            if (_scaleTarget == null)
+                CacheScaleTarget();
 
-            if (string.IsNullOrWhiteSpace(startSceneName))
-            {
-                Debug.LogWarning("[TitleSceneUXController] Start Scene Name is empty.");
-                _isProcessingClick = false;
-                yield break;
-            }
-
-            SceneChangeManager.Instance.ChangeSelectScene("StartScene");
-        }
-
-        private void OnClickOption()
-        {
-            if (_isProcessingClick)
+            if (_scaleTarget == null)
                 return;
 
-            StartCoroutine(HandleOptionClickRoutine());
+            StartScaleRoutine(_originalScale * hoverScale);
         }
 
-        private IEnumerator HandleOptionClickRoutine()
+        private void OnPlayButtonPointerExit(BaseEventData eventData)
         {
-            _isProcessingClick = true;
-            //yield return PlayClickAndOptionallyWait(optionClickSfx);
-
-            if (optionPanel == null)
-            {
-                _isProcessingClick = false;
-                yield break;
-            }
-
-            optionPanel.SetActive(!optionPanel.activeSelf);
-            _isProcessingClick = false;
-        }
-
-        private void OnClickQuit()
-        {
-            if (_isProcessingClick)
+            if (_scaleTarget == null)
                 return;
 
-            StartCoroutine(HandleQuitClickRoutine());
+            StartScaleRoutine(_originalScale);
         }
 
-        private IEnumerator HandleQuitClickRoutine()
+        private void LoadTargetScene()
         {
-            _isProcessingClick = true;
-      //      yield return PlayClickAndOptionallyWait(quitClickSfx);
-      yield return null;
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
-        }
+            if (_isLoadingScene)
+                return;
 
-        private IEnumerator PlayClickAndOptionallyWait(AudioClip specificClip)
-        {
-            AudioClip clipToPlay = specificClip != null ? specificClip : defaultClickSfx;
-
-            if (uiAudioSource == null)
-                uiAudioSource = GetComponent<AudioSource>();
-
-            if (uiAudioSource != null && clipToPlay != null)
+            if (string.IsNullOrWhiteSpace(targetSceneName))
             {
-                uiAudioSource.PlayOneShot(clipToPlay);
-
-                if (waitForClickSfxBeforeAction)
-                    yield return new WaitForSecondsRealtime(Mathf.Min(clipToPlay.length, maxWaitSeconds));
-            }
-        }
-
-        private void PlayMenuOpenSfx()
-        {
-            AudioClip clipToPlay = menuOpenSfx != null ? menuOpenSfx : defaultClickSfx;
-
-            if (uiAudioSource == null)
-                uiAudioSource = GetComponent<AudioSource>();
-
-            if (uiAudioSource != null && clipToPlay != null)
-                uiAudioSource.PlayOneShot(clipToPlay);
-        }
-
-        private void SetupButtonUX()
-        {
-            Transform searchRoot = buttonSearchRoot != null ? buttonSearchRoot : transform;
-            Button[] buttons = searchRoot.GetComponentsInChildren<Button>(true);
-
-            foreach (Button button in buttons)
-            {
-                if (button == null)
-                    continue;
-
-                UIButtonPressFeedback feedback = button.GetComponent<UIButtonPressFeedback>();
-                if (feedback == null)
-                    feedback = button.gameObject.AddComponent<UIButtonPressFeedback>();
-
-                if (feedback != null)
-                {
-                    bool enableSideFade = !sideFadeOnlyOnStartButton || button == startButton;
-                    feedback.SetClickSideFadeEnabled(enableSideFade);
-                    feedback.ConfigureHoverScale(enableHoverScaleOnButtons, hoverScaleOnButtons);
-                }
-            }
-        }
-
-        private void CacheButtonPositions()
-        {
-            _originalAnchoredPositions.Clear();
-
-            if (autoCollectMenuButtons && menuRoot != null)
-            {
-                Button[] menuButtons = menuRoot.GetComponentsInChildren<Button>(true);
-                foreach (Button button in menuButtons)
-                {
-                    if (button == null)
-                        continue;
-
-                    RectTransform rect = button.GetComponent<RectTransform>();
-                    if (rect != null && !menuButtonRects.Contains(rect))
-                        menuButtonRects.Add(rect);
-                }
+                Debug.LogWarning("이동할 씬 이름이 비어 있습니다.");
+                return;
             }
 
-            foreach (RectTransform rect in menuButtonRects)
+            if (!Application.CanStreamedLevelBeLoaded(targetSceneName))
             {
-                if (rect == null)
-                    continue;
-
-                _originalAnchoredPositions[rect] = rect.anchoredPosition;
+                Debug.LogError($"씬을 로드할 수 없습니다: {targetSceneName}. Build Settings에 씬이 등록되어 있는지 확인해주세요.");
+                return;
             }
+
+            _isLoadingScene = true;
+
+            SceneChangeManager sceneChangeManager = FindAnyObjectByType<SceneChangeManager>();
+            if (sceneChangeManager != null && sceneChangeManager.TryChangeSelectScene(targetSceneName, false))
+                return;
+
+            if (SceneTransitioner.Instance != null)
+            {
+                SceneTransitioner.Instance.LoadScene(targetSceneName);
+                return;
+            }
+
+            Debug.LogWarning("씬 전환 매니저가 없어 기본 씬 로드를 사용합니다.");
+            SceneManager.LoadScene(targetSceneName);
         }
 
-        private IEnumerator AnimateMenuButtonsRoutine()
+        private void StartScaleRoutine(Vector3 targetScale)
         {
-            if (menuButtonRects == null || menuButtonRects.Count == 0)
-                yield break;
-
-            foreach (RectTransform rect in menuButtonRects)
-            {
-                if (rect == null)
-                    continue;
-
-                if (!_originalAnchoredPositions.TryGetValue(rect, out Vector2 originalPos))
-                {
-                    originalPos = rect.anchoredPosition;
-                    _originalAnchoredPositions[rect] = originalPos;
-                }
-
-                CanvasGroup group = rect.GetComponent<CanvasGroup>();
-                if (group == null)
-                    group = rect.gameObject.AddComponent<CanvasGroup>();
-
-                rect.anchoredPosition = originalPos + Vector2.left * buttonStartOffsetX;
-                rect.localScale = Vector3.one * buttonStartScale;
-                group.alpha = 0f;
-            }
-
-            for (int i = 0; i < menuButtonRects.Count; i++)
-            {
-                RectTransform rect = menuButtonRects[i];
-                if (rect == null)
-                    continue;
-
-                CanvasGroup group = rect.GetComponent<CanvasGroup>();
-                if (group == null)
-                    continue;
-
-                Vector2 targetPos = _originalAnchoredPositions[rect];
-                StartCoroutine(AnimateSingleButton(rect, group, targetPos, i * buttonStaggerDelay));
-            }
-
-            yield break;
+            StopScaleRoutine();
+            _scaleRoutine = StartCoroutine(ScaleRoutine(targetScale));
         }
 
-        private IEnumerator AnimateSingleButton(RectTransform rect, CanvasGroup group, Vector2 targetPos, float delay)
+        private void StopScaleRoutine()
         {
-            if (delay > 0f)
-                yield return new WaitForSecondsRealtime(delay);
+            if (_scaleRoutine == null)
+                return;
 
-            Vector2 startPos = rect.anchoredPosition;
-            Vector3 startScale = rect.localScale;
+            StopCoroutine(_scaleRoutine);
+            _scaleRoutine = null;
+        }
 
+        private IEnumerator ScaleRoutine(Vector3 targetScale)
+        {
+            Vector3 startScale = _scaleTarget.localScale;
             float elapsed = 0f;
-            while (elapsed < buttonMoveDuration)
+
+            while (elapsed < hoverDuration)
             {
                 elapsed += Time.unscaledDeltaTime;
-                float t = Mathf.Clamp01(elapsed / buttonMoveDuration);
+                float t = Mathf.Clamp01(elapsed / hoverDuration);
                 float eased = EaseOutCubic(t);
-
-                rect.anchoredPosition = Vector2.LerpUnclamped(startPos, targetPos, eased);
-                rect.localScale = Vector3.LerpUnclamped(startScale, Vector3.one, eased);
-                group.alpha = Mathf.LerpUnclamped(0f, 1f, eased);
-
+                _scaleTarget.localScale = Vector3.LerpUnclamped(startScale, targetScale, eased);
                 yield return null;
             }
 
-            rect.anchoredPosition = targetPos;
-            rect.localScale = Vector3.one;
-            group.alpha = 1f;
+            _scaleTarget.localScale = targetScale;
+            _scaleRoutine = null;
         }
 
-        private static float EaseOutCubic(float t)
+        private void ResetScale()
         {
-            float inv = 1f - t;
-            return 1f - inv * inv * inv;
+            if (_scaleTarget != null)
+                _scaleTarget.localScale = _originalScale;
         }
 
-        private void SetupStartTransitionPanel()
+        private static float EaseOutCubic(float value)
         {
-            if (startTransitionPanel == null)
-                return;
-
-            _startTransitionCanvasGroup = startTransitionPanel.GetComponent<CanvasGroup>();
-            if (_startTransitionCanvasGroup == null)
-                _startTransitionCanvasGroup = startTransitionPanel.AddComponent<CanvasGroup>();
-
-            _startTransitionRect = startTransitionPanel.GetComponent<RectTransform>();
-            if (_startTransitionRect != null)
-                _startTransitionOriginalPos = _startTransitionRect.anchoredPosition;
-
-            _startTransitionCanvasGroup.alpha = 0f;
-            startTransitionPanel.SetActive(false);
-        }
-
-        private IEnumerator PlayStartTransitionPanelRoutine()
-        {
-            if (!useStartTransitionPanel || startTransitionPanel == null)
-                yield break;
-
-            if (_startTransitionCanvasGroup == null)
-                SetupStartTransitionPanel();
-
-            startTransitionPanel.SetActive(true);
-
-            if (_startTransitionCanvasGroup == null)
-                yield break;
-
-            if (_startTransitionRect != null)
-                _startTransitionRect.anchoredPosition = _startTransitionOriginalPos + new Vector2(startTransitionSlideX, 0f);
-
-            _startTransitionCanvasGroup.alpha = 0f;
-
-            float elapsed = 0f;
-            while (elapsed < startTransitionDuration)
-            {
-                elapsed += Time.unscaledDeltaTime;
-                float t = Mathf.Clamp01(elapsed / startTransitionDuration);
-                float eased = EaseOutCubic(t);
-
-                _startTransitionCanvasGroup.alpha = eased;
-
-                if (_startTransitionRect != null)
-                {
-                    _startTransitionRect.anchoredPosition = Vector2.LerpUnclamped(
-                        _startTransitionOriginalPos + new Vector2(startTransitionSlideX, 0f),
-                        _startTransitionOriginalPos,
-                        eased);
-                }
-
-                yield return null;
-            }
-
-            _startTransitionCanvasGroup.alpha = 1f;
-            if (_startTransitionRect != null)
-                _startTransitionRect.anchoredPosition = _startTransitionOriginalPos;
+            float inverse = 1f - value;
+            return 1f - inverse * inverse * inverse;
         }
     }
 }

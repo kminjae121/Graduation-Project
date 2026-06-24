@@ -41,17 +41,32 @@ namespace Code.Core.Managers
 
         public void ChangeSelectScene(string sceneName)
         {
-            if (!scenesName.Contains(sceneName))
+            TryChangeSelectScene(sceneName);
+        }
+
+        public bool TryChangeSelectScene(string sceneName, bool logWhenMissing = true)
+        {
+            if (string.IsNullOrWhiteSpace(sceneName))
             {
-                Debug.LogError($"씬 목록에 없는 씬입니다: {sceneName}");
-                return;
+                if (logWhenMissing)
+                    Debug.LogError("씬 이름이 비어 있습니다.");
+
+                return false;
+            }
+
+            if (scenesName == null || !scenesName.Contains(sceneName))
+            {
+                if (logWhenMissing)
+                    Debug.LogError($"씬 목록에 없는 씬입니다: {sceneName}");
+
+                return false;
             }
             
             int sceneIdx = scenesName.IndexOf(sceneName);
             _currentSceneIdx = sceneIdx;
             
-            
             LoadSceneWithTransition(sceneName);
+            return true;
         }
 
         private void LoadSceneWithTransition(string sceneName)
