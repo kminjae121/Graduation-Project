@@ -95,7 +95,7 @@ namespace PixeLadder.EasyTransition
                     SoundManager.Instance.PlayBGMSound("StageBGM");
                     break;
                 case "StartScene" :
-                    SoundManager.Instance.PlayBGMSound("MenuBGM");
+                    SoundManager.Instance.PlayBGMSound("MenuBGM"); 
                     break;
                 case "TowerMapScene" :
                     SoundManager.Instance.PlayBGMSound("StageSelectBGM");
