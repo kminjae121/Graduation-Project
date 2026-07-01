@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 481332650997100005}
   - component: {fileID: 69630169620936478}
   m_Layer: 8
-  m_Name: Boss Gimmick Object
+  m_Name: Golem Tombstone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

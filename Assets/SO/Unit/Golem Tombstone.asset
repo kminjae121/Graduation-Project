@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ac6c49583ad8fa498a963cb4786ab53, type: 3}
-  m_Name: BossGimmickObject
+  m_Name: Golem Tombstone
   m_EditorClassIdentifier: 
-  UnitName: Boss Gimmick
-  UnitClass: Gimmick
+  UnitName: Golem Tombstone
+  UnitClass: Golem Tombstone
   UnitImage: {fileID: 21300000, guid: 000d897334ab1f8408e94cbcc20c3c70, type: 3}
   UnitSpawn: {fileID: 0}
   SkillStorage: {fileID: 0}
